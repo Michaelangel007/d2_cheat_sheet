@@ -1,0 +1,2261 @@
+<!-- Copyleft Michaelangel007 / Michael Pohoreski / mysticreddit -->
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset="UTF-8">
+        <title>Diablo 2 Cheat Sheet by Michaelangel007</title>
+        <style>
+pre
+{
+    margin: 0px;
+}
+
+table, tr
+{
+/*
+    margin-top: -2px;
+    margin-bot: -2px;
+    border-collapse: collapse;
+    border         : 1px solid red;
+*/
+    margin         : 0;
+    padding        : 0;
+}
+
+td
+{
+/*
+    border: 1px solid green;
+*/
+    margin : 0;
+    padding: 0;
+}
+
+a:visited
+{
+    color          : #08F;
+    text-decoration: none;
+}
+
+a:link
+{
+    color          : #8F8;
+    text-decoration: none;
+    font-weight    : bold
+}
+
+body
+{
+    color           : #fff;
+    background-color: #000;
+    width           : 1300px; /* Obediance */
+    max-width       : 1300px;
+    overflow-y      : scroll;
+    overflow-x      : hidden;
+}
+
+hr
+{
+    border: none;
+    height: 1px;
+    margin          : 0px 0px;
+    padding         : 0px;
+/*
+    border: 2px dotted magenta;
+    margin: 1px 1px;
+    padding: 0px;
+*/
+}
+
+hr.top
+{
+    background-color:#F0F;
+}
+
+hr.topr
+{
+    background-color: #F00;
+}
+
+hr.topg
+{
+    background-color: #0F0;
+}
+
+hr.topb
+{
+    background-color: #00F;
+}
+
+hr.topw
+{
+    background-color: #FFF;
+}
+
+hr.bot
+{
+    margin-bottom: -1em;
+}
+
+hr.botr
+{
+    background-color: #F00;
+    margin-bottom   : -1em;
+}
+
+hr.botg
+{
+    background-color:#0F0;
+    margin-bottom: -1em;
+}
+
+hr.botb
+{
+    background-color:#00F;
+    margin-bottom: -1em;
+}
+
+hr.botw
+{
+    background-color:#FFF;
+    margin-bottom: -1em;
+}
+
+img
+{
+    margin:  0px;
+    padding: 0px;
+}
+
+img.blank30x30
+{
+    content:url('data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==');
+    width : 30px;
+    height: 30px;
+    margin:  0px;
+    padding: 0px;
+}
+
+pre
+{
+    font-family: Consolas, Menlo, Monaco, Lucida Console, monospace;
+    font-size: 16px;
+}
+
+span.rune
+{
+    color: orange;
+}
+
+span.r11
+{
+    background-color: #211;
+}
+
+span.r44
+{
+    background-color: #422;
+}
+
+span.g11
+{
+    background-color: #121;
+}
+
+span.g44
+{
+    background-color: #242;
+}
+
+span.b11
+{
+    background-color: #113;
+}
+
+span.b44
+{
+    background-color: #226;
+}
+
+/* Crushing Blow */
+span.cb
+{
+    color: #F84;
+}
+
+/* Can't Be Frozen */
+span.cbf
+{
+    color      : #46F;
+    font-weight: bold;
+}
+
+/* Deadly Strike */
+span.ds
+{
+    color: #FAF;
+}
+
+/* Damage Reduction */
+span.dr
+{
+    background-color: #0AA;
+    padding-left    : 2px;
+    padding-right   : 2px;
+}
+
+/* Farm Boss */
+span.farm
+{
+    color: #4EF;
+}
+
+/* Faster Cast Rate */
+span.fcr
+{
+    color: #08F; /* cyan */
+}
+
+/* Faster Hit Recovery */
+span.fhr
+{
+    background-color: #08F; /* 23A */
+    color           : #FFF;
+    padding-left    : 2px;
+    padding-right   : 2px;
+}
+
+/* Gold Find */
+span.gold
+{
+    color: yellow;
+}
+
+/* Increased Attack Speed */
+span.ias
+{
+    color: #4F8;
+}
+
+/* Ignores Target's Defense */
+span.idr
+{
+    color: #4EF;
+}
+
+/* Level Requirement */
+span.n
+{
+    color: #08F;
+}
+
+/* Open Wounds */
+span.ow
+{
+    color: #F44;
+}
+
+/* Getting Magic Items */
+span.mf
+{
+    color: #A2F;
+    font-weight: bold;
+}
+
+span.skill
+{
+    background-image: linear-gradient(to right, #08F, #008);
+}
+
+/* Fire Resist % */
+span.resf
+{
+    background-color: #800;
+    color           : #FFF;
+    padding-left    : 2px;
+    padding-right   : 2px;
+}
+
+/* Poison Resist % */
+span.resp
+{
+    background-color: #080;
+    color           : #FFF;
+    padding-left    : 2px;
+    padding-right   : 2px;
+}
+
+/* Cold Resist % */
+span.resc
+{
+    background-color: #04F;
+    color           : #FFF;
+    padding-left    : 2px;
+    padding-right   : 2px;
+}
+
+/* Lightning Resist % */
+span.resl
+{
+    background-color: #cDF;
+    color           : #000;
+    padding-left    : 2px;
+    padding-right   : 2px;
+}
+
+/* Resist All */
+span.resa
+{
+    background-image: linear-gradient(to right, #800, #080, #00C);
+    padding-left    : 2px;
+    padding-right   : 2px;
+}
+
+span.odd
+{
+    background-color: #222;
+}
+
+/* ---------- Tool Tips ---------- */
+.tooltip
+{
+    display       : inline-block;
+    position      : relative;
+    vertical-align: center;
+}
+
+.tooltip:hover
+{
+    background-color: #FF0; /* 888 */
+    color           : #000;
+}
+
+.tool
+{
+    border          : 1px solid skyblue;
+    border-radius   : 4px;
+    color           : #fff;
+    font-family     : sans-serif;
+    font-size       : 14px;
+    margin          : 0px;
+    padding         : 5px 0px;
+    position        : absolute;
+    text-align      : center;
+    visibility      : hidden;
+    width           : 500px;  /* 1300 - 800 */
+    z-index         : 1;
+}
+
+.ttr
+{
+    background-color: #312;
+}
+
+.ttr2
+{
+    background-color: #312;
+}
+
+.ttg
+{
+    background-color: #132;
+}
+
+.ttb
+{
+    background-color: #123;
+}
+
+.ttk
+{
+    background-color: #222;
+}
+
+.tooltip:hover .ttr
+{
+    visibility: visible;
+    top       : -40px;
+    left      : 800px;
+}
+
+.tooltip:hover .ttg
+{
+    visibility: visible;
+    top       : -40px;
+    left      : 800px;
+}
+
+.tooltip:hover .ttb
+{
+    visibility: visible;
+    top       : -40px;
+    left      : 800px;
+}
+
+.tooltip:hover .ttk
+{
+    visibility: visible;
+    top       : -40px;
+    left      : 800px;
+}
+
+.gemtip
+{
+    display       : inline-block;
+    position      : relative;
+    vertical-align: center;
+    height        : 30px;
+}
+
+.gemtip:hover
+{
+    background-color: #888;
+    color           : #000;
+}
+
+.gemtip .gemtext
+{
+    background-color: #123;
+    border          : 1px solid #08F;
+    border-radius   : 4px;
+    color           : #ddd;
+    font-family     : sans-serif;
+    font-size       : 14px;
+    padding         : 5px 0;
+    position        : absolute;
+    text-align      : center;
+    visibility      : hidden;
+    width           : 500px;
+    z-index         : 1;
+}
+
+.gemtip:hover .gemtext
+{
+    visibility: visible;
+    top       : 0px;
+    left      : -505px;
+}
+
+.gemtitle
+{
+    color      : #fff;
+    font-weight: bold;
+}
+
+.ruler
+{
+    background-color: #222;
+    border          : 0.5px dotted skyblue;
+    border-radius   : 0px;
+    color           : #F00;
+    margin          : 0px;
+    padding         : 0px 0px;
+    position        : absolute;
+    top             : 0px;
+    height          : 3700px;
+    width           : 0px;
+    z-index         : 1;
+}
+        </style>
+        <script>
+// string: rune name
+// int   : min clev for rune
+var RUNES = [
+    "El   ",11,
+    "Eld  ",11,
+    "Tir  ",13,
+    "Nef  ",13,
+    "Eth  ",15,
+    "Ith  ",15,
+    "Tal  ",17,
+    "Ral  ",19,
+    "Ort  ",21,
+    "Thul ",23,
+    "Amn  ",25,
+    "Sol  ",27,
+    "Shael",29,
+    "Dol  ",31,
+    "Hel  ", 0,
+    "Io   ",35,
+    "Lum  ",37,
+    "Ko   ",39,
+    "Fal  ",41,
+    "Lem  ",43,
+    "Pul  ",45,
+    "Um   ",47,
+    "Mal  ",49,
+    "Ist  ",51,
+    "Gul  ",53,
+    "Vex  ",55,
+    "Ohm  ",57,
+    "Lo   ",59,
+    "Sur  ",61,
+    "Ber  ",63,
+    "Jah  ",65,
+    "Cham ",67,
+    "Zod  ",69
+];
+
+var RECIPES = [
+"Ancient's Pledge    3  Shields                 Ral   + Ort   + Tal                     21  ",
+"Black               3  Clubs/Hammers/Maces     Thul  + Io    + Nef                     35  ",
+"Fury                3  Melee Weapons           Jah   + Gul   + Eth                     65  ",
+"Holy Thunder        4  Scepters                Eth   + Ral   + Ort  + Tal              21  ",
+"Honor               5  Melee                   Amn   + El    + Ith  + Tir + Sol        27  ",
+"King's Grace        3  Swords/Scepters         Amn   + Ral   + Thul                    25  ",
+"Leaf                2  Staves (Not Orbs)       Tir   + Ral                             19  ",
+"Lionheart           3  Body Armor              Hel   + Lum   + Fal                     41  ",
+"Lore                2  Helms                   Ort   + Sol                             27  ",
+"Malice              3  Melee Weapons           Ith   + El    + Eth                     15  ",
+"Melody              3  Missile Weapons         Shael + Ko    + Nef                     39  ",
+"Memory              4  Staves (Not Orbs)       Lum   + Io    + Sol  + Eth              37  ",
+"Nadir               2  Helms                   Nef   + Tir                             13  ",
+"Radiance            3  Helms                   Nef   + Sol   + Ith                     27  ",
+"Rhyme               2  Shields                 Shael + Eth                             29  ",
+"Silence             6  Weapons                 Dol   + Eld   + Hel  + Ist + Tir + Vex  55  ",
+"Smoke               2  Body Armor              Nef   + Lum                             37  ",
+"Stealth             2  Body Armor              Tal   + Eth                             17  ",
+"Steel               2  Swords/Axes/Maces       Tir   + El                              13  ",
+"Strength            2  Melee Weapons           Amn   + Tir                             25  ",
+"Venom               3  Weapons                 Tal   + Dol   + Mal                     49  ",
+"Wealth              3  Body Armor              Lem   + Ko    + Tir                     43  ",
+"White               2  Wands                   Dol   + Io                              35  ",
+"Zephyr              2  Missile Weapons         Ort   + Eth                             21  ",
+"Beast               5  Axes/Scepters/Hammers   Ber   + Tir   + Um   + Mal + Lum        63  ",
+"Bramble             4  Body Armor              Ral   + Ohm   + Sur  + Eth              61  ",
+"Breath of the Dying 6  Weapons                 Vex   + Hel   + El   + Eld + Zod + Eth  69  ",
+"Call To Arms        5  Weapons                 Amn   + Ral   + Mal  + Ist + Ohm        57  ",
+"Chains of Honor     4  Body Armor              Dol   + Um    + Ber  + Ist              63  ",
+"Chaos               3  Claws                   Fal   + Ohm   + Um                      57  ",
+"Crescent Moon       3  Axes/Swords/Polearms    Shael + Um    + Tir                     47  ",
+"Delirium            3  Helms                   Lem   + Ist   + Io                      51  ",
+"Doom                5  Axes/Polearms/Hammers   Hel   + Ohm   + Um   + Lo  + Cham       67  ",
+"Duress              3  Body Armor              Shael + Um    + Thul                    47  ",
+"Enigma              3  Body Armor              Jah   + Ith   + Ber                     65  ",
+"Eternity            5  Melee Weapons           Amn   + Ber   + Ist  + Sol + Sur        63  ",
+"Exile               4  Paladin Shields (only)  Vex   + Ohm   + Ist  + Dol              57  ",
+"Famine              4  Axes/Hammers            Fal   + Ohm   + Ort  + Jah              65  ",
+"Gloom               3  Body Armor              Fal   + Um    + Pul                     47  ",
+"Hand of Justice     4  Weapons                 Sur   + Cham  + Amn  + Lo               67  ",
+"Heart of the Oak    4  Staves/Maces            Ko    + Vex   + Pul  + Thul             55  ",
+"Kingslayer          4  Swords/Axes             Mal   + Um    + Gul  + Fal              53  ",
+"Passion             4  Weapons                 Dol   + Ort   + Eld  + Lem              43  ",
+"Prudence            2  Body Armor              Mal   + Tir                             49  ",
+"Sanctuary           3  Shields                 Ko    + Ko    + Mal                     49  ",
+"Splendor            2  Shields                 Eth   + Lum                             37  ",
+"Stone               4  Body Armor              Shael + Um    + Pul  + Lum              47  ",
+"Wind                2  Melee Weapons           Sur   + El                              61  ",
+"Brand               4  Missile Weapons         Jah   + Lo    + Mal  + Gul              65  ",
+"Death               5  Swords/Axes             Hel   + El    + Vex  + Ort + Gul        55  ",
+"Destruction         5  Polearms/Swords         Vex   + Lo    + Ber  + Jah + Ko         65  ",
+"Dragon              3  Body Armor/Shields      Sur   + Lo    + Sol                     61  ",
+"Dream               3  Helms/Shields           Io    + Jah   + Pul                     65  ",
+"Edge                3  Missile Weapons         Tir   + Tal   + Amn                     25  ",
+"Faith               4  Missile Weapons         Ohm   + Jah   + Lem  + Eld              65  ",
+"Fortitude           4  Weapons/Body Armor      El    + Sol   + Dol  + Lo               59  ",
+"Grief               5  Swords/Axes             Eth   + Tir   + Lo   + Mal + Ral        59  ",
+"Harmony             4  Missile Weapons         Tir   + Ith   + Sol  + Ko               39  ",
+"Ice                 4  Missile Weapons         Amn   + Shael + Jah  + Lo               65  ",
+"Infinity            4  Polearms                Ber   + Mal   + Ber  + Ist              63  ",
+"Insight             4  Polearms/Staves         Ral   + Tir   + Tal  + Sol              27  ",
+"Last Wish           6  Swords/Hammers/Axes     Jah   + Mal   + Jah  + Sur + Jah + Ber  65  ",
+"Lawbringer          3  Swords/Hammers/Scepters Amn   + Lem   + Ko                      43  ",
+"Oath                4  Swords/Axes/Maces       Shael + Pul   + Mal  + Lum              49  ",
+"Obedience           5  Polearms                Hel   + Ko    + Thul + Eth + Fal        41  ",
+"Phoenix             4  Weapons/Shields         Vex   + Vex   + Lo   + Jah              65  ",
+"Pride               4  Polearms                Cham  + Sur   + Io   + Lo               67  ",
+"Rift                4  Polearms/Scepters       Hel   + Ko    + Lem  + Gul              53  ",
+"Spirit              4  Swords/Shields          Tal   + Thul  + Ort  + Amn              25  ",
+"Voice of Reason     4  Swords/Maces            Lem   + Ko    + El   + Eld              43  ",
+"Wrath               4  Missile Weapons         Pul   + Lum   + Ber  + Mal              63  ",
+"Bone                3  Body Armor              Sol   + Um    + Um                      47  ",
+"Enlightenment       3  Body Armor              Pul   + Ral   + Sol                     45  ",
+"Myth                3  Body Armor              Hel   + Amn   + Nef                     25  ",
+"Peace               3  Body Armor              Shael + Thul  + Amn                     29  ",
+"Principle           3  Body Armor              Ral   + Gul   + Eld                     53  ",
+"Rain                3  Body Armor              Ort   + Mal   + Ith                     49  ",
+"Treachery           3  Body Armor              Shael + Thul  + Lem                     43  "
+];
+
+// Convert string containing runes to array of rune numbers
+function FindRunes( recipe )
+{
+    var runes = [], head = 0, end, len  = recipe.length;
+
+//console.log( "recipe: '" + recipe + "', recipe.len = " + len + "\n         01234567890123456789" );
+//console.log( "head = " + head + ", end = " + end, "Potential rune: " + recipe.substr( head, end-head ) );
+
+    while (head < len)
+    {
+        end = recipe.indexOf(' ',head); if (end < 0) end = len;
+        src = recipe.substr( head, end-head );
+        for( var rune = 0; rune < RUNES.length; rune += 2 )
+        {
+            dst = RUNES[rune].trim();
+            if (src === dst)
+                runes.push( rune );
+        }
+        head = recipe.indexOf('+',end); if (head < 0) break;
+        head += 2;
+    }
+    return runes;
+}
+
+// array: arunes
+// Find the minimum level given array of runes
+function MinLevels( arunes )
+{
+    var min = 0;
+    for( var rune = 0; rune < arunes.length; rune++ )
+    {
+        if (min < RUNES[arunes[rune]+1])
+            min = RUNES[arunes[rune]+1];
+    }
+    return min;
+}
+
+// Verify runeword levels
+function verify()
+{
+    for( var recipe = 0; recipe < RECIPES.length; recipe++ )
+    {
+        var line     = RECIPES[recipe];
+        var runeword = line.substr(0,20).trim();
+        var sockets  = line.substr(20,1) | 0;
+        var mats     = line.substr(47,38);
+        var arunes   = FindRunes( mats );
+        if (sockets != arunes.length )
+            console.error( "Number of sockets doesn't match number of runes!" );
+        var expect   = MinLevels( arunes );
+        var actual   = line.substr(87,2) | 0;
+        if( actual !== expect )
+            console.error( "[" + recipe + "]: " + runeword + ", mats: " + mats + ", %o", arunes, "Expect Lev: " + expect + ", Actual Levl: " + actual );
+    }
+}
+
+function padLeft( text, width, c )
+{
+    if( !width ) return "";
+    if( !c ) c = ' ';
+    return ("" + new Array( width ).join( c ) + text).slice( -width );
+}
+
+// Generate HTML image source list of rune images for each runeword
+function runes()
+{
+    var text = "";
+    for( var recipe = 0; recipe < RECIPES.length; recipe++ )
+    {
+        var line     = RECIPES[recipe];
+        var runeword = line.substr(0,20); //.trim();
+        var sockets  = line.substr(20,1) | 0;
+        var mats     = line.substr(47,38);
+        var arunes   = FindRunes( mats );
+        var tooltip  = runeword + ": ";
+        for( var rune = 0; rune < arunes.length; rune++ )
+        {
+            var name = RUNES[arunes[rune]].trim();
+            // Ral <img src='runes/ral.png'  /> + Ort <img src='runes/ort.png'  /> + Tal <img src='runes/tal.png'  />
+            tooltip += name + " <img src='runes/" + name.toLocaleLowerCase() + ".png'" + padLeft(' ',(5-name.length)) + "/>";
+            if (rune < (arunes.length - 1))
+                tooltip += " + ";
+        }
+        text += tooltip + '\n';
+    }
+    console.log( text );
+}
+        </script>        
+    </head>
+<body>
+<!--
+<div class='ruler' style='left:209px;'></div>
+<div class='ruler' style='left:421px;'></div>
+<div class='ruler' style='left:491px;'></div>
+<div class='ruler' style='left:561px;'></div>
+<div class='ruler' style='left:622px;'></div>
+<div class='ruler' style='left:676px;'></div>
+<div class='ruler' style='left:728px;'></div>
+<div class='ruler' style='left:764px;'></div>
+<div class='ruler' style='left:808px;'></div>
+-->
+<pre><table><tr><td><pre><span style='font-size:18px;'><i>Diablo 2</i> <a href='https://github.com/Michaelangel007/d2_cheat_sheet'>Cheat Sheet</a></span>
+<span style='font-size:14px;'> by <i>Michaelangel007</i></span> <img alt='m007' src='pics/m007.png'> aka <i>/r/MysticReddit</i>
+
+<hr class='topw'>Faster Cast Rate (<span class='fcr'>FCR</span>)
+<meta              />Frames     23  22  21  20  19  18  17  16  15   14   13   12   11   10    9    8    7<hr class='botb'>
+<div class='tooltip'>Ama                         0   7  14  22  32   48   68   99  152                    </div><span class='r11'>
+<div class='tooltip'>Asn                                     0   8   16   27   42   65  102  174          </div></span>
+<div class='tooltip'>Bar                                                   0    9   20   37   63  105  200</div><span class='g11'>
+<div class='tooltip'>Drd Humn                        0   4  10  19   30   46   68   99  163               </div></span>
+<div class='tooltip'>    Bear                                0   7   15   26   40   63   99  163          </div><span class='g11'>
+<div class='tooltip'>    Wolf                                0   6   14   26   40   60   95  157          </div></span>
+<div class='tooltip'>Nec Humn                                    0    9   18   30   48   75  125          </div><span class='odd'>
+<div class='tooltip'>    Vamp    0   6  11  18  24  35  48  65  86  120  180                              </div></span>
+<div class='tooltip'>Pal                                         0    9   18   30   48   75  125          </div><span class='b11'>
+<div class='tooltip'>Src Lite                    0   7  15  23  35   52   78  117  194                    </div></span> 
+<div class='tooltip'>    Othr                                              0    9   20   37   63  105  200</div><span class='odd'>
+<div class='tooltip'>Mrc Act3                            0   8  15   26   39   58   86  138               </div></span><hr class='botb'>
+<meta              />Frames     23  22  21  20  19  18  17  16  15   14   13   12   11   10    9    8    7
+
+
+<hr class='topw'>Faster Hit Recovery (<span class='fhr'>FHR</span>)
+<meta              />Frames     17  16  15  14  13  12  11  10   9   8    7    6    5    4    3    2<hr class='botg'>
+<div class='tooltip'>Ama                                 0   6  13  20   32   52   86  174  600     </div><span class='r11'>
+<div class='tooltip'>Asn                                         0   7   15   27   48   86  200     </div></span>
+<div class='tooltip'>Bar                                         0   7   15   27   48   86  200     </div><span class='g11'>
+<div class='tooltip'>Drd Hum1                0   3   7  13  19  29  42   63   99  174  456          </div></span>
+<div class='tooltip'>    Hum2                    0   5  10  16  26  39   56   86  152  377          </div><span class='g11'>
+<div class='tooltip'>    Bear                    0   5  10  16  24  37   54   86  152  460          </div></span>
+<div class='tooltip'>    Wolf                                             0    9   20   42   86  280</div><span class='odd'>
+<div class='tooltip'>Nec Humn                    0   5  10  16  26  39   56   86  152  377          </div></span>
+<div class='tooltip'>    Vamp            0   2   6  10  16  24  34  48   72  117                    </div><span class='odd'>
+<div class='tooltip'>Pal Spear/Stave             0   3   7  13  20  32   48   75  129  280          </div></span>
+<div class='tooltip'>    rest                                    0   7   15   27   48   86  200     </div><span class='b11'>
+<div class='tooltip'>Src                 0   5   9  14  20  30  42  60   86  142  280               </div></span>
+<div class='tooltip'>Mrc Act1                            0   6  13  20   32   52   86  174  600     </div><span class='odd'>
+<div class='tooltip'>    Act2            0   5   9  14  20  30  42  60   86  142  280               </div></span>
+<div class='tooltip'>    Act3    0   5   8  13  18  24  32  46  63  86  133  232  600               </div><span class='odd'>
+<div class='tooltip'>    Act5                                    0   7   15   27   48   86  200     </div></span><hr class='botg'>
+<meta              />Frames     17  16  15  14  13  12  11  10   9   8    7    6    5    4    3    2
+
+
+<table style='width:800px;'><tr><td><pre><hr class='topr'>Act II Mercs
+Type      Normal/Hell   Nightmare  <hr class='botr'>
+<div class='tooltip'>Combat    Prayer        Thorns     </div><span class='odd'>
+<div class='tooltip'>Defense   Defiance      Holy Freeze</div></span           > 
+<div class='tooltip'>Offense   Blessed Aim   Might      </div></pre></td>
+<td><img alt='O _ [] * v /\ O)' src='pics/tomb_symbols.png' style='max-width:100%;'></td></tr></table>
+
+<table><tr><td><pre><hr class='topb'><a href="https://diablo2.diablowiki.net/Pandemonium_Event">Pandemonium Event</a>                Hell, Act 5, 3x in cube
+Mob / Location    Key            Location          Organs          
+<hr class='botb'>
+<div class='tooltip'>The Countess A1   Terror         Matron's Den      Diablo's Horn   </div><span class='odd'>
+<div class='tooltip'>The Summoner A2   Hate           Forgotten Sands   Baal's Eye      </div></span>
+<div class='tooltip'>Nihlathak    A5   Destruction    Furnace Pain      Mephisto's Brain</div>
+</pre></td></tr></table>
+</pre></td><td><pre>
+<hr class='topb'><a href='http://classic.battle.net/diablo2exp/items/cube.shtml'>Upgrading</a> <a href='http://classic.battle.net/diablo2exp/items/runes.shtml'>Runes</a><hr class='botb'>
+<div class='gemtip'>3x El    <img alt='el' src='runes/el.png'   />                     <img class='blank30x30'              /> &rarr; Eld   <img alt='eld' src='runes/eld.png'  /> <span class='rune'>02</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ +50 to Attack Rating
+ +1 to Light Radius
+
+ <span class='gemtitle'>Armors/Helms</span>
+ +15 Defense
+ +1 to Light Radius
+
+ <span class='gemtitle'>Shields</span>
+ +15 Defense
+ +1 to Light Radius
+
+ Level Requirement: <span class='n'>11</span>
+ <span class='farm'>Countess</span>: Normal
+ </span></div>
+<div class='gemtip'>3x Eld   <img alt='eld' src='runes/eld.png'  />                     <img class='blank30x30'              /> &rarr; Tir   <img alt='Tir' src='runes/tir.png'  /> <span class='rune'>03</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ +75% Damage To Undead
+ +50 Attack Rating Against Undead
+
+ <span class='gemtitle'>Armors/Helms</span>
+ 15% Slower Stamina Drain
+
+ <span class='gemtitle'>Shields</span>
+ 7% Increased Chance of Blocking
+
+ Level Requirement: <span class='n'>11</span>
+ <span class='farm'>Countess</span>: Normal
+ </span></div>
+<div class='gemtip'>3x Tir   <img alt='Tir' src='runes/tir.png'  />                     <img class='blank30x30'              /> &rarr; Nef   <img alt='Nef' src='runes/nef.png'  /> <span class='rune'>04</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ +2 To Mana After Each Kill
+
+ <span class='gemtitle'>Armors/Helms</span>
+ +2 To Mana After Each Kill
+
+ <span class='gemtitle'>Shields</span>
+ +2 To Mana After Each Kill
+
+ Level Requirement: <span class='n'>13</span>
+ <span class='farm'>Countess</span>: Normal
+ </span></div>
+<div class='gemtip'>3x Nef   <img alt='Nef' src='runes/nef.png'  />                     <img class='blank30x30'              /> &rarr; Eth   <img alt='Eth' src='runes/eth.png'  /> <span class='rune'>05</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ Knockback
+
+ <span class='gemtitle'>Armors/Helms</span>
+ +30 Defense Vs. Missile
+
+ <span class='gemtitle'>Shields</span>
+ +30 Defense Vs. Missile
+
+ Level Requirement: <span class='n'>13</span>
+ <span class='farm'>Countess</span>: Normal
+ </span></div>
+<div class='gemtip'>3x Eth   <img alt='Eth' src='runes/eth.png'  />                     <img class='blank30x30'              /> &rarr; Ith   <img alt='Ith' src='runes/ith.png'  /> <span class='rune'>06</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ -25% Target Defense
+
+ <span class='gemtitle'>Armors/Helms</span>
+ Regenerate Mana 15%
+
+ <span class='gemtitle'>Shields</span>
+ Regenerate Mana 15%
+
+ Level Requirement: <span class='n'>15</span>
+ <span class='farm'>Countess</span>: Normal
+ </span></div>
+<div class='gemtip'>3x Ith   <img alt='Ith' src='runes/ith.png'  />                     <img class='blank30x30'              /> &rarr; Tal   <img alt='Tal' src='runes/tal.png'  /> <span class='rune'>07</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ +9 To Maximum Damage
+ 
+ <span class='gemtitle'>Armors/Helms</span>
+ 15% Damage Taken Goes to Mana
+
+ <span class='gemtitle'>Shields</span>
+ 15% Damage Taken Goes to Mana
+
+ Level Requirement: <span class='n'>15</span>
+ <span class='farm'>Countess</span>: Normal
+ </span></div>
+<div class='gemtip'>3x Tal   <img alt='Tal' src='runes/tal.png'  />                     <img class='blank30x30'              /> &rarr; Ral   <img alt='Ral' src='runes/ral.png'  /> <span class='rune'>08</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ +75 Poison Damage Over 5 Seconds
+
+ <span class='gemtitle'>Armors/Helms</span>
+ Poison Resist 30%
+ 
+ <span class='gemtitle'>Shields</span>
+ Poison Resist 35%
+
+ Level Requirement: <span class='n'>17</span>
+ <span class='farm'>Countess</span>: Normal
+ </span></div>
+<div class='gemtip'>3x Ral   <img alt='Ral' src='runes/ral.png'  />                     <img class='blank30x30'              /> &rarr; Ort   <img alt='Ort' src='runes/ort.png'  /> <span class='rune'>09</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ Adds 5-30 Fire Damage
+
+ <span class='gemtitle'>Armors/Helms</span>
+ Fire Resist 30%
+
+ <span class='gemtitle'>Shields</span>
+ Fire Resist 35%
+
+ Level Requirement: <span class='n'>19</span>
+ <span class='farm'>Countess</span>: Normal
+ </span></div>
+<div class='gemtip'>3x Ort   <img alt='Ort' src='runes/ort.png'  />                     <img class='blank30x30'              /> &rarr; Thul  <img alt='Thul' src='runes/thul.png' /> <span class='rune'>10</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ Adds 1-50 Lightning Damage
+
+ <span class='gemtitle'>Armors/Helms</span>
+ Lightning Resist 30%
+
+ <span class='gemtitle'>Shields</span>
+ Lightning Resist 35%
+
+ Level Requirement: <span class='n'>21</span>
+ <span class='farm'>Countess</span>: Nightmare
+ </span></div>
+<div class='gemtip'>3x Thul  <img alt='Thul' src='runes/thul.png' /> + Chipped  Topaz    <img alt='chipped topaz' src='gems/topaz_chipped.png'    /> &rarr; Amn   <img alt='Amn' src='runes/amn.png'  /> <span class='rune'>11</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ Adds 3-14 Cold Damage - 3 Second Duration
+
+ <span class='gemtitle'>Armors/Helms</span>
+ Cold Resist 30%
+
+ <span class='gemtitle'>Shields</span>
+ Cold Resist 35%
+
+ Level Requirement: <span class='n'>23</span>
+ <span class='farm'>Countess</span>: Nightmare
+ </span></div>
+<div class='gemtip'>3x Amn   <img alt='Amn' src='runes/amn.png'  /> + Chipped  Amethyst <img alt='chipped amethyst' src='gems/amethyst_chipped.png' /> &rarr; Sol   <img alt='Sol' src='runes/sol.png'  /> <span class='rune'>12</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ 7% Life Stolen Per Hit
+
+ <span class='gemtitle'>Armors/Helms</span>
+ Attacker Takes Damage of 14
+
+ <span class='gemtitle'>Shields</span>
+ Attacker Takes Damage of 14
+
+ Level Requirement: <span class='n'>25</span>
+ <span class='farm'>Countess</span>: Nightmare
+ </span></div>
+<div class='gemtip'>3x Sol   <img alt='Sol' src='runes/sol.png'  /> + Chipped  Sapphire <img alt='chipped sapphire' src='gems/sapphire_chipped.png' /> &rarr; Shael <img alt='Shael' src='runes/shael.png'/> <span class='rune'>13</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ +9 To Minimum Damage
+
+ <span class='gemtitle'>Armors/Helms</span>
+ Damage Reduced By 7
+
+ <span class='gemtitle'>Shields</span>
+ Damage Reduced By 7
+
+ Level Requirement: <span class='n'>27</span>
+ <span class='farm'>Countess</span>: Nightmare
+ </span></div>
+<div class='gemtip'>3x Shael <img alt='Shael' src='runes/shael.png'/> + Chipped  Ruby     <img alt='chipped ruby' src='gems/ruby_chipped.png'     /> &rarr; Dol   <img alt='Dol' src='runes/dol.png'  /> <span class='rune'>14</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ 20% Increased Attack Speed
+
+ <span class='gemtitle'>Armors/Helms</span>
+ 20% Faster Hit Recovery
+
+ <span class='gemtitle'>Shields</span>
+ 20% Faster Block Rate
+
+ Level Requirement: <span class='n'>29</span>
+ <span class='farm'>Countess</span>: Nightmare
+ </span><span class='gemtext'></span></div>
+<div class='gemtip'>3x Dol   <img alt='Dol' src='runes/dol.png'  /> + Chipped  Emerald  <img alt='chipped emerald' src='gems/emerald_chipped.png'  /> &rarr; Hel   <img alt='He' src='runes/hel.png'  /> <span class='rune'>15</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ Hit Causes Monster To Flee 25%
+
+ <span class='gemtitle'>Armors/Helms</span>
+ Replenish Life +7
+
+ <span class='gemtitle'>Shields</span>
+ Replenish Life +7
+
+ Level Requirement: <span class='n'>31</span>
+ <span class='farm'>Countess</span>: Nightmare
+ </span></div>
+<div class='gemtip'>3x Hel   <img alt='Hel' src='runes/hel.png'  /> + Chipped  Diamond  <img alt='chipped diamond' src='gems/diamond_chipped.png'  /> &rarr; Io    <img alt='Io' src='runes/io.png'   /> <span class='rune'>16</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ Requirements -20%
+
+ <span class='gemtitle'>Armors/Helms</span>
+ Requirements -15%
+ 
+ <span class='gemtitle'>Shields</span>
+ Requirements -15%
+ 
+ Level Requirement: <span class='n'>n/a</span>
+ <span class='farm'>Countess</span>: Nightmare
+ </span></div>
+<div class='gemtip'>3x Io    <img alt='Io' src='runes/io.png'   /> + Flawed   Topaz    <img alt='flawed topaz' src='gems/topaz_flawed.png'     /> &rarr; Lum   <img alt='Lum' src='runes/lum.png'  /> <span class='rune'>17</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ +10 To Vitality
+
+ <span class='gemtitle'>Armors/Helms</span>
+ +10 To Vitality
+
+ <span class='gemtitle'>Shields</span>
+ +10 To Vitality
+
+ Level Requirement: <span class='n'>35</span>
+ <span class='farm'>Countess</span>: Nightmare
+ </span></div>
+<div class='gemtip'>3x Lum   <img alt='Lum' src='runes/lum.png'  /> + Flawed   Amethyst <img alt='flawed amethyst' src='gems/amethyst_flawed.png'  /> &rarr; Ko    <img alt='Ko' src='runes/ko.png'   /> <span class='rune'>18</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ +10 To Energy
+
+ <span class='gemtitle'>Armors/Helms</span>
+ +10 To Energy
+
+ <span class='gemtitle'>Shields</span>
+ +10 To Energy
+
+ Level Requirement: <span class='n'>37</span>
+ <span class='farm'>Countess</span>: Hell
+ </span></div>
+<div class='gemtip'>3x Ko    <img alt='Ko' src='runes/ko.png'   /> + Flawed   Sapphire <img alt='flawed sapphire' src='gems/sapphire_flawed.png'  /> &rarr; Fal   <img alt='Fal' src='runes/fal.png'  /> <span class='rune'>19</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ +10 To Dexterity
+
+ <span class='gemtitle'>Armors/Helms</span>
+ +10 To Dexterity
+
+ <span class='gemtitle'>Shields</span>
+ +10 To Dexterity
+
+ Level Requirement: <span class='n'>39</span>
+ <span class='farm'>Countess</span>: Hell
+ </span></div>
+<div class='gemtip'>3x Fal   <img alt='Fal' src='runes/fal.png'  /> + Flawed   Ruby     <img alt='flawed ruby' src='gems/ruby_flawed.png'      /> &rarr; Lem   <img alt='Lem' src='runes/lem.png'  /> <span class='rune'>20</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ +10 To Strength
+
+ <span class='gemtitle'>Armors/Helms</span>
+ +10 To Strength
+
+ <span class='gemtitle'>Shields</span>
+ +10 To Strength
+
+ Level Requirement: <span class='n'>41</span>
+ <span class='farm'>Countess</span>: Hell
+ </span></div>
+<div class='gemtip'>3x Lem   <img alt='Lem' src='runes/lem.png'  /> + Flawed   Emerald  <img alt='flawed emerald' src='gems/emerald_flawed.png'   /> &rarr; Pul   <img alt='Pul' src='runes/pul.png'  /> <span class='rune'>21</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ 75% Extra Gold From Monsters
+
+ <span class='gemtitle'>Armors/Helms</span>
+ 50% Extra Gold From Monsters
+
+ <span class='gemtitle'>Shields</span>
+ 50% Extra Gold From Monsters
+
+ Level Requirement: <span class='n'>43</span>
+ <span class='farm'>Countess</span>: Hell
+ </span></div>
+<div class='gemtip'>2x Pul   <img alt='Pul' src='runes/pul.png'  /> + Flawed   Diamond  <img alt='flawed diamond' src='gems/diamond_flawed.png'   /> &rarr; Um    <img alt='Um' src='runes/um.png'   /> <span class='rune'>22</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ +75% Damage To Demons
+ +100 Attack Rating Against Demons
+
+ <span class='gemtitle'>Armors/Helms</span>
+ +30% Enhanced Defense
+
+ <span class='gemtitle'>Shields</span>
+ +30% Enhanced Defense
+
+ Level Requirement: <span class='n'>45</span>
+ <span class='rune'>LK</span>, <span class='farm'>Countess</span>: Hell
+ </span></div>
+<div class='gemtip'>2x Um    <img alt='Um' src='runes/um.png'   /> +          Topaz    <img alt='normal topaz' src='gems/topaz_normal.png'     /> &rarr; Mal   <img alt='Mal' src='runes/mal.png'  /> <span class='rune'>23</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ 25% Chance of Open Wounds
+
+ <span class='gemtitle'>Armors/Helms</span>
+ All Resistances +15
+
+ <span class='gemtitle'>Shields</span>
+ All Resistances +22
+
+ Level Requirement: <span class='n'>47</span>
+ <span class='rune'>LK</span>, <span class='farm'>Countess</span>: Hell
+ </span></div>
+<div class='gemtip'>2x Mal   <img alt='Mal'  src='runes/mal.png'  /> +          Amethyst <img alt='amethyst'          src='gems/amethyst_normal.png'  /> &rarr; Ist   <img alt='Ist'  src='runes/ist.png'  /> <span class='rune'>24</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ Prevent Monster Heal
+
+ <span class='gemtitle'>Armors/Helms</span>
+ Magic Damage Reduced By 7
+
+ <span class='gemtitle'>Shields</span>
+ Magic Damage Reduced By 7
+
+ Level Requirement: <span class='n'>49</span>
+ <span class='rune'>LK</span>, <span class='farm'>Countess</span>: Hell
+ </span></div>
+<div class='gemtip'>2x Ist   <img alt='Ist'  src='runes/ist.png'  /> +          Sapphire <img alt='sapphire'          src='gems/sapphire_normal.png'  /> &rarr; Gul   <img alt='Gul'  src='runes/gul.png'  /> <span class='rune'>25</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ 30% Better Chance of Getting Magic Items
+ 
+ <span class='gemtitle'>Armors/Helms</span>
+ 25% Better Chance of Getting Magic Items
+
+ <span class='gemtitle'>Shields</span>
+ 25% Better Chance of Getting Magic Items
+
+ Level Requirement: <span class='n'>51</span>
+ <span class='rune'>LK</span>, <span class='farm'>Countess</span>: Hell
+ </span></div>
+<div class='gemtip'>2x Gul   <img alt='Gul'  src='runes/gul.png'  /> +          Ruby     <img alt='ruby'              src='gems/ruby_normal.png'      /> &rarr; Vex   <img alt='Vex'  src='runes/vex.png'  /> <span class='rune'>26</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ 20% Bonus To Attack Rating
+
+ <span class='gemtitle'>Armors/Helms</span>
+ 5% To Maximum Poison Resist
+
+ <span class='gemtitle'>Shields</span>
+ 5% To Maximum Poison Resist
+
+ Level Requirement: <span class='n'>53</span>
+ <span class='rune'>LK</span>, <span class='farm'>Countess</span>: Hell
+ </span></div>
+<div class='gemtip'>2x Vex   <img alt='Vex'  src='runes/vex.png'  /> +          Emerald  <img alt='emerald'           src='gems/emerald_normal.png'   /> &rarr; Ohm   <img alt='Ohm'  src='runes/ohm.png'  /> <span class='rune'>27</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ 7% Mana Stolen Per Hit
+
+ <span class='gemtitle'>Armors/Helms</span>
+ 5% To Maximum Fire Resist
+
+ <span class='gemtitle'>Shields</span>
+ 5% To Maximum Fire Resist
+
+ Level Requirement: <span class='n'>55</span>
+ <span class='rune'>LK</span>, <span class='farm'>Andariel</span>: Hell
+ </span></div>
+<div class='gemtip'>2x Ohm   <img alt='Ohm'  src='runes/ohm.png'  /> +          Diamond  <img alt='diamond'           src='gems/diamond_normal.png'   /> &rarr; Lo    <img alt='Lo'   src='runes/lo.png'   /> <span class='rune'>28</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ +50% Enhanced Damage
+
+ <span class='gemtitle'>Armors/Helms</span>
+ 5% To Maximum Cold Resist
+
+ <span class='gemtitle'>Shields</span>
+ 5% To Maximum Cold Resist
+
+ Level Requirement: <span class='n'>57</span>
+ <span class='rune'>LK</span>, <span class='farm'>Andariel</span>: Hell
+ </span></div>
+<div class='gemtip'>2x Lo    <img alt='Lo'   src='runes/lo.png'   /> + Flawless Topaz    <img alt='flawless topaz'    src='gems/topaz_flawless.png'   /> &rarr; Sur   <img alt='Sur'  src='runes/sur.png'  /> <span class='rune'>29</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ 20% Deadly Strike
+ 
+ <span class='gemtitle'>Armors/Helms</span>
+ 5% To Maximum Lightning Resist
+
+ <span class='gemtitle'>Shields</span>
+ 5% To Maximum Lightning Resist
+
+ Level Requirement: <span class='n'>59</span>
+ <span class='rune'>LK</span>, <span class='farm'>Andariel</span>: Hell
+ </span></div>
+<div class='gemtip'>2x Sur   <img alt='Sur'  src='runes/sur.png'  /> + Flawless Amethyst <img alt='flawless amethyst' src='gems/amethyst_flawless.png'/> &rarr; Ber   <img alt='Ber'  src='runes/ber.png'  /> <span class='rune'>30</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ Hit Blinds Target
+
+ <span class='gemtitle'>Armors/Helms</span>
+ Maximum Mana 5%
+
+ <span class='gemtitle'>Shields</span>
+ +50 To Mana
+
+ Level Requirement: <span class='n'>61</span>
+ <span class='rune'>LK</span>, <span class='farm'>Duriel</span>: Hell
+ </span></div>
+<div class='gemtip'>2x Ber   <img alt='Ber'  src='runes/ber.png'  /> + Flawless Sapphire <img alt='flawless sapphire' src='gems/sapphire_flawless.png'/> &rarr; Jah   <img alt='Jah'  src='runes/jah.png'  /> <span class='rune'>31</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ 20% Chance of Crushing Blow
+
+ <span class='gemtitle'>Armors/Helms</span>
+ Damage Reduced by 8%
+
+ <span class='gemtitle'>Shields</span>
+ Damage Reduced by 8%
+
+ Level Requirement: <span class='n'>63</span>
+ <span class='rune'>LK</span>, <span class='farm'>Duriel</span>: Hell
+ </span></div>
+<div class='gemtip'>2x Jah   <img alt='Jah'  src='runes/jah.png'  /> + Flawless Ruby     <img alt='flawless ruby'     src='gems/ruby_flawless.png'    /> &rarr; Cham  <img alt='Cham' src='runes/cham.png' /> <span class='rune'>32</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ Ignore Target's Defense
+
+ <span class='gemtitle'>Armors/Helms</span>
+ Increase Maximum Life 5%
+
+ <span class='gemtitle'>Shields</span>
+ +50 Life
+
+ Level Requirement: <span class='n'>65</span>
+ <span class='rune'>LK</span>, <span class='farm'>Mephisto</span>: Hell
+ </span></div>
+<div class='gemtip'>2x Cham  <img alt='Cham' src='runes/cham.png' /> + Flawless Emerald  <img alt='flawless emerald'  src='gems/emerald_flawless.png' /> &rarr; Zod   <img alt='Zod'  src='runes/zod.png'  /> <span class='rune'>33</span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ Freeze Target +3
+
+ <span class='gemtitle'>Armors/Helms</span>
+ Cannot Be Frozen
+
+ <span class='gemtitle'>Shields</span>
+ Cannot Be Frozen
+
+ Level Requirement: <span class='n'>67</span>
+ <span class='rune'>LK</span>, <span class='farm'>Mephisto</span>: Hell
+ </span></div>
+<div class='gemtip'>   Zod   <img alt='Zod'  src='runes/zod.png'  />                     <img class='blank30x30'                                     /> &nbsp;       <img            class='blank30x30'    /> <span class='rune'>  </span><span class='gemtext'>
+ <span class='gemtitle'>Weapons</span>
+ Indestructible
+
+ <span class='gemtitle'>Armors/Helms</span>
+ Indestructible
+ 
+ <span class='gemtitle'>Shields</span>
+ Indestructible
+
+ Level Requirement: <span class='n'>69</span>
+ <span class='farm'>Baal</span>: Hell
+ </span></div>
+</pre></td></tr></table><hr class='topw'>Upping Rares<hr class='botw'>
+<div class='tooltip'>Ort + Amn  + Perfect Sapphire + Normal (Basic) Rare Weapon &rarr; Exceptional Rare Weapon<span class='tool ttk'>Ort <img alt='Ort' src='runes/ort.png'  /> + Amn  <img alt='Amn'  src='runes/amn.png'  /> + Perfect Sapphire <img alt='perfect sapphire' src='gems/sapphire_perfect.png'/></span></div><span class='odd'>
+<div class='tooltip'>Ral + Thul + Perfect Amethyst + Normal (Basic) Rare Armor  &rarr; Exceptional Rare Armor <span class='tool ttk'>Ral <img alt='Ral' src='runes/ral.png'  /> + Thul <img alt='Thul' src='runes/thul.png' /> + Perfect Amethyst <img alt='perfect amethyst' src='gems/amethyst_perfect.png'/></span></div></span>
+<div class='tooltip'>Fal + Um   + Perfect Sapphire + Exceptional    Rare Weapon &rarr; Elite Rare Weapon      <span class='tool ttk'>Fal <img alt='Fal' src='runes/fal.png'  /> + Um   <img alt='Um'   src='runes/um.png'   /> + Perfect Sapphire <img alt='perfect sapphire' src='gems/sapphire_perfect.png'/></span></div><span class='odd'>
+<div class='tooltip'>Ko  + Pul  + Perfect Amethyst + Exceptional    Rare Armor  &rarr; Elite Rare Armor       <span class='tool ttk'>Ko  <img alt='Ko'  src='runes/ko.png'   /> + Pul  <img alt='Pul'  src='runes/pul.png'  /> + Perfect Amethyst <img alt='perfect amethyst' src='gems/amethyst_perfect.png'/></span></div></span>
+
+<hr class='topw'>Upping Uniques<hr class='botw'>
+<div class='tooltip'>Ral + Sol   + Perfect Emerald + Normal Unique Weapon      &rarr;  Exceptional Version of Weapon  <span class='tool ttk'>Ral <img src='runes/ral.png'  /> + Sol   <img src='runes/sol.png'  /> + Perfect Emerald <img src='gems/sapphire_perfect.png'/></span></div><span class='odd'>
+<div class='tooltip'>Tal + Shael + Perfect Diamond + Normal Unique Armor       &rarr;  Exceptional Version of Armor   <span class='tool ttk'>Tal <img src='runes/tal.png'  /> + Shael <img src='runes/shael.png'/> + Perfect Diamond <img src='gems/diamond_perfect.png' /></span></div></span>
+<div class='tooltip'>Lum + Pul   + Perfect Emerald + Exceptional Unique Weapon &rarr;  Elite Vesion of Weapon (Ladder)<span class='tool ttk'>Lum <img src='runes/lum.png'  /> + Pul   <img src='runes/pul.png'  /> + Perfect Emerald <img src='gems/sapphire_perfect.png'/></span></div><span class='odd'>
+<div class='tooltip'>Ko  + Lem   + Perfect Diamond + Exceptional Unique Armor  &rarr;  Elite Verson of Armor  (Ladder)<span class='tool ttk'>Ko  <img src='runes/ko.png'   /> + Lem   <img src='runes/lem.png'  /> + Perfect Diamond <img src='gems/diamond_perfect.png' /></span></div></span>
+<!-- ========== ========== ========== ========== Runewords ========== ========== ========== ========== -->
+<hr class='topr'   />Name             Sock  Type                    Runes   #2      #3     #4    #5    #6  Lev  <a href='http://classic.battle.net/diablo2exp/items/runewords-original.shtml'>Original Runewords</a><hr class='botr'/>
+<div class='tooltip'>Ancient's Pledge    3  Shields                 Ral   + Ort   + Tal                     21  <span class='tool ttr'>Ral <img src='runes/ral.png'  /> + Ort <img src='runes/ort.png'  /> + Tal <img src='runes/tal.png'  />
+
+ +50% Enhanced Defense
+ Cold Resist +<span class='resc'>43</span>%
+ Fire Resist +<span class='resf'>48</span>%
+ Lightning Resist +<span class='resl'>48</span>%
+ Poison Resist +<span class='resp'>48</span>%
+ 10% Damage Goes To Mana
+ </span></div><span class='r11'>
+<div class="tooltip">Black               3  Clubs/Hammers/Maces     Thul  + Io    + Nef                     35  <span class='tool ttr'>Thul <img src='runes/thul.png' /> + Io <img src='runes/io.png'   /> + Nef <img src='runes/nef.png'  />
+
+ +120% Enhanced Damage
+ <span class='cb'>40</span>% Chance Of Crushing Blow
+ +200 To Attack Rating
+ Adds 3-14 Cold Damage - Cold Duration 3 Seconds
+ +10 To Vitality
+ <span class='ias'>15</span>% Increased Attack Speed
+ Knockback
+ Magic Damage Reduced By 2
+ Level 4 Corpse Explosion (12 Charges)
+ </span></div></span>
+<div class="tooltip">Fury                3  Melee Weapons           Jah   + Gul   + Eth                     65  <span class='tool ttr'>Jah <img src='runes/jah.png'  /> + Gul <img src='runes/gul.png'  /> + Eth <img src='runes/eth.png'  />
+
+ +209% Enhanced Damage
+ <span class='ias'>40</span>% Increased Attack Speed
+ Prevent Monster Heal
+ <span class='ow'>66</span>% Chance Of Open Wounds
+ <span class='ds'>33</span>% Deadly Strike
+ <span class='idr'>Ignores Target's Defense</span>
+ <span class='td'>-25</span>% Target Defense
+ 20% Bonus To Attack Rating
+ 6% Life Stolen Per Hit
+ +5 To Frenzy (Barbarian Only)
+ </span></div><span class='r11'>
+<div class="tooltip">Holy Thunder        4  Scepters                Eth   + Ral   + Ort  + Tal              21  <span class='tool ttr'>Eth <img src='runes/eth.png'  /> + Ral <img src='runes/ral.png'  /> + Ort <img src='runes/ort.png'  /> + Tal <img src='runes/tal.png'  />
+
+ +60% Enhanced Damage
+ <span class='td'>-25</span>% Target Defense
+ Adds 5-30 Fire Damage
+ Adds 21-110 Lightning Damage
+ +75 Poison Damage Over 5 Seconds
+ +10 To Maximum Damage
+ Lightning Resistance +<span class='resl'>60</span>%
+ +<span class='resl'>5</span> To Maximum Lightning Resistance
+ +3 To Holy Shock (Paladin Only)
+ Level 7 Chain Lightning (60 Charges)
+ </span></div></span>
+<div class="tooltip">Honor               5  Melee                   Amn   + El    + Ith  + Tir + Sol        27  <span class='tool ttr'>Amn <img src='runes/amn.png'  /> + El <img src='runes/el.png'   /> + Ith <img src='runes/ith.png'  /> + Tir <img src='runes/tir.png'  /> + Sol <img src='runes/sol.png'  />
+
+ +160% Enhanced Damage
+ +9 To Minimum Damage
+ +9 To Maximum Damage
+ <span class='ds'>25</span>% Deadly Strike
+ +250 To Attack Rating
+ <span class='skill'>+1 to All Skills</span>
+ 7% Life Stolen Per Hit
+ Replenish Life +10
+ +10 To Strength
+ +1 To Light Radius
+ +2 To Mana After Each Kill
+ </span></div><span class='r11'>
+<div class="tooltip">King's Grace        3  Swords/Scepters         Amn   + Ral   + Thul                    25  <span class='tool ttr'>Amn <img src='runes/amn.png'  /> + Ral <img src='runes/ral.png'  /> + Thul <img src='runes/thul.png' />
+
+ +100% Enhanced Damage
+ +100% Damage To Demons
+ +50% Damage To Undead
+ Adds 5-30 Fire Damage
+ Adds 3-14 Cold Damage - 3 Second Duration
+ +150 To Attack Rating
+ +100 To Attack Rating Against Demons
+ +100 To Attack Rating Against Undead
+ 7% Life Stolen Per Hit
+ </span></div></span>
+<div class="tooltip">Leaf                2  Staves (Not Orbs)       Tir   + Ral                             19  <span class='tool ttr'>Tir <img src='runes/tir.png'  /> + Ral <img src='runes/ral.png'  />
+
+ Adds 5-30 Fire Damage
+ +3 To Fire Skills
+ +3 To Fire Bolt (Sorceress Only)
+ +3 To Inferno (Sorceress Only)
+ +3 To Warmth (Sorceress Only)
+ +2 To Mana After Each Kill
+ + (2 Per Character Level) +2-198 To Defense<br> (Based On Character Level)
+ Cold Resist +<span class='resc'>33</span>%
+ </span></div><span class='r11'>
+<div class="tooltip">Lionheart           3  Body Armor              Hel   + Lum   + Fal                     41  <span class='tool ttr'>Hel <img src='runes/hel.png'  /> + Lum <img src='runes/lum.png'  /> + Fal <img src='runes/fal.png'  />
+
+ +20% Enhanced Damage
+ Requirements -15%
+ +25 To Strength
+ +10 To Energy
+ +20 To Vitality
+ +15 To Dexterity
+ +50 To Life
+ All Resistances +<span class='resa'>30</span>
+ </span></div></span>
+<div class="tooltip">Lore                2  Helms                   Ort   + Sol                             27  <span class='tool ttr'>Ort <img src='runes/ort.png'  /> + Sol <img src='runes/sol.png'  />
+
+ <span class='skill'>+1 To All Skill Levels</span>
+ +10 To Energy
+ +2 To Mana After Each Kill
+ Lightning Resist +<span class='resl'>30</span>%
+ Damage Reduced By <span class='dr'>7</span>
+ +2 To Light Radius
+ </span></div><span class='r11'>
+<div class="tooltip">Malice              3  Melee Weapons           Ith   + El    + Eth                     15  <span class='tool ttr'>Ith <img src='runes/ith.png'  /> + El <img src='runes/el.png'   /> + Eth <img src='runes/eth.png'  />
+
+ +33% Enhanced Damage
+ +9 To Maximum Damage
+ <span class='ow'>100</span>% Chance Of Open Wounds
+ <span class='td'>-25</span>% Target Defense
+ -100 To Monster Defense Per Hit
+ Prevent Monster Heal
+ +50 To Attack Rating
+ Drain Life -5
+ </span></div></span>
+<div class="tooltip">Melody              3  Missile Weapons         Shael + Ko    + Nef                     39  <span class='tool ttr'>Shael <img src='runes/shael.png'/> + Ko <img src='runes/ko.png'   /> + Nef <img src='runes/nef.png'  />
+
+ +50% Enhanced Damage
+ +300% Damage To Undead
+ +3 To Bow and Crossbow Skills (Amazon Only)
+ +3 To Critical Strike (Amazon Only)
+ +3 To Dodge (Amazon Only)
+ +3 To Slow Missiles (Amazon Only)
+ <span class='ias'>20</span>% Increased Attack Speed
+ +10 To Dexterity
+ Knockback
+ </span></div><span class='r11'>
+<div class="tooltip">Memory              4  Staves (Not Orbs)       Lum   + Io    + Sol  + Eth              37  <span class='tool ttr'>Lum <img src='runes/lum.png'  /> + Io <img src='runes/io.png'   /> + Sol <img src='runes/sol.png'  /> + Eth <img src='runes/eth.png'  />
+
+ +3 to Sorceress Skill Levels
+ <span class='fcr'>33</span>% Faster Cast Rate
+ Increase Maximum Mana 20%
+ +3 Energy Shield (Sorceress Only)
+ +2 Static Field (Sorceress Only)
+ +10 To Energy
+ +10 To Vitality
+ +9 To Minimum Damage
+ <span class='td'>-25</span>% Target Defense
+ Magic Damage Reduced By 7
+ +50% Enhanced Defense
+ </span></div></span>
+<div class="tooltip">Nadir               2  Helms                   Nef   + Tir                             13  <span class='tool ttr'>Nef <img src='runes/nef.png'  /> + Tir <img src='runes/tir.png'  />
+
+ +50% Enhanced Defense
+ +10 Defense
+ +30 Defense vs. Missile
+ Level 13 Cloak of Shadows (9 Charges)
+ +2 To Mana After Each Kill
+ +5 To Strength
+ -<span class='gold'>33</span>% Extra Gold From Monsters
+ -3 To Light Radius
+ </span></div><span class='r11'>
+<div class="tooltip">Radiance            3  Helms                   Nef   + Sol   + Ith                     27  <span class='tool ttr'>Nef <img src='runes/nef.png'  /> + Sol <img src='runes/sol.png'  /> + Ith <img src='runes/ith.png'  />
+
+ +75% Enhanced Defense
+ +30 Defense Vs. Missile
+ +10 To Energy
+ +10 To Vitality
+ 15% Damage Goes To Mana
+ Magic Damage Reduced By 3
+ +33 To Mana
+ Damage Reduced By <span class='dr'>7</span>
+ +5 To Light Radius
+ </span></div></span><span class='r44'>
+<div class="tooltip">Rhyme               2  Shields                 Shael + Eth                             29  <span class='tool ttr'>Shael <img src='runes/shael.png'/> + Eth <img src='runes/eth.png'  />
+
+ 20% Increased Chance of Blocking
+ 40% Faster Block Rate
+ All Resistances +<span class='resa'>25</span>
+ Regenerate Mana 15%
+ <span class='cbf'>Cannot Be Frozen</span>
+ <span class='gold'>50</span>% Extra Gold From Monsters
+ <span class='mf'>25</span>% Better Chance Of Getting Magic Items
+ </span></div></span><span class='r11'>
+<div class="tooltip">Silence             6  Weapons                 Dol   + Eld   + Hel  + Ist + Tir + Vex  55  <span class='tool ttr'>Dol <img src='runes/dol.png'  /> + Eld <img src='runes/eld.png'  /> + Hel <img src='runes/hel.png'  /> + Ist <img src='runes/ist.png'  /> + Tir <img src='runes/tir.png'  /> + Vex <img src='runes/vex.png'  />
+
+ 200% Enhanced Damage
+ +75% Damage To Undead
+ Requirements -20%
+ <span class='ias'>20</span>% Increased Attack Speed
+ +50 To Attack Rating Against Undead
+ <span class='skill'>+2 To All Skills</span>
+ All Resistances +<span class='resa'>75</span>
+ <span class='fhr'>20</span>% Faster Hit Recovery
+ 11% Mana Stolen Per Hit
+ Hit Causes Monster To Flee 25%
+ Hit Blinds Target +33
+ +2 To Mana After Each Kill
+ <span class='mf'>30</span>% Better Chance Of Getting Magic Items
+ </span></div></span>
+<div class="tooltip">Smoke               2  Body Armor              Nef   + Lum                             37  <span class='tool ttr'>Nef <img src='runes/nef.png'  /> + Lum <img src='runes/lum.png'  />
+
+ +75% Enhanced Defense
+ +280 Defense Vs. Missile
+ All Resistances +<span class='resa'>50</span>
+ <span class='fhr'>20</span>% Faster Hit Recovery
+ Level 6 Weaken (18 Charges)
+ +10 To Energy
+ -1 To Light Radius
+ </span></div><span class='r11'>
+<div class="tooltip">Stealth             2  Body Armor              Tal   + Eth                             17  <span class='tool ttr'>Tal <img src='runes/tal.png'  /> + Eth <img src='runes/eth.png'  />
+
+ Magic Damage Reduced By 3
+ +6 To Dexterity
+ +15 To Maximum Stamina
+ Poison Resist +<span class='resp'>30</span>%
+ Regenerate Mana 15%
+ 25% Faster Run/Walk
+ <span class='fcr'>25</span>% Faster Cast Rate
+ <span class='fhr'>25</span>% Faster Hit Recovery
+ </span></div></span>
+<div class="tooltip">Steel               2  Swords/Axes/Maces       Tir   + El                              13  <span class='tool ttr'>Tir <img src='runes/tir.png'  /> + El <img src='runes/el.png'   />
+
+ 20% Enhanced Damage
+ +3 To Minimum Damage
+ +3 To Maximum Damage
+ +50 To Attack Rating
+ <span class='ow'>50</span>% Chance Of Open Wounds
+ <span class='ias'>25</span>% Increased Attack Speed
+ +2 To Mana After Each Kill
+ +1 To Light Radius
+ </span></div><span class='r11'>
+<div class="tooltip">Strength            2  Melee Weapons           Amn   + Tir                             25  <span class='tool ttr'>Amn <img src='runes/amn.png'  /> + Tir <img src='runes/tir.png'  />
+
+ 35% Enhanced Damage
+ <span class='cb'>25</span>% Chance Of Crushing Blow
+ 7% Life Stolen Per Hit
+ +2 To Mana After Each Kill
+ +20 To Strength
+ +10 To Vitality
+ </span></div></span>
+<div class="tooltip">Venom               3  Weapons                 Tal   + Dol   + Mal                     49  <span class='tool ttr'>Tal <img src='runes/tal.png'  /> + Dol <img src='runes/dol.png'  /> + Mal <img src='runes/mal.png'  />
+
+ Hit Causes Monster To Flee 25%
+ Prevent Monster Heal
+ <span class='idr'>Ignores Target's Defense</span>
+ 7% Mana Stolen Per Hit
+ Level 15 Poison Explosion (27 Charges)
+ Level 13 Poison Nova (11 Charges)
+ +273 Poison Damage Over 6 seconds
+ </span></div><span class='r44'>
+<div class="tooltip">Wealth              3  Body Armor              Lem   + Ko    + Tir                     43  <span class='tool ttr'>Lem <img src='runes/lem.png'  /> + Ko <img src='runes/ko.png'   /> + Tir <img src='runes/tir.png'  />
+
+ <span class='gold'>300</span>% Extra Gold From Monsters
+ <span class='mf'>100</span>% Better Chance Of Getting Magic Items
+ +2 To Mana After Each Kill
+ +10 To Dexterity
+ </span></div></span>
+<div class="tooltip">White               2  Wands                   Dol   + Io                              35  <span class='tool ttr'>Dol <img src='runes/dol.png'  /> + Io <img src='runes/io.png'   />
+
+ Hit Causes Monster To Flee 25%
+ +10 To Vitality
+ +3 To Poison And Bone Skills (Necromancer Only)
+ +3 To Bone Armor (Necromancer Only)
+ +2 To Bone Spear (Necromancer Only)
+ +4 To Skeleton Mastery (Necromancer Only)
+ Magic Damage Reduced By 4
+ <span class='fcr'>20</span>% Faster Cast Rate
+ +13 To Mana
+ </span></div><span class='r11'>
+<div class="tooltip">Zephyr              2  Missile Weapons         Ort   + Eth                             21  <span class='tool ttr'>Ort <img src='runes/ort.png'  /> + Eth <img src='runes/eth.png'  />
+
+ +33% Enhanced Damage
+ +66 To Attack Rating
+ Adds 1-50 Lightning Damage
+ <span class='td'>-25</span>% Target Defense
+ +25 Defense
+ 25% Faster Run/Walk
+ <span class='ias'>25</span>% Increased Attack Speed
+ 7% Chance To Cast Level 1 Twister When Struck
+ </span></div></span>
+<!-- ========== ========== ========== ========== Runewords 1.10 ========== ========== ========== ==========-->
+<hr class='topg'   />Name             Sock  Type                    Runes   #2      #3     #4    #5    #6  Lev  <a href="http://classic.battle.net/diablo2exp/items/runewords-110.shtml">1.10 Runewords</a><hr class='botg'>
+<div class="tooltip">Beast               5  Axes/Scepters/Hammers   Ber   + Tir   + Um   + Mal + Lum        63  <span class='tool ttg'>Ber <img src='runes/ber.png'  /> + Tir <img src='runes/tir.png'  /> + Um <img src='runes/um.png'   /> + Mal <img src='runes/mal.png'  /> + Lum <img src='runes/lum.png'  />
+
+ Level 9 Fanaticism Aura When Equipped
+ +<span class='ias'>40</span>% Increased Attack Speed
+ +240-270% Enhanced Damage (varies)
+ <span class='cb'>20</span>% Chance of Crushing Blow
+ <span class='ow'>25</span>% Chance of Open Wounds
+ +3 To Werebear
+ +3 To Lycanthropy
+ Prevent Monster Heal
+ +25-40 To Strength (varies)
+ +10 To Energy
+ +2 To Mana After Each Kill
+ Level 13 Summon Grizzly (5 Charges)
+ </span></div><span class='g11'>
+<div class="tooltip">Bramble             4  Body Armor              Ral   + Ohm   + Sur  + Eth              61  <span class='tool ttg'>Ral <img src='runes/ral.png'  /> + Ohm <img src='runes/ohm.png'  /> + Sur <img src='runes/sur.png'  /> + Eth <img src='runes/eth.png'  />
+
+ Level 15-21 Thorns Aura When Equipped (varies)
+ +<span class='fhr'>50</span>% Faster Hit Recovery
+ +25-50% To Poison Skill Damage (varies)
+ +300 Defense
+ Increase Maximum Mana 5%
+ Regenerate Mana 15%
+ +<span class='resc'>5</span>% To Maximum Cold Resist
+ Fire Resist +<span class='resf'>30</span>%
+ Poison Resist +<span class='resp'>100</span>%
+ +13 Life After Each Kill
+ Level 13 Spirit of Barbs (33 Charges)
+ </span></div></span>
+<div class="tooltip">Breath of the Dying 6  Weapons                 Vex   + Hel   + El   + Eld + Zod + Eth  69  <span class='tool ttg'>Vex <img src='runes/vex.png'  /> + Hel <img src='runes/hel.png'  /> + El <img src='runes/el.png'   /> + Eld <img src='runes/eld.png'  /> + Zod <img src='runes/zod.png'  /> + Eth <img src='runes/eth.png'  />
+
+ 50% Chance To Cast Level 20 Poison Nova When You Kill An Enemy
+ Indestructible
+ +<span class='ias'>60</span>% Increased Attack Speed
+ +350-400% Enhanced Damage (varies)
+ +200% Damage To Undead
+ <span class='td'>-25</span>% Target Defense
+ +50 To Attack Rating
+ +50 To Attack Rating Against Undead
+ 7% Mana Stolen Per Hit
+ 12-15% Life Stolen Per Hit (varies)
+ Prevent Monster Heal
+ +30 To All Attributes
+ +1 To Light Radius
+ Requirements -20%
+ </span></div><span class='g44'>
+<div class="tooltip">Call To Arms        5  Weapons                 Amn   + Ral   + Mal  + Ist + Ohm        57  <span class='tool ttg'>Amn <img src='runes/amn.png'  /> + Ral <img src='runes/ral.png'  /> + Mal <img src='runes/mal.png'  /> + Ist <img src='runes/ist.png'  /> + Ohm <img src='runes/ohm.png'  />
+
+ <span class='skill'>+1 To All Skills</span>
+ +<span class='ias'>40</span>% Increased Attack Speed
+ +250-290% Enhanced Damage (varies)
+ Adds 5-30 Fire Damage
+ 7% Life Stolen Per Hit
+ +2-6 To Battle Command (varies)*
+ +1-6 To Battle Orders (varies)*
+ +1-4 To Battle Cry (varies)*
+ Prevent Monster Heal
+ Replenish Life +12
+ <span class='mf'>30</span>% Better Chance of Getting Magic Items
+ </span></div></span>
+<div class="tooltip">Chains of Honor     4  Body Armor              Dol   + Um    + Ber  + Ist              63  <span class='tool ttg'>Dol <img src='runes/dol.png'  /> + Um <img src='runes/um.png'   /> + Ber <img src='runes/ber.png'  /> + Ist <img src='runes/ist.png'  />
+
+ <span class='skill'>+2 To All Skills</span>
+ +200% Damage To Demons
+ +100% Damage To Undead
+ 8% Life Stolen Per Hit
+ +70% Enhanced Defense
+ +20 To Strength
+ Replenish Life +7
+ All Resistances +<span class='resa'>65</span>
+ Damage Reduced By <span class='dr'>8</span>%
+ <span class='mf'>25</span>% Better Chance of Getting Magic Items
+ </span></div><span class='g11'>
+<div class="tooltip">Chaos               3  Claws                   Fal   + Ohm   + Um                      57  <span class='tool ttg'>Fal <img src='runes/fal.png'  /> + Ohm <img src='runes/ohm.png'  /> + Um <img src='runes/um.png'   />
+
+ 9% Chance To Cast Level 11 Frozen Orb On Striking
+ 11% Chance To Cast Level 9 Charged Bolt On Striking
+ +<span class='ias'>35</span>% Increased Attack Speed
+ +290-340% Enhanced Damage (varies)
+ Adds 216-471 Magic Damage
+ <span class='ow'>25</span>% Chance of Open Wounds
+ +1 To Whirlwind
+ +10 To Strength
+ +15 Life After Each Demon Kill
+ </span></div></span>
+<div class="tooltip">Crescent Moon       3  Axes/Swords/Polearms    Shael + Um    + Tir                     47  <span class='tool ttg'>Shael <img src='runes/shael.png'/> + Um <img src='runes/um.png'   /> + Tir <img src='runes/tir.png'  />
+
+ 10% Chance To Cast Level 17 Chain Lightning On Striking
+ 7% Chance To Cast Level 13 Static Field On Striking
+ +<span class='ias'>20</span>% Increased Attack Speed
+ +180-220% Enhanced Damage (varies)
+ <span class='idr'>Ignores Target's Defense</span>
+ -35% To Enemy Lightning Resistance
+ <span class='ow'>25</span>% Chance of Open Wounds
+ +9-11 Magic Absorb (varies)
+ +2 To Mana After Each Kill
+ Level 18 Summon Spirit Wolf (30 Charges)
+ </span></div><span class='g11'>
+<div class="tooltip">Delirium            3  Helms                   Lem   + Ist   + Io                      51  <span class='tool ttg'>Lem <img src='runes/lem.png'  /> + Ist <img src='runes/ist.png'  /> + Io <img src='runes/io.png'   />
+
+ 1% Chance To Cast Level 50 Delirium* (morph) When Struck
+ 6% Chance To Cast Level 14 Mind Blast When Struck
+ 14% Chance To Cast Level 13 Terror When Struck
+ 11% Chance To Cast Level 18 Confuse On Striking
+ <span class='skill'>+2 To All Skills</span>
+ +261 Defense
+ +10 To Vitality
+ <span class='gold'>50</span>% Extra Gold From Monsters
+ <span class='mf'>25</span>% Better Chance of Getting Magic Items
+ Level 17 Attract (60 Charges)
+ </span></div></span>
+<div class="tooltip">Doom                5  Axes/Polearms/Hammers   Hel   + Ohm   + Um   + Lo  + Cham       67  <span class='tool ttg'>Hel <img src='runes/hel.png'  /> + Ohm <img src='runes/ohm.png'  /> + Um <img src='runes/um.png'   /> + Lo <img src='runes/lo.png'   /> + Cham <img src='runes/cham.png' />
+
+ 5% Chance To Cast Level 18 Volcano On Striking
+ Level 12 Holy Freeze Aura When Equipped
+ <span class='skill'>+2 To All Skills</span>
+ +<span class='ias'>45</span>% Increased Attack Speed
+ +330-370% Enhanced Damage (varies)
+ -(40-60)% To Enemy Cold Resistance (varies)
+ <span class='ds'>20</span>% Deadly Strike
+ <span class='ow'>25</span>% Chance of Open Wounds
+ Prevent Monster Heal
+ Freezes Target +3
+ Requirements -20%
+ </span></div><span class='g11'>
+<div class="tooltip">Duress              3  Body Armor              Shael + Um    + Thul                    47  <span class='tool ttg'>Shael <img src='runes/shael.png'/> + Um <img src='runes/um.png'   /> + Thul <img src='runes/thul.png' />
+
+ +<span class='fhr'>40</span>% Faster Hit Recovery
+ +10-20% Enhanced Damage (varies)
+ Adds 37-133 Cold Damage 2 sec. Duration (Normal)
+ <span class='cb'>15</span>% Chance of Crushing Blow
+ <span class='ow'>33</span>% Chance of Open Wounds
+ +150-200% Enhanced Defense (varies)
+ -20% Slower Stamina Drain
+ Cold Resist +<span class='resc'>45</span>%
+ Lightning Resist +<span class='resl'>15</span>%
+ Fire Resist +<span class='resf'>15</span>%
+ Poison Resist +<span class='resp'>15</span>%
+ </span></div></span><span class='g44'>
+<div class="tooltip">Enigma              3  Body Armor              Jah   + Ith   + Ber                     65  <span class='tool ttg'>Jah <img src='runes/jah.png'  /> + Ith <img src='runes/ith.png'  /> + Ber <img src='runes/ber.png'  />
+
+ <span class='skill'>+2 To All Skills</span>
+ +45% Faster Run/Walk
+ <span class='skill'>+1 To Teleport</span>
+ +750-775 Defense (varies)
+ + (0.75 Per Character Level) +0-74 To Strength<br> (Based On Character Level)
+ Increase Maximum Life 5%
+ Damage Reduced By <span class='dr'>8</span>%
+ +14 Life After Each Kill
+ 15% Damage Taken Goes To Mana
+ + (1 Per Character Level) +<span class='mf'>1</span>-<span class='mf'>99</span>% Better Chance of Getting Magic Items<br> (Based On Character Level)
+ </span></div></span><span class='g11'>
+<div class="tooltip">Eternity            5  Melee Weapons           Amn   + Ber   + Ist  + Sol + Sur        63  <span class='tool ttg'>Amn <img src='runes/amn.png'  /> + Ber <img src='runes/ber.png'  /> + Ist <img src='runes/ist.png'  /> + Sol <img src='runes/sol.png'  /> + Sur <img src='runes/sur.png'  />
+
+ Indestructible
+ +260-310% Enhanced Damage (varies)
+ +9 To Minimum Damage
+ 7% Life Stolen Per Hit
+ <span class='cb'>20</span>% Chance of Crushing Blow
+ Hit Blinds Target
+ Slows Target By 33%
+ Regenerate Mana 16%
+ Replenish Life +16
+ <span class='cbf'>Cannot Be Frozen</span>
+ <span class='mf'>30</span>% Better Chance Of Getting Magic Items
+ Level 8 Revive (88 Charges)
+ </span></div></span>
+<div class="tooltip">Exile               4  Paladin Shields (only)  Vex   + Ohm   + Ist  + Dol              57  <span class='tool ttg'>Vex <img src='runes/vex.png'  /> + Ohm <img src='runes/ohm.png'  /> + Ist <img src='runes/ist.png'  /> + Dol <img src='runes/dol.png'  />
+
+ 15% Chance To Cast Level 5 Life Tap On Striking
+ Level 13-16 Defiance Aura When Equipped (varies)
+ +2 To Offensive Auras (Paladin Only)
+ +30% Faster Block Rate
+ Freezes Target
+ +220-260% Enhanced Defense (varies)
+ Replenish Life +7
+ +<span class='resc'>5</span>% To Maximum Cold Resist
+ +<span class='resf'>5</span>% To Maximum Fire Resist
+ <span class='mf'>25</span>% Better Chance Of Getting Magic Items
+ Repairs 1 Durability in 4 Seconds
+ </span></div><span class='g11'>
+<div class="tooltip">Famine              4  Axes/Hammers            Fal   + Ohm   + Ort  + Jah              65  <span class='tool ttg'>Fal <img src='runes/fal.png'  /> + Ohm <img src='runes/ohm.png'  /> + Ort <img src='runes/ort.png'  /> + Jah <img src='runes/jah.png'  />
+
+ +<span class='ias'>30</span>% Increased Attack Speed
+ +320-370% Enhanced Damage (varies)
+ <span class='idr'>Ignores Target's Defense</span>
+ Adds 180-200 Magic Damage
+ Adds 50-200 Fire Damage
+ Adds 51-250 Lightning Damage
+ Adds 50-200 Cold Damage
+ 12% Life Stolen Per Hit
+ Prevent Monster Heal
+ +10 To Strength
+ </span></div></span>
+<div class="tooltip">Gloom               3  Body Armor              Fal   + Um    + Pul                     47  <span class='tool ttg'>Fal <img src='runes/fal.png'  /> + Um <img src='runes/um.png'   /> + Pul <img src='runes/pul.png'  />
+
+ 15% Chance To Cast Level 3 Dim Vision When Struck
+ +<span class='fhr'>10</span>% Faster Hit Recovery
+ +200-260% Enhanced Defense (varies)
+ +10 To Strength
+ All Resistances +<span class='resa'>45</span>
+ Half Freeze Duration
+ 5% Damage Taken Goes To Mana
+ -3 To Light Radius
+ </span></div><span class='g11'>
+<div class="tooltip">Hand of Justice     4  Weapons                 Sur   + Cham  + Amn  + Lo               67  <span class='tool ttg'>Sur <img src='runes/sur.png'  /> + Cham <img src='runes/cham.png' /> + Amn <img src='runes/amn.png'  /> + Lo <img src='runes/lo.png'   />
+
+ 100% Chance To Cast Level 36 Blaze When You Level-Up
+ 100% Chance To Cast Level 48 Meteor When You Die
+ Level 16 Holy Fire Aura When Equipped
+ +<span class='ias'>33</span>% Increased Attack Speed
+ +280-330% Enhanced Damage (varies)
+ <span class='idr'>Ignores Target's Defense</span>
+ 7% Life Stolen Per Hit
+ -20% To Enemy Fire Resistance
+ <span class='ds'>20</span>% Deadly Strike
+ Hit Blinds Target
+ Freezes Target +3
+ </span></div></span><span class='g44'>
+<div class="tooltip">Heart of the Oak    4  Staves/Maces            Ko    + Vex   + Pul  + Thul             55  <span class='tool ttg'>Ko <img src='runes/ko.png'   /> + Vex <img src='runes/vex.png'  /> + Pul <img src='runes/pul.png'  /> + Thul <img src='runes/thul.png' />
+
+ <span class='skill'>+3 To All Skills</span>
+ +<span class='fcr'>40</span>% Faster Cast Rate
+ +75% Damage To Demons
+ +100 To Attack Rating Against Demons
+ Adds 3-14 Cold Damage, 3 sec. Duration (Normal)
+ 7% Mana Stolen Per Hit
+ +10 To Dexterity
+ Replenish Life +20
+ Increase Maximum Mana 15%
+ All Resistances +<span class='resa'>30-40</span> (varies)
+ Level 4 Oak Sage (25 Charges)
+ Level 14 Raven (60 Charges)
+ </span></div></span><span class='g11'>
+<div class="tooltip">Kingslayer          4  Swords/Axes             Mal   + Um    + Gul  + Fal              53  <span class='tool ttg'>Mal <img src='runes/mal.png'  /> + Um <img src='runes/um.png'   /> + Gul <img src='runes/gul.png'  /> + Fal <img src='runes/fal.png'  />
+
+ +<span class='ias'>30</span>% Increased Attack Speed
+ +230-270% Enhanced Damage (varies)
+ <span class='td'>-25</span>% Target Defense
+ 20% Bonus To Attack Rating
+ <span class='cb'>33</span>% Chance of Crushing Blow
+ <span class='ow'>50</span>% Chance of Open Wounds
+ +1 To Vengeance
+ Prevent Monster Heal
+ +10 To Strength
+ <span class='gold'>40</span>% Extra Gold From Monsters
+ </span></div></span>
+<div class="tooltip">Passion             4  Weapons                 Dol   + Ort   + Eld  + Lem              43  <span class='tool ttg'>Dol <img src='runes/dol.png'  /> + Ort <img src='runes/ort.png'  /> + Eld <img src='runes/eld.png'  /> + Lem <img src='runes/lem.png'  />
+
+ +<span class='ias'>25</span>% Increased Attack Speed
+ +160-210% Enhanced Damage (varies)
+ 50-80% Bonus To Attack Rating (varies)
+ +75% Damage To Undead
+ +50 To Attack Rating Against Undead
+ Adds 1-50 Lightning Damage
+ +1 To Berserk
+ +1 To Zeal
+ Hit Blinds Target +10
+ Hit Causes Monster To Flee 25%
+ <span class='gold'>75</span>% Extra Gold From Monsters
+ Level 3 Heart of Wolverine (12 Charges)
+ </span></div><span class='g11'>
+<div class="tooltip">Prudence            2  Body Armor              Mal   + Tir                             49  <span class='tool ttg'>Mal <img src='runes/mal.png'  /> + Tir <img src='runes/tir.png'  />
+
+ +<span class='fhr'>25</span>% Faster Hit Recovery
+ +140-170% Enhanced Defense (varies)
+ All Resistances +<span class='resa'>25-35</span> (varies)
+ Damage Reduced by <span class='dr'>3</span>
+ Magic Damage Reduced by 17
+ +2 To Mana After Each Kill
+ +1 To Light Radius
+ Repairs Durability 1 In 4 Seconds
+ </span></div></span>
+<div class="tooltip">Sanctuary           3  Shields                 Ko    + Ko    + Mal                     49  <span class='tool ttg'>Ko <img src='runes/ko.png'   /> + Ko <img src='runes/ko.png'   /> + Mal <img src='runes/mal.png'  />
+
+ +<span class='fhr'>20</span>% Faster Hit Recovery
+ +20% Faster Block Rate
+ 20% Increased Chance of Blocking
+ +130-160% Enhanced Defense (varies)
+ +250 Defense vs. Missile
+ +20 To Dexterity
+ All Resistances +<span class='resa'>50-70</span> (varies)
+ Magic Damage Reduced By 7
+ Level 12 Slow Missiles (60 Charges)
+ </span></div><span class='g11'>
+<div class="tooltip">Splendor            2  Shields                 Eth   + Lum                             37  <span class='tool ttg'>Eth <img src='runes/eth.png'  /> + Lum <img src='runes/lum.png'  />
+
+ <span class='skill'>+1 To All Skills</span>
+ +10% Faster Cast Rate
+ +20% Faster Block Rate
+ +60-100% Enhanced Defense (varies)
+ +10 To Energy
+ Regenerate Mana 15%
+ <span class='gold'>50</span>% Extra Gold From Monsters
+ <span class='mf'>20</span>% Better Chance of Getting Magic Items
+ +3 To Light Radius
+ </span></div></span>
+<div class="tooltip">Stone               4  Body Armor              Shael + Um    + Pul  + Lum              47  <span class='tool ttg'>Shael <img src='runes/shael.png'/> + Um <img src='runes/um.png'   /> + Pul <img src='runes/pul.png'  /> + Lum <img src='runes/lum.png'  />
+
+ +<span class='fhr'>60</span>% Faster Hit Recovery
+ +250-290% Enhanced Defense (varies)
+ +300 Defense Vs. Missile
+ +16 To Strength
+ +16 To Vitality
+ +10 To Energy
+ All Resistances +<span class='resa'>15</span>
+ Level 16 Molten Boulder (80 Charges)
+ Level 16 Clay Golem (16 Charges)
+ </span></div><span class='g11'>
+<div class="tooltip">Wind                2  Melee Weapons           Sur   + El                              61  <span class='tool ttg'>Sur <img src='runes/sur.png'  /> + El <img src='runes/el.png'   />
+
+ 10% Chance To Cast Level 9 Tornado On Striking
+ +20% Faster Run/Walk
+ +<span class='ias'>40</span>% Increased Attack Speed
+ +<span class='fhr'>15</span>% Faster Hit Recovery
+ +120-160% Enhanced Damage (varies)
+ <span class='td'>-50</span>% Target Defense
+ +50 To Attack Rating
+ Hit Blinds Target
+ +1 To Light Radius
+ Level 13 Twister (127 Charges)
+ </span></div></span>
+
+<hr class='topb'   />Name             Sock  Type                    Runes   #2      #3     #4    #5    #6  Lev  <a href="http://classic.battle.net/diablo2exp/items/runewords-110.shtml">1.10 Runewords (Ladder)</a><hr class='botb'/>
+<div class="tooltip">Brand               4  Missile Weapons         Jah   + Lo    + Mal  + Gul              65  <span class='tool ttb'>Jah <img src='runes/jah.png'  /> + Lo <img src='runes/lo.png'   /> + Mal <img src='runes/mal.png'  /> + Gul <img src='runes/gul.png'  />
+
+ 35% Chance To Cast Level 14 Amplify Damage When Struck
+ 100% Chance To Cast Level 18 Bone Spear On Striking
+ +260-340% Enhanced Damage (varies)
+ <span class='idr'>Ignores Target's Defense</span>
+ 20% Bonus to Attack Rating
+ +280-330% Damage To Demons (varies)
+ <span class='ds'>20</span>% Deadly Strike
+ Prevent Monster Heal
+ Knockback
+ Fires Explosive Arrows or Bolts (15)
+ </span></div><span class='b11'>
+<div class="tooltip">Death               5  Swords/Axes             Hel   + El    + Vex  + Ort + Gul        55  <span class='tool ttb'>Hel <img src='runes/hel.png'  /> + El <img src='runes/el.png'   /> + Vex <img src='runes/vex.png'  /> + Ort <img src='runes/ort.png'  /> + Gul <img src='runes/gul.png'  />
+
+ 100% Chance To Cast Level 44 Chain Lightning When You Die
+ 25% Chance To Cast Level 18 Glacial Spike On Attack
+ Indestructible
+ +300-385% Enhanced Damage (varies)
+ 20% Bonus To Attack Rating
+ +50 To Attack Rating
+ Adds 1-50 Lightning Damage
+ 7% Mana Stolen Per Hit
+ <span class='cb'>50</span>% Chance of Crushing Blow
+ +(<span class='ds'>0.5</span> per Character Level) <span class='ds'>0.5-49.5</span>% Deadly Strike<br> (Based on Character Level)
+ +1 To Light Radius
+ Level 22 Blood Golem (15 Charges)
+ Requirements -20%
+ </span></div></span>
+<div class="tooltip">Destruction         5  Polearms/Swords         Vex   + Lo    + Ber  + Jah + Ko         65  <span class='tool ttb'>Vex <img src='runes/vex.png'  /> + Lo <img src='runes/lo.png'   /> + Ber <img src='runes/ber.png'  /> + Jah <img src='runes/jah.png'  /> + Ko <img src='runes/ko.png'   />
+
+ 23% Chance To Cast Level 12 Volcano On Striking
+ 5% Chance To Cast Level 23 Molten Boulder On Striking
+ 100% Chance To Cast level 45 Meteor When You Die
+ 15% Chance To Cast Level 22 Nova On Attack
+ +350% Enhanced Damage
+ <span class='idr'>Ignores Target's Defense</span>
+ Adds 100-180 Magic Damage
+ 7% Mana Stolen Per Hit
+ <span class='cb'>20</span>% Chance Of Crushing Blow
+ <span class='ds'>20</span>% Deadly Strike
+ Prevent Monster Heal
+ +10 To Dexterity
+ </span></div><span class='b11'>
+<div class="tooltip">Dragon              3  Body Armor/Shields      Sur   + Lo    + Sol                     61  <span class='tool ttb'>Sur <img src='runes/sur.png'  /> + Lo <img src='runes/lo.png'   /> + Sol <img src='runes/sol.png'  />
+
+ 20% Chance to Cast Level 18 Venom When Struck
+ 12% Chance To Cast Level 15 Hydra On Striking
+ Level 14 Holy Fire Aura When Equipped
+ +360 Defense
+ +230 Defense Vs. Missile
+ +3-5 To All Attributes (varies)
+ +0.375-37.125 To Strength<br> (Based on Character Level)
+ Increase Maximum Mana 5% (Armor Only)
+ +50 To Mana (Shields Only)
+ +5% To Maximum Lightning Resist
+ Damage Reduced by <span class='dr'>7</span>
+ </span></div></span>
+<div class="tooltip">Dream               3  Helms/Shields           Io    + Jah   + Pul                     65  <span class='tool ttb'>Io <img src='runes/io.png'   /> + Jah <img src='runes/jah.png'  /> + Pul <img src='runes/pul.png'  />
+
+ 10% Chance To Cast Level 15 Confuse When Struck
+ Level 15 Holy Shock Aura When Equipped
+ +<span class='fhr'>20</span>-<span class='fhr'>30</span>% Faster Hit Recovery (varies)
+ +30% Enhanced Defense
+ +150-220 Defense (varies)
+ +10 To Vitality
+ Increase Maximum Life 5% (Helms Only)
+ +50 To Life (Shields Only)
+ +0.625-61.875 To Mana<br> (Based On Character Level)
+ All Resistances +<span class='resa'>5-20</span> (varies)
+ <span class='mf'>12</span>-<span class='mf'>25</span>% Better Chance of Getting Magic Items (varies)
+ </span></div><span class='b11'>
+<div class="tooltip">Edge                3  Missile Weapons         Tir   + Tal   + Amn                     25  <span class='tool ttb'>Tir <img src='runes/tir.png'  /> + Tal <img src='runes/tal.png'  /> + Amn <img src='runes/amn.png'  />
+
+ Level 15 Thorns Aura When Equipped
+ +<span class='ias'>35</span>% Increased Attack Speed
+ +320-380% Damage To Demons (varies)
+ +280% Damage To Undead
+ +75 Poison Damage Over 5 Seconds
+ 7% Life Stolen Per Hit
+ Prevent Monster Heal
+ +5-10 To All Attributes (varies)
+ +2 To Mana After Each Kill
+ Reduces All Vendor Prices <span class='gold'>15</span>%
+ </span></div></span>
+<div class="tooltip">Faith               4  Missile Weapons         Ohm   + Jah   + Lem  + Eld              65  <span class='tool ttb'>Ohm <img src='runes/ohm.png'  /> + Jah <img src='runes/jah.png'  /> + Lem <img src='runes/lem.png'  /> + Eld <img src='runes/eld.png'  />
+
+ Level 12-15 Fanaticism Aura When Equipped (varies)
+ <span class='skill'>+1-2 To All Skills</span> (varies)
+ +330% Enhanced Damage
+ <span class='idr'>Ignores Target's Defense</span>
+ 300% Bonus To Attack Rating
+ +75% Damage To Undead
+ +50 To Attack Rating Against Undead
+ +120 Fire Damage
+ All Resistances +<span class='resa'>15</span>
+ 10% Reanimate As: Returned
+ <span class='gold'>75</span>% Extra Gold From Monsters
+ </span></div><span class='b11'>
+<div class="tooltip">Fortitude           4  Weapons/Body Armor      El    + Sol   + Dol  + Lo               59  <span class='tool ttb'>El <img src='runes/el.png'   /> + Sol <img src='runes/sol.png'  /> + Dol <img src='runes/dol.png'  /> + Lo <img src='runes/lo.png'   />
+
+ Weapons
+ 20% Chance To Cast Level 15 Chilling Armor when Struck
+ +25% Faster Cast Rate
+ +300% Enhanced Damage
+ +9 To Minimum Damage
+ +50 To Attack Rating
+ <span class='ds'>20</span>% Deadly Strike
+ Hit Causes Monster To Flee 25%
+ +200% Enhanced Defense
+ +X To Life<br> (Based on Character Level)*
+ All Resistances +<span class='resa'>25-30</span> (varies)
+ 12% Damage Taken Goes To Mana
+ +1 To Light Radius
+
+ <b>Body Armor</b>
+ 20% Chance To Cast Level 15 Chilling Armor when Struck
+ +25% Faster Cast Rate
+ +300% Enhanced Damage
+ +200% Enhanced Defense
+ +15 Defense
+ +X To Life<br> (Based on Character Level)*
+ Replenish Life +7
+ +<span class='resl'>5</span>% To Maximum Lightning Resist
+ All Resistances +<span class='resa'>25-30</span> (varies)
+ Damage Reduced By <span class='dr'>7</span>
+ 12% Damage Taken Goes To Mana
+ +1 To Light Radius
+ </span></div></span>
+<div class="tooltip">Grief               5  Swords/Axes             Eth   + Tir   + Lo   + Mal + Ral        59  <span class='tool ttb'>Eth <img src='runes/eth.png'  /> + Tir <img src='runes/tir.png'  /> + Lo <img src='runes/lo.png'   /> + Mal <img src='runes/mal.png'  /> + Ral <img src='runes/ral.png'  />
+
+ 35% Chance To Cast Level 15 Venom On Striking
+ +<span class='ias'>30</span>-<span class='ias'>40</span>% Increased Attack Speed (varies)
+ Damage +340-400 (varies)
+ <span class='idr'>Ignores Target's Defense</span>
+ <span class='td'>-25</span>% Target Defense
+ +(1.875 per character level) 1.875-185.625% Damage To Demons<br> (Based on Character Level)
+ Adds 5-30 Fire Damage
+ -20-25% To Enemy Poison Resistance (varies)
+ <span class='ds'>20</span>% Deadly Strike
+ Prevent Monster Heal
+ +2 To Mana After Each Kill
+ +10-15 Life After Each Kill (varies)
+ </span></div><span class='b11'>
+<div class="tooltip">Harmony             4  Missile Weapons         Tir   + Ith   + Sol  + Ko               39  <span class='tool ttb'>Tir <img src='runes/tir.png'  /> + Ith <img src='runes/ith.png'  /> + Sol <img src='runes/sol.png'  /> + Ko <img src='runes/ko.png'   />
+
+ Level 10 Vigor Aura When Equipped
+ +200-275% Enhanced Damage (varies)
+ +9 To Minimum Damage
+ +9 To Maximum Damage
+ Adds 55-160 Lightning Damage
+ Adds 55-160 Fire Damage
+ Adds 55-160 Cold Damage
+ +2-6 To Valkyrie (varies)
+ +10 To Dexterity
+ Regenerate Mana 20%
+ +2 To Mana After Each Kill
+ +2 To Light Radius
+ Level 20 Revive (25 Charges)
+ </span></div></span>
+<div class="tooltip">Ice                 4  Missile Weapons         Amn   + Shael + Jah  + Lo               65  <span class='tool ttb'>Amn <img src='runes/amn.png'  /> + Shael <img src='runes/shael.png'/> + Jah <img src='runes/jah.png'  /> + Lo <img src='runes/lo.png'   />
+
+ 100% Chance To Cast Level 40 Blizzard When You Level-up
+ 25% Chance To Cast Level 22 Frost Nova On Striking
+ Level 18 Holy Freeze Aura When Equipped
+ +<span class='ias'>20</span>% Increased Attack Speed
+ +140-210% Enhanced Damage (varies)
+ <span class='idr'>Ignores Target's Defense</span>
+ +25-30% To Cold Skill Damage (varies)
+ -20% To Enemy Cold Resistance
+ 7% Life Stolen Per Hit
+ <span class='ds'>20</span>% Deadly Strike
+ <span class='gold'>3.125</span>-<span class='gold'>309.375</span> Extra Gold From Monsters<br> (Based on Character Level)
+ </span></div><span class='b44'>
+<div class="tooltip">Infinity            4  Polearms                Ber   + Mal   + Ber  + Ist              63  <span class='tool ttb'>Ber <img alt='Ber' src='runes/ber.png'  /> + Mal <img alt='Mal' src='runes/mal.png'  /> + Ber <img src='runes/ber.png'  /> + Ist <img src='runes/ist.png'  />
+
+ 50% Chance To Cast Level 20 Chain Lightning When You Kill An Enemy
+ Level 12 Conviction Aura When Equipped
+ +35% Faster Run/Walk
+ +255-325% Enhanced Damage (varies)
+ -(45-55)% To Enemy Lightning Resistance (varies)
+ <span class='cb'>40</span>% Chance of Crushing Blow
+ Prevent Monster Heal
+ 0.5-49.5 To Vitality<br> (Based on Character Level)
+ <span class='mf'>30</span>% Better Chance of Getting Magic Items
+ Level 21 Cyclone Armor (30 Charges)
+ </span></div></span><span class='b11'>
+<div class="tooltip">Insight             4  Polearms/Staves         Ral   + Tir   + Tal  + Sol              27  <span class='tool ttb'>Ral <img alt='Ral' src='runes/ral.png'  /> + Tir <img alt='Tir' src='runes/tir.png'  /> + Tal <img src='runes/tal.png'  /> + Sol <img src='runes/sol.png'  />
+
+ Level 12-17 Meditation Aura When Equipped (varies)
+ +35% Faster Cast Rate
+ +200-260% Enhanced Damage (varies)
+ +9 To Minimum Damage
+ 180-250% Bonus to Attack Rating (varies)
+ Adds 5-30 Fire Damage
+ +75 Poison Damage Over 5 Seconds
+ +1-6 To Critical Strike (varies)
+ +5 To All Attributes
+ +2 To Mana After Each Kill
+ <span class='mf'>23</span>% Better Chance of Getting Magic Items
+ </span></div></span><span class='b44'>
+<div class="tooltip">Last Wish           6  Swords/Hammers/Axes     Jah   + Mal   + Jah  + Sur + Jah + Ber  65  <span class='tool ttb'>Jah <img alt='Jah' src='runes/jah.png'  /> + Mal <img alt='Mal' src='runes/mal.png'  /> + Jah <img src='runes/jah.png'  /> + Sur <img src='runes/sur.png'  /> + Jah <img src='runes/jah.png'  /> + Ber <img src='runes/ber.png'  />
+
+ 6% Chance To Cast Level 11 Fade When Struck
+ 10% Chance To Cast Level 18 Life Tap On Striking
+ 20% Chance To Cast Level 20 Charged Bolt On Attack
+ Level 17 Might Aura When Equipped
+ +330-375% Enhanced Damage (varies)
+ <span class='idr'>Ignores Target's Defense</span>
+ <span class='cb'>60</span>-<span class='cb'>70</span>% Chance of Crushing Blow (varies)
+ Prevent Monster Heal
+ Hit Blinds Target
+ +(<span class='mf'>0.5</span> per character level) <span class='mf'>0.5</span>-<span class='mf'>49.5</span>% Chance of Getting Magic Items<br> (Based on Character Level)
+ </span></div></span>
+<div class="tooltip">Lawbringer          3  Swords/Hammers/Scepters Amn   + Lem   + Ko                      43  <span class='tool ttb'>Amn <img alt='Amn' src='runes/amn.png'  /> + Lem <img src='runes/lem.png'  /> + Ko <img src='runes/ko.png'   />
+
+ 20% Chance To Cast Level 15 Decrepify On Striking
+ Level 16-18 Sanctuary Aura When Equipped (varies)
+ <span class='td'>-50</span>% Target Defense
+ Adds 150-210 Fire Damage
+ Adds 130-180 Cold Damage
+ 7% Life Stolen Per Hit
+ Slain Monsters Rest In Peace
+ +200-250 Defense Vs. Missile (varies)
+ +10 To Dexterity
+ <span class='gold'>75</span>% Extra Gold From Monsters
+ </span></div><span class='b11'>
+<div class="tooltip">Oath                4  Swords/Axes/Maces       Shael + Pul   + Mal  + Lum              49  <span class='tool ttb'>Shael <img alt='Shael' src='runes/shael.png'/> + Pul <img alt='Pul' src='runes/pul.png'  /> + Mal <img alt='Mal' src='runes/mal.png'  /> + Lum <img alt='Lum' src='runes/lum.png'  />
+
+ 30% Chance To Cast Level 20 Bone Spirit On Striking
+ Indestructible
+ +<span class='ias'>50</span>% Increased Attack Speed
+ +210-340% Enhanced Damage (varies)
+ +75% Damage To Demons
+ +100 To Attack Rating Against Demons
+ Prevent Monster Heal
+ +10 To Energy
+ +10-15 Magic Absorb (varies)
+ Level 16 Heart Of Wolverine (20 Charges)
+ Level 17 Iron Golem (14 Charges)
+ </span></div></span>
+<div class="tooltip">Obedience           5  Polearms                Hel   + Ko    + Thul + Eth + Fal        41  <span class='tool ttb'>Hel <img alt='Hel' src='runes/hel.png'  /> + Ko <img alt='Ko' src='runes/ko.png'   /> + Thul <img alt='Thul' src='runes/thul.png' /> + Eth <img alt='Eth' src='runes/eth.png'  /> + Fal <img alt='Fal' src='runes/fal.png'  />
+
+ 30% Chance To Cast Level 21 Enchant When You Kill An Enemy
+ <span class='fhr'>40</span>% Faster Hit Recovery
+ +370% Enhanced Damage
+ <span class='td'>-25</span>% Target Defense
+ Adds 3-14 Cold Damage 3 Second Duration (Normal)
+ -25% To Enemy Fire Resistance
+ <span class='cb'>40</span>% Chance of Crushing Blow
+ +200-300 Defense (varies)
+ +10 To Strength
+ +10 To Dexterity
+ All Resistances +<span class='resa'>20-30</span> (varies)
+ Requirements -20%
+ </span></div><span class='b11'>
+<div class="tooltip">Phoenix             4  Weapons/Shields         Vex   + Vex   + Lo   + Jah              65  <span class='tool ttb'>Vex <img alt='Vex' src='runes/vex.png'  /> + Vex <img alt='Vex' src='runes/vex.png'  /> + Lo <img alt='Lo' src='runes/lo.png'   /> + Jah <img alt='Jah' src='runes/jah.png'  />
+ <b>Weapons</b>
+ 100% Chance To Cast level 40 Blaze When You Level-up
+ 40% Chance To Cast Level 22 Firestorm On Striking
+ Level 10-15 Redemption Aura When Equipped (varies)
+ +350-400% Enhanced Damage (varies)
+ <span class='idr'>Ignores Target's Defense</span>
+ 14% Mana Stolen Per Hit
+ -28% To Enemy Fire Resistance
+ <span class='ds'>20</span>% Deadly Strike
+ +350-400 Defense Vs. Missile (varies)
+ +15-21 Fire Absorb (varies)
+
+ <b>Shields</b>
+ 100% Chance To Cast level 40 Blaze When You Level-up
+ 40% Chance To Cast Level 22 Firestorm On Striking
+ Level 10-15 Redemption Aura When Equipped (varies)
+ +350-400 Defense Vs. Missile (varies)
+ +350-400% Enhanced Damage (varies)
+ -28% To Enemy Fire Resistance
+ +50 To Life
+ +5% To Maximum Lightning Resist
+ +10% To Maximum Fire Resist
+ +15-21 Fire Absorb (varies)
+ </span></div></span>
+<div class="tooltip">Pride               4  Polearms                Cham  + Sur   + Io   + Lo               67  <span class='tool ttb'>Cham <img alt='Cham' src='runes/cham.png' /> + Sur <img alt='Sur' src='runes/sur.png'  /> + Io <img alt='Io' src='runes/io.png'   /> + Lo <img alt='Lo' src='runes/lo.png'   />
+
+ 25% Chance To Cast Level 17 Fire Wall When Struck
+ Level 16-20 Concentration Aura When Equipped (varies)
+ 260-300% Bonus To Attack Rating (varies)
+ +1-99% Damage To Demons<br> (Based on Character Level)
+ Adds 50-280 Lightning Damage
+ <span class='ds'>20</span>% Deadly Strike
+ Hit Blinds Target
+ Freezes Target +3
+ +10 To Vitality
+ Replenish Life +8
+ <span class='gold'>1.875</span>-<span class='gold'>185.625</span>% Extra Gold From Monsters<br> (Based on Character Level)
+ </span></div><span class='b11'>
+<div class="tooltip">Rift                4  Polearms/Scepters       Hel   + Ko    + Lem  + Gul              53  <span class='tool ttb'>Hel <img alt='Hel' src='runes/hel.png'  /> + Ko <img alt='Ko' src='runes/ko.png'   /> + Lem <img alt='Lem' src='runes/lem.png'  /> + Gul <img alt='Gul' src='runes/gul.png'  />
+
+ 20% Chance To Cast Level 16 Tornado On Striking
+ 16% Chance To Cast Level 21 Frozen Orb On Attack
+ 20% Bonus To Attack Rating
+ Adds 160-250 Magic Damage
+ Adds 60-180 Fire Damage
+ +5-10 To All Stats (varies)
+ +10 To Dexterity
+ 38% Damage Taken Goes To Mana
+ <span class='gold'>75</span>% Extra Gold From Monsters
+ Level 15 Iron Maiden (40 Charges)
+ Requirements -20%
+ </span></div></span><span class='b44'>
+<div class="tooltip">Spirit              4  Swords/Shields          Tal   + Thul  + Ort  + Amn              25  <span class='tool ttb'>Tal <img alt='Tal' src='runes/tal.png'  /> + Thul <img alt='Thul' src='runes/thul.png' /> + Ort <img alt='Ort' src='runes/ort.png'  /> + Amn <img alt='Amn' src='runes/amn.png'  />
+
+ <b>Weapons</b>
+ <span class='skill'>+2 To All Skills</span>
+ +25-35% Faster Cast Rate (varies)
+ +<span class='fhr'>55</span>% Faster Hit Recovery
+ Adds 1-50 Lightning Damage
+ Adds 3-14 Cold Damage 3 Second Duration (Normal)
+ +75 Poison Damage Over 5 Seconds
+ 7% Life Stolen Per Hit
+ +250 Defense Vs. Missile
+ +22 To Vitality
+ +89-112 To Mana (varies)
+ +3-8 Magic Absorb (varies)
+
+ <b>Shields</b>
+ <span class='skill'>+2 To All Skills</span>
+ +25-35% Faster Cast Rate (varies)
+ +<span class='fhr'>55</span>% Faster Hit Recovery
+ +250 Defense Vs. Missile
+ +22 To Vitality
+ +89-112 To Mana (varies)
+ Cold Resist +<span class='resc'>35</span>%
+ Lightning Resist +<span class='resl'>35</span>%
+ Poison Resist +<span class='resp'>35</span>%
+ +3-8 Magic Absorb (varies)
+ Attacker Takes Damage of 14
+ </span></div></span><span class='b11'>
+<div class="tooltip">Voice of Reason     4  Swords/Maces            Lem   + Ko    + El   + Eld              43  <span class='tool ttb'>Lem <img alt='Lem' src='runes/lem.png'  /> + Ko <img alt='Ko' src='runes/ko.png'   /> + El <img alt='El' src='runes/el.png'   /> + Eld <img ald='Eld' src='runes/eld.png'  />
+
+ 15% Chance To Cast Level 13 Frozen Orb On Striking
+ 18% Chance To Cast Level 20 Ice Blast On Striking
+ +50 To Attack Rating
+ +220-350% Damage To Demons
+ +355-375% Damage To Undead (varies)
+ +50 To Attack Rating Against Undead
+ Adds 100-220 Cold Damage
+ -24% To Enemy Cold Resistance
+ +10 To Dexterity
+ <span class='cbf'>Cannot Be Frozen</span>
+ <span class='gold'>75</span>% Extra Gold From Monsters
+ +1 To Light Radius
+ </span></div></span>
+<div class="tooltip">Wrath               4  Missile Weapons         Pul   + Lum   + Ber  + Mal              63  <span class='tool ttb'>Pul <img alt='Pul' src='runes/pul.png'  /> + Lum <img alt='Lum' src='runes/lum.png'  /> + Ber <img alt='Ber' src='runes/ber.png'  /> + Mal <img alt='Mal' src='runes/mal.png'  />
+
+ 30% Chance To Cast Level 1 Decrepify On Striking
+ 5% Chance To Cast Level 10 Life Tap On Striking
+ +375% Damage To Demons
+ +100 To Attack Rating Against Demons
+ +250-300% Damage To Undead (varies)
+ Adds 85-120 Magic Damage
+ Adds 41-240 Lightning Damage
+ <span class='cb'>20</span>% Chance of Crushing Blow
+ Prevent Monster Heal
+ +10 To Energy
+ <span class='cbf'>Cannot Be Frozen</span>
+ </span></div>
+
+<hr class='topw'   />Name             Sock  Type                    Runes   #2      #3     #4    #5    #6  Lev  <a href="http://classic.battle.net/diablo2exp/items/runewords-111.shtml">1.11 Rune Words</a> (+2 to {class} Skill Levels)<hr class='botw'>
+<div class="tooltip">Bone                3  Body Armor              Sol   + Um    + Um                      47  <span class='tool ttk'>Sol <img alt='Sol' src='runes/sol.png'  /> + Um <img alt='Um' src='runes/um.png'   /> + Um <img alt='Um' src='runes/um.png'   />
+
+ 15% Chance To Cast level 10 Bone Armor When Struck
+ 15% Chance To Cast level 10 Bone Spear On Striking
+ +2 To Necromancer Skill Levels
+ +100-150 To Mana (varies)
+ All Resistances +<span class='resa'>30</span>
+ Damage Reduced By <span class='dr'>7</span>
+ </span></div><span class='odd'>
+<div class="tooltip">Enlightenment       3  Body Armor              Pul   + Ral   + Sol                     45  <span class='tool ttk'>Pul <img alt='Pul' src='runes/pul.png'  /> + Ral <img alt='Ral' src='runes/ral.png'  /> + Sol <img alt='Sol' src='runes/sol.png'  />
+
+ 5% Chance To Cast Level 15 Blaze When Struck
+ 5% Chance To Cast level 15 Fire Ball On Striking
+ +2 To Sorceress Skill Levels
+ +1 To Warmth
+ +30% Enhanced Defense
+ Fire Resist +<span class='resf'>30</span>%
+ Damage Reduced By <span class='dr'>7</span>
+ </span></div></span>
+<div class="tooltip">Myth                3  Body Armor              Hel   + Amn   + Nef                     25  <span class='tool ttk'>Hel <img alt='Hel' src='runes/hel.png'  /> + Amn <img alt='Amn' src='runes/amn.png'  /> + Nef <img alt='Nef' src='runes/nef.png'  />
+
+ 3% Chance To Cast Level 1 Howl When Struck
+ 10% Chance To Cast Level 1 Taunt On Striking
+ +2 To Barbarian Skill Levels
+ +30 Defense Vs. Missile
+ Replenish Life +10
+ Attacker Takes Damage of 14
+ Requirements -15%
+ </span></div><span class='odd'>
+<div class="tooltip">Peace               3  Body Armor              Shael + Thul  + Amn                     29  <span class='tool ttk'>Shael <img src='runes/shael.png'/> + Thul <img src='runes/thul.png' /> + Amn <img src='runes/amn.png'  />
+
+ 4% Chance To Cast Level 5 Slow Missiles When Struck
+ 2% Chance To Cast level 15 Valkyrie On Striking
+ +2 To Amazon Skill Levels
+ +<span class='fhr'>20</span>% Faster Hit Recovery
+ +2 To Critical Strike
+ Cold Resist +<span class='resc'>30</span>%
+ Attacker Takes Damage of 14
+ </span></div></span>
+<div class="tooltip">Principle           3  Body Armor              Ral   + Gul   + Eld                     53  <span class='tool ttk'>Ral <img src='runes/ral.png'  /> + Gul <img src='runes/gul.png'  /> + Eld <img src='runes/eld.png'  />
+
+ 100% Chance To Cast Level 5 Holy Bolt On Striking
+ +2 To Paladin Skill Levels
+ +50% Damage to Undead
+ +100-150 To Life (varies)
+ 15% Slower Stamina Drain
+ +<span class='resp'>5</span>% To Maximum Poison Resist
+ Fire Resist +<span class='resf'>30</span>%
+ </span></div><span class='odd'>
+<div class="tooltip">Rain                3  Body Armor              Ort   + Mal   + Ith                     49  <span class='tool ttk'>Ort <img alt='Ort' src='runes/ort.png'  /> + Mal <img alt='Mal' src='runes/mal.png'  /> + Ith <img alt='Ith' src='runes/ith.png'  />
+
+ 5% Chance To Cast Level 15 Cyclone Armor When Struck
+ 5% Chance To Cast Level 15 Twister On Striking
+ +2 To Druid Skills
+ +100-150 To Mana (varies)
+ Lightning Resist +<span class='resl'>30</span>%
+ Magic Damage Reduced By 7
+ 15% Damage Taken Goes to Mana
+ </span></div></span>
+<div class="tooltip">Treachery           3  Body Armor              Shael + Thul  + Lem                     43  <span class='tool ttk'>Shael <img alt='Shael' src='runes/shael.png'/> + Thul <img alt='Thul' src='runes/thul.png' /> + Lem <img src='runes/lem.png'  />
+
+ 5% Chance To Cast Level 15 Fade When Struck
+ 25% Chance To Cast level 15 Venom On Striking
+ +2 To Assassin Skills
+ +<span class='ias'>45</span>% Increased Attack Speed
+ +<span class='fhr'>20</span>% Faster Hit Recovery
+ Cold Resist +<span class='resc'>30</span>%
+ <span class='gold'>50</span>% Extra Gold From Monsters
+ </span></div>
+
+<hr class='topr'   /><a href='http://classic.battle.net/diablo2exp/items/cube.shtml'>Rerolling Magic Items</a><hr class='botr'>
+<div class='tooltip'>3 Perfect Gems + Magic Item &rarr; New Random Magic Item of the Same Type</div>
+
+<hr class='topg'   /><a href='http://classic.battle.net/diablo2exp/items/cube.shtml'>Socketing with Cube (or Ebug)</a><hr class='botg'>
+<div class='tooltip'>Tal + Thul + Perfect Topaz    + Normal Body Armor &rarr; Socketed Body Armor of same type                  <span class='tool ttk'>Tal <img src='runes/tal.png'  /> + Thul <img src='runes/thul.png' /> + <img src='gems/topaz_perfect.png'></span></div>
+<div class='tooltip'>Ral + Amn  + Perfect Amethyst + Normal Weapon     &rarr; Socketed Weapon     of same type                  <span class='tool ttk'>Ral <img src='runes/ral.png'  /> + Amn <img src='runes/amn.png'  /> + <img src='gems/amethyst_perfect.png'></span></div>
+<div class='tooltip'>Ral + Thul + Perfect Sapphire + Normal Helm       &rarr; Socketed Helm       of same type                  <span class='tool ttk'>Ral <img src='runes/ral.png'  /> + Thul <img src='runes/thul.png' /> + <img src='gems/sapphire_perfect.png'></span></div>
+<div class='tooltip'>Tal + Amn  + Perfect Ruby     + Normal Shield     &rarr; Socketed Shield     of same type                  <span class='tool ttk'>Tal <img src='runes/tal.png'  /> + Amn <img src='runes/amn.png'  /> + <img src='gems/ruby_perfect.png'></span></div>
+<div class='tooltip'>Hel + Scroll of Town Portal   + Any Socketed Item &rarr; Remove items (gems, runes, or jewels) from sockets<span class='tool ttk'>Hel <img src='runes/hel.png'  /></span></div>
+        
+<hr class='topb'   />Repair<hr class='botb'>
+<div class='tooltip'>Ort Rune + Weapon &rarr; Fully Repaired Weapon (<b>Note:</b> <i>You cannot repair Ethereal items</i>)<span class='tool ttk'>Ort <img src='runes/ort.png'  /></span></div>
+<div class='tooltip'>Ral Rune + Armor  &rarr; Fully Repaired Armor  (<b>Note:</b> <i>You cannot repair Ethereal items</i>)<span class='tool ttk'>Ral <img src='runes/ral.png'  /></span></div>
+
+<b>Legend:</b>
+<table><tr><td><pre>
+  Offense:
+    <span class='skill'>+# To All Skills</span>
+    <span class='cb'   >##</span> Crushing Blow
+    <span class='ds'   >##</span> Deadly Strike
+    <span class='fcr'  >##</span> Faster Caster Rate
+    <span class='idr'  >  <meta/> Ignores Target's Defense</span>
+    <span class='ias'  >##</span> Increased Attack Speed
+    <span class='ow'   >##</span> Open Wounds
+
+  Misc:
+    <span class='gold'>##</span> Extra Gold From Monsters
+    <span class='mf'  >##</span> Better Chance of Getting Magic Items
+</pre></td><td><pre>
+  Defense:
+    <span class='dr'   >##</span> Damage Reduced
+    <span class='fhr'  >##</span> Faster Hit Recovery
+
+    <span class='resf' >##</span> Fire Resist
+    <span class='resc' >##</span> Cold Resist
+    <span class='resl' >##</span> Lightning Resist
+    <span class='resp' >##</span> Poison Resist
+    <span class='resa' >##</span> Resist All
+    <span class='cbf'  >  <meta/> Cannot Be Frozen</span>
+</pre></td></tr></table></pre><span style='font-size:10px; top:-10px;'>Version 1, Last Updated Aug 29, 2021.
+</body>
+</html>
