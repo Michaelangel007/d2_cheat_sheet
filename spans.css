@@ -1,0 +1,209 @@
+span.rune
+{
+    color: orange;
+}
+
+span.r11
+{
+    background-color: #211;
+}
+
+span.r44
+{
+    background-color: #422;
+}
+
+span.g11
+{
+    background-color: #121;
+}
+
+span.g44
+{
+    background-color: #242;
+}
+
+span.b11
+{
+    background-color: #113;
+}
+
+span.b44
+{
+    background-color: #226;
+}
+
+/* Crushing Blow */
+span.cb
+{
+    color: #F84;
+}
+
+/* Can't Be Frozen */
+span.cbf
+{
+    color      : #46F;
+    font-weight: bold;
+}
+
+/* Deadly Strike */
+span.ds
+{
+    color: #FAF;
+}
+
+/* Damage Reduction */
+span.dr
+{
+    background-color: #0AA;
+    padding-left    : 2px;
+    padding-right   : 2px;
+}
+
+/* Farm Boss */
+span.farm
+{
+    color: #4EF;
+}
+
+/* Faster Cast Rate */
+span.fcr
+{
+    color: #08F; /* cyan */
+}
+
+/* Faster Hit Recovery */
+span.fhr
+{
+    background-color: #08F; /* 23A */
+    color           : #FFF;
+    padding-left    : 2px;
+    padding-right   : 2px;
+}
+
+/* Gold Find */
+span.gold
+{
+    color: yellow;
+}
+
+/* Increased Attack Speed */
+span.ias
+{
+    color: #4F8;
+}
+
+/* Ignores Target's Defense */
+span.idr
+{
+    color: #4EF;
+}
+
+/* Level Requirement */
+span.n
+{
+    color: #08F;
+}
+
+/* Open Wounds */
+span.ow
+{
+    color: #F44;
+}
+
+/* Getting Magic Items */
+span.mf
+{
+    color: #A2F;
+    font-weight: bold;
+}
+
+span.skill
+{
+    background-image: linear-gradient(to right, #08F, #008);
+}
+
+/* Resist spacer */
+.padd
+{
+/*
+    background-color: #F0F;
+*/
+    color           : #FFF;
+    padding-left    : 2px;
+    padding-right   : 2px;
+}
+
+/* Cold Resist % */
+span.resc
+{
+    background-color: #6e79b9;
+    color           : #FFF;
+    padding-left    : 2px;
+    padding-right   : 2px;
+}
+
+/* Fire Resist % */
+span.resf
+{
+    background-color: #b55d59;
+    color           : #FFF;
+    padding-left    : 2px;
+    padding-right   : 2px;
+}
+
+/* Physical Resist % */
+span.resh
+{
+    background-color: #b8a886;
+    color           : #FFF;
+    padding-left    : 2px;
+    padding-right   : 2px;
+}
+
+/* Poison Resist % */
+span.resp
+{
+    background-color: #57cf49;
+    color           : #FFF;
+    padding-left    : 2px;
+    padding-right   : 2px;
+}
+
+/* Magic Resist % */
+span.resm
+{
+    background-color: #c1893f;
+    color           : #FFF;
+    padding-left    : 2px;
+    padding-right   : 2px;
+}
+
+/* Lightning Resist % */
+span.resl
+{
+    background-color: #f2e8a0;
+    color           : #000;
+    padding-left    : 2px;
+    padding-right   : 2px;
+}
+
+/* Resist All */
+span.resa
+{
+    background-image: linear-gradient(to right, #800, #080, #00C);
+    padding-left    : 2px;
+    padding-right   : 2px;
+}
+
+
+span.rev
+{
+    background-color: #FFF;
+    color           : #000;
+}
+
+span.odd
+{
+    background-color: #222;
+}

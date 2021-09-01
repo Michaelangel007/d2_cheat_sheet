@@ -1,0 +1,79 @@
+hr
+{
+    border: none;
+    height: 1px;
+    margin          : 0px 0px;
+    padding         : 0px;
+/*
+    border: 2px dotted magenta;
+    margin: 1px 1px;
+    padding: 0px;
+*/
+}
+
+hr.topr
+{
+    background-color: #F00;
+    border          : none;
+    height          : 1px;
+    margin          : 0px;
+}
+
+hr.topg
+{
+    background-color: #0F0;
+    border          : none;
+    height: 1px;
+    margin: 0px;
+}
+
+hr.topb
+{
+    background-color: #00F;
+    border          : none;
+    height: 1px;
+    margin: 0px;
+}
+
+hr.topw
+{
+    background-color: #FFF;
+    border          : none;
+    height: 1px;
+    margin: 0;
+}
+
+hr.botr
+{
+    background-color: #F00;
+    border          : none;
+    height          : 1px;
+    margin          : 0;
+}
+
+hr.botg
+{
+    background-color: #0F0;
+    border          : none;
+    height          : 1px;
+    margin          : 0;
+}
+
+hr.botb
+{
+    background-color: #00F;
+    border          : none;
+    height          : 1px;
+    margin          : 0;
+}
+
+hr.botw
+{
+    background-color:#FFF;
+    border          : none;
+    height: 1px;
+    margin: 0;
+/*
+    margin-bottom: -1em;
+*/
+}
