@@ -13,8 +13,9 @@ table.head
 
 th
 {
-    white-space: pre;
+    font-size  : 16px;
     font-family: Consolas, Menlo, Monaco, Lucida Console, monospace;
+    white-space: pre;
 }
 
 table, tr
