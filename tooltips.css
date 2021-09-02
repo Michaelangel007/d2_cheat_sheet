@@ -5,6 +5,7 @@
     position      : relative;
     width         : 505px;
     height        : 30px;
+    white-space   : pre;
 }
 
 .gemtip:hover
