@@ -11,6 +11,7 @@
 {
     background-color: #888;
     color           : #000;
+    cursor          : pointer;
 }
 
 .gemtip .gemtext
@@ -34,6 +35,7 @@
     visibility: visible;
     top       : 0px;
     left      : -505px;
+    cursor    : pointer;
 }
 
 .gemtitle
@@ -56,6 +58,7 @@
 {
     background-color: #FF0; /* 888 */
     color           : #000;
+    cursor          : pointer;
 }
 
 .tool
@@ -101,6 +104,7 @@
 
 .tooltip:hover .ttr
 {
+    cursor    : pointer;
     visibility: visible;
     top       : -40px;
     left      : 800px;
@@ -108,6 +112,7 @@
 
 .tooltip:hover .ttg
 {
+    cursor    : pointer;
     visibility: visible;
     top       : -40px;
     left      : 800px;
@@ -115,6 +120,7 @@
 
 .tooltip:hover .ttb
 {
+    cursor    : pointer;
     visibility: visible;
     top       : -40px;
     left      : 800px;
@@ -122,6 +128,7 @@
 
 .tooltip:hover .ttk
 {
+    cursor    : pointer;
     visibility: visible;
     top       : -40px;
     left      : 800px;
