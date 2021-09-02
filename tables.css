@@ -5,27 +5,16 @@ table.head
     border-collapse: collapse;
     margin         : 0;
     padding        : 0;
+    text-align     :left;
 /*
     table-layout   : fixed;
 */
 }
 
-tr.evn
+th
 {
-    background-color: #000;
-    height          : 16px;
-    line-height     : 16px;
-    margin          : 0;
-    padding         : 0;
-}
-
-tr.odd
-{
-    background-color: #222;
-    height          : 16px;
-    line-height     : 16px;
-    margin          : 0;
-    padding         : 0;
+    white-space: pre;
+    font-family: Consolas, Menlo, Monaco, Lucida Console, monospace;
 }
 
 table, tr
@@ -40,6 +29,8 @@ border         : none;
     margin         : 0;
     padding        : 0;
     margin-block   : 0;
+    border-spacing : 0;
+    border-collapse: collapse;
 }
 
 td
