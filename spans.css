@@ -3,34 +3,64 @@ span.rune
     color: orange;
 }
 
-span.r11
+.r11
 {
     background-color: #211;
 }
 
-span.r44
+.r22
 {
-    background-color: #422;
+    background-color: #301818; /* 422 */
 }
 
-span.g11
+.r44
+{
+    background-color: #633;
+}
+
+.g11
 {
     background-color: #121;
 }
 
-span.g44
+.g22
 {
-    background-color: #242;
+    background-color: #183018;
 }
 
-span.b11
+.g44
 {
-    background-color: #113;
+    background-color: #363; /* 242 */
 }
 
-span.b44
+.b11
 {
-    background-color: #226;
+    background-color: #003; /* 113 */
+}
+
+.b22
+{
+    background-color: #181840;
+}
+
+.b44
+{
+    background-color: #226; /* 336 */
+}
+
+.k11
+{
+    background-color: #111;
+}
+
+.k22
+{
+    background-color: #222;
+}
+
+.k44
+{
+    background-color: #444;
 }
 
 /* Crushing Blow */
