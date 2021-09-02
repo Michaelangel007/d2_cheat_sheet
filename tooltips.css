@@ -45,8 +45,11 @@
 .tooltip
 {
     display       : inline-block;
+    font-family   : Consolas, Menlo, Monaco, Lucida Console, monospace;
+    height        : 16px;
     position      : relative;
     vertical-align: middle;
+    white-space   : pre;
 }
 
 .tooltip:hover
