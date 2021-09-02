@@ -38,3 +38,44 @@ td
     margin : 0;
     padding: 0;
 }
+
+/* Top and Bottom line colors */
+tr.rt
+{
+    border-top   : 1px solid #F00;
+}
+
+tr.rt
+{
+    border-bottom: 1px solid #F00;
+}
+
+tr.gt
+{
+    border-top   : 1px solid #0F0;
+}
+
+tr.gb
+{
+    border-bottom: 1px solid #0F0;
+}
+
+tr.bt
+{
+    border-top   : 1px solid #08F;
+}
+
+tr.bb
+{
+    border-bottom: 1px solid #08F;
+}
+
+tr.kt
+{
+    border-top   : 1px solid #FFF;
+}
+
+tr.kb
+{
+    border-bottom: 1px solid #FFF;
+}
