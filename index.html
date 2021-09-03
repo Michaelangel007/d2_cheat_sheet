@@ -4,10 +4,501 @@
     <head>
         <meta charset="UTF-8">
         <title>Diablo 2 Cheat Sheet by Michaelangel007</title>
-        <link rel='stylesheet' href='spans.css'>
-        <link rel='stylesheet' href='tables.css'>
-        <link rel='stylesheet' href='tooltips.css'>
         <style>
+/* ----- Spans ----- */
+span.rune
+{
+    color: orange;
+}
+
+.r11
+{
+    background-color: #211;
+}
+
+.r22
+{
+    background-color: #301818; /* 422 */
+}
+
+.r44
+{
+    background-color: #633;
+}
+
+.g11
+{
+    background-color: #121;
+}
+
+.g22
+{
+    background-color: #183018;
+}
+
+.g44
+{
+    background-color: #363; /* 242 */
+}
+
+.b11
+{
+    background-color: #003; /* 113 */
+}
+
+.b22
+{
+    background-color: #181840;
+}
+
+.b44
+{
+    background-color: #226; /* 336 */
+}
+
+.k11
+{
+    background-color: #111;
+}
+
+.k22
+{
+    background-color: #222;
+}
+
+.k44
+{
+    background-color: #444;
+}
+
+/* Crushing Blow */
+span.cb
+{
+    color: #F84;
+}
+
+/* Can't Be Frozen */
+span.cbf
+{
+    color      : #46F;
+    font-weight: bold;
+}
+
+/* Deadly Strike */
+span.ds
+{
+    color: #FAF;
+}
+
+/* Damage Reduction */
+span.dr
+{
+    background-color: #0AA;
+    padding-left    : 2px;
+    padding-right   : 2px;
+}
+
+/* Farm Boss */
+span.farm
+{
+    color: #4EF;
+}
+
+/* Faster Cast Rate */
+span.fcr
+{
+    color: #08F; /* cyan */
+}
+
+/* Faster Hit Recovery */
+span.fhr
+{
+    background-color: #08F; /* 23A */
+    color           : #FFF;
+    padding-left    : 2px;
+    padding-right   : 2px;
+}
+
+/* Gold Find */
+span.gold
+{
+    color: yellow;
+}
+
+/* Increased Attack Speed */
+span.ias
+{
+    color: #4F8;
+}
+
+/* Ignores Target's Defense */
+span.idr
+{
+    color: #4EF;
+}
+
+/* Level Requirement */
+span.n
+{
+    color: #08F;
+}
+
+/* Open Wounds */
+span.ow
+{
+    color: #F44;
+}
+
+/* Getting Magic Items */
+span.mf
+{
+    color: #A2F;
+    font-weight: bold;
+}
+
+span.skill
+{
+    background-image: linear-gradient(to right, #08F, #008);
+}
+
+/* Resist spacer */
+.padd
+{
+/*
+    background-color: #F0F;
+*/
+    color           : #FFF;
+    padding-left    : 2px;
+    padding-right   : 2px;
+}
+
+/* Cold Resist % */
+span.resc
+{
+    background-color: #6e79b9;
+    color           : #FFF;
+    padding-left    : 2px;
+    padding-right   : 2px;
+}
+
+/* Fire Resist % */
+span.resf
+{
+    background-color: #b55d59;
+    color           : #FFF;
+    padding-left    : 2px;
+    padding-right   : 2px;
+}
+
+/* Physical Resist % */
+span.resh
+{
+    background-color: #b8a886;
+    color           : #FFF;
+    padding-left    : 2px;
+    padding-right   : 2px;
+}
+
+/* Poison Resist % */
+span.resp
+{
+    background-color: #57cf49;
+    color           : #FFF;
+    padding-left    : 2px;
+    padding-right   : 2px;
+}
+
+/* Magic Resist % */
+span.resm
+{
+    background-color: #c1893f;
+    color           : #FFF;
+    padding-left    : 2px;
+    padding-right   : 2px;
+}
+
+/* Lightning Resist % */
+span.resl
+{
+    background-color: #f2e8a0;
+    color           : #000;
+    padding-left    : 2px;
+    padding-right   : 2px;
+}
+
+/* Resist All */
+span.resa
+{
+    background-image: linear-gradient(to right, #800, #080, #00C);
+    padding-left    : 2px;
+    padding-right   : 2px;
+}
+
+
+span.rev
+{
+    background-color: #FFF;
+    color           : #000;
+}
+
+span.odd
+{
+    background-color: #222;
+}
+
+/* ---------- Table ---------- */
+table.head
+{
+    border         : 0;
+    border-collapse: collapse;
+    margin         : 0;
+    padding        : 0;
+    text-align     : left;
+    table-layout   : fixed; /* iOS */
+}
+
+th
+{
+    color      : #FF8; /* Softer yellow */
+    white-space: pre;
+}
+
+table, tr
+{
+    margin         : 0;
+    padding        : 0;
+    margin-block   : 0;
+    border-spacing : 0;
+    border-collapse: collapse;
+}
+
+td
+{
+    margin : 0;
+    padding: 0;
+}
+
+/* Top and Bottom line colors */
+tr.rt
+{
+    border-top   : 1px solid #F00;
+    margin-top   : 1px;
+}
+
+tr.rb
+{
+    border-bottom: 1px solid #F00;
+    margin-bottom: 1px;
+}
+
+tr.gt
+{
+    border-top   : 1px solid #0F0;
+    margin-top   : 1px;
+}
+
+tr.gb
+{
+    border-bottom: 1px solid #0F0;
+    margin-bottom: 1px;
+}
+
+tr.bt
+{
+    border-top   : 1px solid #08F;
+    margin-top   : 1px;
+}
+
+tr.bb
+{
+    border-bottom: 1px solid #08F;
+    margin-bottom: 1px;
+}
+
+tr.kt
+{
+    border-top   : 1px solid #FFF;
+    margin-top   : 1px;
+}
+
+tr.kb
+{
+    border-bottom: 1px solid #FFF;
+    margin-bottom: 1px;
+}
+
+/* ---------- Tool Tips ---------- */
+ .gemtip-lg
+{
+    display       : inline-block;
+    position      : relative;
+    width         : 505px;
+    height        : 30px;
+    white-space   : pre;
+}
+
+.gemtip-lg:hover
+{
+    background-color: #888;
+    color           : #000;
+    cursor          : pointer;
+}
+
+.gemtip-lg .gemtext
+{
+    background-color: #123;
+    border          : 1px solid #08F;
+    border-radius   : 4px;
+    color           : #ddd;
+    font-family     : sans-serif;
+    font-size       : 14px;
+    padding         : 5px 0;
+    position        : absolute;
+    text-align      : center;
+    visibility      : hidden;
+    width           : 280px; /* Ist */
+    z-index         : 1;
+}
+
+.gemtip-lg:hover .gemtext
+{
+    visibility: visible;
+    top       :    0px;  /* Multi  column:  0, -285 */
+    left      : -285px; /* Single Column: 32,  185 */
+    cursor    : pointer;
+}
+
+/* Single Column */
+ .gemtip-sm
+{
+    display       : inline-block;
+    position      : relative;
+    width         : 505px;
+    height        : 30px;
+    white-space   : pre;
+}
+
+.gemtip-sm:hover
+{
+    background-color: #888;
+    color           : #000;
+    cursor          : pointer;
+}
+
+
+.gemtip-sm .gemtext
+{
+    background-color: #123;
+    border          : 1px solid #08F;
+    border-radius   : 4px;
+    color           : #ddd;
+    font-family     : sans-serif;
+    font-size       : 14px;
+    padding         : 5px 0;
+    position        : absolute;
+    text-align      : center;
+    visibility      : hidden;
+    width           : 280px; /* Ist */
+    z-index         : 1;
+}
+
+
+.gemtip-sm:hover .gemtext
+{
+    visibility: visible;
+    top       : 32px;  /* Multi  column: -32, -285 */
+    left      : 185px; /* Single Column:  32,  185 */
+    cursor    : pointer;
+}
+
+.gemtitle
+{
+    color      : #fff;
+    font-weight: bold;
+}
+
+.tool
+{
+    border          : 1px solid skyblue;
+    border-radius   : 4px;
+    color           : #fff;
+    font-family     : sans-serif;
+    font-size       : 14px;
+    margin          : 0px;
+    padding         : 32px 0px 32px 0px;
+    position        : absolute;
+    text-align      : center;
+    visibility      : hidden;
+    width           : 500px;  /* 1300 - 800 */
+    z-index         : 1;
+}
+
+.ttr
+{
+    background-color: #312;
+}
+
+.ttg
+{
+    background-color: #132;
+}
+
+.ttb
+{
+    background-color: #123;
+}
+
+.ttk
+{
+    background-color: #222;
+}
+
+.tooltip
+{
+    cursor        : pointer;
+    display       : inline-block;
+    height        : 16px;
+    position      : relative;
+    vertical-align: middle;
+    white-space   : pre;
+}
+
+.tooltip:hover
+{
+    background-color: #FF0; /* 888 */
+    color           : #000;
+    cursor          : pointer;
+}
+
+.tooltip:hover .ttr
+{
+    visibility: visible;
+    top       : -40px;
+    left      : 800px;
+}
+
+.tooltip:hover .ttg
+{
+    visibility: visible;
+    top       : -40px;
+    left      : 800px;
+}
+
+.tooltip:hover .ttb
+{
+    visibility: visible;
+    top       : -40px;
+    left      : 800px;
+}
+
+.tooltip:hover .ttk
+{
+    visibility: visible;
+    top       : -40px;
+    left      : 800px;
+}
+
+/* ----- Device ----- */
     .ios-hidden
     {
         display: block;
