@@ -9,7 +9,9 @@
         <link rel='stylesheet' href='tooltips.css'>
         <style>
 /* iPhone Plus -- is screen width <= 767px */
-@media screen and (max-width: 767px)
+@media screen
+and (min-device-width : 375px)
+and (max-device-width : 799px)
 {
     .ios-hidden
     {
@@ -20,8 +22,8 @@
         display: block;
     }
 }
-/* screen width >= 768 */
-@media screen and (min-width: 768px)
+/* screen width >= 800x */
+@media screen and (min-width: 800px)
 {
     .ios-hidden
     {
