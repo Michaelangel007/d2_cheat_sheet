@@ -45,23 +45,6 @@
     font-weight: bold;
 }
 
-.tooltip
-{
-    cursor        : pointer;
-    display       : inline-block;
-    height        : 16px;
-    position      : relative;
-    vertical-align: middle;
-    white-space   : pre;
-}
-
-.tooltip:hover
-{
-    background-color: #FF0; /* 888 */
-    color           : #000;
-    cursor          : pointer;
-}
-
 .tool
 {
     border          : 1px solid skyblue;
@@ -98,9 +81,25 @@
     background-color: #222;
 }
 
+.tooltip
+{
+    cursor        : pointer;
+    display       : inline-block;
+    height        : 16px;
+    position      : relative;
+    vertical-align: middle;
+    white-space   : pre;
+}
+
+.tooltip:hover
+{
+    background-color: #FF0; /* 888 */
+    color           : #000;
+    cursor          : pointer;
+}
+
 .tooltip:hover .ttr
 {
-    cursor    : pointer;
     visibility: visible;
     top       : -40px;
     left      : 800px;
@@ -108,7 +107,6 @@
 
 .tooltip:hover .ttg
 {
-    cursor    : pointer;
     visibility: visible;
     top       : -40px;
     left      : 800px;
@@ -116,7 +114,6 @@
 
 .tooltip:hover .ttb
 {
-    cursor    : pointer;
     visibility: visible;
     top       : -40px;
     left      : 800px;
@@ -124,7 +121,6 @@
 
 .tooltip:hover .ttk
 {
-    cursor    : pointer;
     visibility: visible;
     top       : -40px;
     left      : 800px;
