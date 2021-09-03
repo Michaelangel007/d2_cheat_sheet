@@ -17,13 +17,6 @@ th
 
 table, tr
 {
-/*
-    margin-top: -2px;
-    margin-bot: -2px;
-    border-collapse: collapse;
-    border         : 1px solid red;
-border         : none;
-*/
     margin         : 0;
     padding        : 0;
     margin-block   : 0;
