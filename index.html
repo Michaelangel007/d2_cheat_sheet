@@ -8,6 +8,32 @@
         <link rel='stylesheet' href='tables.css'>
         <link rel='stylesheet' href='tooltips.css'>
         <style>
+/* iPhone Plus -- is screen width <= 767px */
+@media screen and (max-width: 767px)
+{
+    .ios-hidden
+    {
+        display: none;
+    }
+    .ios-vissible
+    {
+        display: block;
+    }
+}
+/* screen width >= 768 */
+@media screen and (min-width: 768px)
+{
+    .ios-hidden
+    {
+        display: block;
+    }
+
+    .ios-visible
+    {
+        display: none;
+    }
+}
+
 a:visited
 {
     color          : #08F;
