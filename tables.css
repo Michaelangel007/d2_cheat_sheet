@@ -13,8 +13,8 @@ table.head
 
 th
 {
-    font-size  : 16px;
-    font-family: Consolas, Menlo, Monaco, Lucida Console, monospace;
+    color      : yellow;
+    font-size  : 16px; /* iOS */
     white-space: pre;
 }
 
