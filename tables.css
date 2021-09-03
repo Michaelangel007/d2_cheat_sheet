@@ -5,7 +5,7 @@ table.head
     border-collapse: collapse;
     margin         : 0;
     padding        : 0;
-    text-align     :left;
+    text-align     : left;
     table-layout   : fixed; /* iOS */
 }
 
