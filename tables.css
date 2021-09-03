@@ -13,8 +13,7 @@ table.head
 
 th
 {
-    color      : yellow;
-    font-size  : 16px; /* iOS */
+    color      : #FF8; /* Softer yellow */
     white-space: pre;
 }
 
