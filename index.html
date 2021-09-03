@@ -11,7 +11,7 @@
 /* iPhone Plus -- is screen width <= 767px */
 @media screen
 and (min-device-width : 375px)
-and (max-device-width : 799px)
+and (max-device-width : 991px)
 {
     .ios-hidden
     {
@@ -23,7 +23,7 @@ and (max-device-width : 799px)
     }
 }
 /* screen width >= 800x */
-@media screen and (min-width: 800px)
+@media screen and (min-width: 992px)
 {
     .ios-hidden
     {
@@ -317,9 +317,38 @@ function runes()
     }
     console.log( text );
 }
-        </script>        
+
+function getScreenSize()
+{
+    var resolutions =
+    {
+        '(min-width: 1200px)'                          : 'xl',
+        '(min-width: 992px) and (max-width: 1199.98px)': 'lg',
+        '(min-width: 768px) and (max-width: 991.98px)' : 'md',
+        '(min-width: 576px) and (max-width: 767.98px)' : 'sm',
+                               '(max-width: 575.98px)' : 'xs'
+    };
+
+    for (let size in resolutions)
+        if (window.matchMedia(size).matches)
+            return resolutions[size];
+
+    return null;
+}
+
+function onLoad()
+{
+    var dim = getScreenSize();
+    console.log( 'Dimension: ' + dim );
+    var debug = document.getElementById( 'screen-size' );
+    debug.innerText = dim;
+
+    // iOS touch / hover
+    document.addEventListener("touchstart", function() {},false);
+}
+        </script>
     </head>
-<body>
+<body onload='onLoad()'>
 <table class='head'>
     <tr>
         <td style='width:750px;'>
@@ -2434,5 +2463,8 @@ function runes()
 <hr class='botw'>
 <span style='font-size:10px;'>Version 1.2, Last Updated Sep 2, 2021.</span>
 <span style='font-size:6px;'>All bugs are due to Anthony slacking on QA.</span>
+<br>CSS Debug: <span id='screen-size'>?</span>
+<br><span class='ios-hidden' >iOS-hidden </span>
+<br><span class='ios-visible'>iOS-visible</span>
 </body>
 </html>
