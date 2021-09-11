@@ -636,40 +636,77 @@ pre
 // string: rune name
 // int   : min clev for rune
 var RUNES = [
-    "El   ",11,
-    "Eld  ",11,
-    "Tir  ",13,
-    "Nef  ",13,
-    "Eth  ",15,
-    "Ith  ",15,
-    "Tal  ",17,
-    "Ral  ",19,
-    "Ort  ",21,
-    "Thul ",23,
-    "Amn  ",25,
-    "Sol  ",27,
-    "Shael",29,
-    "Dol  ",31,
-    "Hel  ", 0,
-    "Io   ",35,
-    "Lum  ",37,
-    "Ko   ",39,
-    "Fal  ",41,
-    "Lem  ",43,
-    "Pul  ",45,
-    "Um   ",47,
-    "Mal  ",49,
-    "Ist  ",51,
-    "Gul  ",53,
-    "Vex  ",55,
-    "Ohm  ",57,
-    "Lo   ",59,
-    "Sur  ",61,
-    "Ber  ",63,
-    "Jah  ",65,
-    "Cham ",67,
-    "Zod  ",69
+    "El   ",
+    "Eld  ",
+    "Tir  ",
+    "Nef  ",
+    "Eth  ",
+    "Ith  ",
+    "Tal  ",
+    "Ral  ",
+    "Ort  ",
+    "Thul ",
+    "Amn  ",
+    "Sol  ",
+    "Shael",
+    "Dol  ",
+    "Hel  ",
+    "Io   ",
+    "Lum  ",
+    "Ko   ",
+    "Fal  ",
+    "Lem  ",
+    "Pul  ",
+    "Um   ",
+    "Mal  ",
+    "Ist  ",
+    "Gul  ",
+    "Vex  ",
+    "Ohm  ",
+    "Lo   ",
+    "Sur  ",
+    "Ber  ",
+    "Jah  ",
+    "Cham ",
+    "Zod  "
 ];
+
+var RUNE_LEVS = [
+    11, // "El   "
+    11, // "Eld  "
+    13, // "Tir  "
+    13, // "Nef  "
+    15, // "Eth  "
+    15, // "Ith  "
+    17, // "Tal  "
+    19, // "Ral  "
+    21, // "Ort  "
+    23, // "Thul "
+    25, // "Amn  "
+    27, // "Sol  "
+    29, // "Shael"
+    31, // "Dol  "
+     0, // "Hel  "
+    35, // "Io   "
+    37, // "Lum  "
+    39, // "Ko   "
+    41, // "Fal  "
+    43, // "Lem  "
+    45, // "Pul  "
+    47, // "Um   "
+    49, // "Mal  "
+    51, // "Ist  "
+    53, // "Gul  "
+    55, // "Vex  "
+    57, // "Ohm  "
+    59, // "Lo   "
+    61, // "Sur  "
+    63, // "Ber  "
+    65, // "Jah  "
+    67, // "Cham "
+    69  // "Zod  "
+];
+
 
 var RECIPES = [
 "Ancient's Pledge    3  Shields                 Ral   + Ort   + Tal                     21  1.09",
@@ -771,7 +808,7 @@ function FindRunes( recipe )
     {
         end = recipe.indexOf(' ',head); if (end < 0) end = len;
         src = recipe.substr( head, end-head );
-        for( var rune = 0; rune < RUNES.length; rune += 2 )
+        for( var rune = 0; rune < RUNES.length; rune++ )
         {
             dst = RUNES[rune].trim();
             if (src === dst)
@@ -790,8 +827,8 @@ function MinLevels( arunes )
     var min = 0;
     for( var rune = 0; rune < arunes.length; rune++ )
     {
-        if (min < RUNES[arunes[rune]+1])
-            min = RUNES[arunes[rune]+1];
+        if (min < RUNE_LEVS[arunes[rune]])
+            min = RUNE_LEVS[arunes[rune]];
     }
     return min;
 }
