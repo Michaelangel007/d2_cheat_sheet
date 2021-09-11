@@ -931,7 +931,11 @@ function onToggleRune( index )
     gaAvailableRunes[ rune ] ^= 1;
     setRuneVisibility( rune );
 
-    var selectNone = document.getElementById( 'Select0' ); selectNone.removeAttribute( 'sel' ); selectNone.setAttribute( 'class', 'unsel' );
+    // Reselect "None" if all runes are off
+    var total   = gaAvailableRunes.reduce( (elem1,elem2) => elem1 + elem2,0 );
+    var nonecss = total ? 'unsel' : 'sel';
+
+    var selectNone = document.getElementById( 'Select0' ); selectNone.removeAttribute( 'sel' ); selectNone.setAttribute( 'class', nonecss );
     var selectAll  = document.getElementById( 'Select1' ); selectAll .removeAttribute( 'sel' ); selectAll .setAttribute( 'class', 'unsel' );
 
 //    console.log( "Toggled: " + RUNES[ rune*2 ] + " (" + index + ")" + ": " + gaAvailableRunes[ rune ] );
