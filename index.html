@@ -903,6 +903,76 @@ function onLoad()
 
     // iOS touch / hover
     document.addEventListener("touchstart", function() {},false);
+
+    gaAvailableRunes = new Array( RUNES.length );
+    gaAvailableRunes.fill(1);
+
+    getRunewordRunes();
+}
+
+function toggleAllRunes( haveAll )
+{
+    var rune, runes = gaAvailableRunes.length;
+    for( rune = 0; rune < runes; rune++ )
+    {
+        gaAvailableRunes[ rune ] = haveAll;
+        setRuneVisibility( rune );
+    }
+
+    var selected = document.getElementById( 'Select' +  haveAll ); selected.removeAttribute( 'unsel'); selected.setAttribute( 'class', 'sel'   );
+    var adjacent = document.getElementById( 'Select'+(1-haveAll)); adjacent.removeAttribute( 'sel'  ); adjacent.setAttribute( 'class', 'unsel' );
+
+    rebuildVisibleRunewords();
+}
+
+function onToggleRune( index )
+{
+    var rune = index-1;
+    gaAvailableRunes[ rune ] ^= 1;
+    setRuneVisibility( rune );
+
+    var selectNone = document.getElementById( 'Select0' ); selectNone.removeAttribute( 'sel' ); selectNone.setAttribute( 'class', 'unsel' );
+    var selectAll  = document.getElementById( 'Select1' ); selectAll .removeAttribute( 'sel' ); selectAll .setAttribute( 'class', 'unsel' );
+
+//    console.log( "Toggled: " + RUNES[ rune*2 ] + " (" + index + ")" + ": " + gaAvailableRunes[ rune ] );
+
+    rebuildVisibleRunewords();
+}
+
+function rebuildVisibleRunewords()
+{
+    var rw, rune, runes, tr, seen;
+
+    for( rw = 0; rw < gaRunewordRunes.length; rw++ )
+    {
+        tr    = document.getElementById( 'rw' + padLeft( rw, 2, '0' ) );
+        runes = gaRunewordRunes[rw];
+        seen  = 1;
+
+        for( rune = 0; rune < runes.length; rune++ )
+        {
+            if( !gaAvailableRunes[ runes[ rune ] ] )
+            {
+                seen = 0;
+                break;
+            }
+        }
+
+        setElementVisible( tr, seen );
+    }
+}
+
+function setElementVisible( elem, vis )
+{
+    if   ( vis ) elem.style.opacity = '100%';
+    else         elem.style.opacity =  '33%';
+}
+
+function setRuneVisibility( rune )
+{
+    var elem = document.getElementById( 'c' + padLeft( rune+1, 2, '0' ) );
+    var seen = gaAvailableRunes[ rune ];
+    setElementVisible( elem, seen );
 }
         </script>
     </head>
