@@ -859,10 +859,8 @@ function padLeft( text, width, c )
     return ("" + new Array( width ).join( c ) + text).slice( -width );
 }
 
-// Generate HTML image source list of rune images for each runeword
-function runes()
+function getRunewordRunes()
 {
-    var text = "";
     for( var recipe = 0; recipe < RECIPES.length; recipe++ )
     {
         var line     = RECIPES[recipe];
@@ -872,25 +870,7 @@ function runes()
         var arunes   = FindRunes( mats );
 
         gaRunewordRunes.push( arunes );
-/*
-        var tooltip  = runeword + ": ";
-        for( var rune = 0; rune < arunes.length; rune++ )
-        {
-            var name = RUNES[arunes[rune]].trim();
-            // Ral <img src='runes/ral.png'  /> + Ort <img src='runes/ort.png'  /> + Tal <img src='runes/tal.png'  />
-            tooltip += name + " <img src='runes/" + name.toLocaleLowerCase() + ".png'" + padLeft(' ',(5-name.length)) + "/>";
-            if (rune < (arunes.length - 1))
-                tooltip += " + ";
-        }
-        text += tooltip + '\n';
-*/
     }
-    console.log( text );
-}
-
-function getRunewordRunes()
-{
-    runes();
 }
 
 /*
