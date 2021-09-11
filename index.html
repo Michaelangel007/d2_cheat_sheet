@@ -870,6 +870,9 @@ function runes()
         var sockets  = line.substr(20,1) | 0;
         var mats     = line.substr(47,38);
         var arunes   = FindRunes( mats );
+
+        gaRunewordRunes.push( arunes );
+/*
         var tooltip  = runeword + ": ";
         for( var rune = 0; rune < arunes.length; rune++ )
         {
@@ -880,8 +883,14 @@ function runes()
                 tooltip += " + ";
         }
         text += tooltip + '\n';
+*/
     }
     console.log( text );
+}
+
+function getRunewordRunes()
+{
+    runes();
 }
 
 /*
