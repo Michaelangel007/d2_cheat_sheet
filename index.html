@@ -743,7 +743,7 @@ var RUNE_LEVS = [
     69  // "Zod  "
 ];
 
-
+var COLUMNS = [ 0, 2, 22, 25, 49, 89, 93 ];
 var RECIPES = [
 "Ancient's Pledge    3  Shields                 Ral   + Ort   + Tal                     21  1.09",
 "Black               3  Clubs/Hammers/Maces     Thul  + Io    + Nef                     35  1.09",
@@ -830,7 +830,62 @@ var RECIPES = [
 
 // Globals
     var gaAvailableRunes = [],
-        gaRunewordRunes  = [];
+
+        gaRuneWordLevel  = [],
+        gaRuneWordNames  = [],
+        gaRuneWordRunes  = [], // array of runes
+        gaRuneWordMats   = [], // array of strings
+        gaRuneWordSocks  = [],
+        gaRuneWordSuper  = [],
+        gaRuneWordType   = [],
+        gaRuneWordVer    = [],
+
+        gaSortByLevel    = [],
+        gaSortByNames    = [],
+
+        gaSortByMats1    = [],
+        gaSortByMats2    = [],
+        gaSortByMats3    = [],
+        gaSortByMats4    = [],
+        gaSortByMats5    = [],
+        gaSortByMats6    = [],
+
+        gaSortBySockets  = [],
+        gaSortBySuperior = [],
+        gaSortByType     = [],
+        gaSortByVersion  = [];
+
+    var gaRuneOrder =
+    [
+        null,
+        gaSortByMats1,
+        gaSortByMats2,
+        gaSortByMats3,
+        gaSortByMats4,
+        gaSortByMats5,
+        gaSortByMats6
+    ];
+
+function DumpRuneWordSorted( name, array )
+{
+    console.warn( '--- ' + name + ' ---\n' );
+
+    var iRW, recipe, recipes = RECIPES.length, text = '';
+    for( recipe = 0; recipe < recipes; recipe++ )
+    {
+        iRW = array[ recipe ];
+        // ## [] S Name  Sock Type Lev Vers
+        text += '#' + padLeft( recipe, 2 )
+             + ' [' + padLeft( iRW, 2 )           + '] '
+             +(gaRuneWordSuper[ iRW ] ? '*' : ' ') + ' '
+             + gaRuneWordNames[ iRW ]              + ' '
+             + gaRuneWordSocks[ iRW ]              + ' '
+             + gaRuneWordType [ iRW ]              + ' '
+             + gaRuneWordLevel[ iRW ]              + ' '
+             + gaRuneWordVer  [ iRW ]              + '\n';
+    }
+    console.log( text );
+}
 
 // Convert string containing runes to array of rune numbers
 function FindRunes( recipe )
