@@ -704,7 +704,7 @@ var COLUMNS = [ 0, 2, 22, 25, 49, 89, 93 ];
 var RECIPES = [
 //   S Name             Sock  Type                    Runes   #2      #3     #4    #5    #6  Lev  Version
     "  Ancient's Pledge    3  Shields                 Ral   + Ort   + Tal                     21  1.09",
-    "  Black               3  Clubs/Hammers/Maces     Thul  + Io    + Nef                     35  1.09",
+    "* Black               3  Clubs/Hammers/Maces     Thul  + Io    + Nef                     35  1.09",
     "  Fury                3  Melee Weapons           Jah   + Gul   + Eth                     65  1.09",
     "  Holy Thunder        4  Scepters                Eth   + Ral   + Ort  + Tal              21  1.09",
     "  Honor               5  Melee                   Amn   + El    + Ith  + Tir + Sol        27  1.09",
@@ -725,7 +725,7 @@ var RECIPES = [
     "  Strength            2  Melee Weapons           Amn   + Tir                             25  1.09",
     "  Venom               3  Weapons                 Tal   + Dol   + Mal                     49  1.09",
     "* Wealth              3  Body Armor              Lem   + Ko    + Tir                     43  1.09",
-    "  White               2  Wands                   Dol   + Io                              35  1.09",
+    "* White               2  Wands                   Dol   + Io                              35  1.09",
     "  Zephyr              2  Missile Weapons         Ort   + Eth                             21  1.09",
 
     "  Beast               5  Axes/Scepters/Hammers   Ber   + Tir   + Um   + Mal + Lum        63  1.10",
@@ -740,7 +740,7 @@ var RECIPES = [
     "  Duress              3  Body Armor              Shael + Um    + Thul                    47  1.10",
     "* Enigma              3  Body Armor              Jah   + Ith   + Ber                     65  1.10",
     "  Eternity            5  Melee Weapons           Amn   + Ber   + Ist  + Sol + Sur        63  1.10",
-    "  Exile               4  Paladin Shields (only)  Vex   + Ohm   + Ist  + Dol              57  1.10",
+    "* Exile               4  Paladin Shields (only)  Vex   + Ohm   + Ist  + Dol              57  1.10",
     "  Famine              4  Axes/Hammers            Fal   + Ohm   + Ort  + Jah              65  1.10",
     "  Gloom               3  Body Armor              Fal   + Um    + Pul                     47  1.10",
     "  Hand of Justice     4  Weapons                 Sur   + Cham  + Amn  + Lo               67  1.10",
@@ -769,7 +769,7 @@ var RECIPES = [
     "* Last Wish           6  Swords/Hammers/Axes     Jah   + Mal   + Jah  + Sur + Jah + Ber  65  1.10 lad",
     "  Lawbringer          3  Swords/Hammers/Scepters Amn   + Lem   + Ko                      43  1.10 lad",
     "  Oath                4  Swords/Axes/Maces       Shael + Pul   + Mal  + Lum              49  1.10 lad",
-    "  Obedience           5  Polearms                Hel   + Ko    + Thul + Eth + Fal        41  1.10 lad",
+    "* Obedience           5  Polearms                Hel   + Ko    + Thul + Eth + Fal        41  1.10 lad",
     "  Phoenix             4  Weapons/Shields         Vex   + Vex   + Lo   + Jah              65  1.10 lad",
     "  Pride               4  Polearms                Cham  + Sur   + Io   + Lo               67  1.10 lad",
     "  Rift                4  Polearms/Scepters       Hel   + Ko    + Lem  + Gul              53  1.10 lad",
@@ -2310,7 +2310,7 @@ function updateRuneWordsVisible()
  Poison Resist +<span class='resp'>48</span>%
  10% Damage Goes To Mana
  </span></td></tr>
-<tr id='rw1' ><td class='tooltip r22'>  Black               3  Clubs/Hammers/Maces     Thul  + Io    + Nef                     35  1.09<span class='tool ttr'>Thul <img src='runes/thul.png' /> + Io <img src='runes/io.png'   /> + Nef <img src='runes/nef.png'  />
+<tr id='rw1' ><td class='tooltip r22'>* Black               3  Clubs/Hammers/Maces     Thul  + Io    + Nef                     35  1.09<span class='tool ttr'>Thul <img src='runes/thul.png' /> + Io <img src='runes/io.png'   /> + Nef <img src='runes/nef.png'  />
 
  +120% Enhanced Damage
  <span class='cb'>40</span>% Chance Of Crushing Blow
@@ -2549,7 +2549,7 @@ function updateRuneWordsVisible()
  +2 To Mana After Each Kill
  +10 To Dexterity
  </span></td></tr>
-<tr id='rw22'><td class='tooltip r11'>  White               2  Wands                   Dol   + Io                              35  1.09<span class='tool ttr'>Dol <img src='runes/dol.png'  /> + Io <img src='runes/io.png'   />
+<tr id='rw22'><td class='tooltip r11'>* White               2  Wands                   Dol   + Io                              35  1.09<span class='tool ttr'>Dol <img src='runes/dol.png'  /> + Io <img src='runes/io.png'   />
 
  Hit Causes Monster To Flee 25%
  +10 To Vitality
@@ -2740,7 +2740,7 @@ function updateRuneWordsVisible()
  <span class='mf'>30</span>% Better Chance Of Getting Magic Items
  Level 8 Revive (88 Charges)
  </span></td></tr>
-<tr id='rw36'><td class='tooltip g11'>  Exile               4  Paladin Shields (only)  Vex   + Ohm   + Ist  + Dol              57  1.10<span class='tool ttg'>Vex <img src='runes/vex.png'  /> + Ohm <img src='runes/ohm.png'  /> + Ist <img src='runes/ist.png'  /> + Dol <img src='runes/dol.png'  />
+<tr id='rw36'><td class='tooltip g11'>* Exile               4  Paladin Shields (only)  Vex   + Ohm   + Ist  + Dol              57  1.10<span class='tool ttg'>Vex <img src='runes/vex.png'  /> + Ohm <img src='runes/ohm.png'  /> + Ist <img src='runes/ist.png'  /> + Dol <img src='runes/dol.png'  />
 
  15% Chance To Cast Level 5 Life Tap On Striking
  Level 13-16 Defiance Aura When Equipped (varies)
@@ -3137,7 +3137,7 @@ function updateRuneWordsVisible()
  Level 16 Heart Of Wolverine (20 Charges)
  Level 17 Iron Golem (14 Charges)
  </span></td></tr>
-<tr id='rw64'><td class='tooltip b11'>  Obedience           5  Polearms                Hel   + Ko    + Thul + Eth + Fal        41  1.10 lad<span class='tool ttb'>Hel <img alt='Hel' src='runes/hel.png'  /> + Ko <img alt='Ko' src='runes/ko.png'   /> + Thul <img alt='Thul' src='runes/thul.png' /> + Eth <img alt='Eth' src='runes/eth.png'  /> + Fal <img alt='Fal' src='runes/fal.png'  />
+<tr id='rw64'><td class='tooltip b11'>* Obedience           5  Polearms                Hel   + Ko    + Thul + Eth + Fal        41  1.10 lad<span class='tool ttb'>Hel <img alt='Hel' src='runes/hel.png'  /> + Ko <img alt='Ko' src='runes/ko.png'   /> + Thul <img alt='Thul' src='runes/thul.png' /> + Eth <img alt='Eth' src='runes/eth.png'  /> + Fal <img alt='Fal' src='runes/fal.png'  />
 
  30% Chance To Cast Level 21 Enchant When You Kill An Enemy
  <span class='fhr'>40</span>% Faster Hit Recovery
@@ -3568,8 +3568,10 @@ function updateRuneWordsVisible()
 <br>
 <pre>
 Thanks:
-  * /u/Obliivescence for TC84 header info catch
-  * /u/MestreJonas_  for idea to clarify "lite/othr"
+  * /u/Obliivescence       for TC84 header info catch
+  * /u/MestreJonas_        for idea to clarify "lite/othr"
+  * /u/randomly-generated  for idea to sort runewords by owned
+  * /u/GuardianOfTriangles for more S Tier items (Black, Exile, Obedience, or White)
 </pre>
 <hr class='botw' style='margin:0;padding:0px;'>
 <span style='font-size:12px;'>Version 1.9, Last Updated Sep 12 2021.</span>
