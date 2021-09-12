@@ -2,9 +2,27 @@
 
 * [Cheat Sheet](https://htmlpreview.github.io/?https://github.com/Michaelangel007/d2_cheat_sheet/blob/master/index.html)
 
+# QoL Features
+
+ * readable on desktop and mobile
+ * interactive -- tooltips for runes and runewords
+ * sortable runeword table
+ * complete FCR and FHR breakpoints
+ * Tomb locations
+ * Pandemonium Event
+ * TC85 farming
+ * clean visual rune upgrades
+ * rune chest dropping and farming info
+ * click on runes to toggle "rune ownership"
+ * minimum runeword level
+ * color coded offense and defense stats in runewords
+ * alternating runeword background row colors
+ * yellow highlight hover row pointer for all tables
+ * Area Levels (includes monster level)
+
 # Wishlist
 
-* Monster Levels by Zone
+* Add `Owned` sort option to runewords
 * Add Commonly upgraded uniques to _Upping Uniques_
 
 ```
