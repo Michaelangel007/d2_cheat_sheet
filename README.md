@@ -11,7 +11,7 @@
  * complete FCR and FHR breakpoints
  * Tomb locations
  * Pandemonium Event
- * TC85 farming
+ * 84 alvl (TC 84/87) farming info
  * clean visual rune upgrades
  * rune chest dropping and farming info
  * click on runes to toggle "rune ownership"
@@ -53,6 +53,6 @@
     Waterwalk : 201
     Gore Rider : 213
 ```
-* Add map layout hints
+* Add map layout hints -- see https://docs.google.com/spreadsheets/d/1UQP7PjHgCJWN-s42bUtGsR18f9GNh7JJ15QE7D6CnHE/edit#gid=0
 
 Last Updated: Sep 12, 2021
