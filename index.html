@@ -956,18 +956,106 @@ function padLeft( text, width, c )
     return ("" + new Array( width ).join( c ) + text).slice( -width );
 }
 
-function getRunewordRunes()
+function initRunewordTables()
 {
-    for( var recipe = 0; recipe < RECIPES.length; recipe++ )
+    var recipe, recipes = RECIPES.length, cmp;
+
+    for( recipe = 0; recipe < recipes; recipe++ )
     {
         var line     = RECIPES[recipe];
-        var runeword = line.substr(0,20); //.trim();
-        var sockets  = line.substr(20,1) | 0;
-        var mats     = line.substr(47,38);
+
+        var superior = line.substr( COLUMNS[0], 1                     ).trim().length ? 1 : 0;
+        var runeword = line.substr( COLUMNS[1], COLUMNS[2]-COLUMNS[1] );
+        var sockets  = line.substr( COLUMNS[2], 1                     ) | 0;
+        var type     = line.substr( COLUMNS[3], COLUMNS[4]-COLUMNS[3] );
+        var mats     = line.substr( COLUMNS[4], COLUMNS[5]-COLUMNS[4] );
+        var level    = line.substr( COLUMNS[5], 2                     ) | 0;
+        var version  = line.substr( COLUMNS[6]                        );
         var arunes   = FindRunes( mats );
 
-        gaRunewordRunes.push( arunes );
+        gaRuneWordLevel.push( level    );
+        gaRuneWordMats .push( mats     );
+        gaRuneWordNames.push( runeword );
+        gaRuneWordRunes.push( arunes   ); // element = array of runes
+        gaRuneWordSocks.push( sockets  );
+        gaRuneWordSuper.push( superior );
+        gaRuneWordType .push( type     );
+        gaRuneWordVer  .push( version  );
+
+        gaSortByLevel   .push( recipe );
+
+        gaSortByMats1   .push( recipe );
+        gaSortByMats2   .push( recipe );
+        gaSortByMats3   .push( recipe );
+        gaSortByMats4   .push( recipe );
+        gaSortByMats5   .push( recipe );
+        gaSortByMats6   .push( recipe );
+
+        gaSortByNames   .push( recipe );
+        gaSortBySockets .push( recipe );
+        gaSortBySuperior.push( recipe );
+        gaSortByType    .push( recipe );
+        gaSortByVersion .push( recipe );
     }
+
+    // Secondary sort by Name
+
+    gaSortByLevel.sort( (prev,next) =>
+        {
+            if    (gaRuneWordLevel[ prev ] <              gaRuneWordLevel[ next ]) return -1;
+            if    (gaRuneWordLevel[ prev ] >              gaRuneWordLevel[ next ]) return +1;
+            return gaRuneWordNames[ prev ].localeCompare( gaRuneWordNames[ next ] );
+        }
+    );
+
+    gaSortByNames.sort( (prev,next) =>
+        {
+            return gaRuneWordNames[ prev ].localeCompare( gaRuneWordNames[ next ] );
+        }
+    );
+
+    //  0       8       16     23    29    35
+    // "Dol   + Eld   + Hel  + Ist + Tir + Vex  "
+    gaSortByMats1.sort( (prev,next) => { cmp = gaRuneWordMats[ prev ].substr( 0).localeCompare( gaRuneWordMats[ next ].substr( 0) );           return cmp;                                                                                            ; } );
+    gaSortByMats2.sort( (prev,next) => { cmp = gaRuneWordMats[ prev ].substr( 8).localeCompare( gaRuneWordMats[ next ].substr( 8) ); if( cmp ) return cmp; return gaRuneWordMats[ prev ].substr( 0).localeCompare( gaRuneWordMats[ next ].substr( 0) ); } );
+    gaSortByMats3.sort( (prev,next) => { cmp = gaRuneWordMats[ prev ].substr(16).localeCompare( gaRuneWordMats[ next ].substr(16) ); if( cmp ) return cmp; return gaRuneWordMats[ prev ].substr( 0).localeCompare( gaRuneWordMats[ next ].substr( 0) ); } );
+    gaSortByMats4.sort( (prev,next) => { cmp = gaRuneWordMats[ prev ].substr(23).localeCompare( gaRuneWordMats[ next ].substr(23) ); if( cmp ) return cmp; return gaRuneWordMats[ prev ].substr( 0).localeCompare( gaRuneWordMats[ next ].substr( 0) ); } );
+    gaSortByMats5.sort( (prev,next) => { cmp = gaRuneWordMats[ prev ].substr(29).localeCompare( gaRuneWordMats[ next ].substr(29) ); if( cmp ) return cmp; return gaRuneWordMats[ prev ].substr( 0).localeCompare( gaRuneWordMats[ next ].substr( 0) ); } );
+    gaSortByMats6.sort( (prev,next) => { cmp = gaRuneWordMats[ prev ].substr(35).localeCompare( gaRuneWordMats[ next ].substr(35) ); if( cmp ) return cmp; return gaRuneWordMats[ prev ].substr( 0).localeCompare( gaRuneWordMats[ next ].substr( 0) ); } );
+
+    gaSortBySockets.sort( (prev,next) =>
+        {
+            if    (gaRuneWordSocks[ prev ] <              gaRuneWordSocks[ next ]) return -1;
+            if    (gaRuneWordSocks[ prev ] >              gaRuneWordSocks[ next ]) return +1;
+            return gaRuneWordNames[ prev ].localeCompare( gaRuneWordNames[ next ] );
+        }
+    );
+
+    gaSortBySuperior.sort( (prev,next) =>
+        {
+            if    (gaRuneWordSuper[ prev ] >              gaRuneWordSuper[ next ]) return -1; // intentional
+            if    (gaRuneWordSuper[ prev ] <              gaRuneWordSuper[ next ]) return +1; // intentional
+            return gaRuneWordNames[ prev ].localeCompare( gaRuneWordNames[ next ] );
+        }
+    );
+
+    gaSortByType.sort( (prev,next) =>
+        {
+            var cmp = gaRuneWordType [ prev ].localeCompare( gaRuneWordType [ next ] ); if (cmp) return cmp;
+            return    gaRuneWordNames[ prev ].localeCompare( gaRuneWordNames[ next ] );
+        }
+    );
+
+    // gaSortByVersion -- nothing to do since sort by version is the default runeword table order
+
+/*
+    DumpRuneWordSorted( "Level"   , gaSortByLevel    );
+    DumpRuneWordSorted( "Names"   , gaSortByNames    );
+    DumpRuneWordSorted( "Sockets" , gaSortBySockets  );
+    DumpRuneWordSorted( "Superior", gaSortBySuperior );
+    DumpRuneWordSorted( "Type"    , gaSortByType     );
+    DumpRuneWordSorted( "version" , gaSortByVersion  );
+*/
 }
 
 /*
@@ -993,10 +1081,7 @@ function getScreenSize()
 
 function onLoad()
 {
-    var dim = getScreenSize();
-    console.log( 'Dimension: ' + dim );
-    var debug = document.getElementById( 'screen-size' );
-    debug.innerText = dim;
+    onResize();
 
     // iOS touch / hover
     document.addEventListener("touchstart", function() {},false);
@@ -1004,50 +1089,175 @@ function onLoad()
     gaAvailableRunes = new Array( RUNES.length );
     gaAvailableRunes.fill(1);
 
-    getRunewordRunes();
+    initRunewordTables();
 }
 
-function toggleAllRunes( haveAll )
+function onResize()
+{
+    var dim = getScreenSize();
+    console.log( 'Dimension: ' + dim );
+    var debug = document.getElementById( 'screen-size' );
+    debug.innerText = dim;
+}
+
+function onSortRuneWordsByLevel   () { selectRuneWordHeader( 'btnRuneWordLevel'    ); updateRuneWordsOrder( gaSortByLevel    ); }
+function onSortRuneWordsByMats (mat) { selectRuneWordHeader( 'btnRuneWordMats'+mat ); updateRuneWordsOrder( gaRuneOrder[mat] ); }
+function onSortRuneWordsByName    () { selectRuneWordHeader( 'btnRuneWordNames'    ); updateRuneWordsOrder( gaSortByNames    ); }
+function onSortRuneWordsBySuperior() { selectRuneWordHeader( 'btnRuneWordSuperior' ); updateRuneWordsOrder( gaSortBySuperior ); }
+function onSortRuneWordsBySocket  () { selectRuneWordHeader( 'btnRuneWordSockets'  ); updateRuneWordsOrder( gaSortBySockets  ); }
+function onSortRuneWordsByType    () { selectRuneWordHeader( 'btnRuneWordType'     ); updateRuneWordsOrder( gaSortByType     ); }
+function onSortRuneWordsByVersion () { selectRuneWordHeader( 'btnRuneWordVersion'  ); updateRuneWordsOrder( gaSortByVersion  ); }
+
+function onToggleAllRunes( haveAll )
 {
     var rune, runes = gaAvailableRunes.length;
     for( rune = 0; rune < runes; rune++ )
     {
         gaAvailableRunes[ rune ] = haveAll;
-        setRuneVisibility( rune );
+        setRuneVisibility( rune+1, haveAll );
     }
 
-    var selected = document.getElementById( 'Select' +  haveAll ); selected.removeAttribute( 'unsel'); selected.setAttribute( 'class', 'sel'   );
-    var adjacent = document.getElementById( 'Select'+(1-haveAll)); adjacent.removeAttribute( 'sel'  ); adjacent.setAttribute( 'class', 'unsel' );
+    var selected = document.getElementById( 'RunesSelect' +  haveAll ); selected.removeAttribute( 'unsel'); selected.setAttribute( 'class', 'sel'   );
+    var adjacent = document.getElementById( 'RunesSelect'+(1-haveAll)); adjacent.removeAttribute( 'sel'  ); adjacent.setAttribute( 'class', 'unsel' );
 
-    rebuildVisibleRunewords();
+    updateRuneWordsVisible();
 }
 
+// Toggle owning a rune
 function onToggleRune( index )
 {
     var rune = index-1;
     gaAvailableRunes[ rune ] ^= 1;
-    setRuneVisibility( rune );
+    setRuneVisibility( index, gaAvailableRunes[ rune ] );
 
-    // Reselect "None" if all runes are off
-    var total   = gaAvailableRunes.reduce( (elem1,elem2) => elem1 + elem2,0 );
-    var nonecss = total ? 'unsel' : 'sel';
+    // Reselect "None" if no runes are owned
+    // Reselect "All"  if all runes are owned
+    var total   = gaAvailableRunes.reduce( (elem1,elem2) => elem1 + elem2, 0 );
+    var nonecss = total                   ? 'unsel' : 'sel';
+    var allcss  = (total != RUNES.length) ? 'unsel' : 'sel';
 
-    var selectNone = document.getElementById( 'Select0' ); selectNone.removeAttribute( 'sel' ); selectNone.setAttribute( 'class', nonecss );
-    var selectAll  = document.getElementById( 'Select1' ); selectAll .removeAttribute( 'sel' ); selectAll .setAttribute( 'class', 'unsel' );
+    var selectNone = document.getElementById( 'RunesSelect0' ); selectNone.removeAttribute( 'sel' ); selectNone.setAttribute( 'class', nonecss );
+    var selectAll  = document.getElementById( 'RunesSelect1' ); selectAll .removeAttribute( 'sel' ); selectAll .setAttribute( 'class', allcss  );
 
-//    console.log( "Toggled: " + RUNES[ rune*2 ] + " (" + index + ")" + ": " + gaAvailableRunes[ rune ] );
-
-    rebuildVisibleRunewords();
+    updateRuneWordsVisible();
 }
 
-function rebuildVisibleRunewords()
+function setElementVisible( elem, vis )
+{
+    if   ( vis ) elem.style.opacity = '100%';
+    else         elem.style.opacity =  '33%';
+}
+
+function setRuneVisibility( rune, owned )
+{
+    var rune1 = document.getElementById( 'r' + rune );             setElementVisible( rune1, owned );
+    var rune2 = document.getElementById( 'u' + rune ); if( rune2 ) setElementVisible( rune2, owned );
+}
+
+function selectRuneWordHeader( selected )
+{
+    var c = 'class',
+        d = 'rwu'  , // Disable
+        e = 'rws'  , // Enable
+        elem;
+
+    elem = document.getElementById( 'btnRuneWordSuperior' ); elem.removeAttribute( e ); elem.setAttribute( c, d );
+    elem = document.getElementById( 'btnRuneWordMats1'    ); elem.removeAttribute( e ); elem.setAttribute( c, d );
+    elem = document.getElementById( 'btnRuneWordMats2'    ); elem.removeAttribute( e ); elem.setAttribute( c, d );
+    elem = document.getElementById( 'btnRuneWordMats3'    ); elem.removeAttribute( e ); elem.setAttribute( c, d );
+    elem = document.getElementById( 'btnRuneWordMats4'    ); elem.removeAttribute( e ); elem.setAttribute( c, d );
+    elem = document.getElementById( 'btnRuneWordMats5'    ); elem.removeAttribute( e ); elem.setAttribute( c, d );
+    elem = document.getElementById( 'btnRuneWordMats6'    ); elem.removeAttribute( e ); elem.setAttribute( c, d );
+    elem = document.getElementById( 'btnRuneWordNames'    ); elem.removeAttribute( e ); elem.setAttribute( c, d );
+    elem = document.getElementById( 'btnRuneWordSockets'  ); elem.removeAttribute( e ); elem.setAttribute( c, d );
+    elem = document.getElementById( 'btnRuneWordType'     ); elem.removeAttribute( e ); elem.setAttribute( c, d );
+    elem = document.getElementById( 'btnRuneWordLevel'    ); elem.removeAttribute( e ); elem.setAttribute( c, d );
+    elem = document.getElementById( 'btnRuneWordVersion'  ); elem.removeAttribute( e ); elem.setAttribute( c, d );
+
+    elem = document.getElementById( selected );
+    elem.removeAttribute( d );
+    elem.setAttribute( c, e );
+}
+
+    // Inspired from: https://gist.github.com/danprince/05cb72052484355f3adc
+    function _addClasses( elem, classnames )
+    {
+        var userClasses = classnames.split( ' ' );
+        if( userClasses.length )
+            userClasses.forEach( classname =>
+                {
+                    var classes = elem.getAttribute( 'class' ).split( ' ' );
+                    var offset  = classes.indexOf( classname );
+                    if (offset < 0)
+                    {
+                        classes.push( classname );
+                        elem.setAttribute( 'class', classes.join( ' ' ) );
+                    }
+                }
+            );
+    }
+
+    // Inspired from: https://gist.github.com/danprince/05cb72052484355f3adc
+    function _removeClasses( elem, classnames )
+    {
+        var userClasses = classnames.split( ' ' );
+        if( userClasses.length )
+            userClasses.forEach( classname =>
+                {
+                    var classes = elem.getAttribute( 'class' ).split( ' ' );
+                    var offset  = classes.indexOf( classname );
+                    if (offset >= 0)
+                        classes.splice( offset, 1 );
+                    elem.setAttribute( 'class', classes.join( ' ' ) );
+                }
+            );
+    }
+
+
+function updateRuneWordsOrder( array )
+{
+    var table  = document.getElementById( 'RuneWords' ),
+        rows   = table.getElementsByTagName( 'tr' ),
+        row    = 0;
+
+    for( row = 1; row < rows.length; row++ )
+    {
+        var src = document.getElementById( 'rw' + array[ row-1] );
+            rows[row].parentNode.insertBefore( src, rows[row].nextSibling );
+    }
+
+    for( row = 1; row < rows.length; row++ )
+    {
+        var tr    = rows[ row ];
+        var elem  = tr.firstChild;      // <td>
+        //  elem.getAttributeNames();   // class
+        //  elem.getAttribute('class'); // 'tooltip g11'
+            _removeClasses( elem, 'r11 r22 g11 g22 b11 b22 k11 k22 y44' );
+
+
+        var isOdd = (row & 1); // don't include header row
+        var ver   = gaRuneWordVer[ array[ row-1 ] ];
+        var is109 = ver.indexOf( '1.09'     ) === 0; // r
+        var is110 = ver.indexOf( '1.10'     ) === 0; // g
+        var isLad = ver.indexOf( '1.10 lad' ) === 0; // b
+        var is111 = ver.indexOf( '1.11'     ) === 0; // k
+
+
+             if( is111 ) _addClasses( elem, isOdd ? 'k11' : 'k22' );
+        else if( isLad ) _addClasses( elem, isOdd ? 'b11' : 'b22' );
+        else if( is110 ) _addClasses( elem, isOdd ? 'g11' : 'g22' );
+        else             _addClasses( elem, isOdd ? 'r11' : 'r22' );
+    }
+}
+
+function updateRuneWordsVisible()
 {
     var rw, rune, runes, tr, seen;
 
-    for( rw = 0; rw < gaRunewordRunes.length; rw++ )
+    for( rw = 0; rw < gaRuneWordRunes.length; rw++ )
     {
-        tr    = document.getElementById( 'rw' + padLeft( rw, 2, '0' ) );
-        runes = gaRunewordRunes[rw];
+        tr    = document.getElementById( 'rw' + rw );
+        runes = gaRuneWordRunes[rw];
         seen  = 1;
 
         for( rune = 0; rune < runes.length; rune++ )
@@ -1062,22 +1272,9 @@ function rebuildVisibleRunewords()
         setElementVisible( tr, seen );
     }
 }
-
-function setElementVisible( elem, vis )
-{
-    if   ( vis ) elem.style.opacity = '100%';
-    else         elem.style.opacity =  '33%';
-}
-
-function setRuneVisibility( rune )
-{
-    var elem = document.getElementById( 'c' + padLeft( rune+1, 2, '0' ) );
-    var seen = gaAvailableRunes[ rune ];
-    setElementVisible( elem, seen );
-}
         </script>
     </head>
-<body onload='onLoad()'>
+<body onload='onLoad();' onresize='onResize();'>
 <table class='head'>
     <tr>
         <td style='width:740px;'>
