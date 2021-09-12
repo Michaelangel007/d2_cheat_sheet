@@ -7,6 +7,7 @@
  * readable on desktop and mobile
  * interactive -- tooltips for runes and runewords
  * sortable runeword table
+   * Click on `Owned` to sort runewords by runes owned
  * complete FCR and FHR breakpoints
  * Tomb locations
  * Pandemonium Event
@@ -22,7 +23,6 @@
 
 # Wishlist
 
-* Add `Owned` sort option to runewords
 * Add Commonly upgraded uniques to _Upping Uniques_
 
 ```
