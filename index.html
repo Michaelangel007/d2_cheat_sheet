@@ -892,9 +892,6 @@ function FindRunes( recipe )
 {
     var runes = [], head = 0, end, len  = recipe.length, src, dst;
 
-//console.log( "recipe: '" + recipe + "', recipe.len = " + len + "\n         01234567890123456789" );
-//console.log( "head = " + head + ", end = " + end, "Potential rune: " + recipe.substr( head, end-head ) );
-
     while (head < len)
     {
         end = recipe.indexOf(' ',head); if (end < 0) end = len;
@@ -908,6 +905,7 @@ function FindRunes( recipe )
         head = recipe.indexOf('+',end); if (head < 0) break;
         head += 2;
     }
+
     return runes;
 }
 
