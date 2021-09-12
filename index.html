@@ -1253,7 +1253,11 @@ function updateRuneWordsOwned()
         }
     );
 
-    updateRuneWordsOrder( gaSortByOwned );
+    var elem          = document.getElementById( 'btnRuneWordOwned' );
+    var css           = elem.getAttribute( 'class' );
+    var isSortByOwned = css.indexOf( 'rws' ) >= 0;
+    if( isSortByOwned)
+        updateRuneWordsOrder( gaSortByOwned );
 }
 
 function updateRuneWordsVisible()
