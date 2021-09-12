@@ -35,5 +35,6 @@
     Waterwalk : 201
     Gore Rider : 213
 ```
+* Add map layout hints
 
 Last Updated: Sep 11, 2021
