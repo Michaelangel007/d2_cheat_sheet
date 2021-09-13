@@ -24,6 +24,7 @@
 
 # Wishlist
 
+* Add Crafted Recipes
 * Add Commonly upgraded uniques to _Upping Uniques_
 
 ```
