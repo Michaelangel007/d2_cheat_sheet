@@ -21,6 +21,7 @@
  * yellow highlight hover row pointer for all tables
  * Area Levels (includes monster level)
  * Monochrome/Color buttons
+* Color coded area levels for 83, 84, 85
 
 # Wishlist
 
