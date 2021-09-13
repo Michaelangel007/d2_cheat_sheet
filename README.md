@@ -24,6 +24,7 @@
 
 # Wishlist
 
+* Add Gambling odds -- Credit: LivEisJeebus -- https://www.reddit.com/r/diablo2/comments/pmv4u3/my_diablo_2_cheat_sheet/hcm485n/
 * Add Crafted Recipes -- http://classic.battle.net/diablo2exp/items/crafted/blood.shtml
 * Add Commonly upgraded uniques to _Upping Uniques_
 
