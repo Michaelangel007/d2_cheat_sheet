@@ -24,7 +24,7 @@
 
 # Wishlist
 
-* Add Crafted Recipes
+* Add Crafted Recipes -- http://classic.battle.net/diablo2exp/items/crafted/blood.shtml
 * Add Commonly upgraded uniques to _Upping Uniques_
 
 ```
