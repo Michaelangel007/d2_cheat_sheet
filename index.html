@@ -3450,7 +3450,7 @@ function updateRuneWordsVisible()
 </table>
 <br>
 <table class='head'>
-    <tr class='bt bb'      ><th><span class='b'>Repair</span> (<b>Note:</b> <i>You cannot repair Ethereal items</i>)</th></tr>
+    <tr class='bt bb'      ><th><span class='b'>Repair</span> (<b>Note:</b> <span class='note'>You cannot repair Ethereal items</span>)</th></tr>
     <tr><td class='tooltip k11'>Ort Rune + Weapon &rarr; Fully Repaired Weapon       <span class='tool ttk'>Ort <img src='runes/ort.png'  /></span></td></tr>
     <tr><td class='tooltip k11'>Ral Rune + Armor  &rarr; Fully Repaired Armor        <span class='tool ttk'>Ral <img src='runes/ral.png'  /></span></td></tr>
 </table>
@@ -3618,10 +3618,12 @@ function updateRuneWordsVisible()
 </table>
 <hr>
 <b>Legend:</b>
-<table><tr><td><pre>
-    *  GG Runeword
-    wp Waypoint
-
+<pre>    *  GG Runeword     alvl Area Level   </pre>
+<pre>    wp Waypoint        mlvl Monster Level</pre>
+<pre>                       ilvl Item Level (<b>Note:</b> <span class='note'>This is NOT the character level required to equip</span>)</pre>
+<br>
+<table>
+    <tr><td><pre>
   Offense:
     <span class='skill'>+# To All Skills</span>
     <span class='cb'   >##</span> Crushing Blow
