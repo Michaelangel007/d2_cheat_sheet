@@ -5,7 +5,6 @@
         <meta charset="UTF-8">
         <title>Diablo 2 Cheat Sheet by Michaelangel007</title>
         <style>
-
 .ios-runes
 {
 /*
@@ -1075,6 +1074,30 @@ function onLoad()
     initRunewordTables();
 }
 
+function onColor()
+{
+    document.getElementById('content').style = '';
+
+    var elem = document.getElementById('syntax_color');
+    if (!elem.disabled)
+    {
+        elem.disabled = true;
+        document.getElementById('syntax_mono').disabled = false;
+    }
+}
+
+function onMono()
+{
+    document.getElementById('content').style = 'filter:grayscale(100%);';
+
+    var elem = document.getElementById('syntax_mono');
+    if (!elem.disabled)
+    {
+        elem.disabled = true;
+        document.getElementById('syntax_color').disabled = false;
+    }
+}
+
 function onResize()
 {
     var dim = getScreenSize();
@@ -1311,12 +1334,14 @@ function updateRuneWordsVisible()
 }
         </script>
     </head>
-<body onload='onLoad();' onresize='onResize();'>
+<body onload='onLoad();' onresize='onResize();'><div id='content'>
 <table class='head'>
     <tr>
         <td style='width:740px;'>
             <span style='font-size:18px;'><i>Diablo 2</i> <a href='https://github.com/Michaelangel007/d2_cheat_sheet'>Cheat Sheet</a></span>
             <span style='font-size:14px;'> by <i>Michaelangel007</i></span> <img alt='m007' src='pics/m007.png'> aka <i>/r/MysticReddit</i>
+<button type='button' id='syntax_color' disabled onclick='onColor();'>Color</button>
+<button type='button' id='syntax_mono'           onclick='onMono() ;'>Mono</button>
             <br>
             <br>
             <table class='head' style='width:740px'>
@@ -3590,6 +3615,7 @@ function updateRuneWordsVisible()
     Click on "S"       to sort runewords by S tier.
     Click on "Name"    to sort runewords by name.
     Click on "Sock"    to sort runewords by sockets.
+    Click on "Owned"   to sort runewords by those you can make.  Click on the rune to toggle owning it.
     Click on "Runes"   to sort runewords by runes.
     Click on "Lev"     to sort runewords by minimum character level required to equip.
     Click on "Version" to sort runewords by version (default).
@@ -3628,5 +3654,5 @@ Thanks:
 <span style='font-size:12px;'>Version 1.12, Last Updated Sep 12 2021.</span>
 <span style='font-size:10px;'>CSS Debug: Screen Size:</span> <span id='screen-size'>?</span>, <span class='ios-hidden' >iOS-hidden</span> <span class='ios-visible'>iOS-visible</span>
 <span style='font-size:6px;'>All bugs are due to Anthony slacking on QA.</span>
-</body>
+</div></body>
 </html>

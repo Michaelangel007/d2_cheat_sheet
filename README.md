@@ -20,6 +20,7 @@
  * alternating runeword background row colors
  * yellow highlight hover row pointer for all tables
  * Area Levels (includes monster level)
+ * Monochrome/Color buttons
 
 # Wishlist
 
@@ -54,7 +55,6 @@
     Gore Rider : 213
 ```
 * Add map layout hints -- see https://docs.google.com/spreadsheets/d/1UQP7PjHgCJWN-s42bUtGsR18f9GNh7JJ15QE7D6CnHE/edit#gid=0
-* Add monochrome theme
 * Customize yellow hover color
 * Ability to collapse tables
 * ebugging def table
