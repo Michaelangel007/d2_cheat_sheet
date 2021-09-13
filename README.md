@@ -57,5 +57,7 @@
 * Add monochrome theme
 * Customize yellow hover color
 * Ability to collapse tables
+* ebugging def table
+* xp table?
 
 Last Updated: Sep 12, 2021
