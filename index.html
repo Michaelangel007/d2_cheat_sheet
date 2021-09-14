@@ -1165,6 +1165,27 @@ function onLoad()
     initRunewordTables();
 }
 
+    var FACE  = [ '[-]', '[+]' ]; // Button collapse faces
+
+function onCollapse( self, id )
+{
+    self.collapsed = !!!self.collapsed;
+
+    var table = document.getElementById( id ),
+        rows  = table.getElementsByTagName( 'tr' ),
+        row   = 1;
+
+    self.innerHTML = self.innerHTML.replace( FACE[ !self.collapsed|0 ], FACE[ self.collapsed|0 ] );
+
+    for( row = 1; row < rows.length; row++ )
+    {
+        if( self.collapsed )
+            rows[row].classList.add('collapsed');
+        else
+            rows[row].classList.remove('collapsed');
+    }
+}
+
 function onColor()
 {
     document.getElementById('content').style = '';
