@@ -21,6 +21,20 @@
     width: 740px;
 }
 
+/* ----- Buttons ----- */
+    button
+    {
+        height   : 16px;
+        font-size: 12px;
+    }
+
+    .collapsed
+    {
+        height    : 0px;
+        max-height: 0px;
+        display   : none;
+    }
+
 /* ----- Breaks ----- */
 
      hr.one
@@ -127,6 +141,15 @@ span.farm
     color: #4EF;
 }
 
+    /* Faster Block Rate */
+    span.fbr
+    {
+        background-color: #F00;
+        color           : #FF0;
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
 /* Faster Cast Rate */
 span.fcr
 {
@@ -182,6 +205,11 @@ span.mf
 span.rare
 {
     color: #d8b864;
+}
+
+span.unq
+{
+    color: #948064;
 }
 
 span.skill
@@ -257,7 +285,7 @@ span.resl
 /* Resist All */
 span.resa
 {
-    background-image: linear-gradient(to right, #800, #080, #00C);
+    background-image: linear-gradient(to right, #b55d59, #6e79b9, #f2e8a0, #57cf49); /* 800 080 00C */
     padding-left    : 2px;
     padding-right   : 2px;
 }
@@ -401,8 +429,32 @@ td
 
     tr.yb
     {
-        border-bottom   : 1px solid #FF8; /* softer yellow */
-        margin-bottom   : 1px;
+        border-bottom: 1px solid #FF8; /* softer yellow */
+        margin-bottom: 1px;
+    }
+
+    tr.raret
+    {
+        border-top   : 1px solid #d8b864;
+        margin-top   : 1px;
+    }
+
+    tr.rareb
+    {
+        border-bottom: 1px solid #d8b864;
+        margin-bottom: 1px;
+    }
+
+    tr.unqt
+    {
+        border-top   : 1px solid #948064; /* A59263; */
+        margin-top   : 1px;
+    }
+
+    tr.unqb
+    {
+        border-bottom: 1px solid #948064;
+        margin-bottom: 1px;
     }
 
 /* Table Header */
@@ -1113,6 +1165,27 @@ function onLoad()
     initRunewordTables();
 }
 
+    var FACE  = [ '[-]', '[+]' ]; // Button collapse faces
+
+function onCollapse( self, id )
+{
+    self.collapsed = !!!self.collapsed;
+
+    var table = document.getElementById( id ),
+        rows  = table.getElementsByTagName( 'tr' ),
+        row   = 1;
+
+    self.innerHTML = self.innerHTML.replace( FACE[ !self.collapsed|0 ], FACE[ self.collapsed|0 ] );
+
+    for( row = 1; row < rows.length; row++ )
+    {
+        if( self.collapsed )
+            rows[row].classList.add('collapsed');
+        else
+            rows[row].classList.remove('collapsed');
+    }
+}
+
 function onColor()
 {
     document.getElementById('content').style = '';
@@ -1288,9 +1361,9 @@ function updateRuneHeaderStatus( haveAll, nonecss, allcss )
 
 function updateRuneWordsOrder( array )
 {
-    var table  = document.getElementById( 'RuneWords' ),
-        rows   = table.getElementsByTagName( 'tr' ),
-        row    = 0;
+    var table = document.getElementById( 'RuneWords' ),
+        rows  = table.getElementsByTagName( 'tr' ),
+        row   = 0;
 
     for( row = 1; row < rows.length; row++ )
     {
@@ -1383,8 +1456,8 @@ function updateRuneWordsVisible()
 <button type='button' id='syntax_mono'           onclick='onMono() ;'>Mono</button>
             <br>
             <br>
-            <table class='head' style='width:740px'>
-<tr class='bt bb'        ><th><span class='b'>Faster Cast Rate (<span class='fcr'>FCR</span>)</span>
+            <table class='head' style='width:740px' id='table.fcr'>
+<tr class='bt bb'        ><th><span class='b'>Faster Cast Rate (<span class='fcr'>FCR</span>)</span>                                                           <button onclick='onCollapse(this,"table.fcr");'>[-]</button>
 <meta                       />Frames   23  22  21  20  19  18  17  16  15   14   13   12   11   10    9    8    7</th></tr>
 <tr><td class='tooltip k11'  >Ama                       0   7  14  22  32   48   68   99  152                    </td></tr>
 <tr><td class='tooltip r22'  >Asn                                   0   8   16   27   42   65  102  174          </td></tr>
@@ -1401,28 +1474,46 @@ function updateRuneWordsVisible()
 <tr class='bt'           ><th>Frames   23  22  21  20  19  18  17  16  15   14   13   12   11   10    9    8    7</th></tr>
             </table>
             <br>
-            <table class='head' style='width:740px'>
-<tr class='gt gb'        ><th><span class='g'>Faster Hit Recovery (<span class='fhr'>FHR</span>)</span>
-<meta                       />Frames         17  16  15  14  13  12  11  10   9   8    7    6    5    4    3    2</th></tr>
-<tr><td class='tooltip k11'  >Ama                                     0   6  13  20   32   52   86  174  600     </td></tr>
-<tr><td class='tooltip r22'  >Asn                                             0   7   15   27   48   86  200     </td></tr>
-<tr><td class='tooltip k11'  >Bar                                             0   7   15   27   48   86  200     </td></tr>
-<tr><td class='tooltip g22'  >Drd Human 1H                0   3   7  13  19  29  42   63   99  174  456          </td></tr>
-<tr><td class='tooltip k11'  >    Human 2H                    0   5  10  16  26  39   56   86  152  377          </td></tr>
-<tr><td class='tooltip g22'  >    Bear                        0   5  10  16  24  37   54   86  152  460          </td></tr>
-<tr><td class='tooltip k11'  >    Wolf                                                 0    9   20   42   86  280</td></tr>
-<tr><td class='tooltip k22'  >Nec Human                       0   5  10  16  26  39   56   86  152  377          </td></tr>
-<tr><td class='tooltip k11'  >    Vamp                0   2   6  10  16  24  34  48   72  117                    </td></tr>
-<tr><td class='tooltip k22'  >Pal Spear/Stave                 0   3   7  13  20  32   48   75  129  280          </td></tr>
-<tr><td class='tooltip k11'  >    rest                                        0   7   15   27   48   86  200     </td></tr>
-<tr><td class='tooltip b22'  >Src                     0   5   9  14  20  30  42  60   86  142  280               </td></tr>
-<tr><td class='tooltip k11'  >Mrc Act1                                0   6  13  20   32   52   86  174  600     </td></tr>
-<tr><td class='tooltip k22'  >    Act2                0   5   9  14  20  30  42  60   86  142  280               </td></tr>
-<tr><td class='tooltip k11'  >    Act3        0   5   8  13  18  24  32  46  63  86  133  232  600               </td></tr>
-<tr><td class='tooltip k22'  >    Act5                                        0   7   15   27   48   86  200     </td></tr>
-<tr class='gt'           ><th>Frames         17  16  15  14  13  12  11  10   9   8    7    6    5    4    3    2</th></tr>
+            <table class='head' style='width:740px' id='table.fhr'>
+<tr class='gt gb'        ><th><span class='g'>Faster Hit Recovery (<span class='fhr'>FHR</span>)</span>                                                       <button onclick='onCollapse(this,"table.fhr");'>[-]</button>
+<meta                       />Frames    17  16  15  14  13  12  11  10   9   8    7    6    5    4    3    2    1</th></tr>
+<tr><td class='tooltip k11'  >Ama                                0   6  13  20   32   52   86  174  600          </td></tr>
+<tr><td class='tooltip r22'  >Asn                                        0   7   15   27   48   86  200          </td></tr>
+<tr><td class='tooltip k11'  >Bar                                        0   7   15   27   48   86  200          </td></tr>
+<tr><td class='tooltip g22'  >Drd Human 1H           0   3   7  13  19  29  42   63   99  174  456               </td></tr>
+<tr><td class='tooltip k11'  >    Human 2H               0   5  10  16  26  39   56   86  152  377               </td></tr>
+<tr><td class='tooltip g22'  >    Bear                   0   5  10  16  24  37   54   86  152  460               </td></tr>
+<tr><td class='tooltip k11'  >    Wolf                                            0    9   20   42   86  280     </td></tr>
+<tr><td class='tooltip k22'  >Nec Human                  0   5  10  16  26  39   56   86  152  377               </td></tr>
+<tr><td class='tooltip k11'  >    Vamp           0   2   6  10  16  24  34  48   72  117                         </td></tr>
+<tr><td class='tooltip k22'  >Pal Spear/Stave            0   3   7  13  20  32   48   75  129  280               </td></tr>
+<tr><td class='tooltip k11'  >    rest                                   0   7   15   27   48   86  200          </td></tr>
+<tr><td class='tooltip b22'  >Src                0   5   9  14  20  30  42  60   86  142  280                    </td></tr>
+<tr><td class='tooltip k11'  >Mrc Act1                           0   6  13  20   32   52   86  174  600          </td></tr>
+<tr><td class='tooltip k22'  >    Act2           0   5   9  14  20  30  42  60   86  142  280                    </td></tr>
+<tr><td class='tooltip k11'  >    Act3   0   5   8  13  18  24  32  46  63  86  133  232  600                    </td></tr>
+<tr><td class='tooltip k22'  >    Act5                                   0   7   15   27   48   86  200          </td></tr>
+<tr class='gt'           ><th>Frames    17  16  15  14  13  12  11  10   9   8    7    6    5    4    3    2    1</th></tr>
             </table>
             <br>
+            <table class='head' style='width:740px' id='table.fbr'>
+<tr class='rt rb'        ><th><span class='r'>Faster Block Rate (<span class='fbr'>FBR</span>)</span>            Block% = (Shield% * (Dex - 15)) / (clvl * 2) <button onclick='onCollapse(this,"table.fbr");'>[-]</button>
+<meta                       />Frames    17  16  15  14  13  12  11  10   9   8    7    6    5    4    3    2    1</th></tr>
+<tr><td class='tooltip k22'  >Ama 1H                                                        0   13   32   86  600</td></tr>
+<tr><td class='tooltip k11'  >    2H     0   4   6  11  15  23  29  40  56  80  120  200  480                    </td></tr>
+<tr><td class='tooltip r22'  >Asn                                                           0   13   32   86  600</td></tr>
+<tr><td class='tooltip k11'  >Bar                                                 0    9   20   42   86  280     </td></tr>
+<tr><td class='tooltip g22'  >Drd Human                          0   6  13  20   32   52   86  174  600          </td></tr>
+<tr><td class='tooltip g11'  >    Bear                                   0   7   15   27   48   86  200          </td></tr>
+<tr><td class='tooltip k22'  >    Wolf                   0   5  10  16  27  40   65  109  223                    </td></tr>
+<tr><td class='tooltip k11'  >Nec Human                          0   6  13  20   32   52   86  174  600          </td></tr>
+<tr><td class='tooltip k22'  >    Vamp           0   2   6  10  16  24  34  48   72  117  208                    </td></tr>
+<tr><td class='tooltip k11'  >Pal                                                           0   13   32   86  600</td></tr>
+<tr><td class='tooltip k22'  >    Holy Shield                                                              0   86</td></tr>
+<tr><td class='tooltip b22'  >Src                                        0   7   15   27   48   86  200          </td></tr>
+<tr class='rt'           ><th>Frames    17  16  15  14  13  12  11  10   9   8    7    6    5    4    3    2    1</th></tr>
+            </table>
+<br>
             <table class='head' style='width:740px'>
                 <tr  >
                     <td style='width:45%;'>
@@ -1632,7 +1723,7 @@ function updateRuneWordsVisible()
  20% Faster Hit Recovery
 
  <span class='gemtitle'>Shields</span>
- 20% Faster Block Rate
+ <span class='fbr'>20</span>% Faster Block Rate
 
  Level Requirement: <span class='n'>29</span>
  <span class='farm'>Countess</span>: Nightmare
@@ -2094,7 +2185,7 @@ function updateRuneWordsVisible()
  20% Faster Hit Recovery
 
  <span class='gemtitle'>Shields</span>
- 20% Faster Block Rate
+ <span class='fbr'>20</span>% Faster Block Rate
 
  Level Requirement: <span class='n'>29</span>
  <span class='farm'>Countess</span>: Nightmare
@@ -2366,14 +2457,16 @@ function updateRuneWordsVisible()
 <table class='head'>
     <tr>
         <td>
-            <table class='head'>
-                <tr class='kt kb' ><th>Upping Rares</th></tr>
-                <tr><td class='tooltip k11'>Ort + Amn  + Perfect Sapphire + Normal (Basic) Rare Weapon &rarr; Exceptional Rare Weapon<span class='tool ttk'>Ort <img alt='Ort' src='runes/ort.png'  /> + Amn  <img alt='Amn'  src='runes/amn.png'  /> + Perfect Sapphire <img alt='perfect sapphire' src='gems/sapphire_perfect.png'/></span></td></tr>
-                <tr><td class='tooltip k22'>Ral + Thul + Perfect Amethyst + Normal (Basic) Rare Armor  &rarr; Exceptional Rare Armor <span class='tool ttk'>Ral <img alt='Ral' src='runes/ral.png'  /> + Thul <img alt='Thul' src='runes/thul.png' /> + Perfect Amethyst <img alt='perfect amethyst' src='gems/amethyst_perfect.png'/></span></td></tr>
-                <tr><td class='tooltip k11'>Fal + Um   + Perfect Sapphire + Exceptional    Rare Weapon &rarr; Elite Rare Weapon      <span class='tool ttk'>Fal <img alt='Fal' src='runes/fal.png'  /> + Um   <img alt='Um'   src='runes/um.png'   /> + Perfect Sapphire <img alt='perfect sapphire' src='gems/sapphire_perfect.png'/></span></td></tr>
-                <tr><td class='tooltip k22'>Ko  + Pul  + Perfect Amethyst + Exceptional    Rare Armor  &rarr; Elite Rare Armor       <span class='tool ttk'>Ko  <img alt='Ko'  src='runes/ko.png'   /> + Pul  <img alt='Pul'  src='runes/pul.png'  /> + Perfect Amethyst <img alt='perfect amethyst' src='gems/amethyst_perfect.png'/></span></td></tr>
-                <tr><td><br></td></tr>
-                <tr class='kt kb'><th>Upping Uniques</th></tr>
+            <table class='head' id='table.uprare'>
+                <tr class='raret rareb'><th><span class='rare'>Upping Rares</span>                                                                           <button onclick='onCollapse(this,"table.uprare");'>[-]</button></th></tr>
+                <tr><td class='tooltip k11'>Ort + Amn  + Perfect Sapphire + Normal (Basic) Rare Weapon &rarr; Exceptional Rare Weapon      <span class='tool ttk'>Ort <img alt='Ort' src='runes/ort.png'  /> + Amn  <img alt='Amn'  src='runes/amn.png'  /> + Perfect Sapphire <img alt='perfect sapphire' src='gems/sapphire_perfect.png'/></span></td></tr>
+                <tr><td class='tooltip k22'>Ral + Thul + Perfect Amethyst + Normal (Basic) Rare Armor  &rarr; Exceptional Rare Armor       <span class='tool ttk'>Ral <img alt='Ral' src='runes/ral.png'  /> + Thul <img alt='Thul' src='runes/thul.png' /> + Perfect Amethyst <img alt='perfect amethyst' src='gems/amethyst_perfect.png'/></span></td></tr>
+                <tr><td class='tooltip k11'>Fal + Um   + Perfect Sapphire + Exceptional    Rare Weapon &rarr; Elite Rare Weapon            <span class='tool ttk'>Fal <img alt='Fal' src='runes/fal.png'  /> + Um   <img alt='Um'   src='runes/um.png'   /> + Perfect Sapphire <img alt='perfect sapphire' src='gems/sapphire_perfect.png'/></span></td></tr>
+                <tr><td class='tooltip k22'>Ko  + Pul  + Perfect Amethyst + Exceptional    Rare Armor  &rarr; Elite Rare Armor             <span class='tool ttk'>Ko  <img alt='Ko'  src='runes/ko.png'   /> + Pul  <img alt='Pul'  src='runes/pul.png'  /> + Perfect Amethyst <img alt='perfect amethyst' src='gems/amethyst_perfect.png'/></span></td></tr>
+            </table>
+            <br>
+            <table class='head' id='table.upunq'>
+                <tr class='unqt unqb'  ><th><span class='unq' >Upping Uniques</span>                                                                         <button onclick='onCollapse(this,"table.upunq");'>[-]</button></th></tr>
                 <tr><td class='tooltip k11'>Ral + Sol   + Perfect Emerald + Normal Unique Weapon      &rarr;  Exceptional Version of Weapon<span class='tool ttk'>Ral <img src='runes/ral.png'  /> + Sol   <img alt='Sol'   src='runes/sol.png'  /> + Perfect Emerald <img alt='perfect emerald' src='gems/emerald_perfect.png'/></span></td></tr>
                 <tr><td class='tooltip k22'>Tal + Shael + Perfect Diamond + Normal Unique Armor       &rarr;  Exceptional Version of Armor <span class='tool ttk'>Tal <img src='runes/tal.png'  /> + Shael <img alt='Shael' src='runes/shael.png'/> + Perfect Diamond <img alt='perfect diamond'  src='gems/diamond_perfect.png' /></span></td></tr>
                 <tr><td class='tooltip k11'>Lum + Pul   + Perfect Emerald + Exceptional Unique Weapon &rarr;  Elite Vesion of Weapon       <span class='tool ttk'>Lum <img src='runes/lum.png'  /> + Pul   <img alt='Pul'   src='runes/pul.png'  /> + Perfect Emerald <img alt='perfect emerald' src='gems/emerald_perfect.png'/></span></td></tr>
@@ -2572,7 +2665,7 @@ function updateRuneWordsVisible()
 <tr id='rw14'><td class='tooltip r11'>* Rhyme               2  Shields                 Shael + Eth                             29  1.09<span class='tool ttr'>Shael <img src='runes/shael.png'/> + Eth <img src='runes/eth.png'  />
 
  20% Increased Chance of Blocking
- 40% Faster Block Rate
+ <span class='fbr'>40</span>% Faster Block Rate
  All Resistances +<span class='resa'>25</span>
  Regenerate Mana 15%
  <span class='cbf'>Cannot Be Frozen</span>
@@ -2849,7 +2942,7 @@ function updateRuneWordsVisible()
  15% Chance To Cast Level 5 Life Tap On Striking
  Level 13-16 Defiance Aura When Equipped (varies)
  +2 To Offensive Auras (Paladin Only)
- +30% Faster Block Rate
+ +<span class='fbr'>30</span>% Faster Block Rate
  Freezes Target
  +220-260% Enhanced Defense (varies)
  Replenish Life +7
@@ -2953,7 +3046,7 @@ function updateRuneWordsVisible()
 <tr id='rw44'><td class='tooltip g11'>  Sanctuary           3  Shields                 Ko    + Ko    + Mal                     49  1.10<span class='tool ttg'>Ko <img src='runes/ko.png'   /> + Ko <img src='runes/ko.png'   /> + Mal <img src='runes/mal.png'  />
 
  +<span class='fhr'>20</span>% Faster Hit Recovery
- +20% Faster Block Rate
+ +<span class='fbr'>20</span>% Faster Block Rate
  20% Increased Chance of Blocking
  +130-160% Enhanced Defense (varies)
  +250 Defense vs. Missile
@@ -2966,7 +3059,7 @@ function updateRuneWordsVisible()
 
  <span class='skill'>+1 To All Skills</span>
  +10% Faster Cast Rate
- +20% Faster Block Rate
+ +<span class='fbr'>20</span>% Faster Block Rate
  +60-100% Enhanced Defense (varies)
  +10 To Energy
  Regenerate Mana 15%
@@ -3438,25 +3531,25 @@ function updateRuneWordsVisible()
  </span></td></tr>
 </table>
 <br>
-<table class='head'>
-    <tr class='rt rb'><th><a href='http://classic.battle.net/diablo2exp/items/cube.shtml'><span class='r'>Rerolling Magic/Rare Items</span></a></th></tr>
-    <tr><td class='tooltip k11'>3 Perfect Gems + Magic Item &rarr; New Random Magic Item of the same type                  </td></tr>
-    <tr><td class='tooltip k22'>6 Perfect Skulls + Rare Item &rarr; Random Low Quality Rare Item of the same type (<span class='rare'>Diadems</span>)</td></tr>
+<table class='head' id='table.reroll'>
+    <tr class='rt rb'><th><a href='http://classic.battle.net/diablo2exp/items/cube.shtml'><span class='r'>Rerolling Magic/Rare Items</span></a>                                                                 <button onclick='onCollapse(this,"table.reroll");'>[-]</button></th></tr>
+    <tr><td class='tooltip k11'>3 Perfect Gems + Magic Item &rarr; New Random Magic Item of the same type          <meta            />        <meta/>        </td></tr>
+    <tr><td class='tooltip k22'>6 Perfect Skulls + Rare Item &rarr; Random Low Quality Rare Item of the same type (<span class='rare'>Diadems</span>)        </td></tr>
 </table>
 <br>
-<table class='head'>
-    <tr class='gt gb'><th><a href='http://classic.battle.net/diablo2exp/items/cube.shtml'><span class='g'>Socketing with Cube (or Ebug)</span></a></th></tr>
-    <tr><td class='tooltip k11'>Tal + Thul + Perfect Topaz    + Normal Body Armor &rarr; Socketed Body Armor of same type                  <span class='tool ttk'>Tal <img src='runes/tal.png'  /> + Thul <img src='runes/thul.png' /> + <img src='gems/topaz_perfect.png'   ></span></td></tr>
-    <tr><td class='tooltip k22'>Ral + Amn  + Perfect Amethyst + Normal Weapon     &rarr; Socketed Weapon     of same type                  <span class='tool ttk'>Ral <img src='runes/ral.png'  /> + Amn  <img src='runes/amn.png'  /> + <img src='gems/amethyst_perfect.png'></span></td></tr>
-    <tr><td class='tooltip k11'>Ral + Thul + Perfect Sapphire + Normal Helm       &rarr; Socketed Helm       of same type                  <span class='tool ttk'>Ral <img src='runes/ral.png'  /> + Thul <img src='runes/thul.png' /> + <img src='gems/sapphire_perfect.png'></span></td></tr>
-    <tr><td class='tooltip k22'>Tal + Amn  + Perfect Ruby     + Normal Shield     &rarr; Socketed Shield     of same type                  <span class='tool ttk'>Tal <img src='runes/tal.png'  /> + Amn  <img src='runes/amn.png'  /> + <img src='gems/ruby_perfect.png'    ></span></td></tr>
-    <tr><td class='tooltip k11'>Hel + Scroll of Town Portal   + Any Socketed Item &rarr; Remove items (gems, runes, or jewels) from sockets<span class='tool ttk'>Hel <img src='runes/hel.png'  /> + <img src='pics/scroll_town_portal.png'/></span                                 ></td></tr>
+<table class='head' id='table.sockcube'>
+    <tr class='gt gb'><th><a href='http://classic.battle.net/diablo2exp/items/cube.shtml'><span class='g'>Socketing with Cube (or Ebug)</span></a>                                                              <button onclick='onCollapse(this,"table.sockcube");'>[-]</button></th></tr>
+    <tr><td class='tooltip k11'>Tal + Thul + Perfect Topaz    + Normal Body Armor &rarr; Socketed Body Armor of same type          <span class='tool ttk'>Tal <img src='runes/tal.png'  /> + Thul <img src='runes/thul.png' /> + <img src='gems/topaz_perfect.png'   ></span></td></tr>
+    <tr><td class='tooltip k22'>Ral + Amn  + Perfect Amethyst + Normal Weapon     &rarr; Socketed Weapon     of same type          <span class='tool ttk'>Ral <img src='runes/ral.png'  /> + Amn  <img src='runes/amn.png'  /> + <img src='gems/amethyst_perfect.png'></span></td></tr>
+    <tr><td class='tooltip k11'>Ral + Thul + Perfect Sapphire + Normal Helm       &rarr; Socketed Helm       of same type          <span class='tool ttk'>Ral <img src='runes/ral.png'  /> + Thul <img src='runes/thul.png' /> + <img src='gems/sapphire_perfect.png'></span></td></tr>
+    <tr><td class='tooltip k22'>Tal + Amn  + Perfect Ruby     + Normal Shield     &rarr; Socketed Shield     of same type          <span class='tool ttk'>Tal <img src='runes/tal.png'  /> + Amn  <img src='runes/amn.png'  /> + <img src='gems/ruby_perfect.png'    ></span></td></tr>
+    <tr><td class='tooltip k11'>Hel + Scroll of Town Portal   + Any Socketed Item &rarr; Remove gems, runes, or jewels from sockets<span class='tool ttk'>Hel <img src='runes/hel.png'  /> + <img src='pics/scroll_town_portal.png'/></span                                 ></td></tr>
 </table>
 <br>
-<table class='head'>
-    <tr class='bt bb'      ><th><span class='b'>Repair</span> (<b>Note:</b> <span class='note'>You cannot repair Ethereal items</span>)</th></tr>
-    <tr><td class='tooltip k11'>Ort Rune + Weapon &rarr; Fully Repaired Weapon       <span class='tool ttk'>Ort <img src='runes/ort.png'  /></span></td></tr>
-    <tr><td class='tooltip k11'>Ral Rune + Armor  &rarr; Fully Repaired Armor        <span class='tool ttk'>Ral <img src='runes/ral.png'  /></span></td></tr>
+<table class='head' id='table.repair'>
+    <tr class='bt bb'      ><th><span class='b'>Repair</span> (<b>Note:</b> <span class='note'>You cannot repair Ethereal items</span>)                                            <button onclick='onCollapse(this,"table.repair");'>[-]</button></th></tr></th></tr>
+    <tr><td class='tooltip k11'>Ort Rune + Weapon &rarr; Fully Repaired Weapon       <span class='tool ttk'>Ort <img src='runes/ort.png'  /></span>                                              </td></tr>
+    <tr><td class='tooltip k11'>Ral Rune + Armor  &rarr; Fully Repaired Armor        <span class='tool ttk'>Ral <img src='runes/ral.png'  /></span>                                              </td></tr>
 </table>
 <br>
 <hr class='one'>
@@ -3652,15 +3745,16 @@ function updateRuneWordsVisible()
 </pre></td><td><pre>
   Defense:
     <span class='dr'   >##</span> Damage Reduced
+    <span class='fbr'  >##</span> Faster Block Rate
     <span class='fhr'  >##</span> Faster Hit Recovery
 
     <span class='resf' >##</span> Fire Resist
     <span class='resc' >##</span> Cold Resist
     <span class='resl' >##</span> Lightning Resist
     <span class='resp' >##</span> Poison Resist
-    <span class='resm' >m </span> Magic Resist
-    <span class='resh' >p </span> Physical Resist
-    <span class='resa' >##</span> Resist All
+    <span class='resm' style='padding-left:0.75ch; padding-right:0.75ch;'>m</span> Magic Resist
+    <span class='resh' style='padding-left:0.75ch; padding-right:0.75ch;'>p</span> Physical Resist
+    <span class='resa' >##</span> Resist All (Fire, Cold, Lightning, Poison)
     <span class='cbf'  >  <meta/> Cannot Be Frozen</span>
 </pre>  </td>
     </tr>
@@ -3719,7 +3813,7 @@ Thanks:
   * /u/tk4481              for suggestion of d2.maxroll.gg map reading
 </pre>
 <hr class='one'>
-<span style='font-size:12px;'>Version 1.17, Last Updated Sep 13 2021.</span>
+<span style='font-size:12px;'>Version 1.18, Last Updated Sep 13 2021.</span>
 <span style='font-size:10px;'>CSS Debug: Screen Size:</span> <span id='screen-size'>?</span>, <span class='ios-hidden' >iOS-hidden</span> <span class='ios-visible'>iOS-visible</span>
 <span style='font-size:6px;'>All bugs are due to Anthony slacking on QA.</span>
 </div></body>
