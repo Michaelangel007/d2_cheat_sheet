@@ -25,6 +25,7 @@
  * Area Levels
    * Work-in-Progress map layout summary
    * Color coded area levels for 83, 84, 85
+   * Color coded directions
  * Yellow highlight hover row pointer for all tables
  * Monochrome/Color buttons
  * Lots of handy links to utils, calculators, etc.
@@ -71,4 +72,4 @@
 * ebugging def table
 * xp table?
 
-Last Updated: Sep 13, 2021
+Last Updated: Sep 14, 2021
