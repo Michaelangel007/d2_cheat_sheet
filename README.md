@@ -6,23 +6,29 @@
 
  * Readable on desktop and mobile
  * Interactive -- tooltips for runes and runewords
- * Sortable runeword table
-   * Click on `Owned` to sort runewords by runes owned
- * Complete FCR and FHR breakpoints
- * Tomb locations
- * Pandemonium Event
- * 84 alvl (TC 84/87) farming info
- * clean visual rune upgrades
- * rune chest dropping and farming info
  * click on runes to toggle "rune ownership"
- * minimum runeword level
- * color coded offense and defense stats in runewords
- * alternating runeword background row colors
- * yellow highlight hover row pointer for all tables
- * Area Levels (includes monster level)
+   * Clean visual rune upgrades
+   * Hover over rune to see benefits
+   * Rune chest dropping and farming info
+ * Sortable runeword table
+   * Click on `Owned` to see only the runewords you can make with the runes you own
+   * Minimum runeword level
+   * Color coded offense and defense stats in runewords
+   * Alternating runeword background row colors for readability
+ * Complete FCR, FHR, and FBR breakpoints
+   * Can collapsible most of the tables, click on the `[-]` or `[+`] button in the top right of the table
+ * Act II Mercs
+ * Tomb locations
+ * Pandemonium Event (key/organ farming)
+ * Essences farming
+ * 85 alvl (TC 84/87) farming info
+ * Area Levels
+   * Work-in-Progress map layout summary
+   * Color coded area levels for 83, 84, 85
+ * Yellow highlight hover row pointer for all tables
  * Monochrome/Color buttons
- * Color coded area levels for 83, 84, 85
- * Can collapse most smaller tables
+ * Lots of handy links to utils, calculators, etc.
+
 
 # Wishlist
 
