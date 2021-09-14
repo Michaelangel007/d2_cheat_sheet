@@ -33,11 +33,11 @@
 
 # Wishlist
 
-* Add socket table -- Credit: soupsticle  -- https://diablo2.diablowiki.net/Sockets#Sockets_by_Number
-* Add Gambling odds -- Credit: LivEisJeebus -- https://www.reddit.com/r/diablo2/comments/pmv4u3/my_diablo_2_cheat_sheet/hcm485n/
-* Add Crafted Recipes -- http://classic.battle.net/diablo2exp/items/crafted/blood.shtml
-* Add shopping ilvl for Acts.
-* Add Commonly upgraded uniques to _Upping Uniques_
+ * Add socket table -- Credit: soupsticle  -- https://diablo2.diablowiki.net/Sockets#Sockets_by_Number
+ * Add Gambling odds -- Credit: LivEisJeebus -- https://www.reddit.com/r/diablo2/comments/pmv4u3/my_diablo_2_cheat_sheet/hcm485n/
+ * Add Crafted Recipes -- http://classic.battle.net/diablo2exp/items/crafted/blood.shtml
+ * Add shopping ilvl for Acts.
+ * Add Commonly upgraded uniques to _Upping Uniques_
 
 ```
     Arreat's Face : 504 (756)
@@ -67,9 +67,10 @@
     Waterwalk : 201
     Gore Rider : 213
 ```
-* Add map layout hints -- see https://docs.google.com/spreadsheets/d/1UQP7PjHgCJWN-s42bUtGsR18f9GNh7JJ15QE7D6CnHE/edit#gid=0
-* Customize yellow hover color
-* ebugging def table
-* xp table?
+ * Add map layout hints -- see https://docs.google.com/spreadsheets/d/1UQP7PjHgCJWN-s42bUtGsR18f9GNh7JJ15QE7D6CnHE/edit#gid=0
+ * Customize yellow hover color
+ * ebugging def table
+ * xp table?
+ * url param to keep state of collapsed tables
 
-Last Updated: Sep 14, 2021
+Last Updated: Sep 20, 2021
