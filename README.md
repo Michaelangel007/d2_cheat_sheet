@@ -4,11 +4,11 @@
 
 # QoL Features
 
- * readable on desktop and mobile
- * interactive -- tooltips for runes and runewords
- * sortable runeword table
+ * Readable on desktop and mobile
+ * Interactive -- tooltips for runes and runewords
+ * Sortable runeword table
    * Click on `Owned` to sort runewords by runes owned
- * complete FCR and FHR breakpoints
+ * Complete FCR and FHR breakpoints
  * Tomb locations
  * Pandemonium Event
  * 84 alvl (TC 84/87) farming info
@@ -21,7 +21,8 @@
  * yellow highlight hover row pointer for all tables
  * Area Levels (includes monster level)
  * Monochrome/Color buttons
-* Color coded area levels for 83, 84, 85
+ * Color coded area levels for 83, 84, 85
+ * Can collapse most smaller tables
 
 # Wishlist
 
@@ -62,7 +63,6 @@
 ```
 * Add map layout hints -- see https://docs.google.com/spreadsheets/d/1UQP7PjHgCJWN-s42bUtGsR18f9GNh7JJ15QE7D6CnHE/edit#gid=0
 * Customize yellow hover color
-* Ability to collapse tables
 * ebugging def table
 * xp table?
 
