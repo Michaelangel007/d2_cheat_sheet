@@ -2439,14 +2439,16 @@ function updateRuneWordsVisible()
 <table class='head'>
     <tr>
         <td>
-            <table class='head'>
-                <tr class='kt kb' ><th>Upping Rares</th></tr>
-                <tr><td class='tooltip k11'>Ort + Amn  + Perfect Sapphire + Normal (Basic) Rare Weapon &rarr; Exceptional Rare Weapon<span class='tool ttk'>Ort <img alt='Ort' src='runes/ort.png'  /> + Amn  <img alt='Amn'  src='runes/amn.png'  /> + Perfect Sapphire <img alt='perfect sapphire' src='gems/sapphire_perfect.png'/></span></td></tr>
-                <tr><td class='tooltip k22'>Ral + Thul + Perfect Amethyst + Normal (Basic) Rare Armor  &rarr; Exceptional Rare Armor <span class='tool ttk'>Ral <img alt='Ral' src='runes/ral.png'  /> + Thul <img alt='Thul' src='runes/thul.png' /> + Perfect Amethyst <img alt='perfect amethyst' src='gems/amethyst_perfect.png'/></span></td></tr>
-                <tr><td class='tooltip k11'>Fal + Um   + Perfect Sapphire + Exceptional    Rare Weapon &rarr; Elite Rare Weapon      <span class='tool ttk'>Fal <img alt='Fal' src='runes/fal.png'  /> + Um   <img alt='Um'   src='runes/um.png'   /> + Perfect Sapphire <img alt='perfect sapphire' src='gems/sapphire_perfect.png'/></span></td></tr>
-                <tr><td class='tooltip k22'>Ko  + Pul  + Perfect Amethyst + Exceptional    Rare Armor  &rarr; Elite Rare Armor       <span class='tool ttk'>Ko  <img alt='Ko'  src='runes/ko.png'   /> + Pul  <img alt='Pul'  src='runes/pul.png'  /> + Perfect Amethyst <img alt='perfect amethyst' src='gems/amethyst_perfect.png'/></span></td></tr>
-                <tr><td><br></td></tr>
-                <tr class='kt kb'><th>Upping Uniques</th></tr>
+            <table class='head' id='table.uprare'>
+                <tr class='raret rareb'><th><span class='rare'>Upping Rares</span>                                                                           <button onclick='onCollapse(this,"table.uprare");'>[-]</button></th></tr>
+                <tr><td class='tooltip k11'>Ort + Amn  + Perfect Sapphire + Normal (Basic) Rare Weapon &rarr; Exceptional Rare Weapon      <span class='tool ttk'>Ort <img alt='Ort' src='runes/ort.png'  /> + Amn  <img alt='Amn'  src='runes/amn.png'  /> + Perfect Sapphire <img alt='perfect sapphire' src='gems/sapphire_perfect.png'/></span></td></tr>
+                <tr><td class='tooltip k22'>Ral + Thul + Perfect Amethyst + Normal (Basic) Rare Armor  &rarr; Exceptional Rare Armor       <span class='tool ttk'>Ral <img alt='Ral' src='runes/ral.png'  /> + Thul <img alt='Thul' src='runes/thul.png' /> + Perfect Amethyst <img alt='perfect amethyst' src='gems/amethyst_perfect.png'/></span></td></tr>
+                <tr><td class='tooltip k11'>Fal + Um   + Perfect Sapphire + Exceptional    Rare Weapon &rarr; Elite Rare Weapon            <span class='tool ttk'>Fal <img alt='Fal' src='runes/fal.png'  /> + Um   <img alt='Um'   src='runes/um.png'   /> + Perfect Sapphire <img alt='perfect sapphire' src='gems/sapphire_perfect.png'/></span></td></tr>
+                <tr><td class='tooltip k22'>Ko  + Pul  + Perfect Amethyst + Exceptional    Rare Armor  &rarr; Elite Rare Armor             <span class='tool ttk'>Ko  <img alt='Ko'  src='runes/ko.png'   /> + Pul  <img alt='Pul'  src='runes/pul.png'  /> + Perfect Amethyst <img alt='perfect amethyst' src='gems/amethyst_perfect.png'/></span></td></tr>
+            </table>
+            <br>
+            <table class='head' id='table.upunq'>
+                <tr class='unqt unqb'  ><th><span class='unq' >Upping Uniques</span>                                                                         <button onclick='onCollapse(this,"table.upunq");'>[-]</button></th></tr>
                 <tr><td class='tooltip k11'>Ral + Sol   + Perfect Emerald + Normal Unique Weapon      &rarr;  Exceptional Version of Weapon<span class='tool ttk'>Ral <img src='runes/ral.png'  /> + Sol   <img alt='Sol'   src='runes/sol.png'  /> + Perfect Emerald <img alt='perfect sapphire' src='gems/sapphire_perfect.png'/></span></td></tr>
                 <tr><td class='tooltip k22'>Tal + Shael + Perfect Diamond + Normal Unique Armor       &rarr;  Exceptional Version of Armor <span class='tool ttk'>Tal <img src='runes/tal.png'  /> + Shael <img alt='Shael' src='runes/shael.png'/> + Perfect Diamond <img alt='perfect diamond'  src='gems/diamond_perfect.png' /></span></td></tr>
                 <tr><td class='tooltip k11'>Lum + Pul   + Perfect Emerald + Exceptional Unique Weapon &rarr;  Elite Vesion of Weapon       <span class='tool ttk'>Lum <img src='runes/lum.png'  /> + Pul   <img alt='Pul'   src='runes/pul.png'  /> + Perfect Emerald <img alt='perfect sapphire' src='gems/sapphire_perfect.png'/></span></td></tr>
