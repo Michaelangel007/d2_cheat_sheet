@@ -141,6 +141,15 @@ span.farm
     color: #4EF;
 }
 
+    /* Faster Block Rate */
+    span.fbr
+    {
+        background-color: #F00;
+        color           : #FF0;
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
 /* Faster Cast Rate */
 span.fcr
 {
@@ -1646,7 +1655,7 @@ function updateRuneWordsVisible()
  20% Faster Hit Recovery
 
  <span class='gemtitle'>Shields</span>
- 20% Faster Block Rate
+ <span class='fbr'>20</span>% Faster Block Rate
 
  Level Requirement: <span class='n'>29</span>
  <span class='farm'>Countess</span>: Nightmare
@@ -2108,7 +2117,7 @@ function updateRuneWordsVisible()
  20% Faster Hit Recovery
 
  <span class='gemtitle'>Shields</span>
- 20% Faster Block Rate
+ <span class='fbr'>20</span>% Faster Block Rate
 
  Level Requirement: <span class='n'>29</span>
  <span class='farm'>Countess</span>: Nightmare
@@ -2586,7 +2595,7 @@ function updateRuneWordsVisible()
 <tr id='rw14'><td class='tooltip r11'>* Rhyme               2  Shields                 Shael + Eth                             29  1.09<span class='tool ttr'>Shael <img src='runes/shael.png'/> + Eth <img src='runes/eth.png'  />
 
  20% Increased Chance of Blocking
- 40% Faster Block Rate
+ <span class='fbr'>40</span>% Faster Block Rate
  All Resistances +<span class='resa'>25</span>
  Regenerate Mana 15%
  <span class='cbf'>Cannot Be Frozen</span>
@@ -2863,7 +2872,7 @@ function updateRuneWordsVisible()
  15% Chance To Cast Level 5 Life Tap On Striking
  Level 13-16 Defiance Aura When Equipped (varies)
  +2 To Offensive Auras (Paladin Only)
- +30% Faster Block Rate
+ +<span class='fbr'>30</span>% Faster Block Rate
  Freezes Target
  +220-260% Enhanced Defense (varies)
  Replenish Life +7
@@ -2967,7 +2976,7 @@ function updateRuneWordsVisible()
 <tr id='rw44'><td class='tooltip g11'>  Sanctuary           3  Shields                 Ko    + Ko    + Mal                     49  1.10<span class='tool ttg'>Ko <img src='runes/ko.png'   /> + Ko <img src='runes/ko.png'   /> + Mal <img src='runes/mal.png'  />
 
  +<span class='fhr'>20</span>% Faster Hit Recovery
- +20% Faster Block Rate
+ +<span class='fbr'>20</span>% Faster Block Rate
  20% Increased Chance of Blocking
  +130-160% Enhanced Defense (varies)
  +250 Defense vs. Missile
@@ -2980,7 +2989,7 @@ function updateRuneWordsVisible()
 
  <span class='skill'>+1 To All Skills</span>
  +10% Faster Cast Rate
- +20% Faster Block Rate
+ +<span class='fbr'>20</span>% Faster Block Rate
  +60-100% Enhanced Defense (varies)
  +10 To Energy
  Regenerate Mana 15%
@@ -3666,6 +3675,7 @@ function updateRuneWordsVisible()
 </pre></td><td><pre>
   Defense:
     <span class='dr'   >##</span> Damage Reduced
+    <span class='fbr'  >##</span> Faster Block Rate
     <span class='fhr'  >##</span> Faster Hit Recovery
 
     <span class='resf' >##</span> Fire Resist
