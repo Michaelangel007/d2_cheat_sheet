@@ -22,6 +22,7 @@
  * Pandemonium Event (key/organ farming)
  * Essences farming
  * 85 alvl (TC 84/87) farming info
+ * Mini XP tables
  * Area Levels
    * Work-in-Progress map layout summary
    * Color coded area levels for 83, 84, 85
