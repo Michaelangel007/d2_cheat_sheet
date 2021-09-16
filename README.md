@@ -71,7 +71,9 @@
  * Add map layout hints -- see https://docs.google.com/spreadsheets/d/1UQP7PjHgCJWN-s42bUtGsR18f9GNh7JJ15QE7D6CnHE/edit#gid=0
  * Customize yellow hover color
  * ebugging def table
- * xp table?
+ * Full xp table?
  * url param to keep state of collapsed tables
+ * Collapse all button -- pisseningly
+ * Table header pop-up instructions --  -- pisseningly
 
 Last Updated: Sep 20, 2021
