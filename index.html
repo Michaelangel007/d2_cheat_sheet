@@ -490,6 +490,10 @@ td
     span.g { color: #8F8; }
     span.b { color: #4CF; }
 
+    .vatop
+    {
+        vertical-align: top;
+    }
 
 /* ---------- Tool Tips ---------- */
 .runetip
@@ -2020,6 +2024,32 @@ function updateRuneWordsVisible()
  <span class='farm'>Baal</span>: Hell
  </span></td></tr>
             </table>
+            <br>
+<table class='head ios-hidden'>
+    <tr>
+        <td>
+            <table id='table.pl1'>
+                <tr class='rt rb'><th      > Power Leveling       <button onclick='onCollapse(this,"table.pl1");'>[-]</button></th></tr>
+                <tr><td class='tooltip b11'> 1-15 Tristram runs      </td></tr>
+                <tr><td class='tooltip b22'>15-24 Tombs runs         </td></tr>
+                <tr><td class='tooltip b11'>   24 Ancients           </td></tr>
+                <tr><td class='tooltip b22'>25-40 Sanctuary/Baal     </td></tr>
+                <tr><td class='tooltip g11'>   40 Ancients (nm)      </td></tr>
+                <tr><td class='tooltip g22'>41-60 Sanctuary/Baal (nm)</td></tr>
+                <tr><td class='tooltip r11'>   60 Ancients (Hell)    </td></tr>
+                <tr><td class='tooltip r22'>41-60 Baal (Hell)        </td></tr>
+            </table>
+        </td>
+        <td class='vatop' style='padding-left:5px'>
+            <table id='table.bestxp1'>
+                <tr class='gt gb'><th      >Best XP    I      II     III    IV     V <button onclick='onCollapse(this,"table.bestxp1");'>[-]</button></th></tr>
+                <tr><td class='tooltip b22'>Normal      1-11  12-18  19-23  24-31  32-36</td></tr>
+                <tr><td class='tooltip g22'>Nightmare  37-43  44-48  49-52  53-62  skip </td></tr>
+                <tr><td class='tooltip r22'>Hell       63-73  74-80  81-83  83-94  95-99</td></tr>
+            </table>
+        </td>
+    </tr>
+</table>
         </td>
     </tr>
 </table>
@@ -3586,9 +3616,33 @@ function updateRuneWordsVisible()
 <center><b>NOTE:</b> Layout is <span class='gold'>Work-In-Progress.</span></center>
 <hr class='one'>
 <br>
+<table class='head ios-visible'>
+    <tr><td>
+        <table class='head' id='table.pl2'>
+            <tr class='rt rb'><th      > Power Leveling       <button onclick='onCollapse(this,"table.pl2");'>[-]</button></th></tr>
+            <tr><td class='tooltip b11'> 1-15 Tristram runs      </td></tr>
+            <tr><td class='tooltip b22'>15-24 Tombs runs         </td></tr>
+            <tr><td class='tooltip b11'>   24 Ancients           </td></tr>
+            <tr><td class='tooltip b22'>25-40 Sanctuary/Baal     </td></tr>
+            <tr><td class='tooltip g11'>   40 Ancients (nm)      </td></tr>
+            <tr><td class='tooltip g22'>41-60 Sanctuary/Baal (nm)</td></tr>
+            <tr><td class='tooltip r11'>   60 Ancients (Hell)    </td></tr>
+            <tr><td class='tooltip r22'>41-60 Baal (Hell)        </td></tr>
+        </table>
+    </td>
+    <td class='vatop' style='padding-left:5px;'>
+        <table id='table.bestxp2'>
+            <tr class='gt gb'><th      >Best XP    I      II     III    IV     V <button onclick='onCollapse(this,"table.bestxp2");'>[-]</button></th></tr>
+            <tr><td class='tooltip b22'>Normal      1-11  12-18  19-23  24-31  32-36</td></tr>
+            <tr><td class='tooltip g22'>Nightmare  37-43  44-48  49-52  53-62  skip </td></tr>
+            <tr><td class='tooltip r22'>Hell       63-73  74-80  81-83  83-94  95-99</td></tr>
+        </table>
+    </td></tr>
+</table>
+<br>
 <table>
     <tr>
-        <td style='vertical-align:top'>
+        <td class='vatop'>
 <table class='head' id='table.alvl1'>
     <tr class='bt bb'><th><a href='http://classic.battle.net/diablo2exp/maps/act1.shtml'><div class='wp'></div></a></th><th>I Rogue Encampment       N  nm   H Layout <span class='l'>L</span>/<span class='c'>C</span>/<span class='r'>R</span>  <button onclick='onCollapse(this,"table.alvl1");'>[-]</button></th></tr>
     <tr><td                      ></td><td class='tooltip b11'>Blood Moor               1  36  <meta              />67<meta/> <span class='l'>   </span      ><span class='c' >Follow path</span ><span class='r'  >   </span></td></tr>
@@ -3839,6 +3893,7 @@ Thanks:
   * /u/josh06025           for suggestion of color code high level alvl
   * /u/soupsticle          for suggestion of attack speed calc, FBR, and collapsible tables
   * /u/tk4481              for suggestion of d2.maxroll.gg map reading
+  * /u/post_ex0dus         for suggestion of power leveling
 </pre>
 <hr class='one'>
 <span style='font-size:12px;'>Version 1.20, Last Updated Sep 14 2021.</span>
