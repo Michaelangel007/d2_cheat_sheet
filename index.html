@@ -1582,26 +1582,48 @@ function updateRuneWordsVisible()
                 </tr>
             </table>
             <br>
-                <table class='head'>
-                    <tr><td>
-                        <table class='head'>
-                            <tr class='bt bb'>
-                            <th><a href="https://diablo2.diablowiki.net/Pandemonium_Event"><span class='b'>Pandemonium Event</span></a>    Hell Act 5, cube 3 unique keys/organs &rarr; tp<br>Mob / Location   Key          Location         Organ</th></tr>
-                            <tr><td class='tooltip r22'>The Countess A1  Terror       Matron's Den   </span>  Diablo's Horn   </td></tr>
-                            <tr><td class='tooltip g22'>The Summoner A2  Hate         Forgotten Sands</span>  Baal's Eye      </td></tr>
-                            <tr><td class='tooltip b22'>Nihlathak    A5  Destruction  Furnace Pain   </span>  Mephisto's Brain</td></tr>
+            <table class='head'>
+                <tr><td>
+                    <table class='head'>
+                        <tr class='bt bb'>
+                        <th><a href="https://diablo2.diablowiki.net/Pandemonium_Event"><span class='b'>Pandemonium Event</span></a>    Hell Act 5, cube 3 unique keys/organs &rarr; tp<br>Mob / Location   Key          Location         Organ</th></tr>
+                        <tr><td class='tooltip r22'>The Countess A1  Terror       Matron's Den   </span>  Diablo's Horn   </td></tr>
+                        <tr><td class='tooltip g22'>The Summoner A2  Hate         Forgotten Sands</span>  Baal's Eye      </td></tr>
+                        <tr><td class='tooltip b22'>Nihlathak    A5  Destruction  Furnace Pain   </span>  Mephisto's Brain</td></tr>
+                    </table>
+                </td>
+                <td style='padding-left:5px;'>
+                    <table class='head'>
+                        <tr class='gt gb'><th><span class='g'>Essences &rarr; </span><a href='https://diablo-archive.fandom.com/wiki/Token_of_Absolution_(Diablo_II)'>Token Abs</a></th></tr>
+                        <tr><td class='tooltip k11'>A1 Andy/Dur  <span class='twisted'>Twisted</span></td></tr>
+                        <tr><td class='tooltip k22'>A3 Mephisto  <span class='charged'>Charged</span></td></tr>
+                        <tr><td class='tooltip k11'>A4 Diablo    <span class='burning'>Burning</span></td></tr>
+                        <tr><td class='tooltip k22'>A5 Baal    <span class='festering'>Festering</span></td></tr>
+                    </table>
+                </td></tr>
+            </table>
+            <br>
+            <table class='head'>
+                <tr>
+                    <td>
+                        <table class='head' id='table.uprare'>
+                            <tr class='raret rareb'><th><span class='rare'>Upping Rares</span>                                                                     <button onclick='onCollapse(this,"table.uprare");'>[-]</button></th></tr>
+                            <tr><td class='tooltip k11'>Ort + Amn  + Perfect Sapphire + Normal (Basic) Rare Weapon &rarr; Exceptional Rare Weapon<span class='tool ttk'>Ort <img alt='Ort' src='runes/ort.png'  /> + Amn  <img alt='Amn'  src='runes/amn.png'  /> + Perfect Sapphire <img alt='perfect sapphire' src='gems/sapphire_perfect.png'/></span></td></tr>
+                            <tr><td class='tooltip k22'>Ral + Thul + Perfect Amethyst + Normal (Basic) Rare Armor  &rarr; Exceptional Rare Armor <span class='tool ttk'>Ral <img alt='Ral' src='runes/ral.png'  /> + Thul <img alt='Thul' src='runes/thul.png' /> + Perfect Amethyst <img alt='perfect amethyst' src='gems/amethyst_perfect.png'/></span></td></tr>
+                            <tr><td class='tooltip k11'>Fal + Um   + Perfect Sapphire + Exceptional    Rare Weapon &rarr; Elite Rare Weapon      <span class='tool ttk'>Fal <img alt='Fal' src='runes/fal.png'  /> + Um   <img alt='Um'   src='runes/um.png'   /> + Perfect Sapphire <img alt='perfect sapphire' src='gems/sapphire_perfect.png'/></span></td></tr>
+                            <tr><td class='tooltip k22'>Ko  + Pul  + Perfect Amethyst + Exceptional    Rare Armor  &rarr; Elite Rare Armor       <span class='tool ttk'>Ko  <img alt='Ko'  src='runes/ko.png'   /> + Pul  <img alt='Pul'  src='runes/pul.png'  /> + Perfect Amethyst <img alt='perfect amethyst' src='gems/amethyst_perfect.png'/></span></td></tr>
+                        </table>
+                        <br>
+                        <table class='head' id='table.upunq'>
+                            <tr class='unqt unqb'  ><th><span class='unq' >Upping Uniques</span>                                                                   <button onclick='onCollapse(this,"table.upunq");'>[-]</button></th></tr>
+                            <tr><td class='tooltip k11'>Ral + Sol   + Perfect Emerald + Normal Unique Weapon      &rarr;  Exceptional Version Wpn<span class='tool ttk'>Ral <img src='runes/ral.png'  /> + Sol   <img alt='Sol'   src='runes/sol.png'  /> + Perfect Emerald <img alt='perfect emerald' src='gems/emerald_perfect.png'/></span></td></tr>
+                            <tr><td class='tooltip k22'>Tal + Shael + Perfect Diamond + Normal Unique Armor       &rarr;  Exceptional Version Arm<span class='tool ttk'>Tal <img src='runes/tal.png'  /> + Shael <img alt='Shael' src='runes/shael.png'/> + Perfect Diamond <img alt='perfect diamond'  src='gems/diamond_perfect.png' /></span></td></tr>
+                            <tr><td class='tooltip k11'>Lum + Pul   + Perfect Emerald + Exceptional Unique Weapon &rarr;  Elite Vesion Weapon    <span class='tool ttk'>Lum <img src='runes/lum.png'  /> + Pul   <img alt='Pul'   src='runes/pul.png'  /> + Perfect Emerald <img alt='perfect emerald' src='gems/emerald_perfect.png'/></span></td></tr>
+                            <tr><td class='tooltip k22'>Ko  + Lem   + Perfect Diamond + Exceptional Unique Armor  &rarr;  Elite Verson Armor     <span class='tool ttk'>Ko  <img src='runes/ko.png'   /> + Lem   <img alt='Lem'   src='runes/lem.png'  /> + Perfect Diamond <img alt='perfect diamond'  src='gems/diamond_perfect.png' /></span></td></tr>
                         </table>
                     </td>
-                    <td style='padding-left:5px;'>
-                        <table class='head'>
-                            <tr class='gt gb'><th><span class='g'>Essences &rarr; </span><a href='https://diablo-archive.fandom.com/wiki/Token_of_Absolution_(Diablo_II)'>Token Abs</a></th></tr>
-                            <tr><td class='tooltip k11'>A1 Andy/Dur  <span class='twisted'>Twisted</span></td></tr>
-                            <tr><td class='tooltip k22'>A3 Mephisto  <span class='charged'>Charged</span></td></tr>
-                            <tr><td class='tooltip k11'>A4 Diablo    <span class='burning'>Burning</span></td></tr>
-                            <tr><td class='tooltip k22'>A5 Baal    <span class='festering'>Festering</span></td></tr>
-                        </table>
-                    </td></tr>
-                </table>
+                </tr>
+            </table>
         </td>
         <td class='column2' style='width:600px;' class='ios-hidden'>
             <table class='head' id='table.runes1'>
@@ -2044,31 +2066,55 @@ function updateRuneWordsVisible()
  </span></td></tr>
             </table>
             <br>
-<table class='head ios-hidden'>
-    <tr>
-        <td>
-            <table id='table.pl1'>
-                <tr class='rt rb'><th      > Power Leveling       <button onclick='onCollapse(this,"table.pl1");'>[-]</button></th></tr>
-                <tr><td class='tooltip b11'> 1-15 Tristram runs      </td></tr>
-                <tr><td class='tooltip b22'>15-24 Tombs runs         </td></tr>
-                <tr><td class='tooltip b11'>   24 Ancients           </td></tr>
-                <tr><td class='tooltip b22'>25-40 Sanctuary/Baal     </td></tr>
-                <tr><td class='tooltip g11'>   40 Ancients       (nm)</td></tr>
-                <tr><td class='tooltip g22'>41-60 Sanctuary/Baal (nm)</td></tr>
-                <tr><td class='tooltip r11'>   60 Ancients     (Hell)</td></tr>
-                <tr><td class='tooltip r22'>41-60 Baal         (Hell)</td></tr>
+            <table class='head ios-hidden'>
+                <tr>
+                    <td>
+                        <table id='table.pl1'>
+                            <tr class='rt rb'><th      > Power Leveling       <button onclick='onCollapse(this,"table.pl1");'>[-]</button></th></tr>
+                            <tr><td class='tooltip b11'> 1-15 Tristram runs      </td></tr>
+                            <tr><td class='tooltip b22'>15-24 Tombs runs         </td></tr>
+                            <tr><td class='tooltip b11'>   24 Ancients           </td></tr>
+                            <tr><td class='tooltip b22'>25-40 Sanctuary/Baal     </td></tr>
+                            <tr><td class='tooltip g11'>   40 Ancients       (nm)</td></tr>
+                            <tr><td class='tooltip g22'>41-60 Sanctuary/Baal (nm)</td></tr>
+                            <tr><td class='tooltip r11'>   60 Ancients     (Hell)</td></tr>
+                            <tr><td class='tooltip r22'>41-60 Baal         (Hell)</td></tr>
+                        </table>
+                    </td>
+                    <td class='vatop' style='padding-left:5px'>
+                        <table id='table.bestxp1'>
+                            <tr class='gt gb'><th      >clvl  I      II     III    IV     V <button onclick='onCollapse(this,"table.bestxp1");'>[-]</button></th></tr>
+                            <tr><td class='tooltip b22'>Norm   1-11  12-18  19-23  24-31  32-36</td></tr>
+                            <tr><td class='tooltip g22'> nm   37-43  44-48  49-52  53-62  skip </td></tr>
+                            <tr><td class='tooltip r22'>Hell  63-73  74-80  81-83  83-94  95-99</td></tr>
+                        </table>
+                    </td>
+                </tr>
             </table>
-        </td>
-        <td class='vatop' style='padding-left:5px'>
-            <table id='table.bestxp1'>
-                <tr class='gt gb'><th      >clvl  I      II     III    IV     V <button onclick='onCollapse(this,"table.bestxp1");'>[-]</button></th></tr>
-                <tr><td class='tooltip b22'>Norm   1-11  12-18  19-23  24-31  32-36</td></tr>
-                <tr><td class='tooltip g22'> nm   37-43  44-48  49-52  53-62  skip </td></tr>
-                <tr><td class='tooltip r22'>Hell  63-73  74-80  81-83  83-94  95-99</td></tr>
+            <br>
+            <table class='head'>
+                <tr>
+                    <td class='ios-hidden'>
+                        <table class='head'>
+                            <tr class='gt gb'><th>Act Nearest wp        Zone            <a href='https://diablo2.diablowiki.net/Guide:Level_85_Magic_Find_Areas_v1.10'>85 alvl (TC 84)</a> #Packs Immunity</th></tr>
+                            <tr><td class='tooltip'> 1  Cold Plains       Burial Grounds  Mausoleum          4-5 <span class='padd'>.</span><span class='padd'>.</span><span class='resl'>L</span><span class='padd'>.</span><span class='padd'>.</span><span class='padd'>.</span></td></tr>
+                            <tr><td class='tooltip'> 1  Outer Cloister    Tamoe Highland  Pit Level 1        6-8 <span class='resf'>F</span><span class='resc'>C</span><span class='resl'>L</span><span class='padd'>.</span><span class='padd'>.</span><span class='padd'>.</span></td></tr>
+                            <tr><td class='tooltip'> 1  Outer Cloister    Tamoe Highland  Pit Level 2        2-3 <span class='resf'>F</span><span class='resc'>C</span><span class='resl'>L</span><span class='padd'>.</span><span class='padd'>.</span><span class='padd'>.</span></td></tr>
+                            <tr><td class='tooltip'> 2  Far Oasis         Far Oasis       Maggot Lair 3      4-5 <span class='padd'>.</span><span class='padd'>.</span><span class='resl'>L</span><span class='resp'>P</span><span class='resh'>p</span><span class='padd'>.</span></td></tr>
+                            <tr><td class='tooltip'> 2  Lost City         Lost City       Ancient Tunnels    6-8 <span class='resf'>F</span><span class='padd'>.</span><span class='resl'>L</span><span class='resp'>P</span><span class='resh'>p</span><span class='resm'>m</span></td></tr>
+                            <tr><td class='tooltip'> 3  Upper Kurast      Upper Kurast    Forgotten Temple   2-2 <span class='resf'>F</span><span class='resc'>C</span><span class='resl'>L</span><span class='padd'>.</span><span class='padd'>.</span><span class='padd'>.</span></td></tr>
+                            <tr><td class='tooltip'> 3  Upper Kurast      Kurast Causeway Ruined Fane        2-2 <span class='resf'>F</span><span class='resc'>C</span><span class='resl'>L</span><span class='padd'>.</span><span class='padd'>.</span><span class='padd'>.</span></td></tr>
+                            <tr><td class='tooltip'> 3  Upper Kurast      Kurast Causeway Disused Reliquary  2-2 <span class='resf'>F</span><span class='resc'>C</span><span class='resl'>L</span><span class='padd'>.</span><span class='padd'>.</span><span class='padd'>.</span></td></tr>
+                            <tr><td class='tooltip'> 4  River of Flame          --        River of Flame     6-7 <span class='resf'>F</span><span class='resc'>C</span><span class='resl'>L</span><span class='resp'>P</span><span class='padd'>.</span><span class='padd'>.</span></td></tr>
+                            <tr><td class='tooltip'> 4  River of Flame          --        Chaos Sanctuary    6-7 <span class='resf'>F</span><span class='resc'>C</span><span class='resl'>L</span><span class='padd'>.</span><span class='padd'>.</span><span class='padd'>.</span></td></tr>
+                            <tr><td class='tooltip'> 5  Worldstone Keep 2       --        Worldstone Keep 1  6-8 <span class='resf'>F</span><span class='resc'>C</span><span class='resl'>L</span><span class='padd'>.</span><span class='padd'>.</span><span class='padd'>.</span></td></tr>
+                            <tr><td class='tooltip'> 5  Worldstone Keep 2       --        Worldstone Keep 2  6-8 <span class='resf'>F</span><span class='resc'>C</span><span class='resl'>L</span><span class='resp'>P</span><span class='padd'>.</span><span class='resm'>m</span></td></tr>
+                            <tr><td class='tooltip'> 5  Worldstone Keep 2       --        Worldstone Keep 3  6-8 <span class='resf'>F</span><span class='resc'>C</span><span class='resl'>L</span><span class='resp'>P</span><span class='resh'>p</span><span class='resm'>m</span></td></tr>
+                            <tr><td class='tooltip'> 5  Worldstone Keep 2       --        Throneroom         6-8 <span class='resf'>F</span><span class='resc'>C</span><span class='resl'>L</span><span class='resp'>P</span><span class='resh'>p</span><span class='resm'>m</span></td></tr>
+                        </table>
+                    </td>
+                </tr>
             </table>
-        </td>
-    </tr>
-</table>
         </td>
     </tr>
 </table>
@@ -2533,47 +2579,6 @@ function updateRuneWordsVisible()
             </table>
 <br>
 </div>
-<table class='head'>
-    <tr>
-        <td>
-            <table class='head' id='table.uprare'>
-                <tr class='raret rareb'><th><span class='rare'>Upping Rares</span>                                                                           <button onclick='onCollapse(this,"table.uprare");'>[-]</button></th></tr>
-                <tr><td class='tooltip k11'>Ort + Amn  + Perfect Sapphire + Normal (Basic) Rare Weapon &rarr; Exceptional Rare Weapon      <span class='tool ttk'>Ort <img alt='Ort' src='runes/ort.png'  /> + Amn  <img alt='Amn'  src='runes/amn.png'  /> + Perfect Sapphire <img alt='perfect sapphire' src='gems/sapphire_perfect.png'/></span></td></tr>
-                <tr><td class='tooltip k22'>Ral + Thul + Perfect Amethyst + Normal (Basic) Rare Armor  &rarr; Exceptional Rare Armor       <span class='tool ttk'>Ral <img alt='Ral' src='runes/ral.png'  /> + Thul <img alt='Thul' src='runes/thul.png' /> + Perfect Amethyst <img alt='perfect amethyst' src='gems/amethyst_perfect.png'/></span></td></tr>
-                <tr><td class='tooltip k11'>Fal + Um   + Perfect Sapphire + Exceptional    Rare Weapon &rarr; Elite Rare Weapon            <span class='tool ttk'>Fal <img alt='Fal' src='runes/fal.png'  /> + Um   <img alt='Um'   src='runes/um.png'   /> + Perfect Sapphire <img alt='perfect sapphire' src='gems/sapphire_perfect.png'/></span></td></tr>
-                <tr><td class='tooltip k22'>Ko  + Pul  + Perfect Amethyst + Exceptional    Rare Armor  &rarr; Elite Rare Armor             <span class='tool ttk'>Ko  <img alt='Ko'  src='runes/ko.png'   /> + Pul  <img alt='Pul'  src='runes/pul.png'  /> + Perfect Amethyst <img alt='perfect amethyst' src='gems/amethyst_perfect.png'/></span></td></tr>
-            </table>
-            <br>
-            <table class='head' id='table.upunq'>
-                <tr class='unqt unqb'  ><th><span class='unq' >Upping Uniques</span>                                                                         <button onclick='onCollapse(this,"table.upunq");'>[-]</button></th></tr>
-                <tr><td class='tooltip k11'>Ral + Sol   + Perfect Emerald + Normal Unique Weapon      &rarr;  Exceptional Version of Weapon<span class='tool ttk'>Ral <img src='runes/ral.png'  /> + Sol   <img alt='Sol'   src='runes/sol.png'  /> + Perfect Emerald <img alt='perfect emerald' src='gems/emerald_perfect.png'/></span></td></tr>
-                <tr><td class='tooltip k22'>Tal + Shael + Perfect Diamond + Normal Unique Armor       &rarr;  Exceptional Version of Armor <span class='tool ttk'>Tal <img src='runes/tal.png'  /> + Shael <img alt='Shael' src='runes/shael.png'/> + Perfect Diamond <img alt='perfect diamond'  src='gems/diamond_perfect.png' /></span></td></tr>
-                <tr><td class='tooltip k11'>Lum + Pul   + Perfect Emerald + Exceptional Unique Weapon &rarr;  Elite Vesion of Weapon       <span class='tool ttk'>Lum <img src='runes/lum.png'  /> + Pul   <img alt='Pul'   src='runes/pul.png'  /> + Perfect Emerald <img alt='perfect emerald' src='gems/emerald_perfect.png'/></span></td></tr>
-                <tr><td class='tooltip k22'>Ko  + Lem   + Perfect Diamond + Exceptional Unique Armor  &rarr;  Elite Verson of Armor        <span class='tool ttk'>Ko  <img src='runes/ko.png'   /> + Lem   <img alt='Lem'   src='runes/lem.png'  /> + Perfect Diamond <img alt='perfect diamond'  src='gems/diamond_perfect.png' /></span></td></tr>
-            </table>
-        </td>
-        <td class='ios-hidden'>
-            <table class='head'>
-                <tr class='gt gb'><th>Act Nearest wp        Zone            <a href='https://diablo2.diablowiki.net/Guide:Level_85_Magic_Find_Areas_v1.10'>85 alvl (TC 84)</a> #Packs Immunity</th></tr>
-                <tr><td class='tooltip'> 1  Cold Plains       Burial Grounds  Mausoleum          4-5 <span class='padd'>.</span><span class='padd'>.</span><span class='resl'>L</span><span class='padd'>.</span><span class='padd'>.</span><span class='padd'>.</span></td></tr>
-                <tr><td class='tooltip'> 1  Outer Cloister    Tamoe Highland  Pit Level 1        6-8 <span class='resf'>F</span><span class='resc'>C</span><span class='resl'>L</span><span class='padd'>.</span><span class='padd'>.</span><span class='padd'>.</span></td></tr>
-                <tr><td class='tooltip'> 1  Outer Cloister    Tamoe Highland  Pit Level 2        2-3 <span class='resf'>F</span><span class='resc'>C</span><span class='resl'>L</span><span class='padd'>.</span><span class='padd'>.</span><span class='padd'>.</span></td></tr>
-                <tr><td class='tooltip'> 2  Far Oasis         Far Oasis       Maggot Lair 3      4-5 <span class='padd'>.</span><span class='padd'>.</span><span class='resl'>L</span><span class='resp'>P</span><span class='resh'>p</span><span class='padd'>.</span></td></tr>
-                <tr><td class='tooltip'> 2  Lost City         Lost City       Ancient Tunnels    6-8 <span class='resf'>F</span><span class='padd'>.</span><span class='resl'>L</span><span class='resp'>P</span><span class='resh'>p</span><span class='resm'>m</span></td></tr>
-                <tr><td class='tooltip'> 3  Upper Kurast      Upper Kurast    Forgotten Temple   2-2 <span class='resf'>F</span><span class='resc'>C</span><span class='resl'>L</span><span class='padd'>.</span><span class='padd'>.</span><span class='padd'>.</span></td></tr>
-                <tr><td class='tooltip'> 3  Upper Kurast      Kurast Causeway Ruined Fane        2-2 <span class='resf'>F</span><span class='resc'>C</span><span class='resl'>L</span><span class='padd'>.</span><span class='padd'>.</span><span class='padd'>.</span></td></tr>
-                <tr><td class='tooltip'> 3  Upper Kurast      Kurast Causeway Disused Reliquary  2-2 <span class='resf'>F</span><span class='resc'>C</span><span class='resl'>L</span><span class='padd'>.</span><span class='padd'>.</span><span class='padd'>.</span></td></tr>
-                <tr><td class='tooltip'> 4  River of Flame          --        River of Flame     6-7 <span class='resf'>F</span><span class='resc'>C</span><span class='resl'>L</span><span class='resp'>P</span><span class='padd'>.</span><span class='padd'>.</span></td></tr>
-                <tr><td class='tooltip'> 4  River of Flame          --        Chaos Sanctuary    6-7 <span class='resf'>F</span><span class='resc'>C</span><span class='resl'>L</span><span class='padd'>.</span><span class='padd'>.</span><span class='padd'>.</span></td></tr>
-                <tr><td class='tooltip'> 5  Worldstone Keep 2       --        Worldstone Keep 1  6-8 <span class='resf'>F</span><span class='resc'>C</span><span class='resl'>L</span><span class='padd'>.</span><span class='padd'>.</span><span class='padd'>.</span></td></tr>
-                <tr><td class='tooltip'> 5  Worldstone Keep 2       --        Worldstone Keep 2  6-8 <span class='resf'>F</span><span class='resc'>C</span><span class='resl'>L</span><span class='resp'>P</span><span class='padd'>.</span><span class='resm'>m</span></td></tr>
-                <tr><td class='tooltip'> 5  Worldstone Keep 2       --        Worldstone Keep 3  6-8 <span class='resf'>F</span><span class='resc'>C</span><span class='resl'>L</span><span class='resp'>P</span><span class='resh'>p</span><span class='resm'>m</span></td></tr>
-                <tr><td class='tooltip'> 5  Worldstone Keep 2       --        Throneroom         6-8 <span class='resf'>F</span><span class='resc'>C</span><span class='resl'>L</span><span class='resp'>P</span><span class='resh'>p</span><span class='resm'>m</span></td></tr>
-            </table>
-        </td>
-    </tr>
-</table>
-<br>
 <!-- ========== ========== ========== ========== Runewords ========== ========== ========== ========== -->
 <table id='RuneWords'>
     <tr class='rt rb'><th><div><span class='rwu' id='btnRuneWordSuperior'><span onclick='onSortRuneWordsBySuperior();'>S</span></span> <span class='rwu' id='btnRuneWordNames'><span onclick='onSortRuneWordsByName();'>Name</span></span>          <span class='rwu' id='btnRuneWordSockets'><span onclick='onSortRuneWordsBySocket();'>Sockets</span></span>  <span class='rwu' id='btnRuneWordType'><span onclick='onSortRuneWordsByType();'>Type</span></span>              <span class='rwu' id='btnRuneWordOwned'><span onclick='onSortRuneWordsByOwned();'>Owned</span></span> <span class='rwu' id='btnRuneWordMats1'><span onclick='onSortRuneWordsByMats(1);'>Runes</span></span>   <span class='rwu' id='btnRuneWordMats2'><span onclick='onSortRuneWordsByMats(2);'>#2</span></span>      <span class='rwu' id='btnRuneWordMats3'><span onclick='onSortRuneWordsByMats(3);'>#3</span></span>     <span class='rwu' id='btnRuneWordMats4'><span onclick='onSortRuneWordsByMats(4);'>#4</span></span>    <span class='rwu' id='btnRuneWordMats5'><span onclick='onSortRuneWordsByMats(5);'>#5</span></span>    <span class='rwu' id='btnRuneWordMats6'><span onclick='onSortRuneWordsByMats(6);'>#6</span></span>  <span class='rwu' id='btnRuneWordLevel'><span onclick='onSortRuneWordsByLevel();'>Lev</span></span>  <span class='rws' id='btnRuneWordVersion'><span onclick='onSortRuneWordsByVersion();'>Version</span></span></div></th></tr>
