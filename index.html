@@ -98,6 +98,15 @@
     }
 
 
+/* ----- padding ----- */
+
+    /* Resist spacer */
+    .padd
+    {
+        color           : #FFF;
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
 
 /* ----- Spans ----- */
 
@@ -234,6 +243,77 @@
         color: #d8b864;
     }
 
+    /* Resist All */
+    span.resa
+    {
+        /* 800 080 00C */
+        /* #b55d59, #6e79b9, #f2e8a0, #57cf49 */
+        background-image: linear-gradient(to right, #80423f, #4c5380, #807a54, #36802d);
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
+    /* Cold Resist % */
+    span.resc
+    {
+        background-color: #6e79b9;
+        color           : #FFF;
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
+    /* Fire Resist % */
+    span.resf
+    {
+        background-color: #b55d59;
+        color           : #FFF;
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
+    /* Physical Resist % */
+    span.resh
+    {
+        background-color: #b8a886;
+        color           : #FFF;
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
+    /* Lightning Resist % */
+    span.resl
+    {
+        background-color: #f2e8a0;
+        color           : #000;
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
+    /* Magic Resist % */
+    span.resm
+    {
+        background-color: #c1893f;
+        color           : #FFF;
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
+    /* Poison Resist % */
+    span.resp
+    {
+        background-color: #57cf49;
+        color           : #FFF;
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
+    /* Inverse */
+    span.rev
+    {
+        background-color: #FFF;
+        color           : #000;
+    }
+
     span.rot90
     {
         display  : inline-block;
@@ -251,106 +331,19 @@
         background-image: linear-gradient(to right, #08F, #008);
     }
 
-/* Resist spacer */
-.padd
-{
-/*
-    background-color: #F0F;
-*/
-    color           : #FFF;
-    padding-left    : 2px;
-    padding-right   : 2px;
-}
-
-/* Cold Resist % */
-span.resc
-{
-    background-color: #6e79b9;
-    color           : #FFF;
-    padding-left    : 2px;
-    padding-right   : 2px;
-}
-
-/* Fire Resist % */
-span.resf
-{
-    background-color: #b55d59;
-    color           : #FFF;
-    padding-left    : 2px;
-    padding-right   : 2px;
-}
-
-/* Physical Resist % */
-span.resh
-{
-    background-color: #b8a886;
-    color           : #FFF;
-    padding-left    : 2px;
-    padding-right   : 2px;
-}
-
-/* Poison Resist % */
-span.resp
-{
-    background-color: #57cf49;
-    color           : #FFF;
-    padding-left    : 2px;
-    padding-right   : 2px;
-}
-
-/* Magic Resist % */
-span.resm
-{
-    background-color: #c1893f;
-    color           : #FFF;
-    padding-left    : 2px;
-    padding-right   : 2px;
-}
-
-/* Lightning Resist % */
-span.resl
-{
-    background-color: #f2e8a0;
-    color           : #000;
-    padding-left    : 2px;
-    padding-right   : 2px;
-}
-
-/* Resist All */
-span.resa
-{
-    /* 800 080 00C */
-    /* #b55d59, #6e79b9, #f2e8a0, #57cf49 */
-    background-image: linear-gradient(to right, #80423f, #4c5380, #807a54, #36802d);
-    padding-left    : 2px;
-    padding-right   : 2px;
-}
-
     span.unq
     {
         color: #948064;
     }
 
-/* Inverse */
-span.rev
-{
-    background-color: #FFF;
-    color           : #000;
-}
 
-/* Span Borders for Selected/Unselected */
+/* ----- Span Borders for Selected/Unselected ----- */
+
     /* Header Runes */
     span.sel
     {
         background-color: #666;
         border          : 1px solid #08F;
-        color           : orange;
-    }
-
-    span.unsel
-    {
-        background-color: #000;
-        border          : 1px solid #000;
         color           : orange;
     }
 
@@ -367,6 +360,13 @@ span.rev
     {
         background-color: #000;
         color           : #FF8; /* FF8 FFB Softer yellow */
+    }
+
+    span.unsel
+    {
+        background-color: #000;
+        border          : 1px solid #000;
+        color           : orange;
     }
 
 /* ---------- Table ---------- */
