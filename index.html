@@ -369,6 +369,12 @@ span.rev
     }
 
 /* ---------- Table ---------- */
+
+    .column2
+    {
+        margin-left: 55px;
+    }
+
 table.head
 {
     border         : 0;
@@ -629,6 +635,7 @@ td
 }
 
 /* ----- Device ----- */
+
     .ios-hidden
     {
         display: block;
@@ -650,6 +657,12 @@ td
     .ios-visible
     {
         display: block;
+    }
+
+    /* Spacer between FCR/FHR/FBR and Runes */
+    .column2
+    {
+        margin-left: 55px;
     }
 
     /* Single Column */
@@ -685,18 +698,20 @@ td
     }
 }
 
-a:visited
-{
-    color          : #08F;
-    text-decoration: none;
-}
+/* ----- General ----- */
 
-a:link
-{
-    color          : #8F8;
-    text-decoration: none;
-    font-weight    : bold
-}
+    a:visited
+    {
+        color          : #08F;
+        text-decoration: none;
+    }
+
+    a:link
+    {
+        color          : #8F8;
+        text-decoration: none;
+        font-weight    : bold
+    }
 
     /* Runeword description: type (Shields, etc) */
     b
@@ -704,26 +719,26 @@ a:link
         color: #FF8; /* Softer yellow */
     }
 
-body
-{
-    -webkit-text-size-adjust: none; /* stop iOS from resizing th even though font size is specified */
-    color           : #fff;
-    background-color: #000;
-    font-family     : Consolas, Menlo, Monaco, Lucida Console, monospace;
-    font-size       : 16px;
-    width           : 1300px; /* Obediance */
-    max-width       : 1300px;
-/*
-    overflow-x      : hidden;
-*/
-    overflow-y      : scroll;
-}
+    body
+    {
+        -webkit-text-size-adjust: none; /* stop iOS from resizing th even though font size is specified */
+        color           : #fff;
+        background-color: #000;
+        font-family     : Consolas, Menlo, Monaco, Lucida Console, monospace;
+        font-size       : 16px;
+        width           : 1300px; /* Obediance */
+        max-width       : 1300px;
+    /*
+        overflow-x      : hidden;
+    */
+        overflow-y      : scroll;
+    }
 
-div.c
-{
-    display       : inline-block;
-    vertical-align: middle;
-}
+    div.c
+    {
+        display       : inline-block;
+        vertical-align: middle;
+    }
 
 /* ----- Images ----- */
     img
@@ -1598,7 +1613,7 @@ function updateRuneWordsVisible()
                     </td></tr>
                 </table>
         </td>
-        <td style='width:600px;margin-left:55px;' class='ios-hidden'>
+        <td class='column2' style='width:600px;' class='ios-hidden'>
             <table class='head' id='table.runes1'>
 <tr class='bt bb'><th><span style='color:#fff'>Chests</span>  <span id ='xl_RunesSelect0' class='unsel'><span onclick='onToggleAllRunes(0);'>None</span></span>/<span class='sel' id='xl_RunesSelect1'><span onclick='onToggleAllRunes(1);'>All</span></span> <a href='http://classic.battle.net/diablo2exp/items/cube.shtml'>Upgrading</a> <a href='http://classic.battle.net/diablo2exp/items/runes.shtml'>Runes</a>                     <button onclick='onCollapse(this,"table.runes1");'>[-]</button></th></tr>
 <tr><td class='runetip'><div class='c'><span class='rev'>Act1</span> <span class='noterune'>No runes from chests</span>; <span class='farm'>farm Countess</span                                                                                      >   <div class='c'><img class='blank30x30'></div>    </div></td></tr>
