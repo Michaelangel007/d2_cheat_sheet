@@ -41,32 +41,53 @@
  * Add Commonly upgraded uniques to _Upping Uniques_
 
 ```
-    Arreat's Face : 504 (756)
-    Crown of Thieves : 495 (741)
-    Jalal's Mane : 477
-    Kira's Guardian : 180 (210)
-    Vampire Gaze : 314 (470)
+    Belts
+    Sash               Demonhide Sash       Spiderweb Sash
+    Light Belt         Sharkskin Belt       Vampirefang Belt
+    Belt               Mesh Belt            Mithril Coil
+    Heavy Belt         Battle Belt          Troll Belt
+    Plated Belt        War Belt             Colossus Girdle
 
-    Twitchthroe : 178 / 506
+    <b>Body Armor</b>
+    Quilted Armor       Ghost Armor         Dusk Shroud
+    Leather Armor       Serpentskin Armor   Wyrmhide
+    Hard Leather Armor  Demonhide Armor     Scarab Husk
+    Studded Leather     Trellised Armor     Wire Fleece
+
+    <b>Belts</b>
+    Goldwrap (normal, Heavy Belt): 92 / 130
+
+    <b>Body Armor</b>
+    Guardian Angel        : 1590 (2385)
+    Shaftstop             : 1616 (2422)
     Skin of the Vipermagi : 1034
-    Shaftstop : 1616 (2422)
-    Guardian Angel : 1590 (2385)
+    Twitchthroe           : 178 / 506
 
+    <b>Boots</b>
+    Goblin Toe   : 90 / 123
+    Gore Rider   : 213
+    Hotspur      : 48 / 80
+    Infernostride: 170
+    Waterwalk    : 201
+
+    <b>Gloves</b>
+    Bloodfist    : 56 / 88
+    Magefist     : 71 / 98
+    Chance Guards: 72 / 102
+    Frostburn    : 93 / 115
+
+    <b>Helms</b>
+    Arreat's Face    : 504 (756)
+    Crown of Thieves : 495 (741)
+    Jalal's Mane     : 477
+    Kira's Guardian  : 180 (210)
+    Vampire Gaze     : 314 (470)
+
+    <b>Shields</b>
     Herald of Zakarum : 579 (867)
-    Homunculus : 444
+    Homunculus        : 444
 
-    Bloodfist : 56 / 88
-    Magefist : 71 / 98
-    Chance Guards : 72 / 102
-    Frostburn : 93 / 115
 
-    Goldwrap : 92 / 130
-
-    Hotspur : 48 / 80
-    Goblin Toe : 90 / 123
-    Infernostride : 170
-    Waterwalk : 201
-    Gore Rider : 213
 ```
  * Add map layout hints -- see https://docs.google.com/spreadsheets/d/1UQP7PjHgCJWN-s42bUtGsR18f9GNh7JJ15QE7D6CnHE/edit#gid=0
  * Customize yellow hover color
@@ -76,4 +97,4 @@
  * Collapse all button -- pisseningly
  * Table header pop-up instructions --  -- pisseningly
 
-Last Updated: Sep 16, 2021
+Last Updated: Sep 17, 2021
