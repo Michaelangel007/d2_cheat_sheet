@@ -1029,6 +1029,9 @@ var RECIPES = [
     "* Treachery           3  Body Armor              Shael + Thul  + Lem                     43  1.11"
 ];
 
+    const FACE     = [ '-', '+' ], // Button collapse faces
+        COLLAPSE = [ 'Collapse', 'Expand' ];
+
 // Globals
     var gaAvailableRunes = [],
 
@@ -1278,22 +1281,6 @@ function getScreenSize()
     return null;
 }
 
-function onLoad()
-{
-    onResize();
-
-    // iOS touch / hover
-    document.addEventListener("touchstart", function() {},false);
-
-    gaAvailableRunes = new Array( RUNES.length );
-    gaAvailableRunes.fill(1);
-
-    initRunewordTables();
-}
-
-    var FACE     = [ '-', '+' ], // Button collapse faces
-        COLLAPSE = [ 'Collapse', 'Expand' ];
-
 function onCollapse( self, id )
 {
     self.collapsed = !!!self.collapsed;
@@ -1336,6 +1323,25 @@ function onColor()
         elem.disabled = true;
         document.getElementById('syntax_mono').disabled = false;
     }
+}
+
+function onLoad()
+{
+    onResize();
+
+    // iOS touch / hover
+    document.addEventListener("touchstart", function() {},false);
+
+    gaAvailableRunes = new Array( RUNES.length );
+    gaAvailableRunes.fill(1);
+
+    initRunewordTables();
+
+    var btn = document.getElementById( 'btn_collapse_sockitems' );
+        btn.collapsed = true;
+
+    // Sorting by Ladder really isn't useful any more
+    onSortRuneWordsByOwned();
 }
 
 function onMono()
