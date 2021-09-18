@@ -528,6 +528,40 @@ td
     cursor          : pointer;
 }
 
+    .runetip .runehelp1
+    {
+        background-color: #123;
+        border          : 1px solid #08F;
+        border-radius   : 4px;
+        color           : #ddd;
+        font-family     : sans-serif;
+        font-size       : 14px;
+        padding         : 5px 0;
+        position        : absolute;
+        text-align      : center;
+        visibility      : hidden;
+        width           : 280px; /* Ist */
+        white-space     : normal; /* runetip has pre */
+        z-index         : 1;
+    }
+
+    .runetip .runehelp2
+    {
+        background-color: #123;
+        border          : 1px solid #08F;
+        border-radius   : 4px;
+        color           : #ddd;
+        font-family     : sans-serif;
+        font-size       : 14px;
+        padding         : 5px 0;
+        position        : absolute;
+        text-align      : center;
+        visibility      : hidden;
+        width           : 280px; /* Ist */
+        white-space     : normal; /* runetip has pre */
+        z-index         : 1;
+    }
+
 .runetip .gemtext
 {
     background-color: #123;
@@ -541,8 +575,28 @@ td
     text-align      : center;
     visibility      : hidden;
     width           : 280px; /* Ist */
+    white-space     : pre; /* see .gemhelp and gemtext */
     z-index         : 1;
 }
+
+    /* Column 1 */
+    .runetip:hover .runehelp1
+    {
+        cursor    : pointer;
+        left      : 185px; /* Single Column:  32,  185 */
+        top       : 32px;  /* Multi  column: -32, -285 */
+        visibility: visible;
+    }
+
+    /* Column 2 */
+    .runetip:hover .runehelp2
+    {
+        cursor    : pointer;
+        left      : -285px; /* Single Column: 32,  185 */
+        top       :    0px; /* Multi  column:  0, -285 */
+        visibility: visible;
+    }
+
 
 .runetip:hover .gemtext
 {
@@ -551,7 +605,6 @@ td
     top       :    0px; /* Multi  column:  0, -285 */
     visibility: visible;
 }
-
 
 .runetype
 {
@@ -1645,11 +1698,35 @@ function updateRuneWordsVisible()
                 </tr>
             </table>
         </td>
-        <td class='column2 ios-hidden' style='width:600px;' >
-            <table class='head' id='table.runes1'>
-<tr class='bt bb'><th class='runetip' style='height:auto;'><span style='color:#fff'>Chests</span>  <span id ='xl_RunesSelect0' class='unsel'><span onclick='onToggleAllRunes(0);'>None</span></span>/<span class='sel' id='xl_RunesSelect1'><span onclick='onToggleAllRunes(1);'>All</span></span> <a href='http://classic.battle.net/diablo2exp/items/cube.shtml'>Upgrading</a> <a href='http://classic.battle.net/diablo2exp/items/runes.shtml'>Runes</a>                     <button onclick='onCollapse(this,"table.runes1");'>-</button><span class='gemtext'><b>Instructions</b><br><br>Chests</b> = minimum act/area<br>for chests to drop this rune<br><br>Click on rune <b>icon</b> to toggle owning<br>Click <span class='rune'>None</span> to own no runes<br>Click <span class='rune'>All</span> to own all runes<br><br><b>Rune Farming</b><br><span class='farm'>Farming</span> means repeating:<br>new game, kill boss, leave game<br><br><span class='rune'>LK</span> = Act 3 Lower Kurast chests<br><span class='farm'>Countess</span> = Act 1 Black Marsh, Tower<br><span class='farm'>Mephisto</span> = Act 3 Durance of Hate 3<br><span class='farm'>Baal</span> = Throne of Destruction<br></span></th></tr>
-<tr><td class='runetip'><div class='c'><span class='rev'>Act1</span> <span class='noterune'>No runes from chests</span>; <span class='farm'>farm Countess</span                                                                                      >   <div class='c'><img class='blank30x30'></div>    </div></td></tr>
-<tr><td class='runetip'><div class='c'                  >A2   3x <span class='rune'       >El   </span> </div><div class='c' id='r1' ><img alt='El'    src='runes/el.png'    onclick='onToggleRune( 1);'/></div><div class='c'><span class='n'>r01</span></div><div class='c'>                     </div><div class='c'><img class='blank30x30'                                      /></div><div class='c'> &rarr; Eld   </div><div class='c' id='u2' ><img onclick='onToggleRune( 2);' alt='Eld'   src='runes/eld.png'  /></div><span class='gemtext'>
+        <td class='column2 ios-hidden'>
+            <table class='head' id='table.runes2'>
+<tr class='bt bb'><th class='runetip' style='height:auto;'><span style='color:#fff'>Chests</span> <span id ='xl_RunesSelect0' class='unsel'><span onclick='onToggleAllRunes(0);'>None</span></span>/<span class='sel' id='xl_RunesSelect1'><span onclick='onToggleAllRunes(1);'>All</span></span> <a href='http://classic.battle.net/diablo2exp/items/cube.shtml'>Upgrading</a> <a href='http://classic.battle.net/diablo2exp/items/runes.shtml'>Runes</a>                      <button onclick='onCollapse(this,"table.runes2");'>-</button>
+<span class='runehelp2'><b>Instructions</b><br>
+<br>
+To <b>upgrade</b> a rune to the next tier up:<br>
+put runes (and gems) into cube<br>
+<br>
+<b>Runewords</b><br>
+Runewords (below) are dynamic<br>
+based on what runes you "own"<br>
+Click on rune <b>icon</b> to toggle owning<br>
+Click <span class='rune'>None</span> to own no runes<br>
+Click <span class='rune'>All</span> to own all runes<br>
+<br>
+<b>Rune Farming</b><br>
+<span class='farm'>Farming</span> means repeatedly:<br>
+new game, kill boss/chest, leave game<br>
+<br>
+<span class='farm'>Chests</span> = minimum act/area<br>
+for chests to drop this rune<br>
+<span class='rune'>LK</span> = Act 3 Lower Kurast chests<br>
+<br>
+<span class='farm'>Countess</span> = Act 1 Black Marsh, Tower<br>
+<span class='farm'>Mephisto</span> = Act 3 Durance of Hate 3<br>
+<span class='farm'>Baal</span> = Throne of Destruction<br>
+</span></th></tr>
+<tr><td class='runetip'><div class='c'><span class='rev'>Act1</span> <span class='noterune'><span class='y'>0</span> runes from chests</span>; <span class='farm'>farm Countess</span                                                                                      >   <div class='c'><img class='blank30x30'></div>    </div></td></tr>
+<tr><td class='runetip'><div class='c'                  >A2  <meta/> <span class='x'>3</span> <span class='rune'       >El   </span> </div><div class='c' id='r1' ><img alt='El'    src='runes/el.png'    onclick='onToggleRune( 1);'/></div><div class='c'><span class='n'>r01</span></div><div class='c'>                     </div><div class='c'><img class='blank30x30'                                      /></div><div class='c'> &rarr; Eld   </div><div class='c' id='u2' ><img onclick='onToggleRune( 2);' alt='Eld'   src='runes/eld.png'  /></div><span class='gemtext'>
  <span class='runetype'>Weapons</span>
  +50 to Attack Rating
  +1 to Light Radius
@@ -2158,10 +2235,34 @@ function updateRuneWordsVisible()
                 <tr><td class='tooltip'> 5  Worldstone Keep 2       --        Throneroom         6-8 <span class='resf'>F</span><span class='resc'>C</span><span class='resl'>L</span><span class='resp'>P</span><span class='resh'>p</span><span class='resm'>m</span></td></tr>
             </table>
 <br>
-            <table class='head ios-runes' id='table.runes2'>
-<tr class='bt bb'><th class='runetip' style='height:auto;><span style='color:#fff'>Chests</span>  <span id ='md_RunesSelect0' class='unsel'><span onclick='onToggleAllRunes(0);'>None</span></span>/<span class='sel' id='md_RunesSelect1'><span onclick='onToggleAllRunes(1);'>All</span></span> <a href='http://classic.battle.net/diablo2exp/items/cube.shtml'>Upgrading</a> <a href='http://classic.battle.net/diablo2exp/items/runes.shtml'>Runes</a>                     <button onclick='onCollapse(this,"table.runes2");'>-</button><span class='gemtext'><b>Instructions</b><br><br>Chests</b> = minimum act/area<br>for chests to drop this rune<br><br>Click on rune <b>icon</b> to toggle owning<br>Click <span class='rune'>None</span> to own no runes<br>Click <span class='rune'>All</span> to own all runes<br><br><b>Rune Farming</b><br><span class='farm'>Farming</span> means repeating:<br>new game, kill boss, leave game<br><br><span class='rune'>LK</span> = Act 3 Lower Kurast chests<br><span class='farm'>Countess</span> = Act 1 Black Marsh, Tower<br><span class='farm'>Mephisto</span> = Act 3 Durance of Hate 3<br><span class='farm'>Baal</span> = Throne of Destruction<br></span></th></tr></th></tr>
-<tr><td class='runetip'><div class='c'><span class='rev'>Act1</span> <span class='noterune'>No runes from chests</span>; <span class='farm'>farm Countess</span                                                                                      >  <div class='c'><img class='blank30x30'></div>     </div></td></tr>
-<tr><td class='runetip'><div class='c'                  >A2   3x <span class='rune'       >El   </span> </div><div class='c' id='s1' ><img alt='El'    src='runes/el.png'    onclick='onToggleRune( 1);'/></div><div class='c'><span class='n'>r01</span></div><div class='c'>                     </div><div class='c'><img class='blank30x30'                                      /></div><div class='c'> &rarr; Eld   </div><div class='c' id='v2' ><img onclick='onToggleRune( 2);' alt='Eld'   src='runes/eld.png'  /></div><span class='gemtext'>
+            <table class='head ios-runes' id='table.runes1'>
+<tr class='bt bb'><th class='runetip' style='height:auto;><span style='color:#fff'>Chests</span>  <span id ='md_RunesSelect0' class='unsel'><span onclick='onToggleAllRunes(0);'>None</span></span>/<span class='sel' id='md_RunesSelect1'><span onclick='onToggleAllRunes(1);'>All</span></span> <a href='http://classic.battle.net/diablo2exp/items/cube.shtml'>Upgrading</a> <a href='http://classic.battle.net/diablo2exp/items/runes.shtml'>Runes</a>                     <button onclick='onCollapse(this,"table.runes1");'>-</button>
+<span class='runehelp1'><b>Instructions</b><br>
+<br>
+To <b>upgrade</b> a rune to the next tier up:<br>
+put runes (and gems) into cube<br>
+<br>
+<b>Runewords</b><br>
+Runewords (below) are dynamic<br>
+based on what runes you "own"<br>
+Click on rune <b>icon</b> to toggle owning<br>
+Click <span class='rune'>None</span> to own no runes<br>
+Click <span class='rune'>All</span> to own all runes<br>
+<br>
+<b>Rune Farming</b><br>
+<span class='farm'>Farming</span> means repeatedly:<br>
+new game, kill boss/chest, leave game<br>
+<br>
+<span class='farm'>Chests</span> = minimum act/area<br>
+for chests to drop this rune<br>
+<span class='rune'>LK</span> = Act 3 Lower Kurast chests<br>
+<br>
+<span class='farm'>Countess</span> = Act 1 Black Marsh, Tower<br>
+<span class='farm'>Mephisto</span> = Act 3 Durance of Hate 3<br>
+<span class='farm'>Baal</span> = Throne of Destruction<br>
+</span></th></tr>
+<tr><td class='runetip'><div class='c'><span class='rev'>Act1</span> <span class='noterune'><span class='y'>0</span> runes from chests</span>; <span class='farm'>farm Countess</span                                                                                      >   <div class='c'><img class='blank30x30'></div>    </div></td></tr>
+<tr><td class='runetip'><div class='c'                  >A2  <meta/> <span class='x'>3</span> <span class='rune'       >El   </span> </div><div class='c' id='r1' ><img alt='El'    src='runes/el.png'    onclick='onToggleRune( 1);'/></div><div class='c'><span class='n'>r01</span></div><div class='c'>                     </div><div class='c'><img class='blank30x30'                                      /></div><div class='c'> &rarr; Eld   </div><div class='c' id='u2' ><img onclick='onToggleRune( 2);' alt='Eld'   src='runes/eld.png'  /></div><span class='gemtext'>
  <span class='runetype'>Weapons</span>
  +50 to Attack Rating
  +1 to Light Radius
