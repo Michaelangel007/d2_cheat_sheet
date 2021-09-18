@@ -97,5 +97,6 @@
  * url param to keep state of collapsed tables
  * Collapse all button -- pisseningly
  * Table header pop-up instructions --  -- pisseningly
+ * Diminishing MF -- gekido2802 -- https://diablo2.diablowiki.net/Magic_find_diminishing_returns
 
 Last Updated: Sep 18, 2021
