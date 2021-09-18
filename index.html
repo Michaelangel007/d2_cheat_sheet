@@ -370,6 +370,16 @@
 
 /* ---------- Table ---------- */
 
+    .debug
+    {
+        border: 1px dotted cyan;
+    }
+
+    .column1
+    {
+        min-width: 730px; /* for mobile */
+    }
+
     .column2
     {
         margin-left: 35px;
@@ -1574,7 +1584,7 @@ function updateRuneWordsVisible()
 <body onload='onLoad();' onresize='onResize();'><div id='content' ontouchstart>
 <table class='head'>
     <tr>
-        <td class='vatop' style='width:740px;'>
+        <td class='vatop column1'>
             <span style='font-size:18px;'><i>Diablo 2</i> <a href='https://github.com/Michaelangel007/d2_cheat_sheet'>Cheat Sheet</a></span>
             <span style='font-size:14px;'> by <i>Michaelangel007</i></span> <img alt='m007' src='pics/m007.png'> <i><a href='https://www.reddit.com/user/MysticReddit'>/u/MysticReddit</a></i>
 <button type='button' id='syntax_mono'           onclick='onMono()       ;'>Mono</button>
@@ -1600,7 +1610,7 @@ function updateRuneWordsVisible()
 <tr class='bt'           ><th>Frames  23  22  21  20  19  18  17  16  15   14   13   12   11   10    9    8    7</th></tr>
             </table>
             <br>
-            <table class='head' style='min-width:730px' id='table.fhr'>
+            <table class='head column2' id='table.fhr'>
 <tr class='gt gb'        ><th><span class='g'>Faster Hit Recovery (<span class='fhr'>FHR</span>)</span>                                                      <button onclick='onCollapse(this,"table.fhr");'>-</button>
 <meta                       />Frames   17  16  15  14  13  12  11  10   9   8    7    6    5    4    3    2    1</th></tr>
 <tr><td class='tooltip k11'  >Ama                               0   6  13  20   32   52   86  174  600          </td></tr>
@@ -1622,7 +1632,7 @@ function updateRuneWordsVisible()
 <tr class='gt'           ><th>Frames   17  16  15  14  13  12  11  10   9   8    7    6    5    4    3    2    1</th></tr>
             </table>
             <br>
-            <table class='head' style='min-width:730px' id='table.fbr'>
+            <table class='head column2' id='table.fbr'>
 <tr class='rt rb'        ><th><span class='r'>Faster Block Rate (<span class='fbr'>FBR</span>)</span>           Block% = (Shield% * (Dex - 15)) / (clvl * 2) <button onclick='onCollapse(this,"table.fbr");'>-</button>
 <meta                       />Frames   17  16  15  14  13  12  11  10   9   8    7    6    5    4    3    2    1</th></tr>
 <tr><td class='tooltip k22'  >Ama 1H*   0   4   6  11  15  23  29  40  56  80  120  200  480                    <span class='tool ttr'><b>Includes:</b><br><br> 1H axes and throwing axes,<br> clubs,<br> 1H maces, <br> orbs,<br> scepters, <br> 1H swords, 2H swords wielded in one hand,<br> and wands.</span></td></tr>
@@ -1640,7 +1650,7 @@ function updateRuneWordsVisible()
 <tr class='rt'           ><th>Frames   17  16  15  14  13  12  11  10   9   8    7    6    5    4    3    2    1</th></tr>
             </table>
 <br>
-            <table class='head' style='width:740px'>
+            <table class='head column1' style='width:740px'>
                 <tr  >
                     <td style='width:45%;'>
                         <table class='head' style='width:100%;'>
