@@ -1394,10 +1394,12 @@ function onToggleRune( index )
     updateRuneWordsVisible();
 }
 
+// Runeword table row or Rune image
 function setElementVisible( elem, vis )
 {
-    if   ( vis ) { elem.style.opacity = '100%'; elem.style.zIndex =  '2'; }
-    else         { elem.style.opacity =  '50%'; elem.style.zIndex = '-1'; }
+    if   ( vis ) { elem.style.filter = ''               ; }
+    else         { elem.style.filter = 'brightness(50%)'; }
+
 }
 
 function setRuneVisibility( rune, owned )
