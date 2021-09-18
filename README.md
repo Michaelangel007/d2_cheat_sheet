@@ -30,13 +30,14 @@
  * Yellow highlight hover row pointer for all tables
  * Monochrome/Color buttons
  * Lots of handy links to utils, calculators, etc.
+ * Tool-tip instructions for Runes
+ * Crafted Gear recipes
 
 
 # Wishlist
 
  * Add socket table -- Credit: soupsticle  -- https://diablo2.diablowiki.net/Sockets#Sockets_by_Number
  * Add Gambling odds -- Credit: LivEisJeebus -- https://www.reddit.com/r/diablo2/comments/pmv4u3/my_diablo_2_cheat_sheet/hcm485n/
- * Add Crafted Recipes -- http://classic.battle.net/diablo2exp/items/crafted/blood.shtml
  * Add shopping ilvl for Acts.
  * Add Commonly upgraded uniques to _Upping Uniques_
 
