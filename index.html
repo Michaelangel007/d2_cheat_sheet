@@ -390,9 +390,10 @@
         margin-left: 35px;
     }
 
-    .ios-runes
+    /* Extracted from runetip */
+    .desk-runes2
     {
-        width: 600px; /* 700 Too wide */
+        width: 505px;
     }
 
     .pre
@@ -531,7 +532,6 @@ td
 {
     display       : inline-block;
     position      : relative;
-    width         : 505px;
     height        : 30px;
     white-space   : pre;
 }
@@ -730,6 +730,11 @@ td
     .ios-hidden
     {
         display: none;
+    }
+
+    .ios-runes1
+    {
+        width: 550px; /* 600 Too wide */
     }
 
     .ios-visible
@@ -1721,7 +1726,7 @@ function updateRuneWordsVisible()
                 </tr>
             </table>
         </td>
-        <td class='column2 ios-hidden'>
+        <td class='column2 ios-hidden desk-runes2'>
             <table class='head' id='table.runes2'>
 <tr class='bt bb'><th class='runetip' style='height:auto;'><span style='color:#fff'>Chests</span> <span id ='xl_RunesSelect0' class='unsel'><span onclick='onToggleAllRunes(0);'>None</span></span>/<span class='sel' id='xl_RunesSelect1'><span onclick='onToggleAllRunes(1);'>All</span></span> <a href='http://classic.battle.net/diablo2exp/items/cube.shtml'>Upgrading</a> <a href='http://classic.battle.net/diablo2exp/items/runes.shtml'>Runes</a>                        <button onclick='onCollapse(this,"table.runes2");'>-</button>
 <span class='runehelp2'><b>Instructions</b><br>
@@ -2265,7 +2270,7 @@ for chests to drop this rune<br>
                 <tr><td class='tooltip'> 5  Worldstone Keep 2       --        Throneroom         6-8 <span class='resf'>F</span><span class='resc'>C</span><span class='resl'>L</span><span class='resp'>P</span><span class='resh'>p</span><span class='resm'>m</span></td></tr>
             </table>
 <br>
-            <table class='head ios-runes' id='table.runes1'>
+            <table class='head ios-runes1' id='table.runes1'>
 <tr class='bt bb'><th class='runetip' style='height:auto;><span style='color:#fff'>Chests</span>  <span id ='md_RunesSelect0' class='unsel'><span onclick='onToggleAllRunes(0);'>None</span></span>/<span class='sel' id='md_RunesSelect1'><span onclick='onToggleAllRunes(1);'>All</span></span> <a href='http://classic.battle.net/diablo2exp/items/cube.shtml'>Upgrading</a> <a href='http://classic.battle.net/diablo2exp/items/runes.shtml'>Runes</a>                     <button onclick='onCollapse(this,"table.runes1");'>-</button>
 <span class='runehelp1'><b>Instructions</b><br>
 <br>
