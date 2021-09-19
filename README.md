@@ -6,32 +6,40 @@
 
  * Readable on desktop and mobile
  * Interactive -- tooltips for runes and runewords
+   * Yellow highlight hover row pointer for all tables
  * click on runes to toggle "rune ownership"
    * Clean visual rune upgrades
-   * Hover over rune to see benefits
+   * Hover over rune to see details
    * Rune chest dropping and farming info
+   * Hover/touch rune header for rune instructions
  * Sortable runeword table
-   * Click on `Owned` to see only the runewords you can make with the runes you own
+   * Defaults to `Owned` to see only the runewords you can make with the runes you own
    * Minimum runeword level
    * Color coded offense and defense stats in runewords
    * Alternating runeword background row colors for readability
  * Complete FCR, FHR, and FBR breakpoints
-   * Can collapsible most of the tables, click on the `[-]` or `[+`] button in the top right of the table
+ * Collapsible tables
+    * Can collapsible most of the tables, click on the `-` or `+` button in the top right of the tables (new in v1.18)
+    * Click on "Collapse" / "Expand" to collapse/expand all tables (new in 1.31)
  * Act II Mercs
- * Tomb locations
- * Pandemonium Event (key/organ farming)
- * Essences farming
- * 85 alvl (TC 84/87) farming info
- * Mini XP tables
  * Area Levels
+   * Shows alvl for every difficulty & zone
+   * Shows WP icon for areas that have a waypoint
    * Work-in-Progress map layout summary
    * Color coded area levels for 83, 84, 85
    * Color coded directions
- * Yellow highlight hover row pointer for all tables
- * Monochrome/Color buttons
- * Lots of handy links to utils, calculators, etc.
- * Tool-tip instructions for Runes
  * Crafted Gear recipes
+ * Essences farming
+ * Pandemonium Event (key/organ farming)
+ * Tomb locations
+ * XP Tables
+    * Power Leveling
+    * Level for each difficulty & area
+ * 4os sword farming
+ * 85 alvl (TC 84/87) farming info
+ * Monochrome/Color buttons
+ * Lots of handy links to utils, calculators, etc.!
+ * Thanks to everyone that caught bugs and offered suggestions that were implemented.
 
 
 # Wishlist
@@ -58,7 +66,7 @@
     <b>Belts</b>
     Goldwrap (normal, Heavy Belt): 92 / 130
 
-    <b>Body Armor</b>
+    <b>Unique Body Armor</b>
     Guardian Angel        : 1590 (2385)
     Shaftstop             : 1616 (2422)
     Skin of the Vipermagi : 1034
@@ -98,5 +106,6 @@
  * Collapse all button -- pisseningly
  * Table header pop-up instructions --  -- pisseningly
  * Diminishing MF -- gekido2802 -- https://diablo2.diablowiki.net/Magic_find_diminishing_returns
+ * Base weapon speed mods -- Lokhe -- http://classic.battle.net/diablo2exp/items/elite/swords.shtml
 
 Last Updated: Sep 18, 2021
