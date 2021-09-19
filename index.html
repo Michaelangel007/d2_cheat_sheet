@@ -1168,8 +1168,8 @@ function initSessionRunes()
 {
     gaAvailableRunes = new Array( RUNES.length );
 
-    // Get stored session available runes.
-    var storedRunes = sessionStorage.getItem( 'd2CheatSheet_Runes' );
+    // Get stored available runes.
+    var storedRunes = localStorage.getItem( 'd2CheatSheet_Runes' );
 
     if ( storedRunes )
     {
@@ -1523,8 +1523,8 @@ function selectRuneWordHeader( selected )
 
 function saveRunes ()
 {
-    // Save available runes to session storage.
-    sessionStorage.setItem( 'd2CheatSheet_Runes', JSON.stringify( gaAvailableRunes ) );
+    // Save available runes to local storage.
+    localStorage.setItem( 'd2CheatSheet_Runes', JSON.stringify( gaAvailableRunes ) );
 };
 
 function updateRuneHeaderStatus( haveAll, nonecss, allcss )
