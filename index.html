@@ -1433,11 +1433,11 @@ function setCollapseTable( tableName, isCollapsed, button )
 
 function setRuneVisibility( rune, owned )
 {
-    var xl_rune1 = document.getElementById( 'r' + rune );                setElementVisible( xl_rune1, owned );
-    var xl_rune2 = document.getElementById( 'u' + rune ); if( xl_rune2 ) setElementVisible( xl_rune2, owned );
+    var rune2    = document.getElementById( 'r' + rune );                setElementVisible( rune2   , owned );
+    var upgrade2 = document.getElementById( 'u' + rune ); if( upgrade2 ) setElementVisible( upgrade2, owned );
 
-    var md_rune1 = document.getElementById( 's' + rune );                setElementVisible( md_rune1, owned );
-    var md_rune2 = document.getElementById( 'v' + rune ); if( md_rune2 ) setElementVisible( md_rune2, owned );
+    var rune1    = document.getElementById( 's' + rune );                setElementVisible( rune1   , owned );
+    var upgrade1 = document.getElementById( 'v' + rune ); if( upgrade1 ) setElementVisible( upgrade1, owned );
 }
 
 function selectRuneWordHeader( selected )
