@@ -47,7 +47,6 @@
 # Wishlist
 
  * Add socket table -- Credit: soupsticle  -- https://diablo2.diablowiki.net/Sockets#Sockets_by_Number
- * Add shopping ilvl for Acts.
  * Add Commonly upgraded uniques to _Upping Uniques_
 
 ```
