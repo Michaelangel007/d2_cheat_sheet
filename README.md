@@ -13,13 +13,13 @@
    * Rune chest dropping and farming info
    * Hover/touch rune header for rune instructions
  * Sortable runeword table
-   * Defaults to `Owned` to see only the runewords you can make with the runes you own
+   * Defaults to `Owned` to see only the runewords you can make with the runes you "own"
    * Minimum runeword level
    * Color coded offense and defense stats in runewords
    * Alternating runeword background row colors for readability
  * Complete FCR, FHR, and FBR breakpoints
  * Collapsible tables
-    * Can collapsible most of the tables, click on the `-` or `+` button in the top right of the tables (new in v1.18)
+    * Can collapse most of the tables, click on the `-` or `+` button in the top right of the tables (new in v1.18)
     * Click on "Collapse" / "Expand" to collapse/expand all tables (new in 1.31)
  * Act II Mercs
  * Area Levels
@@ -32,6 +32,7 @@
  * Gambling odds and few items (new in v1.33)
  * Essences farming
  * Pandemonium Event (key/organ farming)
+ * Shopping tables
  * Tomb locations
  * XP Tables
     * Power Leveling
