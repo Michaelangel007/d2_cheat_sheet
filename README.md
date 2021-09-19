@@ -29,6 +29,7 @@
    * Color coded area levels for 83, 84, 85
    * Color coded directions
  * Crafted Gear recipes
+ * Gambling odds and few items (new in v1.33)
  * Essences farming
  * Pandemonium Event (key/organ farming)
  * Tomb locations
@@ -45,7 +46,6 @@
 # Wishlist
 
  * Add socket table -- Credit: soupsticle  -- https://diablo2.diablowiki.net/Sockets#Sockets_by_Number
- * Add Gambling odds -- Credit: LivEisJeebus -- https://www.reddit.com/r/diablo2/comments/pmv4u3/my_diablo_2_cheat_sheet/hcm485n/
  * Add shopping ilvl for Acts.
  * Add Commonly upgraded uniques to _Upping Uniques_
 
