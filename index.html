@@ -1164,7 +1164,7 @@ function padLeft( text, width, c )
 }
 
 // Sets runes based on past session data.
-function initRunes()
+function initSessionRunes()
 {
     gaAvailableRunes = new Array( RUNES.length );
 
@@ -1371,7 +1371,7 @@ function onLoad()
     // iOS touch / hover
     document.addEventListener("touchstart", function() {},false);
 
-    initRunes();
+    initSessionRunes();
     initRunewordTables();
 
     var btn = document.getElementById( 'btn_collapse_sockitems' );
