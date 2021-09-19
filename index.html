@@ -1163,6 +1163,40 @@ function padLeft( text, width, c )
     return ("" + new Array( width ).join( c ) + text).slice( -width );
 }
 
+// Sets runes based on past session data.
+function initRunes()
+{
+    gaAvailableRunes = new Array( RUNES.length );
+
+    // Get stored session available runes.
+    var storedRunes = sessionStorage.getItem( 'd2CheatSheet_Runes' );
+
+    if ( storedRunes )
+    {
+        try
+        {
+            storedRunes = JSON.parse( storedRunes );
+
+            onToggleAllRunes(0);
+
+            storedRunes.forEach( ( value, index ) =>
+            {
+                if ( value )
+                {
+                    onToggleRune( index + 1 );
+                }
+            });
+
+            // Prevents default action from executing but allows default action to continue if error.
+            return;
+        }
+        catch {}
+    }
+    
+    // Default action.
+    gaAvailableRunes.fill(1);
+}
+
 function initRunewordTables()
 {
     var recipe, recipes = RECIPES.length, cmp;
@@ -1337,9 +1371,7 @@ function onLoad()
     // iOS touch / hover
     document.addEventListener("touchstart", function() {},false);
 
-    gaAvailableRunes = new Array( RUNES.length );
-    gaAvailableRunes.fill(1);
-
+    initRunes();
     initRunewordTables();
 
     var btn = document.getElementById( 'btn_collapse_sockitems' );
@@ -1390,6 +1422,7 @@ function onToggleAllRunes( haveAll )
     updateRuneHeaderStatus( haveAll );
     updateRuneWordsOwned();
     updateRuneWordsVisible();
+    saveRunes();
 }
 
 // Toggle owning a rune
@@ -1408,6 +1441,7 @@ function onToggleRune( index )
     updateRuneHeaderStatus( 0, nonecss, allcss );
     updateRuneWordsOwned();
     updateRuneWordsVisible();
+    saveRunes();
 }
 
 // Runeword table row or Rune image
@@ -1487,6 +1521,12 @@ function selectRuneWordHeader( selected )
             );
     }
 
+function saveRunes ()
+{
+    // Save available runes to session storage.
+    sessionStorage.setItem( 'd2CheatSheet_Runes', JSON.stringify( gaAvailableRunes ) );
+};
+
 function updateRuneHeaderStatus( haveAll, nonecss, allcss )
 {
     var c = 'class',
@@ -1549,7 +1589,7 @@ function updateRuneWordsOrder( array )
 }
 
 function updateRuneWordsOwned()
-{
+    {
     // Update owned runeword array
     gaSortByOwned.sort( (prev,next) =>
         {
