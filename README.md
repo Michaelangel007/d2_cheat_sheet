@@ -103,9 +103,8 @@
  * ebugging def table
  * Full xp table?
  * url param to keep state of collapsed tables
- * Collapse all button -- pisseningly
  * Table header pop-up instructions --  -- pisseningly
  * Diminishing MF -- gekido2802 -- https://diablo2.diablowiki.net/Magic_find_diminishing_returns
  * Base weapon speed mods -- Lokhe -- http://classic.battle.net/diablo2exp/items/elite/swords.shtml
 
-Last Updated: Sep 18, 2021
+Last Updated: Sun, Sep 19, 2021
