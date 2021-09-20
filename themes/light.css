@@ -1,0 +1,207 @@
+:root {
+    --light-color: 255, 255, 255;
+    --dark-color: 100, 100, 100;
+    --red-color: 221, 77, 77;
+    --green-color: 134, 201, 43;
+    --blue-color: 26, 131, 221;
+    --yellow-color: 255, 216, 0;
+    --cyan-color: 43, 216, 216;
+    --brown-color: 131, 88, 46;
+    --header-color: 80, 80, 80;
+}
+/* ----- General ----- */
+
+b
+{
+    color: rgb(var(--yellow-color));
+}
+
+body
+{
+    color           : rgb(var(--dark-color));
+    background-color: rgb(var(--light-color));
+}
+
+a:link
+{
+    color           : rgb(var(--dark-color));
+}
+
+/* ----- Background Colors ----- */
+.r11
+{
+    background-color: rgba(var(--red-color), 0.1);
+}
+
+.r22
+{
+    background-color: rgba(var(--red-color), 0.2);
+}
+
+.g11
+{
+    background-color: rgba(var(--green-color), 0.1);
+}
+
+.g22
+{
+    background-color: rgba(var(--green-color), 0.2);
+}
+
+.b11
+{
+    background-color: rgba(var(--blue-color), 0.1);
+}
+
+.b22
+{
+    background-color: rgba(var(--blue-color), 0.2);
+}
+
+.k11
+{
+    background-color: rgba(var(--dark-color), 0.1);
+}
+
+.k22
+{
+    background-color: rgba(var(--dark-color), 0.2);
+}
+
+.y11
+{
+    background-color: rgba(var(--brown-color), 0.1);
+}
+
+.y22
+{
+    background-color: rgba(var(--brown-color), 0.2);
+}
+
+/* ---------- Table ---------- */
+th
+{
+    color      : rgb(var(--header-color));
+}
+
+span.r { color: rgb(var(--red-color)); }
+span.g { color: rgb(var(--green-color)); }
+span.b { color: rgb(var(--blue-color)); }
+
+/* Top and Bottom line colors */
+tr.rt
+{
+    border-top   : 1px solid rgb(var(--red-color));
+}
+
+tr.rb
+{
+    border-bottom: 1px solid rgb(var(--red-color));
+}
+
+tr.gt
+{
+    border-top   : 1px solid rgb(var(--green-color));
+}
+
+tr.gb
+{
+    border-bottom: 1px solid rgb(var(--green-color));
+}
+
+tr.bt
+{
+    border-top   : 1px solid rgb(var(--blue-color));
+}
+
+tr.bb
+{
+    border-bottom: 1px solid rgb(var(--blue-color));
+}
+
+tr.kt
+{
+    border-top   : 1px solid rgb(var(--dark-color));
+}
+
+tr.kb
+{
+    border-bottom: 1px solid rgb(var(--dark-color));
+}
+
+tr.yt
+{
+    border-top   : 1px solid rgb(var(--yellow-color));
+}
+
+tr.yb
+{
+    border-bottom: 1px solid rgb(var(--yellow-color));
+}
+
+/* ----- Spans ----- */
+span.alvl83 { color: rgb(var(--green-color)); }
+span.alvl84 { color: rgb(var(--blue-color)); }
+span.alvl85 { color: rgb(var(--red-color)); }
+
+span.note
+{
+    color     : rgb(var(--yellow-color));
+}
+
+span.gold
+{
+    color     : rgb(var(--yellow-color));
+}
+
+span.farm
+{
+    color: rgb(var(--cyan-color));
+}
+
+span.l { color: #4CF; }
+span.c { color: rgb(var(--green-color)); }
+
+span.rev
+{
+    background-color: rgb(var(--dark-color));
+    color           : rgb(var(--light-color));
+}
+
+/* ----- Span Borders for Selected/Unselected ----- */
+span.sel
+{
+    background-color: orange;
+    color:          : rgb(var(--light-color));
+    border          : none;
+}
+
+span.unsel
+{
+    background-color: rgb(var(--light-color));
+    border          : none;
+}
+
+span.rws
+{
+    background-color: #666;
+    border          : 1px solid #F00;
+    color           : #FFF;
+}
+
+span.rwu
+{
+    background-color: #000;
+    color           : #FF8;
+}
+
+/* Rune Upgrades */
+span.x
+{
+    color: rgb(var(--cyan-color));
+}
+
+span.y
+{
+    color: rgb(var(--yellow-color));
+}
