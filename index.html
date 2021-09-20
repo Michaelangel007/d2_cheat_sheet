@@ -1168,6 +1168,28 @@ function verify()
     }
 }
 
+function dataLoad()
+{
+    var runes = localStorage.getItem( 'availableRunes' );
+    if (runes)
+    {
+        gaAvailableRunes = JSON.parse( runes );
+
+        var rune, runes = RUNES.length;
+        for( rune = 0; rune < runes; rune++ )
+        {
+            setRuneVisibility( rune+1, gaAvailableRunes[ rune ] );
+        }
+
+        updateRunesRunewords();
+    }
+}
+
+function dataSave()
+{
+    localStorage.setItem( 'availableRunes', JSON.stringify( gaAvailableRunes ) );
+}
+
 function padLeft( text, width, c )
 {
     if( !width ) return "";
@@ -1350,8 +1372,9 @@ function onLoad()
 
     gaAvailableRunes = new Array( RUNES.length );
     gaAvailableRunes.fill(1);
-
     initRunewordTables();
+
+    dataLoad();
 
     var btn = document.getElementById( 'btn_collapse_sockitems' );
         btn.collapsed = true;
@@ -1397,9 +1420,8 @@ function onToggleAllRunes( haveAll )
         setRuneVisibility( rune+1, haveAll );
     }
 
-    updateRuneHeaderStatus( haveAll );
-    updateRuneWordsOwned();
-    updateRuneWordsVisible();
+    dataSave();
+    updateRunesRunewords();
 }
 
 // Toggle owning a rune
@@ -1409,15 +1431,8 @@ function onToggleRune( index )
     gaAvailableRunes[ rune ] ^= 1;
     setRuneVisibility( index, gaAvailableRunes[ rune ] );
 
-    // Reselect "None" if no runes are owned
-    // Reselect "All"  if all runes are owned
-    var total   = gaAvailableRunes.reduce( (elem1,elem2) => elem1 + elem2, 0 );
-    var nonecss = total                   ? 'unsel' : 'sel';
-    var allcss  = (total != RUNES.length) ? 'unsel' : 'sel';
-
-    updateRuneHeaderStatus( 0, nonecss, allcss );
-    updateRuneWordsOwned();
-    updateRuneWordsVisible();
+    dataSave();
+    updateRunesRunewords();
 }
 
 // Runeword table row or Rune image
@@ -1512,14 +1527,24 @@ function selectRuneWordHeader( selected )
             );
     }
 
-function updateRuneHeaderStatus( haveAll, nonecss, allcss )
+function updateRunesRunewords()
+{
+    updateRuneHeaderStatus();
+    updateRuneWordsOwned();
+    updateRuneWordsVisible();
+}
+
+function updateRuneHeaderStatus()
 {
     var c = 'class',
         d = 'unsel',
         e = 'sel',
-        elem;
+        elem,
+        total    = gaAvailableRunes.reduce( (elem1,elem2) => elem1 + elem2, 0 ),
+        haveAll  = (total === RUNES.length)|0,
+        haveNone = (total === 0);
 
-    if (nonecss === undefined)
+    if (haveAll || haveNone)
     {
         elem = document.getElementById( 'xl_RunesSelect' +    haveAll ); elem.removeAttribute( d ); elem.setAttribute( c, e ); // Selected "None" or "All"
         elem = document.getElementById( 'xl_RunesSelect' + (1-haveAll)); elem.removeAttribute( e ); elem.setAttribute( c, d ); // Other
@@ -1529,6 +1554,11 @@ function updateRuneHeaderStatus( haveAll, nonecss, allcss )
     }
     else
     {
+        // Reselect "None" if no runes are owned
+        // Reselect "All"  if all runes are owned
+        var nonecss = total                   ? 'unsel' : 'sel';
+        var allcss  = (total != RUNES.length) ? 'unsel' : 'sel';
+
         elem = document.getElementById( 'xl_RunesSelect0' ); elem.removeAttribute( e ); elem.setAttribute( c, nonecss ); // None
         elem = document.getElementById( 'xl_RunesSelect1' ); elem.removeAttribute( e ); elem.setAttribute( c, allcss  ); // All
 
