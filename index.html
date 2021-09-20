@@ -589,6 +589,23 @@ td
         z-index         : 1;
     }
 
+    .runetip .runehelp3
+    {
+        background-color: #123;
+        border          : 1px solid #08F;
+        border-radius   : 4px;
+        color           : #ddd;
+        font-family     : sans-serif;
+        font-size       : 14px;
+        padding         : 5px 0;
+        position        : absolute;
+        text-align      : center;
+        visibility      : hidden;
+        width           : 400px; /* 85 alvl header instructions */
+        white-space     : normal; /* runetip has pre */
+        z-index         : 1;
+    }
+
 .runetip .gemtext
 {
     background-color: #123;
@@ -624,6 +641,13 @@ td
         visibility: visible;
     }
 
+    .runetip:hover .runehelp3
+    {
+        cursor    : pointer;
+        left      : 185px; /* Single Column:  32,  185 */
+        top       : 32px;  /* Multi  column: -32, -285 */
+        visibility: visible;
+    }
 
 .runetip:hover .gemtext
 {
