@@ -20,6 +20,15 @@
         display   : none;
     }
 
+    .collapse
+    {
+        align  : right;
+/*
+        display: inline-block;
+*/
+        float  : right;
+    }
+
 /* ----- Breaks ----- */
 
      hr.one
@@ -415,7 +424,6 @@
 
 table.head
 {
-    border         : 0;
     border-collapse: collapse;
     margin         : 0;
     padding        : 0;
@@ -589,6 +597,23 @@ td
         z-index         : 1;
     }
 
+    .runetip .runehelp3
+    {
+        background-color: #123;
+        border          : 1px solid #08F;
+        border-radius   : 4px;
+        color           : #ddd;
+        font-family     : sans-serif;
+        font-size       : 14px;
+        padding         : 5px 0;
+        position        : absolute;
+        text-align      : center;
+        visibility      : hidden;
+        width           : 400px; /* 85 alvl header instructions */
+        white-space     : normal; /* runetip has pre */
+        z-index         : 1;
+    }
+
 .runetip .gemtext
 {
     background-color: #123;
@@ -624,6 +649,13 @@ td
         visibility: visible;
     }
 
+    .runetip:hover .runehelp3
+    {
+        cursor    : pointer;
+        left      : 185px; /* Single Column:  32,  185 */
+        top       : 32px;  /* Multi  column: -32, -285 */
+        visibility: visible;
+    }
 
 .runetip:hover .gemtext
 {
@@ -1169,11 +1201,68 @@ function verify()
     }
 }
 
+function dataLoad()
+{
+    var runes = localStorage.getItem( 'availableRunes' );
+    if (runes)
+    {
+        gaAvailableRunes = JSON.parse( runes );
+
+        var rune, runes = RUNES.length;
+        for( rune = 0; rune < runes; rune++ )
+        {
+            setRuneVisibility( rune+1, gaAvailableRunes[ rune ] );
+        }
+
+        updateRunesRunewords();
+    }
+}
+
+function dataSave()
+{
+    localStorage.setItem( 'availableRunes', JSON.stringify( gaAvailableRunes ) );
+}
+
 function padLeft( text, width, c )
 {
     if( !width ) return "";
     if( !c ) c = ' ';
     return ("" + new Array( width ).join( c ) + text).slice( -width );
+}
+
+function initTableCollapseMinWidth()
+{
+    var div, divs = document.getElementsByTagName( 'div' ), ndivs = divs.length,
+        dv, cs, parent, th, tr, tb, ta,
+        rows, row, width = 0, minWidth;
+
+    for( div = 0; div < ndivs; div++ )
+    {
+        dv = divs[div];
+        cs = dv.getAttribute( 'class' );
+        if (cs && cs.indexOf( 'collapse' ) >= 0)
+        {
+
+            th = dv.parentElement;
+            tr = th.parentElement;
+            tb = tr.parentElement;
+            ta = tb.parentElement;
+
+            // Can't used minWidth since it may not be set
+            //     ta.style.width = ta.style.minWidth;
+            minWidth = 0;
+            rows = ta.getElementsByTagName( 'tr' );
+            for( row = 0; row < rows.length; row++ )
+            {
+                width = parseInt( getComputedStyle( rows[row] ).width );
+                if (width && (minWidth < width))
+                    minWidth = width;
+            }
+            var px = (minWidth) + 'px';
+            ta.style.width    = px;
+            ta.style.minWidth = px;
+        }
+    }
 }
 
 function initRunewordTables()
@@ -1351,14 +1440,17 @@ function onLoad()
 
     gaAvailableRunes = new Array( RUNES.length );
     gaAvailableRunes.fill(1);
-
     initRunewordTables();
+
+    dataLoad();
 
     var btn = document.getElementById( 'btn_collapse_sockitems' );
         btn.collapsed = true;
 
     // Sorting by Ladder really isn't useful any more
     onSortRuneWordsByOwned();
+
+    initTableCollapseMinWidth();
 }
 
 function onMono( button )
@@ -1398,9 +1490,8 @@ function onToggleAllRunes( haveAll )
         setRuneVisibility( rune+1, haveAll );
     }
 
-    updateRuneHeaderStatus( haveAll );
-    updateRuneWordsOwned();
-    updateRuneWordsVisible();
+    dataSave();
+    updateRunesRunewords();
 }
 
 // Toggle owning a rune
@@ -1410,15 +1501,8 @@ function onToggleRune( index )
     gaAvailableRunes[ rune ] ^= 1;
     setRuneVisibility( index, gaAvailableRunes[ rune ] );
 
-    // Reselect "None" if no runes are owned
-    // Reselect "All"  if all runes are owned
-    var total   = gaAvailableRunes.reduce( (elem1,elem2) => elem1 + elem2, 0 );
-    var nonecss = total                   ? 'unsel' : 'sel';
-    var allcss  = (total != RUNES.length) ? 'unsel' : 'sel';
-
-    updateRuneHeaderStatus( 0, nonecss, allcss );
-    updateRuneWordsOwned();
-    updateRuneWordsVisible();
+    dataSave();
+    updateRunesRunewords();
 }
 
 // Runeword table row or Rune image
@@ -1513,14 +1597,24 @@ function selectRuneWordHeader( selected )
             );
     }
 
-function updateRuneHeaderStatus( haveAll, nonecss, allcss )
+function updateRunesRunewords()
+{
+    updateRuneHeaderStatus();
+    updateRuneWordsOwned();
+    updateRuneWordsVisible();
+}
+
+function updateRuneHeaderStatus()
 {
     var c = 'class',
         d = 'unsel',
         e = 'sel',
-        elem;
+        elem,
+        total    = gaAvailableRunes.reduce( (elem1,elem2) => elem1 + elem2, 0 ),
+        haveAll  = (total === RUNES.length)|0,
+        haveNone = (total === 0);
 
-    if (nonecss === undefined)
+    if (haveAll || haveNone)
     {
         elem = document.getElementById( 'xl_RunesSelect' +    haveAll ); elem.removeAttribute( d ); elem.setAttribute( c, e ); // Selected "None" or "All"
         elem = document.getElementById( 'xl_RunesSelect' + (1-haveAll)); elem.removeAttribute( e ); elem.setAttribute( c, d ); // Other
@@ -1530,6 +1624,11 @@ function updateRuneHeaderStatus( haveAll, nonecss, allcss )
     }
     else
     {
+        // Reselect "None" if no runes are owned
+        // Reselect "All"  if all runes are owned
+        var nonecss = total                   ? 'unsel' : 'sel';
+        var allcss  = (total != RUNES.length) ? 'unsel' : 'sel';
+
         elem = document.getElementById( 'xl_RunesSelect0' ); elem.removeAttribute( e ); elem.setAttribute( c, nonecss ); // None
         elem = document.getElementById( 'xl_RunesSelect1' ); elem.removeAttribute( e ); elem.setAttribute( c, allcss  ); // All
 
@@ -1540,7 +1639,7 @@ function updateRuneHeaderStatus( haveAll, nonecss, allcss )
 
 function updateRuneWordsOrder( array )
 {
-    var table = document.getElementById( 'RuneWords' ),
+    var table = document.getElementById( 'table.runeWords' ),
         rows  = table.getElementsByTagName( 'tr' ),
         row   = 0;
 
@@ -1625,7 +1724,7 @@ function updateRuneWordsVisible()
 }
         </script>
     </head>
-<body onload='onLoad();' onresize='onResize();'><div id='content' ontouchstart>
+<body onload='onLoad();' onresize='onResize();'><div id='content'>
 <table class='head'>
     <tr>
         <td class='vatop column1'>
@@ -1637,7 +1736,7 @@ function updateRuneWordsVisible()
             <br>
             <br>
             <table class='head' style='min-width:730px' id='table.fcr'>
-<tr class='bt bb'        ><th><span class='b'>Faster Cast Rate (<span class='fcr'>FCR</span>)</span>                             <a href='https://www.youtube.com/watch?v=ivm5cFeJYSA'>Hidden</a> 86 breakpoint *      <button value='table.fcr' onclick='onCollapse(this);'>-</button>
+<tr class='bt bb'        ><th><span class='b'>Faster Cast Rate (<span class='fcr'>FCR</span>)</span>                             <a href='https://www.youtube.com/watch?v=ivm5cFeJYSA'>Hidden</a> 86 <a href='https://www.diabloii.net/forums/threads/druid-fcr-action-frames-good-info-for-pvp-elementalists-i.794229/'>breakpoint</a> *<div class='collapse'><button value='table.fcr' onclick='onCollapse(this);'>-</button></div>
 <meta                       />Frames  23  22  21  20  19  18  17  16  15   14   13   12   11   10    9    8    7</th></tr>
 <tr><td class='tooltip k11'  >Ama                      0   7  14  22  32   48   68   99  152                    </td></tr>
 <tr><td class='tooltip r22'  >Asn                                  0   8   16   27   42   65  102  174          </td></tr>
@@ -1655,7 +1754,7 @@ function updateRuneWordsVisible()
             </table>
             <br>
             <table class='head column2' id='table.fhr'>
-<tr class='gt gb'        ><th><span class='g'>Faster Hit Recovery (<span class='fhr'>FHR</span>)</span>                                                      <button value='table.fhr' onclick='onCollapse(this);'>-</button>
+<tr class='gt gb'        ><th><span class='g'>Faster Hit Recovery (<span class='fhr'>FHR</span>)</span><div class='collapse'><button value='table.fhr' onclick='onCollapse(this);'>-</button></div>
 <meta                       />Frames   17  16  15  14  13  12  11  10   9   8    7    6    5    4    3    2    1</th></tr>
 <tr><td class='tooltip k11'  >Ama                               0   6  13  20   32   52   86  174  600          </td></tr>
 <tr><td class='tooltip r22'  >Asn                                       0   7   15   27   48   86  200          </td></tr>
@@ -1677,7 +1776,7 @@ function updateRuneWordsVisible()
             </table>
             <br>
             <table class='head column2' id='table.fbr'>
-<tr class='rt rb'        ><th><span class='r'>Faster Block Rate (<span class='fbr'>FBR</span>)</span>           Block% = (Shield% * (Dex - 15)) / (clvl * 2) <button value='table.fbr' onclick='onCollapse(this);'>-</button>
+<tr class='rt rb'        ><th><span class='r'>Faster Block Rate (<span class='fbr'>FBR</span>)</span>           Block% = (Shield% * (Dex - 15)) / (clvl * 2)<div class='collapse'><button value='table.fbr' onclick='onCollapse(this);'>-</button></div>
 <meta                       />Frames   17  16  15  14  13  12  11  10   9   8    7    6    5    4    3    2    1</th></tr>
 <tr><td class='tooltip k22'  >Ama 1H*   0   4   6  11  15  23  29  40  56  80  120  200  480                    <span class='tool ttr'><b>Includes:</b><br><br> 1H axes and throwing axes,<br> clubs,<br> 1H maces, <br> orbs,<br> scepters, <br> 1H swords, 2H swords wielded in one hand,<br> and wands.</span></td></tr>
 <tr><td class='tooltip k11'  >    2H                                                       0   13   32   86  600</td></tr>
@@ -1734,7 +1833,7 @@ function updateRuneWordsVisible()
                 <tr>
                     <td>
                         <table class='head' id='table.uprare'>
-                            <tr class='raret rareb'><th><span class='rare'>Upping Rares</span>                                                                     <button value='table.uprare' onclick='onCollapse(this);'>-</button></th></tr>
+                            <tr class='raret rareb'><th><span class='rare'>Upping Rares</span><div class='collapse'><button value='table.uprare' onclick='onCollapse(this);'>-</button><div></th></tr>
                             <tr><td class='tooltip k11'>Ort + Amn  + Perfect Sapphire + Normal (Basic) Rare Weapon &rarr; Exceptional Rare Weapon<span class='tool ttk'>Ort <img alt='Ort' src='runes/ort.png'  /> + Amn  <img alt='Amn'  src='runes/amn.png'  /> + Perfect Sapphire <img alt='perfect sapphire' src='gems/sapphire_perfect.png'/></span></td></tr>
                             <tr><td class='tooltip k22'>Ral + Thul + Perfect Amethyst + Normal (Basic) Rare Armor  &rarr; Exceptional Rare Armor <span class='tool ttk'>Ral <img alt='Ral' src='runes/ral.png'  /> + Thul <img alt='Thul' src='runes/thul.png' /> + Perfect Amethyst <img alt='perfect amethyst' src='gems/amethyst_perfect.png'/></span></td></tr>
                             <tr><td class='tooltip k11'>Fal + Um   + Perfect Sapphire + Exceptional    Rare Weapon &rarr; Elite Rare Weapon      <span class='tool ttk'>Fal <img alt='Fal' src='runes/fal.png'  /> + Um   <img alt='Um'   src='runes/um.png'   /> + Perfect Sapphire <img alt='perfect sapphire' src='gems/sapphire_perfect.png'/></span></td></tr>
@@ -1742,7 +1841,7 @@ function updateRuneWordsVisible()
                         </table>
                         <br>
                         <table class='head' id='table.upunq'>
-                            <tr class='unqt unqb'  ><th><span class='unq' >Upping Uniques</span>                                                                   <button value='table.upunq' onclick='onCollapse(this);'>-</button></th></tr>
+                            <tr class='unqt unqb'  ><th><span class='unq' >Upping Uniques</span><div class='collapse'><button value='table.upunq' onclick='onCollapse(this);'>-</button></div></th></tr>
                             <tr><td class='tooltip k11'>Ral + Sol   + Perfect Emerald + Normal Unique Weapon      &rarr;  Exceptional Version Wpn<span class='tool ttk'>Ral <img src='runes/ral.png'  /> + Sol   <img alt='Sol'   src='runes/sol.png'  /> + Perfect Emerald <img alt='perfect emerald' src='gems/emerald_perfect.png'/><br></span></td></tr>
                             <tr><td class='tooltip k22'>Tal + Shael + Perfect Diamond + Normal Unique Armor       &rarr;  Exceptional Version Arm<span class='tool ttk'>Tal <img src='runes/tal.png'  /> + Shael <img alt='Shael' src='runes/shael.png'/> + Perfect Diamond <img alt='perfect diamond'  src='gems/diamond_perfect.png' />
 
@@ -1795,7 +1894,7 @@ Arreat's Face
         </td>
         <td class='column2 ios-hidden desk-runes2'>
             <table class='head' id='table.runes2'>
-<tr class='bt bb'><th class='runetip' style='height:auto;'><span style='color:#fff'>Chests</span> <span id ='xl_RunesSelect0' class='unsel'><span onclick='onToggleAllRunes(0);'>None</span></span>/<span class='sel' id='xl_RunesSelect1'><span onclick='onToggleAllRunes(1);'>All</span></span> <a href='http://classic.battle.net/diablo2exp/items/cube.shtml'>Upgrading</a> <a href='http://classic.battle.net/diablo2exp/items/runes.shtml'>Runes</a>                        <button value='table.runes2' onclick='onCollapse(this);'>-</button>
+<tr class='bt bb'><th class='runetip' style='height:auto;'><span style='color:#fff'>Chests</span> <span id ='xl_RunesSelect0' class='unsel'><span onclick='onToggleAllRunes(0);'>None</span></span>/<span class='sel' id='xl_RunesSelect1'><span onclick='onToggleAllRunes(1);'>All</span></span> <a href='http://classic.battle.net/diablo2exp/items/cube.shtml'>Upgrading</a> <a href='http://classic.battle.net/diablo2exp/items/runes.shtml'>Runes</a>                        <div class='collapse'><button value='table.runes2' onclick='onCollapse(this);'>-</button></div>
 <span class='runehelp2'><b>Instructions</b><br>
 <br>
 To <b>upgrade</b> a rune to the next tier up:<br>
@@ -1820,7 +1919,7 @@ for chests to drop this rune<br>
 <span class='farm'>Mephisto</span> = Act 3 Durance of Hate 3<br>
 <span class='farm'>Baal</span> = Throne of Destruction<br>
 </span></th></tr>
-<tr><td class='runetip'><div class='c'><span class='rev'>Act1</span>   <span class='noterune'><span class='y'>0</span> runes from chests</span>; <span class='farm'>farm Countess</span                                                                                      >   <div class='c'><img class='blank30x30'></div>    </div></td></tr>
+<tr><td class='runetip'><div class='c'><span class='rev'>Act1</span>   <span class='noterune'><span class='y'>0</span> runes from chests</span>; <span class='farm'>farm Countess</span                                                                                      >   <div class='c'><img class='blank30x30'></div>           </td></tr>
 <tr><td class='runetip'><div class='c'                  >A2  <meta/>   <span class='x'>3</span> <span class='rune'       >El   </span> </div><div class='c' id='r1' ><img alt='El'    src='runes/el.png'    onclick='onToggleRune( 1);'/></div><div class='c'><span class='n'>r01</span></div><div class='c'>                     </div><div class='c'><img class='blank30x30'                                      /></div><div class='c'> &rarr; Eld   </div><div class='c' id='u2' ><img onclick='onToggleRune( 2);' alt='Eld'   src='runes/eld.png'  /></div><span class='gemtext'>
  <span class='runetype'>Weapons</span>
  +50 to Attack Rating
@@ -2262,7 +2361,7 @@ for chests to drop this rune<br>
                 <tr>
                     <td class='vatop'>
                         <table id='table.pl1'>
-                            <tr class='rt rb'><th      > Power Leveling      <button value='table.pl1' onclick='onCollapse(this);'>-</button></th></tr>
+                            <tr class='rt rb'><th      > Power Leveling<div class='collapse'><button value='table.pl1' onclick='onCollapse(this);'>-</button></div></th></tr>
                             <tr><td class='tooltip b11'> 1-15 Tristram runs    </td></tr>
                             <tr><td class='tooltip b22'>15-24 Tombs runs       </td></tr>
                             <tr><td class='tooltip b11'>   24 Ancients         </td></tr>
@@ -2275,14 +2374,14 @@ for chests to drop this rune<br>
                     </td>
                     <td class='vatop padd5'>
                         <table id='table.bestxp1'>
-                            <tr class='gt gb'><th      >XP    I      II     III    IV     V <button value='table.bestxp1' onclick='onCollapse(this);'>-</button></th></tr>
+                            <tr class='gt gb'><th      >XP    I      II     III    IV     V<div class='collapse'><button value='table.bestxp1' onclick='onCollapse(this);'>-</button></div></th></tr>
                             <tr><td class='tooltip b22'>Norm   1-11  12-18  19-23  24-31  32-36</td></tr>
                             <tr><td class='tooltip g22'> nm   37-43  44-48  49-52  53-62   <span class='note'>skip</span></td></tr>
                             <tr><td class='tooltip r22'>Hell  63-73  74-80  81-83  83-94  95-99</td></tr>
                         </table>
                         <br>
                         <table id='table.bases4sword2'>
-                            <tr class='bt bb'><th      >4os sword bases: ilvl 26-40 <button value='table.bases4sword2' onclick='onCollapse(this);'>-</button></th></tr>
+                            <tr class='bt bb'><th      >4os sword bases: ilvl 26-40<div class='collapse'><button value='table.bases4sword2' onclick='onCollapse(this);'>-</button></div></th></tr>
                             <tr><td class='tooltip b11'>Normal    Act 5  (<span class='note'>Crystal,   </span> </td></tr>
                             <tr><td class='tooltip b22'>Normal    Cows    <span class='note'> Broad,    </span> </td></tr>
                             <tr><td class='tooltip b11'>Nightmare Act 1   <span class='note'> Long, etc.</span>)</td></tr>
@@ -2295,7 +2394,32 @@ for chests to drop this rune<br>
                 <tr>
                     <td class='ios-hidden'>
                         <table class='head'>
-                            <tr class='gt gb'><th>Act Nearest wp        Zone            <a href='https://diablo2.diablowiki.net/Guide:Level_85_Magic_Find_Areas_v1.10'>85 alvl (TC 84)</a> #Packs Immunity</th></tr>
+                            <tr class='gt gb'><th class='runetip' style='height:auto;'>Act Nearest wp        Zone            <a href='https://diablo2.diablowiki.net/Guide:Level_85_Magic_Find_Areas_v1.10'>85 alvl TC87*</a> #Packs Immunity
+<span class='runehelp3'><center>
+<span class='note'>*</span> Champion, Unique, Super Unique monsters<br>
+have a higher mlvl (better drop rate)<br>
+<br>
+Hell Cows are mlvl 81; <span class='note'>following uniques do NOT drop:</span><br>
+<table class='head'>
+            <tr><th>mlvl   </th><th               >Unique           <meta/>                 </th><th>Type            </th></tr>
+            <tr><td>85+</td><td><span class='unq'>Andariel's Visage</span>   </td><td>Demonhead       </td></tr>
+            <tr><td>   </td><td><span class='unq'>Alma Negra</span>          </td><td>Sacred Rondache </td></tr>
+            <tr><td>   </td><td><span class='unq'>Arkaine's Valor</span>     </td><td>Balrog Skin     </td></tr>
+            <tr><td>   </td><td><span class='unq'>Halaberd's Reign</span>    </td><td>Conqueror Crown </td></tr>
+            <tr><td>   </td><td><span class='unq'>Kira's Guardian</span>     </td><td>Tiara           </td></tr>
+            <tr><td>   </td><td><span class='unq'>Shadow Killer</span>       </td><td>Battle Cestus   </td></tr>
+            <tr><td>   </td><td><span class='unq'>The Cranium Basher</span>  </td><td> Thunder Maul   </td></tr>
+            <tr><td>   </td><td><span class='unq'>The Gladiator's Bane</span></td><td>Wire Fleece     </td></tr>
+            <tr><td>   </td><td><span class='unq'>The Grandfather</span>     </td><td>Colossus Blade  </td></tr>
+            <tr><td>   </td><td><span class='unq'>Wolfhowl</span>            </td><td>Fury Visor      </td></tr>
+            <tr><td>86+</td><td><span class='unq'>Crown of Ages</span>       </td><td>Corona          </td></tr>
+            <tr><td>   </td><td><span class='unq'>Mang Song's Lesson</span>  </td><td>Archon Staff    </td></tr>
+            <tr><td>   </td><td><span class='unq'>Stormlash</span>           </td><td>Scourge         </td></tr>
+            <tr><td>   </td><td><span class='unq'>Tomb Reaver</span>         </td><td>Cryptic Axe     </td></tr>
+            <tr><td>87+</td><td><span class='unq'>Arachnid Mesh</span>       </td><td>Spiderweb Sash  </td></tr>
+            <tr><td>   </td><td><span class='unq'>Azurewrath</span>          </td><td>Phase Blade     </td></tr>
+            <tr><td>   </td><td><span class='unq'>Tyrael's Might</span>      </td><td>Sacred Armor    </td></tr>
+        </table></center></span></th></tr>
                             <tr><td class='tooltip'> 1  Cold Plains       Burial Grounds  Mausoleum          4-5 <span class='padd'>.</span><span class='padd'>.</span><span class='resl'>L</span><span class='padd'>.</span><span class='padd'>.</span><span class='padd'>.</span></td></tr>
                             <tr><td class='tooltip'> 1  Outer Cloister    Tamoe Highland  Pit Level 1        6-8 <span class='resf'>F</span><span class='resc'>C</span><span class='resl'>L</span><span class='padd'>.</span><span class='padd'>.</span><span class='padd'>.</span></td></tr>
                             <tr><td class='tooltip'> 1  Outer Cloister    Tamoe Highland  Pit Level 2        2-3 <span class='resf'>F</span><span class='resc'>C</span><span class='resl'>L</span><span class='padd'>.</span><span class='padd'>.</span><span class='padd'>.</span></td></tr>
@@ -2338,7 +2462,7 @@ for chests to drop this rune<br>
             </table>
 <br>
             <table class='head ios-runes1' id='table.runes1'>
-<tr class='bt bb'><th class='runetip' style='height:auto;'><span style='color:#fff'>Chests</span> <span id ='md_RunesSelect0' class='unsel'><span onclick='onToggleAllRunes(0);'>None</span></span>/<span class='sel' id='md_RunesSelect1'><span onclick='onToggleAllRunes(1);'>All</span></span> <a href='http://classic.battle.net/diablo2exp/items/cube.shtml'>Upgrading</a> <a href='http://classic.battle.net/diablo2exp/items/runes.shtml'>Runes</a>                     <button value='table.runes1' onclick='onCollapse(this);'>-</button>
+<tr class='bt bb'><th class='runetip' style='height:auto;'><span style='color:#fff'>Chests</span> <span id ='md_RunesSelect0' class='unsel'><span onclick='onToggleAllRunes(0);'>None</span></span>/<span class='sel' id='md_RunesSelect1'><span onclick='onToggleAllRunes(1);'>All</span></span> <a href='http://classic.battle.net/diablo2exp/items/cube.shtml'>Upgrading</a> <a href='http://classic.battle.net/diablo2exp/items/runes.shtml'>Runes</a><div class='collapse'><button value='table.runes1' onclick='onCollapse(this);'>-</button></div>
 <span class='runehelp1'><b>Instructions</b><br>
 <br>
 To <b>upgrade</b> a rune to the next tier up:<br>
@@ -2804,7 +2928,7 @@ for chests to drop this rune<br>
 </div>
 <!-- ========== ========== ========== ========== Runewords ========== ========== ========== ========== -->
 <table id='table.runeWords'>
-    <tr class='rt rb'><th><div><span class='rwu' id='btnRuneWordSuperior'><span onclick='onSortRuneWordsBySuperior();'>S</span></span> <span class='rwu' id='btnRuneWordNames'><span onclick='onSortRuneWordsByName();'>Name</span></span>          <span class='rwu' id='btnRuneWordSockets'><span onclick='onSortRuneWordsBySocket();'>Sockets</span></span>  <span class='rwu' id='btnRuneWordType'><span onclick='onSortRuneWordsByType();'>Type</span></span>              <span class='rwu' id='btnRuneWordOwned'><span onclick='onSortRuneWordsByOwned();'>Owned</span></span> <span class='rwu' id='btnRuneWordMats1'><span onclick='onSortRuneWordsByMats(1);'>Runes</span></span>   <span class='rwu' id='btnRuneWordMats2'><span onclick='onSortRuneWordsByMats(2);'>#2</span></span>      <span class='rwu' id='btnRuneWordMats3'><span onclick='onSortRuneWordsByMats(3);'>#3</span></span>     <span class='rwu' id='btnRuneWordMats4'><span onclick='onSortRuneWordsByMats(4);'>#4</span></span>    <span class='rwu' id='btnRuneWordMats5'><span onclick='onSortRuneWordsByMats(5);'>#5</span></span>    <span class='rwu' id='btnRuneWordMats6'><span onclick='onSortRuneWordsByMats(6);'>#6</span></span>  <span class='rwu' id='btnRuneWordLevel'><span onclick='onSortRuneWordsByLevel();'>Lev</span></span>  <span class='rws' id='btnRuneWordVersion'><span onclick='onSortRuneWordsByVersion();'>Version</span></span><button value='table.runeWords' onclick='onCollapse(this);'>-</button></div></th></tr>
+    <tr class='rt rb'><th><div><span class='rwu' id='btnRuneWordSuperior'><span onclick='onSortRuneWordsBySuperior();'>S</span></span> <span class='rwu' id='btnRuneWordNames'><span onclick='onSortRuneWordsByName();'>Name</span></span>          <span class='rwu' id='btnRuneWordSockets'><span onclick='onSortRuneWordsBySocket();'>Sockets</span></span>  <span class='rwu' id='btnRuneWordType'><span onclick='onSortRuneWordsByType();'>Type</span></span>              <span class='rwu' id='btnRuneWordOwned'><span onclick='onSortRuneWordsByOwned();'>Owned</span></span> <span class='rwu' id='btnRuneWordMats1'><span onclick='onSortRuneWordsByMats(1);'>Runes</span></span>   <span class='rwu' id='btnRuneWordMats2'><span onclick='onSortRuneWordsByMats(2);'>#2</span></span>      <span class='rwu' id='btnRuneWordMats3'><span onclick='onSortRuneWordsByMats(3);'>#3</span></span>     <span class='rwu' id='btnRuneWordMats4'><span onclick='onSortRuneWordsByMats(4);'>#4</span></span>    <span class='rwu' id='btnRuneWordMats5'><span onclick='onSortRuneWordsByMats(5);'>#5</span></span>    <span class='rwu' id='btnRuneWordMats6'><span onclick='onSortRuneWordsByMats(6);'>#6</span></span>  <span class='rwu' id='btnRuneWordLevel'><span onclick='onSortRuneWordsByLevel();'>Lev</span></span>  <span class='rws' id='btnRuneWordVersion'><span onclick='onSortRuneWordsByVersion();'>Version</span></span><div class='collapse'><button value='table.runeWords' onclick='onCollapse(this);'>-</button></div></div></th></tr>
 <tr id='rw0' ><td class='tooltip r11'>  Ancient's Pledge    3  Shields                 Ral   + Ort   + Tal                     21  1.09<span class='tool ttr'>Ral <img src='runes/ral.png'  /> + Ort <img src='runes/ort.png'  /> + Tal <img src='runes/tal.png'  />
 
  +50% Enhanced Defense
@@ -3886,16 +4010,17 @@ for chests to drop this rune<br>
 </table>
 <br>
 <table class='head' id='table.reroll'>
-    <tr class='rt rb'><th><a href='http://classic.battle.net/diablo2exp/items/cube.shtml'><span class='r'>Rerolling Magic/Rare Items</span></a>                                                                 <button value='table.reroll' onclick='onCollapse(this);'>-</button></th></tr>
-    <tr><td class='tooltip k11'>3 Perfect Gems + <span class='magic'>Magic</span> Item &rarr; New Random <span class='magic'>Magic</span> Item of the same type (<span class='magic'>Grand Charms</span>)            <span class='tool ttr'>Skillers ilvl 50,<br>Skillers with +Life ilvl 94</span></td></tr>
+    <tr class='rt rb'><th><a href='http://classic.battle.net/diablo2exp/items/cube.shtml'><span class='r'>Rerolling Magic/Rare Items</span></a><div class='collapse'><button value='table.reroll' onclick='onCollapse(this);'>-</button></div></th></tr>
+    <tr><td class='tooltip k11'>3 Perfect Gems + <span class='magic'>Magic</span> Item &rarr; New Random <span class='magic'>Magic</span> Item of the same type (<span class='magic'>Grand Charms</span>)           <span class='tool ttr'>Skillers ilvl 50,<br>Skillers with +Life ilvl 94</span></td></tr>
     <tr><td class='tooltip k22'>6 Perfect Skulls + Rare Item &rarr; Random Low Quality Rare Item of the same type (<span class='rare'>Diadems</span>)        </td></tr>
 </table>
 <br>
 <table class='head' id='table.sockcube'>
-    <tr class='gt gb'><th><a href='http://classic.battle.net/diablo2exp/items/cube.shtml'><span class='g'>Socketing with Cube (or Ebug)</span></a>                                                              <button value='table.sockcube' onclick='onCollapse(this);'>-</button></th></tr>
+    <tr class='gt gb'><th><span class='g'>Socketing (with Act 5 <a href='https://diablo2.diablowiki.net/Siege_on_Harrogath'>Larzuk</a>, <a href='http://classic.battle.net/diablo2exp/items/cube.shtml'>Cube</a>, or Ebug)</span><div class='collapse'><button value='table.sockcube' onclick='onCollapse(this);'>-</button></div></th></tr>
     <tr><td class='tooltip k11'>Normal drops = max 3<span class='note'>*</span> sockets      (<span class='note'>* Cows</span> = 4 socket, <span class='note'>Lazarus</span> # sockets = ilvl &larr; mlvl &larr; alvl)</td></tr>
-    <tr><td class='tooltip k11'> nm    drops = max 4 sockets       (<span class='mf'>0</span> MF is best for finding bases)                           </td></tr>
-    <tr><td class='tooltip k22'>Hell   drops = max 6 sockets                                                                  </td></tr>
+    <tr><td class='tooltip k22'> nm    drops = max 4 sockets       (<span class='mf'>0</span> MF is best for finding bases)                           </td></tr>
+    <tr><td class='tooltip k11'>Hell   drops = max 6 sockets                                                                  </td></tr>
+    <tr><td class='tooltip k22'>Larzuk = max 1 socket to uniques, 1-6 sockets to white bases depending on ilvl and type       </td></tr>
     <tr><td class='tooltip k11'>Tal + Thul + Perfect Topaz    + Normal Body Armor &rarr; Socketed Body Armor of same type          <span class='tool ttk'>Tal <img src='runes/tal.png'  /> + Thul <img src='runes/thul.png' /> + <img src='gems/topaz_perfect.png'   ></span></td></tr>
     <tr><td class='tooltip k22'>Ral + Amn  + Perfect Amethyst + Normal Weapon     &rarr; Socketed Weapon     of same type          <span class='tool ttk'>Ral <img src='runes/ral.png'  /> + Amn  <img src='runes/amn.png'  /> + <img src='gems/amethyst_perfect.png'></span></td></tr>
     <tr><td class='tooltip k11'>Ral + Thul + Perfect Sapphire + Normal Helm       &rarr; Socketed Helm       of same type          <span class='tool ttk'>Ral <img src='runes/ral.png'  /> + Thul <img src='runes/thul.png' /> + <img src='gems/sapphire_perfect.png'></span></td></tr>
@@ -3904,11 +4029,17 @@ for chests to drop this rune<br>
 </table>
 <br>
 <table class='head' id='table.repair'>
-    <tr class='bt bb'      ><th><span class='b'>Repair</span> (<b>Note:</b> <span class='note'>You cannot repair Ethereal items</span>)                                            <button value='table.repair' onclick='onCollapse(this);'>-</button></th></tr></th></tr>
+    <tr class='bt bb'      ><th><span class='b'>Repair</span> (<b>Note:</b> <span class='note'>You cannot repair Ethereal items</span>)<div class='collapse'><button value='table.repair' onclick='onCollapse(this);'>-</button></div></th></tr>
     <tr><td class='tooltip k11'>Ort Rune + Weapon               &rarr; Fully Repaired Weapon                                       <span class='tool ttk'>Ort <img src='runes/ort.png'  /></span></td></tr>
     <tr><td class='tooltip k11'>Ral Rune + Armor                &rarr; Fully Repaired Armor                                        <span class='tool ttk'>Ral <img src='runes/ral.png'  /></span></td></tr>
-    <tr><td class='tooltip y22'>Ort Rune + Chipped Gem + Weapon &rarr; Fully Repaired and Recharged Weapon                         <span class='tool ttk'>Ort <img src='runes/ort.png'  /> + Chipped gem (any type)<br><br>(Usefull for recharging <b>Teleport</b>)</span></td><tr>
+    <tr><td class='tooltip y22'>Ort Rune + Chipped Gem + Weapon &rarr; Fully Repaired and Recharged Weapon                         <span class='tool ttk'>Ort <img src='runes/ort.png'  /> + Chipped gem (any type)<br><br>(Usefull for recharging <b>Teleport</b>) staff</span></td><tr>
     <tr><td class='tooltip y11'>Ral Rune + Flawed Gem  + Armor  &rarr; Fully Repaired and Recharged Armor                          <span class='tool ttk'>Ral <img src='runes/ral.png'  /> + Flawed gem (any type)</td</tr>
+</table>
+<br>
+<table class='head' id='table.misccube'>
+    <tr class='rt rb'><th      >Misc. Cube<div class='collapse'><button value='table.misccube' onclick='onCollapse(this);'>-</button></div></th></tr>
+    <tr><td class='tooltip r11'>3x Rejuvenation Potions       &rarr; Full Rejuvination Potion   <span class='tool ttk'></span></td></tr>
+    <tr><td class='tooltip r22'>Staff + Kris + Belt + Diamond &rarr; Savage Polearm Class Weapon<span class='tool ttk'><span class='note'>66-80% Enhanced Damage</span><br><br>Weapon Type one of:<br><br>Bardiche,<br>Battle Scythe,<br>Bill,<br>Halbred,<br>Lochaber Axe,<br>Partizan,<br>Poleaxe,<br>Scythe,<br>Voulge,<br>War Scythe<br></span></td></tr>
 </table>
 <br>
 <table class='head' id='section.crafting'>
@@ -3916,7 +4047,7 @@ for chests to drop this rune<br>
     <tr><td class='padd15'>
         <br>
         <table class='head' id='table.craftaffixes'>
-            <tr class='bt bb'><th      >ilvl    4 affixes  3 affixes  2 affixes  1 affix<button value='table.craftaffixes' onclick='onCollapse(this);' id='btn_craft_affixes'>-</button></th><tr>
+            <tr class='bt bb'><th      >Crafted ilvl = int(clvl/2) + int(ilvl/2)<br>ilvl    4 affixes  3 affixes  2 affixes  1 affix<button value='table.craftaffixes' onclick='onCollapse(this);' id='btn_craft_affixes'>-</button></th><tr>
             <tr><td class='tooltip b11'> 1-30      20%       20%        20%        40%    </td></tr>
             <tr><td class='tooltip b22'>31-50      20%       20%        60%        --     </td></tr>
             <tr><td class='tooltip b11'>51-70      20%       80%        --         --     </td></tr>
@@ -3924,7 +4055,7 @@ for chests to drop this rune<br>
         </table>
         <br>
         <table class='head' id='table.craftblood'>
-            <tr class='rt rb'><th>S <a href='http://classic.battle.net/diablo2exp/items/crafted/blood.shtml'   >Blood</a>     <span class='rune'>Rune</span> + <span class='magic'>Magic Item</span> + Perfect Ruby + Jewel &rarr; <span class='l'>Affix 1</span>, <span class='r'>Affix 2</span>, <span class='c'>+(10-20) To Life</span>                                 <button value='table.craftblood' onclick='onCollapse(this);'>-</button></th></tr>
+            <tr class='rt rb'><th>S <a href='http://classic.battle.net/diablo2exp/items/crafted/blood.shtml'   >Blood</a>     <span class='rune'>Rune</span> + <span class='magic'>Magic Item</span> + Perfect Ruby + Jewel &rarr; <span class='l'>Affix 1</span>, <span class='r'>Affix 2</span>, <span class='c'>+(10-20) To Life</span><div class='collapse'><button value='table.craftblood' onclick='onCollapse(this);'>-</button></div></th></tr>
             <tr><td class='tooltip r11'>* Amulet    <span class='rune'>Amn  </span>  Amulet                                            5-10% Faster Run/Walk           (1-4)% Life Stolen Per Hit</td></tr>
             <tr><td class='tooltip r22'>  Belt      <span class='rune'>Tal  </span>  Belt/Mesh/Mithril Coil                            Open Wounds (5-10)%             (1-3)% Life Stolen Per Hit</td></tr>
             <tr><td class='tooltip r11'>  Body      <span class='rune'>Thul </span>  Plate Mail/Templar Coil/Hellforge Plate           + (1-3) Life Per Demon Kill     (1-3)% Life Stolen Per Hit</td></tr>
@@ -3937,7 +4068,7 @@ for chests to drop this rune<br>
         </table>
         <br>
         <table class='head' id='table.craftcaster'>
-            <tr class='bt bb'><th>S <a href='http://classic.battle.net/diablo2exp/items/crafted/caster.shtml'  >Caster</a>    <span class='rune'>Rune</span> + <span class='magic'>Magic Item</span> + Perfect Amethyst + Jewel &rarr; <span class='l'>Affix 1</span>, <span class='c'>Regenerate Mana (4-10)%</span>, <span class='c'>+(10-20) To Mana</span><button value='table.craftcaster' onclick='onCollapse(this);'>-</button></th></tr>
+            <tr class='bt bb'><th>S <a href='http://classic.battle.net/diablo2exp/items/crafted/caster.shtml'  >Caster</a>    <span class='rune'>Rune</span> + <span class='magic'>Magic Item</span> + Perfect Amethyst + Jewel &rarr; <span class='l'>Affix 1</span>, <span class='c'>Regenerate Mana (4-10)%</span>, <span class='c'>+(10-20) To Mana</span><div class='collapse'><button value='table.craftcaster' onclick='onCollapse(this);'>-</button></div></th></tr>
             <tr><td class='tooltip b11'>* Amulet    <span class='rune'>Ral  </span>  Amulet                                            (5-10)% Faster Cast Rate                   </td></tr>
             <tr><td class='tooltip b22'>* Belt      <span class='rune'>Ith  </span>  Light Belt/Sharkskin Belt/Vampirefang Belt        5-10% Faster Cast Rate                     </td></tr>
             <tr><td class='tooltip b11'>  Body      <span class='rune'>Tal  </span>  Light Plate/Mage Plate/Archon Plate               + (1-3) Mana Per Kill                      </td></tr>
@@ -3950,7 +4081,7 @@ for chests to drop this rune<br>
         </table>
         <br>
         <table class='head' id='table.crafthit'>
-            <tr class='kt kb'><th>S <a href='http://classic.battle.net/diablo2exp/items/crafted/hitpower.shtml'>Hit Power</a> <span class='rune'>Rune</span> + <span class='magic'>Magic Item</span> + Perfect Sapphire + Jewel &rarr; <span class='l'>Affix 1</span>, <span class='r'>Affix 2</span>, <span class='c'>5% Chance To Cast Level 4 Frost Nova When Struck</span>          <button value='table.crafthit' onclick='onCollapse(this);'>-</button></th></tr>
+            <tr class='kt kb'><th>S <a href='http://classic.battle.net/diablo2exp/items/crafted/hitpower.shtml'>Hit Power</a> <span class='rune'>Rune</span> + <span class='magic'>Magic Item</span> + Perfect Sapphire + Jewel &rarr; <span class='l'>Affix 1</span>, <span class='r'>Affix 2</span>, <span class='c'>5% Chance To Cast Level 4 Frost Nova When Struck</span><div class='collapse'><button value='table.crafthit' onclick='onCollapse(this);'>-</button></div></th></tr>
             <tr><td class='tooltip k11'>  Amulet    <span class='rune'>Thul </span>  Amulet                                            Hit Causes Monster To Flee (3-11)%      Attacker Takes Damage of (3-10)</td></tr>
             <tr><td class='tooltip k22'>  Belt      <span class='rune'>Tal  </span>  Heavy Belt/Battle Belt/Troll Belt                 (5-10) % Damage Goes to Mana            Attacker Takes Damage of (3- 7)</td></tr>
             <tr><td class='tooltip k11'>  Body      <span class='rune'>Nef  </span>  Light Plate/Mage Plate/Archon Plate               10-20% Faster Hit Recovery              Attacker Takes Damage of (3-10)</td></tr>
@@ -3963,7 +4094,7 @@ for chests to drop this rune<br>
         </table>
         <br>
         <table class='head' id='table.craftsafety'>
-            <tr class='gt gb'><th>S <a href='http://classic.battle.net/diablo2exp/items/crafted/safety.shtml'  >Safety</a>    <span class='rune'>Rune</span> + <span class='magic'>Magic Item</span> + Perfect Emerald + Jewel &rarr; <span class='l'>Affix 1</span>, <span class='r'>Affix 2</span>, <span class='c'>Magic Damage Reduced By (1-2)</span>, <span class='c'>Damage Reduced By (1-4)</span><button value='table.craftsafety' onclick='onCollapse(this);'>-</button></th></tr>
+            <tr class='gt gb'><th>S <a href='http://classic.battle.net/diablo2exp/items/crafted/safety.shtml'  >Safety</a>    <span class='rune'>Rune</span> + <span class='magic'>Magic Item</span> + Perfect Emerald + Jewel &rarr; <span class='l'>Affix 1</span>, <span class='r'>Affix 2</span>, <span class='c'>Magic Damage Reduced By (1-2)</span>, <span class='c'>Damage Reduced By (1-4)</span><div class='collapse'><button value='table.craftsafety' onclick='onCollapse(this);'>-</button></div></th></tr>
             <tr><td class='tooltip g11'>  Amulet    <span class='rune'>Thul </span>  Amulet                                            + (1-10)% Increased Chance Of Blocking  --                        </td></tr>
             <tr><td class='tooltip g22'>  Belt      <span class='rune'>Tal  </span>  Sash/Demonhide Sash/Spiderweb Sash                + (10-30)% Enhanced Defense             Poison Resist +(5-10)%    </td></tr>
             <tr><td class='tooltip g11'>  Body      <span class='rune'>Eth  </span>  Breast Plate/Cuirass/Great Hauberk                + (10-30)% Enhanced Defense             Half Freeze Duration      </td></tr>
@@ -3991,43 +4122,50 @@ for chests to drop this rune<br>
             <table>
             <tr><td class='padd15 vatop'>
                 <br>
-                <table class='head' id='table.gambleitems'>
-                    <tr class='gt gb'><th      ><meta           /><a href='https://www.reddit.com/r/pathofdiablo/comments/d28ued/the_complete_overview_guide_to_shopping_in_diablo/'>Shopping</a>              clvl  Act/Note<button value='table.gambleitems' onclick='onCollapse(this);' id='btn_collapse_gambleitems'>-</button></th></tr>
-                    <tr><td class='tooltip g11'><meta           />+3 Warcries            <meta/>55+  NM/Hell   </td></tr>
-                    <tr><td class='tooltip g22'><meta           />+3 Java/20 IAS gloves  <meta/>55+  NM/Hell   </td></tr>
-                    <tr><td class='tooltip g11'><meta           />+5-6 Trap Claws        <meta/>55+  NM/Hell   </td></tr>
-                    <tr><td class='tooltip g22'><meta           />2os Staff (Leaf)     <meta/>1-13   A1/A2     </td></tr>
-                    <tr><td class='tooltip g11'><meta           />3os Bow (Edge)          <meta/>1   A1        </td></tr>
-                    <tr><td class='tooltip g22'><meta           />3os Crown              <meta/>42+  ?         </td></tr>
-                    <tr><td class='tooltip g11'><meta           />3os Flail (Black,Steel)<meta/> 1   A2 Fara   </td></tr>
-                    <tr><td class='tooltip g22'><meta           />3os Greath Helm        <meta/>42+  ?         </td></tr>
-                    <tr><td class='tooltip g11'><meta           />3os Mace (Black)       <meta/> 1   A2 Fara   </td></tr>
-                    <tr><td class='tooltip g22'><meta           />3os Mask               <meta/>37+  ?         </td></tr>
-                    <tr><td class='tooltip g11'><meta           />4os 100 Life armor     <meta/>50+  NM/Hell   </td></tr>
-                    <tr><td class='tooltip g22'>4os <span class='fhr'>24</span> FHR armor       50+  NM/Hell   </td></tr>
-                    <tr><td class='tooltip g11'><meta           />Amulets                <meta/>95   +2 skills </td></tr>
-                    <tr><td class='tooltip g22'><meta           />Circlets               <meta/>92   +2 skills </td></tr>
-                    <tr><td class='tooltip g11'><meta           />Coronets               <meta/>87   +2 skills </td></tr>
-                    <tr><td class='tooltip g22'><span class='fcr'>20</span> FCR wand            23+  Act 3+    </td></tr>
-                    <tr><td class='tooltip g11'><span class='mf' >20</span> MF gloves/boots     20+            </td></tr>
-                    <tr><td class='tooltip g22'><meta           />Life Tap wand          <meta/>19+  Hell      </td></tr>
-                    <tr><td class='tooltip g11'><meta           />Lower Resist wand      <meta/>30+  A4+       </td></tr>
-                    <tr><td class='tooltip g22'><meta           />Teleport staff         <meta/>18+  A3+       </td></tr>
+                <table class='head' id='table.shopping'>
+                    <tr class='gt gb'><th      ><meta           /><a href='https://www.reddit.com/r/pathofdiablo/comments/d28ued/the_complete_overview_guide_to_shopping_in_diablo/'>Shopping</a>              min ilvl  clvl  Act/Note<button value='table.shopping' onclick='onCollapse(this);' id='btn_collapse_shoppingitems'>-</button></th></tr>
+                    <tr><td class='tooltip g11'><meta           />+3 Warcries                 <meta/>55+       NM/Hell   </td></tr>
+                    <tr><td class='tooltip g22'><meta           />+3 Java/20 IAS gloves       <meta/>55+       NM/Hell   </td></tr>
+                    <tr><td class='tooltip g11'><meta           />+6 [trap] Claws             <meta/>80*  75   NM/Hell   <span class='tool ttr'>Need to upgrade to<br>exception/elite to spawn +1-3 skills<br><span class='note'>NOT worth shopping below clvl 85</span></span></td></tr>
+                    <tr><td class='tooltip g22'><meta           />2os Staff (Leaf)          <meta/>1-13        A1/A2     </td></tr>
+                    <tr><td class='tooltip g11'><meta           />3os Bow (Edge)              <meta/> 1        A1        </td></tr>
+                    <tr><td class='tooltip g22'><meta           />3os Crown                   <meta/>47   42   A5+       </td></tr>
+                    <tr><td class='tooltip g11'><meta           />3os Crown, T1 life          <meta/>82   77             </td></tr>
+                    <tr><td class='tooltip g22'><meta           />3os Flail (Black,Steel)     <meta/> 1        A2 Fara   </td></tr>
+                    <tr><td class='tooltip g11'><meta           />3os Great Helm              <meta/>44   39   A5+       </td></tr>
+                    <tr><td class='tooltip g22'><meta           />3os Great Helm, T1 life     <meta/>79   74   A5+       </td></tr>
+                    <tr><td class='tooltip g11'><meta           />3os Mace (Black)            <meta/> 1        A2 Fara   </td></tr>
+                    <tr><td class='tooltip g22'><meta           />3os Mask                    <meta/>42   37   A5+       </td></tr>
+                    <tr><td class='tooltip g11'><meta           />3os Mask, T1 life           <meta/>77   72   Hell      </td></tr>
+                    <tr><td class='tooltip g22'><meta           />4os Ancient Armor, 100 life <meta/>75   70   Hell      </td></tr>
+                    <tr><td class='tooltip g11'><meta           />4os Full Plate, 100 life    <meta/>73   68   NM/Hell   </td></tr>
+                    <tr><td class='tooltip g22'><meta           />4os Gothic Armor, 100 life  <meta/>71   66   Hell      </td></tr>
+                    <tr><td class='tooltip g11'>4os <span class='fhr'>24</span> FHR armor            50+       NM/Hell   </td></tr>
+                    <tr><td class='tooltip g22'><meta           />Amulets                     <meta/>95        +2 skills </td></tr>
+                    <tr><td class='tooltip g11'><meta           />Circlets                    <meta/>92        +2 skills </td></tr>
+                    <tr><td class='tooltip g22'><meta           />Coronets                    <meta/>87        +2 skills </td></tr>
+                    <tr><td class='tooltip g11'><span class='fcr'>20</span> FCR wand                 23+       Act 3+    </td></tr>
+                    <tr><td class='tooltip g11'>Leather Gloves, <span class='mf' >25</span> MF       17   12   Act 2     </td></tr>
+                    <tr><td class='tooltip g22'><meta           />Life Tap wand               <meta/>18+  13   A3+       </td></tr>
+                    <tr><td class='tooltip g11'><meta           />Lower Resist wand           <meta/>30+  25   A4+       </td></tr>
+                    <tr><td class='tooltip g22'><meta           />Plated Belt, 41- 60 life    <meta/>43   38             </td></tr>
+                    <tr><td class='tooltip g11'><meta           />Plated Belt, 61- 80 life    <meta/>53   48             </td></tr>
+                    <tr><td class='tooltip g22'><meta           />Plated Belt, 81-100 life    <meta/>63   58             </td></tr>
+                    <tr><td class='tooltip g22'><meta           />Teleport staff              <meta/>18+  13   A3+       </td></tr>
                 </table>
                 <br>
                 </td><td class='padd15 vatop'>
                 <br>
-                <table class='head' id='table.shopping'>
-                    <tr class='gt gb'><th      >Acts         max ilvl                 <button value='table.shopping' onclick='onCollapse(this);' id='btn_collapse_gambleitems'>-</button></th></tr>
+                <table class='head' id='table.vendorilvl'>
+                    <tr class='gt gb'><th      >Acts         max ilvl<div class='collapse'><button value='table.vendorilvl' onclick='onCollapse(this);' id='btn_collapse_vendor_ilvl'>-</button></div></th></tr>
                     <tr><td class='tooltip b11'>Act 1, norm    12                      </td></tr>
                     <tr><td class='tooltip b22'>Act 2, norm    20                      </td></tr>
                     <tr><td class='tooltip b11'>Act 3, norm    28                      </td></tr>
                     <tr><td class='tooltip b11'>Act 4, norm    36                      </td></tr>
                     <tr><td class='tooltip b11'>Act 5, norm    45                      </td></tr>
-                    <tr><td class='tooltip b11'>Normal       clvl20  normal & socket   </td></tr>
+                    <tr><td class='tooltip b11'>Normal       clvl+5  normal & socket   </td></tr>
                     <tr><td class='tooltip g11'>Nightmare    clvl+5  normal-exceptional</td></tr>
                     <tr><td class='tooltip r11'>Hell         clvl+5  normal-elite      </td></tr>
-                    <tr><td class='tooltip r11'>Act 3, Hell                 elite      </td></tr>
                 </table>
             </td></tr>
         </table>
@@ -4045,7 +4183,7 @@ for chests to drop this rune<br>
 <hr class='one'>
 <br>
 <table class='head' id='table.sockitems'>
-    <tr class='kt kb'><th      >Item Sockets<br>Name          ilvl 1-25  26-40  41+ Quality      Type      Equip clvl  <button value='table.sockitems' onclick='onCollapse(this);' id='btn_collapse_sockitems'>+</button></th></tr>
+    <tr class='kt kb'><th      >Item Sockets<br>Name          ilvl 1-25  26-40  41+ Quality      Type      Equip clvl<div class='collapse'><button value='table.sockitems' onclick='onCollapse(this);' id='btn_collapse_sockitems'>+</button></div></th></tr>
     <tr class='collapsed'><td class='tooltip k11'>Buckler               1    1    1   Normal       Shield     1</td></tr>
     <tr class='collapsed'><td class='tooltip k11'>Dagger                1    1    1   Normal       Dagger     1</td></tr>
     <tr class='collapsed'><td class='tooltip k11'>Hard Leather Armor    2    2    2   Normal       Armor      1</td></tr>
@@ -4058,7 +4196,7 @@ for chests to drop this rune<br>
 <table class='head ios-visible'>
     <tr><td>
         <table class='head' id='table.pl2'>
-            <tr class='rt rb'><th      > Power Leveling       <button value='table.pl2' onclick='onCollapse(this);'>-</button></th></tr>
+            <tr class='rt rb'><th      > Power Leveling<div class='collapse'><button value='table.pl2' onclick='onCollapse(this);'>-</button></div></th></tr>
             <tr><td class='tooltip b11'> 1-15 Tristram runs      </td></tr>
             <tr><td class='tooltip b22'>15-24 Tombs runs         </td></tr>
             <tr><td class='tooltip b11'>   24 Ancients           </td></tr>
@@ -4071,14 +4209,14 @@ for chests to drop this rune<br>
     </td>
     <td class='vatop padd5'>
         <table id='table.bestxp2'>
-            <tr class='gt gb'><th      >Best XP    I      II     III    IV     V <button value='table.bestxp2' onclick='onCollapse(this);'>-</button></th></tr>
+            <tr class='gt gb'><th      >Best XP    I      II     III    IV     V<div class='collapse'><button value='table.bestxp2' onclick='onCollapse(this);'>-</button></div></th></tr>
             <tr><td class='tooltip b22'>Normal      1-11  12-18  19-23  24-31  32-36</td></tr>
             <tr><td class='tooltip g22'>Nightmare  37-43  44-48  49-52  53-62  skip </td></tr>
             <tr><td class='tooltip r22'>Hell       63-73  74-80  81-83  83-94  95-99</td></tr>
         </table>
         <br>
         <table id='table.bases4sword'>
-            <tr class='bt bb'><th      >4os sword bases: Crystal, Broad, Long, ilvl 26-40 <button value='table.bases4sword' onclick='onCollapse(this);'>-</button></th></tr>
+            <tr class='bt bb'><th      >4os sword bases: Crystal, Broad, Long, ilvl 26-40<div class='collapse'><button value='table.bases4sword' onclick='onCollapse(this);'>-</button></div></th></tr>
             <tr><td class='tooltip b11'>Normal    Act 5                                    </td></tr>
             <tr><td class='tooltip b22'>Normal    Cows                                     </td></tr>
             <tr><td class='tooltip b11'>Nightmare Act 1                                    </td></tr>
@@ -4157,7 +4295,7 @@ for chests to drop this rune<br>
     <tr><td><div class='wp'></div></td><td class='tooltip y11'>Canyon of the Magi      16  48  <meta              />79<meta/> O<span class='rot90'> )</span>▯   *   ⩔△<span class='rot90'>o)<span></td></tr>
     <tr><td                      ></td><td class='tooltip y22'>Tal Rasha's Tomb        17  49  <meta              />80<meta/> <span class='l'>Orifice</span  ><span class='c'    >     </span><span class='r'>     </span></td></tr>
     <tr><td                      ></td><td class='tooltip y11'>Tal Rasha's Chamber     17  49  <meta              />80<meta/> <span class='l'>    </span     ><span class='c' >        </span><span class='r'>     </span></td></tr>
-</table><br></td><td><table class='head' id='table.alvl3'>
+</table><br></td><td class='vatop'><table class='head' id='table.alvl3'>
     <tr class='gt gb'><th><a href='http://classic.battle.net/diablo2exp/maps/act3.shtml'><div class='wp'></div></a></th><th>III Kurast Docs          N  nm   H Layout <span class='l'>L</span>/<span class='c'>C</span>/<span class='r'>R</span>  <button value='table.alvl3' onclick='onCollapse(this);'>-</button></th></tr>
     <tr><td><div class='wp'></div></td><td class='tooltip g11'>Spider Forest           21  49  <meta              />79<meta/> <span class='l'>    </span     ><span class='c'  >        </span   ><span class='r'>     </span></td></tr>
     <tr><td><div class='wp'></div></td><td class='tooltip g22'>Great Marsh             21  50  <meta              />80<meta/> <span class='l'>    </span     ><span class='c'  >        </span   ><span class='r'>     </span></td></tr>
@@ -4325,6 +4463,8 @@ for chests to drop this rune<br>
     Click on "Version" to sort runewords by version (default).
 
 <b>Misc. Links:</b>
+  Abbreviations
+    * <a href='https://diablo2.diablowiki.net/Abbreviations_and_Acronyms'>https://diablo2.diablowiki.net/Abbreviations_and_Acronyms</a>
   Calcs
     * <a href='https://d2.maxroll.gg/d2planner/'>https://d2.maxroll.gg/d2planner/</a> -- Awesome offline character + gear planner
     * <a href='https://d2.maxroll.gg/d2-drop-calculator'>https://d2.maxroll.gg/d2-drop-calculator</a> -- Drop Calculator
@@ -4375,11 +4515,11 @@ Thanks:
   * /u/wariscrafty         for link to       drop calc
   * /u/LivEisJeebus        for suggestion of gambling odds and items
   * /u/HutchReddit         for suggestion of skillers for rerolling magic item
+  * /uGuardianOfTriangles  for suggestion of savage cube recipe
   * pairofdocs             for suggestion of recharging items and example of Teleport staff
-
 </pre>
 <hr class='one'>
-<span style='font-size:12px;'>Version 1.37, Last Updated Sun, Sep 19 2021.</span>
+<span style='font-size:12px;'>Version 1.41, Last Updated Mon, Sep 21 2021.</span>
 <span style='font-size:10px;'>CSS Debug: Screen Size:</span> <span id='screen-size'>?</span>, <span class='ios-hidden' >iOS-hidden</span> <span class='ios-visible'>iOS-visible</span>
 <span style='font-size:6px;'>All bugs are due to Anthony slacking on QA.</span>
 </div></body>

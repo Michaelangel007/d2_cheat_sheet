@@ -39,6 +39,7 @@
  * Pandemonium Event (key/organ farming)
  * Shopping tables
  * Tomb locations
+ * Upped uniques
  * XP Tables
     * Power Leveling
     * Level for each difficulty & area
@@ -112,4 +113,4 @@
  * Diminishing MF -- gekido2802 -- https://diablo2.diablowiki.net/Magic_find_diminishing_returns
  * Base weapon speed mods -- Lokhe -- http://classic.battle.net/diablo2exp/items/elite/swords.shtml
 
-Last Updated: Sun, Sep 19, 2021
+Last Updated: Mon, Sep 21, 2021
