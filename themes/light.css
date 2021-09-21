@@ -1,6 +1,8 @@
 :root {
-    --light-color: 255, 255, 255;
+    --light-color: 250, 250, 250;
     --dark-color: 100, 100, 100;
+    /*--light-color: 100, 100, 100;
+    --dark-color: 255, 255, 255;*/
     --red-color: 221, 77, 77;
     --green-color: 134, 201, 43;
     --blue-color: 26, 131, 221;
@@ -8,6 +10,7 @@
     --cyan-color: 43, 216, 216;
     --brown-color: 131, 88, 46;
     --header-color: 80, 80, 80;
+    --headerbg-color: 240, 240, 240;
 }
 /* ----- General ----- */
 
@@ -60,12 +63,12 @@ a:link
 
 .k11
 {
-    background-color: rgba(var(--dark-color), 0.1);
+    background-color: rgba(var(--dark-color), 0.05);
 }
 
 .k22
 {
-    background-color: rgba(var(--dark-color), 0.2);
+    background-color: rgba(var(--dark-color), 0.1);
 }
 
 .y11
@@ -82,6 +85,21 @@ a:link
 th
 {
     color      : rgb(var(--header-color));
+}
+
+.bt > .runetip, th
+{
+    background-color: rgb(var(--headerbg-color));
+}
+
+.bt
+{
+    background-color: rgb(var(--headerbg-color));
+}
+
+.bt > .runetip > span
+{
+    color      : rgb(var(--header-color)) !important;
 }
 
 span.r { color: rgb(var(--red-color)); }
@@ -149,6 +167,11 @@ span.note
     color     : rgb(var(--yellow-color));
 }
 
+span.noterune
+{
+    color     : rgb(var(--dark-color));
+}
+
 span.gold
 {
     color     : rgb(var(--yellow-color));
@@ -172,13 +195,14 @@ span.rev
 span.sel
 {
     background-color: orange;
-    color:          : rgb(var(--light-color));
+    color:          : rgb(var(--light-color)) !important;
     border          : none;
 }
 
 span.unsel
 {
-    background-color: rgb(var(--light-color));
+    background-color: #00000000;
+    color:          : orange !important;
     border          : none;
 }
 
@@ -191,8 +215,8 @@ span.rws
 
 span.rwu
 {
-    background-color: #000;
-    color           : #FF8;
+    background-color: #00000000;
+    color           : rgb(var(--header-color));
 }
 
 /* Rune Upgrades */
