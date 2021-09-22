@@ -926,43 +926,44 @@ pre
 
 // string: rune name
 // int   : min clev for rune
-var RUNES = [
-    "El   ",
-    "Eld  ",
-    "Tir  ",
-    "Nef  ",
-    "Eth  ",
-    "Ith  ",
-    "Tal  ",
-    "Ral  ",
-    "Ort  ",
-    "Thul ",
-    "Amn  ",
-    "Sol  ",
-    "Shael",
-    "Dol  ",
-    "Hel  ",
-    "Io   ",
-    "Lum  ",
-    "Ko   ",
-    "Fal  ",
-    "Lem  ",
-    "Pul  ",
-    "Um   ",
-    "Mal  ",
-    "Ist  ",
-    "Gul  ",
-    "Vex  ",
-    "Ohm  ",
-    "Lo   ",
-    "Sur  ",
-    "Ber  ",
-    "Jah  ",
-    "Cham ",
-    "Zod  "
-];
-
-var RUNE_LEVS = [
+const RUNES =
+[
+    "El   ", // r00
+    "Eld  ", // r01
+    "Tir  ", // r02
+    "Nef  ", // r03
+    "Eth  ", // r04
+    "Ith  ", // r05
+    "Tal  ", // r06
+    "Ral  ", // r07
+    "Ort  ", // r08
+    "Thul ", // r09
+    "Amn  ", // r10
+    "Sol  ", // r11
+    "Shael", // r12
+    "Dol  ", // r13
+    "Hel  ", // r14
+    "Io   ", // r15
+    "Lum  ", // r16
+    "Ko   ", // r17
+    "Fal  ", // r18
+    "Lem  ", // r19
+    "Pul  ", // r20
+    "Um   ", // r21
+    "Mal  ", // r22
+    "Ist  ", // r23
+    "Gul  ", // r24
+    "Vex  ", // r25
+    "Ohm  ", // r26
+    "Lo   ", // r27
+    "Sur  ", // r28
+    "Ber  ", // r29
+    "Jah  ", // r30
+    "Cham ", // r31
+    "Zod  "  // r32
+],
+    RUNE_LEVS =
+[
     11, // "El   "
     11, // "Eld  "
     13, // "Tir  "
@@ -996,6 +997,42 @@ var RUNE_LEVS = [
     65, // "Jah  "
     67, // "Cham "
     69  // "Zod  "
+],
+SORTED =
+[
+    10, // "Amn  "
+    29, // "Ber  "
+    31, // "Cham "
+    13, // "Dol  "
+     0, // "El   "
+     1, // "Eld  "
+     4, // "Eth  "
+    18, // "Fal  "
+    24, // "Gul  "
+    14, // "Hel  "
+    15, // "Io   "
+    23, // "Ist  "
+     5, // "Ith  "
+    30, // "Jah  "
+    17, // "Ko   "
+    19, // "Lem  "
+    27, // "Lo   "
+    16, // "Lum  "
+    22, // "Mal  "
+     3, // "Nef  "
+    26, // "Ohm  "
+     8, // "Ort  "
+    20, // "Pul  "
+     7, // "Ral  "
+    12, // "Shael"
+    11, // "Sol  "
+    28, // "Sur  "
+     6, // "Tal  "
+     9, // "Thul "
+     2, // "Tir  "
+    21, // "Um   "
+    25, // "Vex  "
+    32  // "Zod  "
 ];
 
 var COLUMNS = [ 0, 2, 22, 25, 49, 89, 93 ];
