@@ -1121,11 +1121,16 @@ var RECIPES = [
     "* Treachery           3  Body Armor              Shael + Thul  + Lem                     43  1.11"
 ];
 
+    //  &check;  \u2713  Check Mark
+    //  &#x2610; \u2610  Ballot Box
+    //  &#x2611; \u2611  Ballot Box with Check
     const FACE     = [ '-', '+' ], // Button collapse faces
+          FAVS     = [ '\u2610', '\u2611' ],
           COLLAPSE = [ 'Collapse', 'Expand' ];
 
 // Globals
-    var gaAvailableRunes = [],
+    var gaAvailableRunes   = [],
+        gaRuneWordManifest = [],
 
         gaRuneWordLevel  = [],
         gaRuneWordNames  = [],
@@ -1241,6 +1246,57 @@ function verify()
         if( level !== expect )
             console.error( "[" + recipe + "]: " + runeword + ", mats: " + mats + ", %o", arunes, "Expect Lev: " + expect + ", Actual Levl: " + level );
     }
+}
+
+function commaWrap( text, max )
+{
+    var result = text, sol = 0, next = 0, fits, width, lines = 1;
+
+    // comma-wrap
+    if (text.length > max)
+    {
+        result = '';
+        lines  = 0;
+
+        while (next >= 0)
+        {
+            fits = next;
+            next = text.indexOf( ',', next );
+
+            if (next < 0)
+            {
+                width = (text.length - sol);
+
+                // Handle edge case of overflow on last line
+                if (width >= max)
+                {
+                    result += text.substr( sol, fits-sol ) + '\n';
+                    sol     = fits+1;
+                    lines++;
+                }
+
+                result += text.substr( sol );
+                lines++;
+                break;
+            }
+
+            width = (next - sol);
+            next++;
+
+            if (width >= max)
+            {
+                result += text.substr( sol, fits-sol ) + '\n';
+                sol     = fits+1;
+                lines++;
+            }
+        }
+    }
+
+    if (lines < 2) result += '\n';
+    if (lines < 3) result += '\n';
+    if (lines < 4) result += '\n';
+
+    return result;
 }
 
 function dataLoad()
@@ -1483,6 +1539,9 @@ function onLoad()
     gaAvailableRunes.fill(1);
     initRunewordTables();
 
+    gaRuneWordManifest = new Array( RUNES.length );
+    gaRuneWordManifest.fill(0);
+
     dataLoad();
 
     var btn = document.getElementById( 'btn_collapse_sockitems' );
@@ -1533,6 +1592,33 @@ function onToggleAllRunes( haveAll )
 
     dataSave();
     updateRunesRunewords();
+}
+
+function onToggleFavRW( btn )
+{
+    var td = btn.parentNode,
+        tr = td .parentNode,
+        on = (btn.innerText.indexOf( FAVS[1] ) >= 0)|0,
+        s  = 1-on,
+        id = tr.getAttribute( 'id' ),
+        rw = parseInt( id.substr(2) );
+
+    if( id !== null )
+    {
+        var r, rune, runes = gaRuneWordRunes[ rw ],
+            delta = (s) ? +1 : -1;
+
+        btn.innerText = FAVS[ s ];
+
+        // Add/Sub runes to manifest
+        for( rune = 0; rune < runes.length; rune++ )
+        {
+            r = runes[ rune ];
+            gaRuneWordManifest[ r ] = gaRuneWordManifest[ r ] + delta;
+        }
+
+        updateManifest();
+    }
 }
 
 // Toggle owning a rune
@@ -1637,6 +1723,24 @@ function selectRuneWordHeader( selected )
                 }
             );
     }
+
+function updateManifest()
+{
+    var i, r, rune, runes, txt = '', work, manifest = document.getElementById( 'manifest' );
+
+    // Update manifest
+    for( i = 0; i < gaRuneWordManifest.length; i++ )
+    {
+        rune = SORTED[ i ]; // Sort manifest alphabetically by runes
+        r = gaRuneWordManifest[ rune ];
+        if( r )
+            txt += '' + gaRuneWordManifest[ rune ] + 'x ' + RUNES[ rune ].trim() + ', ';
+    }
+
+    // if manifest > 100 chars word wrap
+    txt   = txt.substr( 0, txt.length - 2 ); // Trim last comma
+    manifest.innerText = commaWrap( txt, 100 );
+}
 
 function updateRunesRunewords()
 {
