@@ -19,6 +19,7 @@
    * Hover/touch rune header for rune instructions
  * Sortable runeword table
    * Defaults to `Owned` to see only the runewords you can make with the runes you "own"
+   * Can toggle each runeword as a favorite -- which will add it to the "rune manifest"
    * Minimum runeword level
    * Color coded offense and defense stats in runewords
    * Alternating runeword background row colors for readability
@@ -113,4 +114,4 @@
  * Diminishing MF -- gekido2802 -- https://diablo2.diablowiki.net/Magic_find_diminishing_returns
  * Base weapon speed mods -- Lokhe -- http://classic.battle.net/diablo2exp/items/elite/swords.shtml
 
-Last Updated: Mon, Sep 21, 2021
+Last Updated: Mon, Sep 22, 2021
