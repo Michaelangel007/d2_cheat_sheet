@@ -1,12 +1,13 @@
 :root {
     --light-color: 250, 250, 250;
+    --medium-color: 175, 175, 175;
     --dark-color: 100, 100, 100;
     /*--light-color: 100, 100, 100;
     --dark-color: 255, 255, 255;*/
     --red-color: 221, 77, 77;
     --green-color: 134, 201, 43;
     --blue-color: 26, 131, 221;
-    --yellow-color: 255, 216, 0;
+    --yellow-color: 255, 200, 0;
     --cyan-color: 43, 216, 216;
     --brown-color: 131, 88, 46;
     --header-color: 80, 80, 80;
@@ -97,7 +98,7 @@ th
     background-color: rgb(var(--headerbg-color));
 }
 
-.bt > .runetip > span
+.bt > .runetip > span:first-child, a
 {
     color      : rgb(var(--header-color)) !important;
 }
@@ -105,6 +106,36 @@ th
 span.r { color: rgb(var(--red-color)); }
 span.g { color: rgb(var(--green-color)); }
 span.b { color: rgb(var(--blue-color)); }
+
+/* ---------- Tool Tips ---------- */
+.tooltip:hover
+{
+    background-color: rgba(var(--yellow-color), 0.2);
+    /*background-color: rgb(var(--dark-color));
+    color           : rgb(var(--light-color));*/
+}
+
+.runetip .gemtext,
+.runetip .runehelp2
+{
+    background-color: rgb(var(--light-color));
+    color           : rgb(var(--dark-color));
+    border-color    : rgb(var(--medium-color));
+    filter: drop-shadow(0 0 8px rgb(var(--medium-color)));
+    font-weight: normal;    /* Investigate why the user agent stylesheet is setting font to bold */
+}
+
+.runetype
+{
+    color           : rgb(var(--header-color));
+}
+
+.runetip:hover
+{
+    background-color: rgba(var(--yellow-color), 0.2);
+    /*background-color: rgb(var(--dark-color));
+    color           : rgb(var(--light-color));*/
+}
 
 /* Top and Bottom line colors */
 tr.rt
@@ -219,6 +250,11 @@ span.rwu
     color           : rgb(var(--header-color));
 }
 
+span.n
+{
+    color: rgb(var(--blue-color));
+}
+
 /* Rune Upgrades */
 span.x
 {
@@ -228,4 +264,28 @@ span.x
 span.y
 {
     color: rgb(var(--yellow-color));
+}
+
+/* Customs */
+.visible
+{
+    filter: brightness(100%);
+    opacity: 100%;
+}
+
+.hidden
+{
+    filter: brightness(100%);
+    opacity: 35%;
+}
+
+/* Improve runes readability on light background */
+.visible img
+{
+    filter: brightness(150%);
+}
+
+.hidden img
+{
+    filter: brightness(150%);
 }

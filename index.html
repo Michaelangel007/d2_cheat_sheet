@@ -860,6 +860,16 @@ td
     */
         overflow-y      : scroll;
     }
+            
+    .visible
+    {
+        filter: brightness(100%);
+    }
+
+    .hidden
+    {
+        filter: brightness(50%);
+    }
 
     div.c
     {
@@ -1508,8 +1518,8 @@ function onToggleRune( index )
 // Runeword table row or Rune image
 function setElementVisible( elem, vis )
 {
-    if   ( vis ) { elem.style.opacity = '100%'               ; }
-    else         { elem.style.opacity = '35%'; }
+    if   ( vis ) { elem.classList.add('visible'); elem.classList.remove('hidden');}
+    else         { elem.classList.add('hidden'); elem.classList.remove('visible');}
 
 }
 
