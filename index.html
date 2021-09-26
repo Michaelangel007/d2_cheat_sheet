@@ -1364,10 +1364,10 @@ function initTableCollapseMinWidth()
         cs = dv.getAttribute( 'class' );
         if (cs && cs.indexOf( 'collapse' ) >= 0)
         {
-            th = dv.parentElement;
-            tr = th.parentElement;
-            tb = tr.parentElement;
-            ta = tb.parentElement;
+            th = dv.parentElement; // header
+            tr = th.parentElement; // row
+            tb = tr.parentElement; // body
+            ta = tb.parentElement; // table
 
             // Can't used minWidth since it may not be set
             //     ta.style.width = ta.style.minWidth;
