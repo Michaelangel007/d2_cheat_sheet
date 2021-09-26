@@ -109,4 +109,4 @@
  * Diminishing MF -- gekido2802 -- https://diablo2.diablowiki.net/Magic_find_diminishing_returns
  * Base weapon speed mods -- Lokhe -- http://classic.battle.net/diablo2exp/items/elite/swords.shtml
 
-Last Updated: Mon, Sep 22, 2021
+Last Updated: Sun, Sep 26, 2021
