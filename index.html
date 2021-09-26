@@ -1541,11 +1541,19 @@ function onCollapseAll( button )
     }
 }
 
+function onCollapseLoad()
+{
+}
+
+function onCollapseSave()
+{
+}
+
 function onColor( button )
 {
     document.getElementById('content').style = '';
 
-    if (!button.disabled)
+    if( !button.disabled )
     {
         button.disabled = true;
         document.getElementById( 'mono' ).disabled = false;
@@ -1581,7 +1589,7 @@ function onMono( button )
 {
     document.getElementById('content').style = 'filter:grayscale(100%);';
 
-    if (!button.disabled)
+    if( !button.disabled )
     {
         button.disabled = true;
         document.getElementById( 'color' ).disabled = false;
