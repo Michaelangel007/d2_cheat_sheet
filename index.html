@@ -1343,6 +1343,8 @@ function dataSave()
     localStorage.setItem( 'availableRunes', JSON.stringify( gaAvailableRunes ) );
 }
 
+// Optional: width
+// Optional: character to pad left with, such as '0'; will default to space
 function padLeft( text, width, c )
 {
     if( !width ) return "";
