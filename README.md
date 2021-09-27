@@ -12,9 +12,11 @@
    * Hover over rune to see details
    * Rune chest dropping and farming info
    * Hover/touch rune header for rune instructions
+   * Owned runes are remembered for the next time you (re)load the page
  * Sortable runeword table
    * Defaults to `Owned` to see only the runewords you can make with the runes you "own"
    * Can toggle each runeword as a favorite -- which will add it to the "rune manifest"
+   * Favorite runewords are remembered for the next time you (re)load the page
    * Minimum runeword level
    * Color coded offense and defense stats in runewords
    * Alternating runeword background row colors for readability
@@ -109,4 +111,4 @@
  * Diminishing MF -- gekido2802 -- https://diablo2.diablowiki.net/Magic_find_diminishing_returns
  * Base weapon speed mods -- Lokhe -- http://classic.battle.net/diablo2exp/items/elite/swords.shtml
 
-Last Updated: Sun, Sep 26, 2021
+Last Updated: Mon, Sep 27, 2021
