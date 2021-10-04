@@ -942,6 +942,11 @@ pre
     width           : 0px;
     z-index         : 1;
 }
+
+.header-anchor {
+    text-decoration: none;
+}
+
         </style>
         <script>
 "use strict"; // Stupid hack to turn on type safety
@@ -1580,6 +1585,17 @@ function onLoad()
 {
     onResize();
 
+    // Anchored tables for ez linking
+    var tables = document.getElementsByTagName("th");
+    for (var i = 0; i < tables.length; i++) {
+        var _table = tables[i];
+        var _t_pid = _table.parentElement.parentElement.parentElement.id;
+        var _anchor = document.createElement("a");
+        _anchor.className = "header-anchor"
+        _anchor.href = "#" + _t_pid;
+        wrap(_table, _anchor);
+    }
+
     // iOS touch / hover
     document.addEventListener("touchstart", function() {},false);
 
@@ -1921,6 +1937,14 @@ function updateRuneWordsVisible()
 
         setElementVisible( tr, seen );
     }
+}
+
+/*
+    https://plainjs.com/javascript/manipulation/wrap-an-html-structure-around-an-element-28/
+*/
+function wrap(el, wrapper) {
+    el.parentNode.insertBefore(wrapper, el);
+    wrapper.appendChild(el);
 }
         </script>
     </head>
