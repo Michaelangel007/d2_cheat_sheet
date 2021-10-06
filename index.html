@@ -54,7 +54,7 @@
 
 /* ----- Breaks ----- */
 
-     hr.one
+     .one
      {
         height       : 1px;
         margin       :  0;
@@ -212,6 +212,15 @@
         padding-left    : 2px;
         padding-right   : 2px;
     }
+
+    /* Gems */
+    .gemam { background-color: #303; } /* Amethyst */
+    .gemdi { background-color: #222; } /* Diamond  */
+    .gemem { background-color: #020; } /* Emerald  */
+    .gemru { background-color: #200; } /* Ruby     */
+    .gemsa { background-color: #003; } /* Sapphire */
+    .gemsk { background-color: #000; } /* Skull    */
+    .gemto { background-color: #220; } /* Topaz    */
 
     /* Gold Find */
     span.gold
@@ -4277,6 +4286,44 @@ for chests to drop this rune<br>
     <tr class='rt rb'><th      >Misc. Cube<div class='collapse'><button value='table.misccube' onclick='onCollapse(this);'>-</button></div></th></tr>
     <tr><td class='tooltip r11'>3x Rejuvenation Potions       &rarr; Full Rejuvenation Potion   <span class='tool ttk'><img class='rejuvs'/><span class='in'> + </span><img class='rejuvs'/><span class='in'> + </span><img class='rejuvs'/><span class='in'> &rarr; </span><img class='rejuvf'/></span></td></tr>
     <tr><td class='tooltip r22'>Staff + Kris + Belt + Diamond &rarr; Savage Polearm Class Weapon<span class='tool ttk'><span class='note'>66-80% Enhanced Damage</span><br><br>Weapon Type one of:<br><br>Bardiche,<br>Battle Scythe,<br>Bill,<br>Halbred,<br>Lochaber Axe,<br>Partizan,<br>Poleaxe,<br>Scythe,<br>Voulge,<br>War Scythe<br></span></td></tr>
+</table>
+<br>
+<table class='head' id='table.gems1'>
+    <tr class='gt gb'><th      ><a href='http://classic.battle.net/diablo2exp/items/gems.shtml'>Gem</a> Tiers  </th><th>clvl </td><th>Loc      </th><th>Amethyst  </th           ><th>Diamond              </th           ><th>Emerald             </th            ><th>Ruby             </th><th><div class=''><button value='table.gems1' onclick='onCollapse(this);' id='btn_gems'>-</button></div></th><tr>
+    <tr class='  '><td class='tooltip b11'>        </td><td>   </td><td>Weapon</td                                                   ><td class='gemam'>+ 40 AR</td><td class='gemdi'>+28% Damage Undead</td><td class='gemem'> +10 Poison dmg/3s</td><td class='gemru'> 3-4  Fire dmg </td></tr>
+    <tr class='  '><td class='tooltip b11'>Chipped </td><td>&nbsp;1</td><td>Shield</td                                               ><td class='gemam'> +8 Def</td><td class='gemdi'>Resist All  +6%   </td><td class='gemem'>12% Resist Poison </td><td class='gemru'>12% Resist Fire</td></tr>
+    <tr class='gb'><td class='tooltip b11'>        </td><td>   </td><td>Armor </td                                                   ><td class='gemam'> +3 STR</td><td class='gemdi'>+ 20 AR           </td><td class='gemem'>  +3 Dexterity    </td><td class='gemru'>+10 Life       </td></tr>
+    <tr class='  '><td class='tooltip b11'>        </td><td>   </td><td>Weapon</td                                                   ><td class='gemam'>+ 60 AR</td><td class='gemdi'>+34% Damage Undead</td><td class='gemem'> +20 Poison dmg/4s</td><td class='gemru'> 5-8  Fire dmg </td></tr>
+    <tr class='  '><td class='tooltip b11'>Flawed  </td><td>&nbsp;5 </td><td>Shield</td                                              ><td class='gemam'>+12 Def</td><td class='gemdi'>Resist All  +8%   </td><td class='gemem'>16% Resist Poison </td><td class='gemru'>16% Resist Fire</td></tr>
+    <tr class='gb'><td class='tooltip b11'>        </td><td>   </td><td>Armor </td                                                   ><td class='gemam'> +4 STR</td><td class='gemdi'>+ 40 AR           </td><td class='gemem'> +4 Dexterity     </td><td class='gemru'>+17 Life       </td></tr>
+    <tr class='  '><td class='tooltip b11'>        </td><td>   </td><td>Weapon</td                                                   ><td class='gemam'>+ 80 AR</td><td class='gemdi'>+44% Damage Undead</td><td class='gemem'> +40 Poison dmg/5s</td><td class='gemru'> 8-12 Fire dmg </td></tr>
+    <tr class='  '><td class='tooltip b11'>(normal)</td><td>12 </td><td>Shield</td                                                   ><td class='gemam'>+18 Def</td><td class='gemdi'>Resist All +11%   </td><td class='gemem'>22% Resist Poison </td><td class='gemru'>22% Resist Fire</td></tr>
+    <tr class='gb'><td class='tooltip b11'>        </td><td>   </td><td>Armor </td                                                   ><td class='gemam'> +6 STR</td><td class='gemdi'>+ 60 AR           </td><td class='gemem'> +6 Dexterity     </td><td class='gemru'>+24 Life       </td></tr>
+    <tr class='  '><td class='tooltip b11'>        </td><td>   </td><td>Weapon</td                                                   ><td class='gemam'>+100 AR</td><td class='gemdi'>+54% Damage Undead</td><td class='gemem'> +60 Poison dmg/6s</td><td class='gemru'>10-16 Fire dmg </td></tr>
+    <tr class='  '><td class='tooltip b11'>Flawless</td><td>15 </td><td>Shield</td                                                   ><td class='gemam'>+24 Def</td><td class='gemdi'>Resist All +14%   </td><td class='gemem'>28% Resist Poison </td><td class='gemru'>28% Resist Fire</td></tr>
+    <tr class='gb'><td class='tooltip b11'>        </td><td>   </td><td>Armor </td                                                   ><td class='gemam'> +8 STR</td><td class='gemdi'>+ 80 AR           </td><td class='gemem'> +8 Dexterity     </td><td class='gemru'>+31 Life       </td></tr>
+    <tr class='  '><td class='tooltip b11'>        </td><td>   </td><td>Weapon</td                                                   ><td class='gemam'>+150 AR</td><td class='gemdi'>+68% Damage Undead</td><td class='gemem'>+100 Poison dmg/7s</td><td class='gemru'>15-20 Fire dmg </td></tr>
+    <tr class='  '><td class='tooltip b11'>Perfect </td><td>18 </td><td>Shield</td                                                   ><td class='gemam'>+30 Def</td><td class='gemdi'>Resist All +19%   </td><td class='gemem'>40% Resist Poison </td><td class='gemru'>40% Resist Fire</td></tr>
+    <tr class='gb'><td class='tooltip b11'>        </td><td>   </td><td>Armor </td                                                   ><td class='gemam'>+12 STR</td><td class='gemdi'>+100 AR           </td><td class='gemem'>+10 Dexterity     </td><td class='gemru'>+38 Life       </td></tr>
+</table>
+<br>
+<table class='head' id='table.gems2'>
+    <tr class='bt bb'><th      ><a href='http://classic.battle.net/diablo2exp/items/gems.shtml'>Gem</a> Tiers  </th><th>clvl </td><th>Loc      </th><th>Sapphire              </th><th            >Skull                                    </th><th            >Topaz                            </th><th><div class=''><button value='table.gems2' onclick='onCollapse(this);' id='btn_gems'>-</button></div></th><tr>
+    <tr class='  '><td class='tooltip b11'>        </td><td>   </td><td>Weapon</td                                                   ><td class='gemsa'> 1- 3 Cold dmg, 1.0s</td><td class='gemsk'>Steals 2% life, 1% Mana                </td><td class='gemto'>1- 8 Lightning dmg             </td></tr>
+    <tr class='  '><td class='tooltip b11'>Chipped </td><td>&nbsp;1 </td><td>Shield</td                                              ><td class='gemsa'>12% Resist Cold     </td><td class='gemsk'>Attackers takes  4 dmg                 </td><td class='gemto'>12% Resist Lightning           </td></tr>
+    <tr class='bb'><td class='tooltip b11'>        </td><td>   </td><td>Armor </td                                                   ><td class='gemsa'>+10 Max Mana        </td><td class='gemsk'>Replensish Life +2, Regenerate Mana  8%</td><td class='gemto'>+9% MF                         </td></tr>
+    <tr class='  '><td class='tooltip b11'>        </td><td>   </td><td>Weapon</td                                                   ><td class='gemsa'> 3- 5 Cold dmg, 1.4s</td><td class='gemsk'>Steals 2% life, 2% Mana                </td><td class='gemto'>1-14 Lightning dmg             </td></tr>
+    <tr class='  '><td class='tooltip b11'>Flawed  </td><td>&nbsp;5 </td><td>Shield</td                                              ><td class='gemsa'> 16% Resist Cold    </td><td class='gemsk'>Attackers takes  8 dmg                 </td><td class='gemto'>16% Resist Lightning           </td></tr>
+    <tr class='bb'><td class='tooltip b11'>        </td><td>   </td><td>Armor </td                                                   ><td class='gemsa'> +17 Max Mana       </td><td class='gemsk'>Replensish Life +3, Regenerate Mana  8%</td><td class='gemto'>+13% Chance to Find Magic Items</td></tr>
+    <tr class='  '><td class='tooltip b11'>        </td><td>   </td><td>Weapon</td                                                   ><td class='gemsa'> 4- 7 Cold dmg, 2.0s</td><td class='gemsk'>Steals 3% life, 2% Mana                </td><td class='gemto'>1-22 Lightning dmg             </td></tr>
+    <tr class='  '><td class='tooltip b11'>(normal)</td><td>12 </td><td>Shield</td                                                   ><td class='gemsa'>22% Resist Cold     </td><td class='gemsk'>Attackers takes 12 dmg                 </td><td class='gemto'>22% Resist Lightning           </td></tr>
+    <tr class='bb'><td class='tooltip b11'>        </td><td>   </td><td>Armor </td                                                   ><td class='gemsa'>+24 Max Mana        </td><td class='gemsk'>Replensish Life +3, Regenerate Mana 12%</td><td class='gemto'>+16% Chance to Find Magic Items</td></tr>
+    <tr class='  '><td class='tooltip b11'>        </td><td>   </td><td>Weapon</td                                                   ><td class='gemsa'> 6-20 Cold dmg, 2.4s</td><td class='gemsk'>Steals 3% life, 3% Mana                </td><td class='gemto'>1-30 Lightning dmg             </td></tr>
+    <tr class='  '><td class='tooltip b11'>Flawless</td><td>15 </td><td>Shield</td                                                   ><td class='gemsa'>28% Resist Cold     </td><td class='gemsk'>Attackers takes 16 dmg                 </td><td class='gemto'>28% Resist Lightning           </td></tr>
+    <tr class='bb'><td class='tooltip b11'>        </td><td>   </td><td>Armor </td                                                   ><td class='gemsa'>+31 Max Mana        </td><td class='gemsk'>Replensish Life +4, Regenerate Mana 12%</td><td class='gemto'>+20% Chance to Find Magic Items</td></tr>
+    <tr class='  '><td class='tooltip b11'>        </td><td>   </td><td>Weapon</td                                                   ><td class='gemsa'>10-14 Cold dmg, 3.0s</td><td class='gemsk'>Steals 4% life, 3% Mana                </td><td class='gemto'>1-40 Lightning dmg             </td></tr>
+    <tr class='  '><td class='tooltip b11'>Perfect </td><td>18 </td><td>Shield</td                                                   ><td class='gemsa'>40% Resist Cold     </td><td class='gemsk'>Attackers takes 20 dmg                 </td><td class='gemto'>28% Resist Lightning           </td></tr>
+    <tr class='bb'><td class='tooltip b11'>        </td><td>   </td><td>Armor </td                                                   ><td class='gemsa'>+38 Max Mana        </td><td class='gemsk'>Replensish Life +5, Regenerate Mana 19%</td><td class='gemto'>+24% Chance to Find Magic Items</td></tr>
 </table>
 <br>
 <table class='head' id='section.crafting'>
