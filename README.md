@@ -102,6 +102,8 @@
 
 
 ```
+
+ * Table of base/set/unique -- see https://www.reddit.com/r/Diablo/comments/q1nzh7/kudos_for_the_cheat_sheet/hfixbpm/
  * Add map layout hints -- see https://docs.google.com/spreadsheets/d/1UQP7PjHgCJWN-s42bUtGsR18f9GNh7JJ15QE7D6CnHE/edit#gid=0
  * Customize yellow hover color
  * ebugging def table
@@ -111,4 +113,4 @@
  * Diminishing MF -- gekido2802 -- https://diablo2.diablowiki.net/Magic_find_diminishing_returns
  * Base weapon speed mods -- Lokhe -- http://classic.battle.net/diablo2exp/items/elite/swords.shtml
 
-Last Updated: Sat, Oct 2, 2021
+Last Updated: Wed, Oct 6, 2021
