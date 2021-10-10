@@ -2,13 +2,12 @@
     --light-color: 250, 250, 250;
     --medium-color: 175, 175, 175;
     --dark-color: 100, 100, 100;
-    /*--light-color: 100, 100, 100;
-    --dark-color: 255, 255, 255;*/
     --red-color: 221, 77, 77;
-    --green-color: 134, 201, 43;
+    --green-color: 89, 159, 0; 
     --blue-color: 26, 131, 221;
     --yellow-color: 255, 200, 0;
-    --cyan-color: 43, 216, 216;
+    --cyan-color: 52, 199, 199;
+    --purple-color: 182, 95, 227;
     --brown-color: 131, 88, 46;
     --header-color: 80, 80, 80;
     --headerbg-color: 240, 240, 240;
@@ -116,13 +115,31 @@ span.b { color: rgb(var(--blue-color)); }
 }
 
 .runetip .gemtext,
-.runetip .runehelp2
+.runetip .runehelp1,
+.runetip .runehelp2,
+.runetip .runehelp3,
+.tool.ttk,
+.tool.ttr,
+.tool.ttg,
+.tool.ttb
 {
     background-color: rgb(var(--light-color));
     color           : rgb(var(--dark-color));
     border-color    : rgb(var(--medium-color));
     filter: drop-shadow(0 0 8px rgb(var(--medium-color)));
     font-weight: normal;    /* Investigate why the user agent stylesheet is setting font to bold */
+}
+
+/* Upping formulas */
+.tool.ttk img:nth-of-type(-n + 2) /* Only affect the runes and not the gem */
+{
+    filter: brightness(150%);
+}
+
+.rejuvs,
+.rejuvf
+{
+    filter: brightness(150%);
 }
 
 .runetype
@@ -213,8 +230,15 @@ span.farm
     color: rgb(var(--cyan-color));
 }
 
-span.l { color: #4CF; }
-span.c { color: rgb(var(--green-color)); }
+span.l
+{ 
+    color: rgb(var(--blue-color)); 
+}
+
+span.c 
+{ 
+    color: rgb(var(--green-color)); 
+}
 
 span.rev
 {
@@ -264,6 +288,68 @@ span.x
 span.y
 {
     color: rgb(var(--yellow-color));
+}
+
+/* Gems Color Coding */
+.gemam
+{
+    background-color: rgba(var(--purple-color), 0.2);
+}
+
+.gemdi
+{
+    background-color: rgba(var(--dark-color), 0.2);
+}
+
+.gemem
+{
+    background-color: rgba(var(--green-color), 0.2);
+}
+
+.gemru
+{
+    background-color: rgba(var(--red-color), 0.2);
+}
+
+.gemsa
+{
+    background-color: rgba(var(--blue-color), 0.2);
+}
+
+.gemsk
+{
+    background-color: rgba(var(--dark-color), 0.2);
+}
+
+.gemto
+{
+    background-color: rgba(var(--yellow-color), 0.2);
+}
+
+/* Stats Color Coding */
+span.skill
+{
+    color: rgb(var(--light-color));
+}
+
+span.ias
+{
+    color: rgb(var(--green-color));
+}
+
+span.resa
+{
+    color: rgb(var(--light-color));
+}
+
+span.idr
+{
+    color: rgb(var(--cyan-color));
+}
+
+span.cbf
+{
+    color: rgb(var(--blue-color));
 }
 
 /* Customs */
