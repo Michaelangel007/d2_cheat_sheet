@@ -30,9 +30,31 @@
         float  : right;
     }
 
+    .in
+    {
+        display       : inline-block;
+        vertical-align: 8px;
+    }
+
+    .out
+    {
+        height     : 30px;
+        line-height: 30px;
+    }
+
+    .rejuvs
+    {
+        content: url("pics/rejuv.png");
+    }
+
+    .rejuvf
+    {
+        content: url("pics/full_rejuv.png");
+    }
+
 /* ----- Breaks ----- */
 
-     hr.one
+     .one
      {
         height       : 1px;
         margin       :  0;
@@ -190,6 +212,15 @@
         padding-left    : 2px;
         padding-right   : 2px;
     }
+
+    /* Gems */
+    .gemam { background-color: #303; } /* Amethyst */
+    .gemdi { background-color: #222; } /* Diamond  */
+    .gemem { background-color: #020; } /* Emerald  */
+    .gemru { background-color: #200; } /* Ruby     */
+    .gemsa { background-color: #003; } /* Sapphire */
+    .gemsk { background-color: #000; } /* Skull    */
+    .gemto { background-color: #220; } /* Topaz    */
 
     /* Gold Find */
     span.gold
@@ -731,7 +762,7 @@ td
         cursor    : pointer;
         visibility: visible;
         top       : 0px;
-        left      : 900px;
+        left      : 1025px;
     }
 
     .tooltip:hover .ttg
@@ -739,7 +770,7 @@ td
         cursor    : pointer;
         visibility: visible;
         top       : 0px;
-        left      : 900px;
+        left      : 1025px;
     }
 
     .tooltip:hover .ttb
@@ -747,7 +778,7 @@ td
         cursor    : pointer;
         visibility: visible;
         top       : 0px;
-        left      : 900px;
+        left      : 1025px;
     }
 
     .tooltip:hover .ttk
@@ -755,7 +786,7 @@ td
         cursor    : pointer;
         visibility: visible;
         top       : 0px;
-        left      : 900px;
+        left      : 1025px;
     }
 
 /* ----- Device ----- */
@@ -1140,8 +1171,9 @@ var RECIPES = [
           COLLAPSE = [ 'Collapse', 'Expand' ];
 
 // Globals
-    var gaAvailableRunes   = [],
-        gaRuneWordManifest = [],
+    var gaAvailableRunes    = [], // saved
+        gaFavoriteRuneWords = [], // saved
+        gaRuneWordManifest  = [],
 
         gaRuneWordLevel  = [],
         gaRuneWordNames  = [],
@@ -1325,13 +1357,30 @@ function dataLoad()
 
         updateRunesRunewords();
     }
+
+    var favs = localStorage.getItem( 'favoriteRuneWords' );
+    if( favs )
+    {
+        gaFavoriteRuneWords = JSON.parse( favs );
+        var recipe, recipes = RECIPES.length;
+        for( recipe = 0; recipe < recipes; recipe++ )
+        {
+            if( gaFavoriteRuneWords[ recipe ] )
+                setFavoriteRuneWord( recipe, gaFavoriteRuneWords[ recipe ], false );
+        }
+
+        updateManifest();
+    }
 }
 
 function dataSave()
 {
-    localStorage.setItem( 'availableRunes', JSON.stringify( gaAvailableRunes ) );
+    localStorage.setItem( 'availableRunes'   , JSON.stringify( gaAvailableRunes    ) );
+    localStorage.setItem( 'favoriteRuneWords', JSON.stringify( gaFavoriteRuneWords ) );
 }
 
+// Optional: width
+// Optional: character to pad left with, such as '0'; will default to space
 function padLeft( text, width, c )
 {
     if( !width ) return "";
@@ -1351,10 +1400,10 @@ function initTableCollapseMinWidth()
         cs = dv.getAttribute( 'class' );
         if (cs && cs.indexOf( 'collapse' ) >= 0)
         {
-            th = dv.parentElement;
-            tr = th.parentElement;
-            tb = tr.parentElement;
-            ta = tb.parentElement;
+            th = dv.parentElement; // header
+            tr = th.parentElement; // row
+            tb = tr.parentElement; // body
+            ta = tb.parentElement; // table
 
             // Can't used minWidth since it may not be set
             //     ta.style.width = ta.style.minWidth;
@@ -1528,11 +1577,19 @@ function onCollapseAll( button )
     }
 }
 
+function onCollapseLoad()
+{
+}
+
+function onCollapseSave()
+{
+}
+
 function onColor( button )
 {
     document.getElementById('content').style = '';
 
-    if (!button.disabled)
+    if( !button.disabled )
     {
         button.disabled = true;
         document.getElementById( 'mono' ).disabled = false;
@@ -1553,6 +1610,9 @@ function onLoad()
     gaRuneWordManifest = new Array( RUNES.length );
     gaRuneWordManifest.fill(0);
 
+    gaFavoriteRuneWords = new Array( RECIPES.length );
+    gaFavoriteRuneWords.fill(0);
+
     dataLoad();
 
     var btn = document.getElementById( 'btn_collapse_sockitems' );
@@ -1568,7 +1628,7 @@ function onMono( button )
 {
     document.getElementById('content').style = 'filter:grayscale(100%);';
 
-    if (!button.disabled)
+    if( !button.disabled )
     {
         button.disabled = true;
         document.getElementById( 'color' ).disabled = false;
@@ -1607,29 +1667,11 @@ function onToggleAllRunes( haveAll )
 
 function onToggleFavRW( btn )
 {
-    var td = btn.parentNode,
-        tr = td .parentNode,
-        on = (btn.innerText.indexOf( FAVS[1] ) >= 0)|0,
-        s  = 1-on,
-        id = tr.getAttribute( 'id' ),
-        rw = parseInt( id.substr(2) );
+    var recipe     = parseInt( btn.id.substr(3) ), // 'fav0' .. 'fav77'; was 'rw0' .. 'rw77'
+        isFavorite = (btn.innerText.indexOf( FAVS[1] ) >= 0)|0;
 
-    if( id !== null )
-    {
-        var r, rune, runes = gaRuneWordRunes[ rw ],
-            delta = (s) ? +1 : -1;
-
-        btn.innerText = FAVS[ s ];
-
-        // Add/Sub runes to manifest
-        for( rune = 0; rune < runes.length; rune++ )
-        {
-            r = runes[ rune ];
-            gaRuneWordManifest[ r ] = gaRuneWordManifest[ r ] + delta;
-        }
-
-        updateManifest();
-    }
+    setFavoriteRuneWord( recipe, 1-isFavorite, true );
+    updateManifest();
 }
 
 // Toggle owning a rune
@@ -1664,6 +1706,28 @@ function setCollapseTable( tableName, isCollapsed, button )
         if( isCollapsed ) rows[row].classList.add   ( 'collapsed' );
         else              rows[row].classList.remove( 'collapsed' );
     }
+}
+
+// Update button state
+// NOTE: need to call updateManifest() after
+function setFavoriteRuneWord( recipe, isFavorite, updateLocalStorage )
+{
+    var btn = document.getElementById( 'fav' + recipe );
+        btn.innerText = FAVS[ isFavorite ];
+    gaFavoriteRuneWords[ recipe ] = isFavorite;
+
+    var r, rune, runes = gaRuneWordRunes[ recipe ],
+        delta = (isFavorite) ? +1 : -1;
+
+    // Add/Sub runes to manifest
+    for( rune = 0; rune < runes.length; rune++ )
+    {
+        r = runes[ rune ];
+        gaRuneWordManifest[ r ] = gaRuneWordManifest[ r ] + delta;
+    }
+
+    if( updateLocalStorage )
+        dataSave();
 }
 
 function setRuneVisibility( rune, owned )
@@ -1990,23 +2054,24 @@ function updateRuneWordsVisible()
                     <td>
                         <table class='head' id='table.uprare'>
                             <tr class='raret rareb'><th><span class='rare'>Upping Rares</span><div class='collapse'><button value='table.uprare' onclick='onCollapse(this);'>-</button><div></th></tr>
-                            <tr><td class='tooltip k11'>Ort + Amn  + Perfect Sapphire + Normal (Basic) Rare Weapon &rarr; Exceptional Rare Weapon<span class='tool ttk'>Ort <img alt='Ort' src='runes/ort.png'  /> + Amn  <img alt='Amn'  src='runes/amn.png'  /> + Perfect Sapphire <img alt='perfect sapphire' src='gems/sapphire_perfect.png'/></span></td></tr>
-                            <tr><td class='tooltip k11'>Fal + Um   + Perfect Sapphire + Exceptional    Rare Weapon &rarr; Elite       Rare Weapon<span class='tool ttk'>Fal <img alt='Fal' src='runes/fal.png'  /> + Um   <img alt='Um'   src='runes/um.png'   /> + Perfect Sapphire <img alt='perfect sapphire' src='gems/sapphire_perfect.png'/></span></td></tr>
-                            <tr><td class='tooltip k22'>Ral + Thul + Perfect Amethyst + Normal (Basic) Rare Armor  &rarr; Exceptional Rare Armor <span class='tool ttk'>Ral <img alt='Ral' src='runes/ral.png'  /> + Thul <img alt='Thul' src='runes/thul.png' /> + Perfect Amethyst <img alt='perfect amethyst' src='gems/amethyst_perfect.png'/></span></td></tr>
-                            <tr><td class='tooltip k22'>Ko  + Pul  + Perfect Amethyst + Exceptional    Rare Armor  &rarr; Elite       Rare Armor <span class='tool ttk'>Ko  <img alt='Ko'  src='runes/ko.png'   /> + Pul  <img alt='Pul'  src='runes/pul.png'  /> + Perfect Amethyst <img alt='perfect amethyst' src='gems/amethyst_perfect.png'/></span></td></tr>
+                            <tr><td class='tooltip k11'>Ort + Amn  + Perfect Sapphire + Normal (Basic) Rare Weapon &rarr; Exceptional Rare Weapon<span class='tool ttk'><span class='in'>Ort </span><img alt='Ort' src='runes/ort.png'  /><span class='in'> + Amn  </span><img alt='Amn'  src='runes/amn.png'  /><span class='in'> + Perfect Sapphire </span><img alt='perfect sapphire' src='gems/sapphire_perfect.png'/></span></td></tr>
+                            <tr><td class='tooltip k11'>Fal + Um   + Perfect Sapphire + Exceptional    Rare Weapon &rarr; Elite       Rare Weapon<span class='tool ttk'><span class='in'>Fal </span><img alt='Fal' src='runes/fal.png'  /><span class='in'> + Um   </span><img alt='Um'   src='runes/um.png'   /><span class='in'> + Perfect Sapphire </span><img alt='perfect sapphire' src='gems/sapphire_perfect.png'/></span></td></tr>
+                            <tr><td class='tooltip k22'>Ral + Thul + Perfect Amethyst + Normal (Basic) Rare Armor  &rarr; Exceptional Rare Armor <span class='tool ttk'><span class='in'>Ral </span><img alt='Ral' src='runes/ral.png'  /><span class='in'> + Thul </span><img alt='Thul' src='runes/thul.png' /><span class='in'> + Perfect Amethyst </span><img alt='perfect amethyst' src='gems/amethyst_perfect.png'/></span></td></tr>
+                            <tr><td class='tooltip k22'>Ko  + Pul  + Perfect Amethyst + Exceptional    Rare Armor  &rarr; Elite       Rare Armor <span class='tool ttk'><span class='in'>Ko  </span><img alt='Ko'  src='runes/ko.png'   /><span class='in'> + Pul  </span><img alt='Pul'  src='runes/pul.png'  /><span class='in'> + Perfect Amethyst </span><img alt='perfect amethyst' src='gems/amethyst_perfect.png'/></span></td></tr>
                         </table>
                         <br>
                         <table class='head' id='table.upunq'>
                             <tr class='unqt unqb'  ><th><span class='unq' >Upping Uniques</span><div class='collapse'><button value='table.upunq' onclick='onCollapse(this);'>-</button></div></th></tr>
-                            <tr><td class='tooltip k11'>Ral + Sol   + Perfect Emerald + Normal      Unique Weapon &rarr;  Exceptional ver. Weapon<span class='tool ttk'>Ral <img src='runes/ral.png'  /> + Sol   <img alt='Sol'   src='runes/sol.png'  /> + Perfect Emerald <img alt='perfect emerald' src='gems/emerald_perfect.png'/><br></span></td></tr>
-                            <tr><td class='tooltip k11'>Lum + Pul   + Perfect Emerald + Exceptional Unique Weapon &rarr;  Elite version of Weapon<span class='tool ttk'>Lum <img src='runes/lum.png'  /> + Pul   <img alt='Pul'   src='runes/pul.png'  /> + Perfect Emerald <img alt='perfect emerald' src='gems/emerald_perfect.png'/></span></td></tr>
-                            <tr><td class='tooltip k22'>Tal + Shael + Perfect Diamond + Normal      Unique Armor  &rarr;  Exceptional ver. Armor <span class='tool ttk'>Tal <img src='runes/tal.png'  /> + Shael <img alt='Shael' src='runes/shael.png'/> + Perfect Diamond <img alt='perfect diamond'  src='gems/diamond_perfect.png' />
+                            <tr><td class='tooltip k11'>Ral + Sol   + Perfect Emerald + Normal      Unique Weapon &rarr;  Exceptional ver. Weapon<span class='tool ttk'><span class='in'>Ral </span><img src='runes/ral.png'  /><span class='in'> + Sol   </span><img alt='Sol'   src='runes/sol.png'  /><span class='in'> + Perfect Emerald </span><img alt='perfect emerald' src='gems/emerald_perfect.png'/><br></span></td></tr>
+                            <tr><td class='tooltip k11'>Lum + Pul   + Perfect Emerald + Exceptional Unique Weapon &rarr;  Elite version of Weapon<span class='tool ttk'><span class='in'>Lum </span><img src='runes/lum.png'  /><span class='in'> + Pul   </span><img alt='Pul'   src='runes/pul.png'  /><span class='in'> + Perfect Emerald </span><img alt='perfect emerald' src='gems/emerald_perfect.png'/></span></td></tr>
+                            <tr><td class='tooltip k22'>Tal + Shael + Perfect Diamond + Normal      Unique Armor  &rarr;  Exceptional ver. Armor <span class='tool ttk'><span class='in'>Tal </span><img src='runes/tal.png'  /><span class='in'> + Shael </span><img alt='Shael' src='runes/shael.png'/><span class='in'> + Perfect Diamond </span><img alt='perfect diamond' src='gems/diamond_perfect.png'/>
 
 <b>Belts</b>
 <span class='unq'>Goldwrap</span> (Heavy Belt), def 34-36
 
 <b>Body Armor</b>
-<span class='unq'>Twitchthroe</span> (Studded Leather), def 57-60
+<span class='unq'>Twitchthroe</span> (Studded Leather), def 57-60, Str 27, Lev 16
+ &rarr; (Trellised Armor), def 163-178, Str 61, Lev 30
 
 <b>Boots</b>
 <span class='unq'>Goblin Toe</span> (Light Plated Boots), Kick 8-16, Str 50, Lev 22
@@ -2021,15 +2086,17 @@ function updateRuneWordsVisible()
 <span class='unq'>Magefist</span> (Light Gauntlets)
 
                             </span></td></tr>
-                            <tr><td class='tooltip k22'>Ko  + Lem   + Perfect Diamond + Exceptional Unique Armor  &rarr;  Elite version of Armor <span class='tool ttk'><div class='c'>Ko  <img src='runes/ko.png'   /> + Lem   <img alt='Lem'   src='runes/lem.png'  /> + Perfect Diamond <img alt='perfect diamond'  src='gems/diamond_perfect.png' /></div>
+                            <tr><td class='tooltip k22'>Ko  + Lem   + Perfect Diamond + Exceptional Unique Armor  &rarr;  Elite version of Armor <span class='tool ttk'><span class='in'>Ko  </span><img src='runes/ko.png'   /><span class='in'> + Lem   </span><img alt='Lem'   src='runes/lem.png'  /><span class='in'> + Perfect Diamond </span><img alt='perfect diamond' src='gems/diamond_perfect.png'/>
 
 <b>Body Armor</b>
 <span class='unq'>Guardian Angel</span> (Templar Coat), def 770-825
 <span class='unq'>Shaftstop</span> (Mesh Armor), def 599-684
 <span class='unq'>Skin of the Vipermagi</span> (Serpentskin Armor), Def 279
+upped <span class='unq'>Twitchthroe</span> (Trellised Armor), def 163, Str 61, Lev 30
+ &rarr; (Wire Fleece), def 410, Str 111, Lev 65
 
 <b>Boots</b>
-<span class='unq'>upped Goblin Toe</span> (Battle Boots), Kick 37-64
+upped <span class='unq'>Goblin Toe</span> (Battle Boots), Kick 37-64
  &rarr; (Mirrored Boots) Kick 50-145, Str 163, Lev 72
 
 <span class='unq'>Gore Rider</span> (War Boots), Kick 39-80, Str 94, Lev 47
@@ -3118,7 +3185,7 @@ for chests to drop this rune<br>
 <!-- ========== ========== ========== ========== Runewords ========== ========== ========== ========== -->
 <table id='table.runeWords'>
     <tr class='rt rb'><th><div><span class='rwu' id='btnRuneWordSuperior'><span onclick='onSortRuneWordsBySuperior();'>S</span></span> <span class='rwu' id='btnRuneWordNames'><span onclick='onSortRuneWordsByName();'>Name</span></span>          <span class='rwu' id='btnRuneWordSockets'><span onclick='onSortRuneWordsBySocket();'>Sockets</span></span>  <span class='rwu' id='btnRuneWordType'><span onclick='onSortRuneWordsByType();'>Type</span></span>              <span class='rwu' id='btnRuneWordOwned'><span onclick='onSortRuneWordsByOwned();'>Owned</span></span> <span class='rwu' id='btnRuneWordMats1'><span onclick='onSortRuneWordsByMats(1);'>Runes</span></span>   <span class='rwu' id='btnRuneWordMats2'><span onclick='onSortRuneWordsByMats(2);'>#2</span></span>      <span class='rwu' id='btnRuneWordMats3'><span onclick='onSortRuneWordsByMats(3);'>#3</span></span>     <span class='rwu' id='btnRuneWordMats4'><span onclick='onSortRuneWordsByMats(4);'>#4</span></span>    <span class='rwu' id='btnRuneWordMats5'><span onclick='onSortRuneWordsByMats(5);'>#5</span></span>    <span class='rwu' id='btnRuneWordMats6'><span onclick='onSortRuneWordsByMats(6);'>#6</span></span>  <span class='rwu' id='btnRuneWordLevel'><span onclick='onSortRuneWordsByLevel();'>Lev</span></span>  Fav <span class='rws' id='btnRuneWordVersion'><span onclick='onSortRuneWordsByVersion();'>Version</span></span><div class='collapse'><button value='table.runeWords' onclick='onCollapse(this);'>-</button></div></div></th></tr>
-<tr id='rw0' ><td class='tooltip r11'>  Ancient's Pledge    3  Shields                 Ral   + Ort   + Tal                     21  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09 <span class='tool ttr'>Ral <img src='runes/ral.png'  /> + Ort <img src='runes/ort.png'  /> + Tal <img src='runes/tal.png'  />
+<tr id='rw0' ><td class='tooltip r11'>  Ancient's Pledge    3  Shields                 Ral   + Ort   + Tal                     21  <button type='button' id='fav0'  onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Ral <img src='runes/ral.png'  /> + Ort <img src='runes/ort.png'  /> + Tal <img src='runes/tal.png'  />
 
  +50% Enhanced Defense
  Cold Resist +<span class='resc'>43</span>%
@@ -3127,7 +3194,7 @@ for chests to drop this rune<br>
  Poison Resist +<span class='resp'>48</span>%
  10% Damage Goes To Mana
  </span></td></tr>
-<tr id='rw1' ><td class='tooltip r22'>* Black               3  Clubs/Hammers/Maces     Thul  + Io    + Nef                     35  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Thul <img src='runes/thul.png' /> + Io <img src='runes/io.png'   /> + Nef <img src='runes/nef.png'  />
+<tr id='rw1' ><td class='tooltip r22'>* Black               3  Clubs/Hammers/Maces     Thul  + Io    + Nef                     35  <button type='button' id='fav1'  onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Thul <img src='runes/thul.png' /> + Io <img src='runes/io.png'   /> + Nef <img src='runes/nef.png'  />
 
  +120% Enhanced Damage
  <span class='cb'>40</span>% Chance Of Crushing Blow
@@ -3139,7 +3206,7 @@ for chests to drop this rune<br>
  Magic Damage Reduced By 2
  Level 4 Corpse Explosion (12 Charges)
  </span></td></tr>
-<tr id='rw2' ><td class='tooltip r11'>  Fury                3  Melee Weapons           Jah   + Gul   + Eth                     65  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Jah <img src='runes/jah.png'  /> + Gul <img src='runes/gul.png'  /> + Eth <img src='runes/eth.png'  />
+<tr id='rw2' ><td class='tooltip r11'>  Fury                3  Melee Weapons           Jah   + Gul   + Eth                     65  <button type='button' id='fav2'  onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Jah <img src='runes/jah.png'  /> + Gul <img src='runes/gul.png'  /> + Eth <img src='runes/eth.png'  />
 
  +209% Enhanced Damage
  <span class='ias'>40</span>% Increased Attack Speed
@@ -3152,7 +3219,7 @@ for chests to drop this rune<br>
  6% Life Stolen Per Hit
  +5 To Frenzy (Barbarian Only)
  </span></td></tr>
-<tr id='rw3' ><td class='tooltip r22'>  Holy Thunder        4  Scepters                Eth   + Ral   + Ort  + Tal              21  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Eth <img src='runes/eth.png'  /> + Ral <img src='runes/ral.png'  /> + Ort <img src='runes/ort.png'  /> + Tal <img src='runes/tal.png'  />
+<tr id='rw3' ><td class='tooltip r22'>  Holy Thunder        4  Scepters                Eth   + Ral   + Ort  + Tal              21  <button type='button' id='fav3'  onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Eth <img src='runes/eth.png'  /> + Ral <img src='runes/ral.png'  /> + Ort <img src='runes/ort.png'  /> + Tal <img src='runes/tal.png'  />
 
  +60% Enhanced Damage
  <span class='td'>-25</span>% Target Defense
@@ -3165,7 +3232,7 @@ for chests to drop this rune<br>
  +3 To Holy Shock (Paladin Only)
  Level 7 Chain Lightning (60 Charges)
  </span></td></tr>
-<tr id='rw4' ><td class='tooltip r11'>  Honor               5  Melee                   Amn   + El    + Ith  + Tir + Sol        27  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Amn <img src='runes/amn.png'  /> + El <img src='runes/el.png'   /> + Ith <img src='runes/ith.png'  /> + Tir <img src='runes/tir.png'  /> + Sol <img src='runes/sol.png'  />
+<tr id='rw4' ><td class='tooltip r11'>  Honor               5  Melee                   Amn   + El    + Ith  + Tir + Sol        27  <button type='button' id='fav4'  onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Amn <img src='runes/amn.png'  /> + El <img src='runes/el.png'   /> + Ith <img src='runes/ith.png'  /> + Tir <img src='runes/tir.png'  /> + Sol <img src='runes/sol.png'  />
 
  +160% Enhanced Damage
  +9 To Minimum Damage
@@ -3179,7 +3246,7 @@ for chests to drop this rune<br>
  +1 To Light Radius
  +2 To Mana After Each Kill
  </span></td></tr>
-<tr id='rw5' ><td class='tooltip r22'>  King's Grace        3  Swords/Scepters         Amn   + Ral   + Thul                    25  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Amn <img src='runes/amn.png'  /> + Ral <img src='runes/ral.png'  /> + Thul <img src='runes/thul.png' />
+<tr id='rw5' ><td class='tooltip r22'>  King's Grace        3  Swords/Scepters         Amn   + Ral   + Thul                    25  <button type='button' id='fav5'  onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Amn <img src='runes/amn.png'  /> + Ral <img src='runes/ral.png'  /> + Thul <img src='runes/thul.png' />
 
  +100% Enhanced Damage
  +100% Damage To Demons
@@ -3191,7 +3258,7 @@ for chests to drop this rune<br>
  +100 To Attack Rating Against Undead
  7% Life Stolen Per Hit
  </span></td></tr>
-<tr id='rw6' ><td class='tooltip r11'>* Leaf                2  Staves (Not Orbs)       Tir   + Ral                             19  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Tir <img src='runes/tir.png'  /> + Ral <img src='runes/ral.png'  />
+<tr id='rw6' ><td class='tooltip r11'>* Leaf                2  Staves (Not Orbs)       Tir   + Ral                             19  <button type='button' id='fav6'  onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Tir <img src='runes/tir.png'  /> + Ral <img src='runes/ral.png'  />
 
  Adds 5-30 Fire Damage
  +3 To Fire Skills
@@ -3202,7 +3269,7 @@ for chests to drop this rune<br>
  + (2 Per Character Level) +2-198 To Defense<br> (Based On Character Level)
  Cold Resist +<span class='resc'>33</span>%
  </span></td></tr>
-<tr id='rw7' ><td class='tooltip r22'>  Lionheart           3  Body Armor              Hel   + Lum   + Fal                     41  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Hel <img src='runes/hel.png'  /> + Lum <img src='runes/lum.png'  /> + Fal <img src='runes/fal.png'  />
+<tr id='rw7' ><td class='tooltip r22'>  Lionheart           3  Body Armor              Hel   + Lum   + Fal                     41  <button type='button' id='fav7'  onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Hel <img src='runes/hel.png'  /> + Lum <img src='runes/lum.png'  /> + Fal <img src='runes/fal.png'  />
 
  +20% Enhanced Damage
  Requirements -15%
@@ -3213,7 +3280,7 @@ for chests to drop this rune<br>
  +50 To Life
  All Resistances +<span class='resa'>30</span>
  </span></td></tr>
-<tr id='rw8' ><td class='tooltip r11'>  Lore                2  Helms                   Ort   + Sol                             27  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Ort <img src='runes/ort.png'  /> + Sol <img src='runes/sol.png'  />
+<tr id='rw8' ><td class='tooltip r11'>  Lore                2  Helms                   Ort   + Sol                             27  <button type='button' id='fav8'  onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Ort <img src='runes/ort.png'  /> + Sol <img src='runes/sol.png'  />
 
  <span class='skill'>+1 To All Skill Levels</span>
  +10 To Energy
@@ -3222,7 +3289,7 @@ for chests to drop this rune<br>
  Damage Reduced By <span class='dr'>7</span>
  +2 To Light Radius
  </span></td></tr>
-<tr id='rw9' ><td class='tooltip r22'>  Malice              3  Melee Weapons           Ith   + El    + Eth                     15  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Ith <img src='runes/ith.png'  /> + El <img src='runes/el.png'   /> + Eth <img src='runes/eth.png'  />
+<tr id='rw9' ><td class='tooltip r22'>  Malice              3  Melee Weapons           Ith   + El    + Eth                     15  <button type='button' id='fav9'  onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Ith <img src='runes/ith.png'  /> + El <img src='runes/el.png'   /> + Eth <img src='runes/eth.png'  />
 
  +33% Enhanced Damage
  +9 To Maximum Damage
@@ -3233,7 +3300,7 @@ for chests to drop this rune<br>
  +50 To Attack Rating
  Drain Life -5
  </span></td></tr>
-<tr id='rw10'><td class='tooltip r11'>  Melody              3  Missile Weapons         Shael + Ko    + Nef                     39  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Shael <img src='runes/shael.png'/> + Ko <img src='runes/ko.png'   /> + Nef <img src='runes/nef.png'  />
+<tr id='rw10'><td class='tooltip r11'>  Melody              3  Missile Weapons         Shael + Ko    + Nef                     39  <button type='button' id='fav10' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Shael <img src='runes/shael.png'/> + Ko <img src='runes/ko.png'   /> + Nef <img src='runes/nef.png'  />
 
  +50% Enhanced Damage
  +300% Damage To Undead
@@ -3245,7 +3312,7 @@ for chests to drop this rune<br>
  +10 To Dexterity
  Knockback
  </span></td></tr>
-<tr id='rw11'><td class='tooltip r22'>  Memory              4  Staves (Not Orbs)       Lum   + Io    + Sol  + Eth              37  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Lum <img src='runes/lum.png'  /> + Io <img src='runes/io.png'   /> + Sol <img src='runes/sol.png'  /> + Eth <img src='runes/eth.png'  />
+<tr id='rw11'><td class='tooltip r22'>  Memory              4  Staves (Not Orbs)       Lum   + Io    + Sol  + Eth              37  <button type='button' id='fav11' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Lum <img src='runes/lum.png'  /> + Io <img src='runes/io.png'   /> + Sol <img src='runes/sol.png'  /> + Eth <img src='runes/eth.png'  />
 
  +3 to Sorceress Skill Levels
  <span class='fcr'>33</span>% Faster Cast Rate
@@ -3262,7 +3329,7 @@ for chests to drop this rune<br>
  <b>4os Bases for Player</b>
  Sorceress Stave with +3 Energy Shield
  </span></td></tr>
-<tr id='rw12'><td class='tooltip r11'>  Nadir               2  Helms                   Nef   + Tir                             13  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Nef <img src='runes/nef.png'  /> + Tir <img src='runes/tir.png'  />
+<tr id='rw12'><td class='tooltip r11'>  Nadir               2  Helms                   Nef   + Tir                             13  <button type='button' id='fav12' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Nef <img src='runes/nef.png'  /> + Tir <img src='runes/tir.png'  />
 
  +50% Enhanced Defense
  +10 Defense
@@ -3273,7 +3340,7 @@ for chests to drop this rune<br>
  -<span class='gold'>33</span>% Extra Gold From Monsters
  -3 To Light Radius
  </span></td></tr>
-<tr id='rw13'><td class='tooltip r22'>  Radiance            3  Helms                   Nef   + Sol   + Ith                     27  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Nef <img src='runes/nef.png'  /> + Sol <img src='runes/sol.png'  /> + Ith <img src='runes/ith.png'  />
+<tr id='rw13'><td class='tooltip r22'>  Radiance            3  Helms                   Nef   + Sol   + Ith                     27  <button type='button' id='fav13' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Nef <img src='runes/nef.png'  /> + Sol <img src='runes/sol.png'  /> + Ith <img src='runes/ith.png'  />
 
  +75% Enhanced Defense
  +30 Defense Vs. Missile
@@ -3285,7 +3352,7 @@ for chests to drop this rune<br>
  Damage Reduced By <span class='dr'>7</span>
  +5 To Light Radius
  </span></td></tr>
-<tr id='rw14'><td class='tooltip r11'>* Rhyme               2  Shields                 Shael + Eth                             29  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Shael <img src='runes/shael.png'/> + Eth <img src='runes/eth.png'  />
+<tr id='rw14'><td class='tooltip r11'>* Rhyme               2  Shields                 Shael + Eth                             29  <button type='button' id='fav14' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Shael <img src='runes/shael.png'/> + Eth <img src='runes/eth.png'  />
 
  20% Increased Chance of Blocking
  <span class='fbr'>40</span>% Faster Block Rate
@@ -3300,7 +3367,7 @@ for chests to drop this rune<br>
  Troll's Nest (Elite), Str 106, 40% Block (Sorc), Def 158-173
  Bone Shield (Normal), Str 25, 40% Block (Sorc), Def 10-30
  </span></td></tr>
-<tr id='rw15'><td class='tooltip r22'>  Silence             6  Weapons                 Dol   + Eld   + Hel  + Ist + Tir + Vex  55  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Dol <img src='runes/dol.png'  /> + Eld <img src='runes/eld.png'  /> + Hel <img src='runes/hel.png'  /> + Ist <img src='runes/ist.png'  /> + Tir <img src='runes/tir.png'  /> + Vex <img src='runes/vex.png'  />
+<tr id='rw15'><td class='tooltip r22'>  Silence             6  Weapons                 Dol   + Eld   + Hel  + Ist + Tir + Vex  55  <button type='button' id='fav15' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Dol <img src='runes/dol.png'  /> + Eld <img src='runes/eld.png'  /> + Hel <img src='runes/hel.png'  /> + Ist <img src='runes/ist.png'  /> + Tir <img src='runes/tir.png'  /> + Vex <img src='runes/vex.png'  />
 
  200% Enhanced Damage
  +75% Damage To Undead
@@ -3316,7 +3383,7 @@ for chests to drop this rune<br>
  +2 To Mana After Each Kill
  <span class='mf'>30</span>% Better Chance Of Getting Magic Items
  </span></td></tr>
-<tr id='rw16'><td class='tooltip r11'>  Smoke               2  Body Armor              Nef   + Lum                             37  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Nef <img src='runes/nef.png'  /> + Lum <img src='runes/lum.png'  />
+<tr id='rw16'><td class='tooltip r11'>  Smoke               2  Body Armor              Nef   + Lum                             37  <button type='button' id='fav16' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Nef <img src='runes/nef.png'  /> + Lum <img src='runes/lum.png'  />
 
  +75% Enhanced Defense
  +280 Defense Vs. Missile
@@ -3326,7 +3393,7 @@ for chests to drop this rune<br>
  +10 To Energy
  -1 To Light Radius
  </span></td></tr>
-<tr id='rw17'><td class='tooltip r22'>* Stealth             2  Body Armor              Tal   + Eth                             17  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Tal <img src='runes/tal.png'  /> + Eth <img src='runes/eth.png'  />
+<tr id='rw17'><td class='tooltip r22'>* Stealth             2  Body Armor              Tal   + Eth                             17  <button type='button' id='fav17' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Tal <img src='runes/tal.png'  /> + Eth <img src='runes/eth.png'  />
 
  Magic Damage Reduced By 3
  +6 To Dexterity
@@ -3337,7 +3404,7 @@ for chests to drop this rune<br>
  <span class='fcr'>25</span>% Faster Cast Rate
  <span class='fhr'>25</span>% Faster Hit Recovery
  </span></td></tr>
-<tr id='rw18'><td class='tooltip r11'>  Steel               2  Swords/Axes/Maces       Tir   + El                              13  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Tir <img src='runes/tir.png'  /> + El <img src='runes/el.png'   />
+<tr id='rw18'><td class='tooltip r11'>  Steel               2  Swords/Axes/Maces       Tir   + El                              13  <button type='button' id='fav18' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Tir <img src='runes/tir.png'  /> + El <img src='runes/el.png'   />
 
  20% Enhanced Damage
  +3 To Minimum Damage
@@ -3348,7 +3415,7 @@ for chests to drop this rune<br>
  +2 To Mana After Each Kill
  +1 To Light Radius
  </span></td></tr>
-<tr id='rw19'><td class='tooltip r22'>  Strength            2  Melee Weapons           Amn   + Tir                             25  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Amn <img src='runes/amn.png'  /> + Tir <img src='runes/tir.png'  />
+<tr id='rw19'><td class='tooltip r22'>  Strength            2  Melee Weapons           Amn   + Tir                             25  <button type='button' id='fav19' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Amn <img src='runes/amn.png'  /> + Tir <img src='runes/tir.png'  />
 
  35% Enhanced Damage
  <span class='cb'>25</span>% Chance Of Crushing Blow
@@ -3357,7 +3424,7 @@ for chests to drop this rune<br>
  +20 To Strength
  +10 To Vitality
  </span></td></tr>
-<tr id='rw20'><td class='tooltip r11'>  Venom               3  Weapons                 Tal   + Dol   + Mal                     49  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Tal <img src='runes/tal.png'  /> + Dol <img src='runes/dol.png'  /> + Mal <img src='runes/mal.png'  />
+<tr id='rw20'><td class='tooltip r11'>  Venom               3  Weapons                 Tal   + Dol   + Mal                     49  <button type='button' id='fav20' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Tal <img src='runes/tal.png'  /> + Dol <img src='runes/dol.png'  /> + Mal <img src='runes/mal.png'  />
 
  Hit Causes Monster To Flee 25%
  Prevent Monster Heal
@@ -3367,14 +3434,14 @@ for chests to drop this rune<br>
  Level 13 Poison Nova (11 Charges)
  +273 Poison Damage Over 6 seconds
  </span></td></tr>
-<tr id='rw21'><td class='tooltip r22'>* Wealth              3  Body Armor              Lem   + Ko    + Tir                     43  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Lem <img src='runes/lem.png'  /> + Ko <img src='runes/ko.png'   /> + Tir <img src='runes/tir.png'  />
+<tr id='rw21'><td class='tooltip r22'>* Wealth              3  Body Armor              Lem   + Ko    + Tir                     43  <button type='button' id='fav21' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Lem <img src='runes/lem.png'  /> + Ko <img src='runes/ko.png'   /> + Tir <img src='runes/tir.png'  />
 
  <span class='gold'>300</span>% Extra Gold From Monsters
  <span class='mf'>100</span>% Better Chance Of Getting Magic Items
  +2 To Mana After Each Kill
  +10 To Dexterity
  </span></td></tr>
-<tr id='rw22'><td class='tooltip r11'>* White               2  Wands                   Dol   + Io                              35  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Dol <img src='runes/dol.png'  /> + Io <img src='runes/io.png'   />
+<tr id='rw22'><td class='tooltip r11'>* White               2  Wands                   Dol   + Io                              35  <button type='button' id='fav22' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Dol <img src='runes/dol.png'  /> + Io <img src='runes/io.png'   />
 
  Hit Causes Monster To Flee 25%
  +10 To Vitality
@@ -3389,7 +3456,7 @@ for chests to drop this rune<br>
  <b>2os Bases for Player</b>
  Wand with +3 Bone Spear
  </span></td></tr>
-<tr id='rw23'><td class='tooltip r22'>  Zephyr              2  Missile Weapons         Ort   + Eth                             21  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Ort <img src='runes/ort.png'  /> + Eth <img src='runes/eth.png'  />
+<tr id='rw23'><td class='tooltip r22'>  Zephyr              2  Missile Weapons         Ort   + Eth                             21  <button type='button' id='fav23' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.09<span class='tool ttr'>Ort <img src='runes/ort.png'  /> + Eth <img src='runes/eth.png'  />
 
  +33% Enhanced Damage
  +66 To Attack Rating
@@ -3401,7 +3468,7 @@ for chests to drop this rune<br>
  7% Chance To Cast Level 1 Twister When Struck
  </span></td></tr>
 <!-- ========== ========== ========== ========== Runewords 1.10 ========== ========== ========== ==========-->
-<tr id='rw24'><td class='tooltip g11'>  Beast               5  Axes/Scepters/Hammers   Ber   + Tir   + Um   + Mal + Lum        63  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Ber <img src='runes/ber.png'  /> + Tir <img src='runes/tir.png'  /> + Um <img src='runes/um.png'   /> + Mal <img src='runes/mal.png'  /> + Lum <img src='runes/lum.png'  />
+<tr id='rw24'><td class='tooltip g11'>  Beast               5  Axes/Scepters/Hammers   Ber   + Tir   + Um   + Mal + Lum        63  <button type='button' id='fav24' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Ber <img src='runes/ber.png'  /> + Tir <img src='runes/tir.png'  /> + Um <img src='runes/um.png'   /> + Mal <img src='runes/mal.png'  /> + Lum <img src='runes/lum.png'  />
 
  Level 9 Fanaticism Aura When Equipped
  +<span class='ias'>40</span>% Increased Attack Speed
@@ -3416,7 +3483,7 @@ for chests to drop this rune<br>
  +2 To Mana After Each Kill
  Level 13 Summon Grizzly (5 Charges)
  </span></td></tr>
-<tr id='rw25'><td class='tooltip g22'>  Bramble             4  Body Armor              Ral   + Ohm   + Sur  + Eth              61  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Ral <img src='runes/ral.png'  /> + Ohm <img src='runes/ohm.png'  /> + Sur <img src='runes/sur.png'  /> + Eth <img src='runes/eth.png'  />
+<tr id='rw25'><td class='tooltip g22'>  Bramble             4  Body Armor              Ral   + Ohm   + Sur  + Eth              61  <button type='button' id='fav25' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Ral <img src='runes/ral.png'  /> + Ohm <img src='runes/ohm.png'  /> + Sur <img src='runes/sur.png'  /> + Eth <img src='runes/eth.png'  />
 
  Level 15-21 Thorns Aura When Equipped (varies)
  +<span class='fhr'>50</span>% Faster Hit Recovery
@@ -3430,7 +3497,7 @@ for chests to drop this rune<br>
  +13 Life After Each Kill
  Level 13 Spirit of Barbs (33 Charges)
  </span></td></tr>
-<tr id='rw26'><td class='tooltip g11'>* Breath of the Dying 6  Weapons                 Vex   + Hel   + El   + Eld + Zod + Eth  69  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Vex <img src='runes/vex.png'  /> + Hel <img src='runes/hel.png'  /> + El <img src='runes/el.png'   /> + Eld <img src='runes/eld.png'  /> + Zod <img src='runes/zod.png'  /> + Eth <img src='runes/eth.png'  />
+<tr id='rw26'><td class='tooltip g11'>* Breath of the Dying 6  Weapons                 Vex   + Hel   + El   + Eld + Zod + Eth  69  <button type='button' id='fav26' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Vex <img src='runes/vex.png'  /> + Hel <img src='runes/hel.png'  /> + El <img src='runes/el.png'   /> + Eld <img src='runes/eld.png'  /> + Zod <img src='runes/zod.png'  /> + Eth <img src='runes/eth.png'  />
 
  50% Chance To Cast Level 20 Poison Nova When You Kill An Enemy
  Indestructible
@@ -3447,7 +3514,7 @@ for chests to drop this rune<br>
  +1 To Light Radius
  Requirements -20%
  </span></td></tr>
-<tr id='rw27'><td class='tooltip g22'>* Call To Arms        5  Weapons                 Amn   + Ral   + Mal  + Ist + Ohm        57  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Amn <img src='runes/amn.png'  /> + Ral <img src='runes/ral.png'  /> + Mal <img src='runes/mal.png'  /> + Ist <img src='runes/ist.png'  /> + Ohm <img src='runes/ohm.png'  />
+<tr id='rw27'><td class='tooltip g22'>* Call To Arms        5  Weapons                 Amn   + Ral   + Mal  + Ist + Ohm        57  <button type='button' id='fav27' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Amn <img src='runes/amn.png'  /> + Ral <img src='runes/ral.png'  /> + Mal <img src='runes/mal.png'  /> + Ist <img src='runes/ist.png'  /> + Ohm <img src='runes/ohm.png'  />
 
  <span class='skill'>+1 To All Skills</span>
  +<span class='ias'>40</span>% Increased Attack Speed
@@ -3465,7 +3532,7 @@ for chests to drop this rune<br>
  Crystal Sword
  Flail
  </span></td></tr>
-<tr id='rw28'><td class='tooltip g11'>* Chains of Honor     4  Body Armor              Dol   + Um    + Ber  + Ist              63  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Dol <img src='runes/dol.png'  /> + Um <img src='runes/um.png'   /> + Ber <img src='runes/ber.png'  /> + Ist <img src='runes/ist.png'  />
+<tr id='rw28'><td class='tooltip g11'>* Chains of Honor     4  Body Armor              Dol   + Um    + Ber  + Ist              63  <button type='button' id='fav28' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Dol <img src='runes/dol.png'  /> + Um <img src='runes/um.png'   /> + Ber <img src='runes/ber.png'  /> + Ist <img src='runes/ist.png'  />
 
  <span class='skill'>+2 To All Skills</span>
  +200% Damage To Demons
@@ -3482,7 +3549,7 @@ for chests to drop this rune<br>
  Dusk Shroud
  Archon Plate
  </span></td></tr>
-<tr id='rw29'><td class='tooltip g22'>  Chaos               3  Claws                   Fal   + Ohm   + Um                      57  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Fal <img src='runes/fal.png'  /> + Ohm <img src='runes/ohm.png'  /> + Um <img src='runes/um.png'   />
+<tr id='rw29'><td class='tooltip g22'>  Chaos               3  Claws                   Fal   + Ohm   + Um                      57  <button type='button' id='fav29' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Fal <img src='runes/fal.png'  /> + Ohm <img src='runes/ohm.png'  /> + Um <img src='runes/um.png'   />
 
  9% Chance To Cast Level 11 Frozen Orb On Striking
  11% Chance To Cast Level 9 Charged Bolt On Striking
@@ -3494,7 +3561,7 @@ for chests to drop this rune<br>
  +10 To Strength
  +15 Life After Each Demon Kill
  </span></td></tr>
-<tr id='rw30'><td class='tooltip g11'>  Crescent Moon       3  Axes/Swords/Polearms    Shael + Um    + Tir                     47  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Shael <img src='runes/shael.png'/> + Um <img src='runes/um.png'   /> + Tir <img src='runes/tir.png'  />
+<tr id='rw30'><td class='tooltip g11'>  Crescent Moon       3  Axes/Swords/Polearms    Shael + Um    + Tir                     47  <button type='button' id='fav30' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Shael <img src='runes/shael.png'/> + Um <img src='runes/um.png'   /> + Tir <img src='runes/tir.png'  />
 
  10% Chance To Cast Level 17 Chain Lightning On Striking
  7% Chance To Cast Level 13 Static Field On Striking
@@ -3507,7 +3574,7 @@ for chests to drop this rune<br>
  +2 To Mana After Each Kill
  Level 18 Summon Spirit Wolf (30 Charges)
  </span></td></tr>
-<tr id='rw31'><td class='tooltip g22'>  Delirium            3  Helms                   Lem   + Ist   + Io                      51  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Lem <img src='runes/lem.png'  /> + Ist <img src='runes/ist.png'  /> + Io <img src='runes/io.png'   />
+<tr id='rw31'><td class='tooltip g22'>  Delirium            3  Helms                   Lem   + Ist   + Io                      51  <button type='button' id='fav31' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Lem <img src='runes/lem.png'  /> + Ist <img src='runes/ist.png'  /> + Io <img src='runes/io.png'   />
 
  1% Chance To Cast Level 50 Delirium* (morph) When Struck
  6% Chance To Cast Level 14 Mind Blast When Struck
@@ -3520,7 +3587,7 @@ for chests to drop this rune<br>
  <span class='mf'>25</span>% Better Chance of Getting Magic Items
  Level 17 Attract (60 Charges)
  </span></td></tr>
-<tr id='rw32'><td class='tooltip g11'>  Doom                5  Axes/Polearms/Hammers   Hel   + Ohm   + Um   + Lo  + Cham       67  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Hel <img src='runes/hel.png'  /> + Ohm <img src='runes/ohm.png'  /> + Um <img src='runes/um.png'   /> + Lo <img src='runes/lo.png'   /> + Cham <img src='runes/cham.png' />
+<tr id='rw32'><td class='tooltip g11'>  Doom                5  Axes/Polearms/Hammers   Hel   + Ohm   + Um   + Lo  + Cham       67  <button type='button' id='fav32' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Hel <img src='runes/hel.png'  /> + Ohm <img src='runes/ohm.png'  /> + Um <img src='runes/um.png'   /> + Lo <img src='runes/lo.png'   /> + Cham <img src='runes/cham.png' />
 
  5% Chance To Cast Level 18 Volcano On Striking
  Level 12 Holy Freeze Aura When Equipped
@@ -3534,7 +3601,7 @@ for chests to drop this rune<br>
  Freezes Target +3
  Requirements -20%
  </span></td></tr>
-<tr id='rw33'><td class='tooltip g22'>  Duress              3  Body Armor              Shael + Um    + Thul                    47  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Shael <img src='runes/shael.png'/> + Um <img src='runes/um.png'   /> + Thul <img src='runes/thul.png' />
+<tr id='rw33'><td class='tooltip g22'>  Duress              3  Body Armor              Shael + Um    + Thul                    47  <button type='button' id='fav33' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Shael <img src='runes/shael.png'/> + Um <img src='runes/um.png'   /> + Thul <img src='runes/thul.png' />
 
  +<span class='fhr'>40</span>% Faster Hit Recovery
  +10-20% Enhanced Damage (varies)
@@ -3548,7 +3615,7 @@ for chests to drop this rune<br>
  Fire Resist +<span class='resf'>15</span>%
  Poison Resist +<span class='resp'>15</span>%
  </span></td></tr>
-<tr id='rw34'><td class='tooltip g11'>* Enigma              3  Body Armor              Jah   + Ith   + Ber                     65  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Jah <img src='runes/jah.png'  /> + Ith <img src='runes/ith.png'  /> + Ber <img src='runes/ber.png'  />
+<tr id='rw34'><td class='tooltip g11'>* Enigma              3  Body Armor              Jah   + Ith   + Ber                     65  <button type='button' id='fav34' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Jah <img src='runes/jah.png'  /> + Ith <img src='runes/ith.png'  /> + Ber <img src='runes/ber.png'  />
 
  <span class='skill'>+2 To All Skills</span>
  +45% Faster Run/Walk
@@ -3567,7 +3634,7 @@ for chests to drop this rune<br>
  Archon Plate
  Breastplate (0 Str Palidin)
  </span></td></tr>
-<tr id='rw35'><td class='tooltip g22'>  Eternity            5  Melee Weapons           Amn   + Ber   + Ist  + Sol + Sur        63  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Amn <img src='runes/amn.png'  /> + Ber <img src='runes/ber.png'  /> + Ist <img src='runes/ist.png'  /> + Sol <img src='runes/sol.png'  /> + Sur <img src='runes/sur.png'  />
+<tr id='rw35'><td class='tooltip g22'>  Eternity            5  Melee Weapons           Amn   + Ber   + Ist  + Sol + Sur        63  <button type='button' id='fav35' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Amn <img src='runes/amn.png'  /> + Ber <img src='runes/ber.png'  /> + Ist <img src='runes/ist.png'  /> + Sol <img src='runes/sol.png'  /> + Sur <img src='runes/sur.png'  />
 
  Indestructible
  +260-310% Enhanced Damage (varies)
@@ -3582,7 +3649,7 @@ for chests to drop this rune<br>
  <span class='mf'>30</span>% Better Chance Of Getting Magic Items
  Level 8 Revive (88 Charges)
  </span></td></tr>
-<tr id='rw36'><td class='tooltip g11'>* Exile               4  Shields (Paladin only)  Vex   + Ohm   + Ist  + Dol              57  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Vex <img src='runes/vex.png'  /> + Ohm <img src='runes/ohm.png'  /> + Ist <img src='runes/ist.png'  /> + Dol <img src='runes/dol.png'  />
+<tr id='rw36'><td class='tooltip g11'>* Exile               4  Shields (Paladin only)  Vex   + Ohm   + Ist  + Dol              57  <button type='button' id='fav36' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Vex <img src='runes/vex.png'  /> + Ohm <img src='runes/ohm.png'  /> + Ist <img src='runes/ist.png'  /> + Dol <img src='runes/dol.png'  />
 
  15% Chance To Cast Level 5 Life Tap On Striking
  Level 13-16 Defiance Aura When Equipped (varies)
@@ -3596,7 +3663,7 @@ for chests to drop this rune<br>
  <span class='mf'>25</span>% Better Chance Of Getting Magic Items
  Repairs 1 Durability in 4 Seconds
  </span></td></tr>
-<tr id='rw37'><td class='tooltip g22'>  Famine              4  Axes/Hammers            Fal   + Ohm   + Ort  + Jah              65  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Fal <img src='runes/fal.png'  /> + Ohm <img src='runes/ohm.png'  /> + Ort <img src='runes/ort.png'  /> + Jah <img src='runes/jah.png'  />
+<tr id='rw37'><td class='tooltip g22'>  Famine              4  Axes/Hammers            Fal   + Ohm   + Ort  + Jah              65  <button type='button' id='fav37' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Fal <img src='runes/fal.png'  /> + Ohm <img src='runes/ohm.png'  /> + Ort <img src='runes/ort.png'  /> + Jah <img src='runes/jah.png'  />
 
  +<span class='ias'>30</span>% Increased Attack Speed
  +320-370% Enhanced Damage (varies)
@@ -3609,7 +3676,7 @@ for chests to drop this rune<br>
  Prevent Monster Heal
  +10 To Strength
  </span></td></tr>
-<tr id='rw38'><td class='tooltip g11'>  Gloom               3  Body Armor              Fal   + Um    + Pul                     47  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Fal <img src='runes/fal.png'  /> + Um <img src='runes/um.png'   /> + Pul <img src='runes/pul.png'  />
+<tr id='rw38'><td class='tooltip g11'>  Gloom               3  Body Armor              Fal   + Um    + Pul                     47  <button type='button' id='fav38' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Fal <img src='runes/fal.png'  /> + Um <img src='runes/um.png'   /> + Pul <img src='runes/pul.png'  />
 
  15% Chance To Cast Level 3 Dim Vision When Struck
  +<span class='fhr'>10</span>% Faster Hit Recovery
@@ -3620,7 +3687,7 @@ for chests to drop this rune<br>
  5% Damage Taken Goes To Mana
  -3 To Light Radius
  </span></td></tr>
-<tr id='rw39'><td class='tooltip g22'>  Hand of Justice     4  Weapons                 Sur   + Cham  + Amn  + Lo               67  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Sur <img src='runes/sur.png'  /> + Cham <img src='runes/cham.png' /> + Amn <img src='runes/amn.png'  /> + Lo <img src='runes/lo.png'   />
+<tr id='rw39'><td class='tooltip g22'>  Hand of Justice     4  Weapons                 Sur   + Cham  + Amn  + Lo               67  <button type='button' id='fav39' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Sur <img src='runes/sur.png'  /> + Cham <img src='runes/cham.png' /> + Amn <img src='runes/amn.png'  /> + Lo <img src='runes/lo.png'   />
 
  100% Chance To Cast Level 36 Blaze When You Level-Up
  100% Chance To Cast Level 48 Meteor When You Die
@@ -3634,7 +3701,7 @@ for chests to drop this rune<br>
  Hit Blinds Target
  Freezes Target +3
  </span></td></tr>
-<tr id='rw40'><td class='tooltip g11'>* Heart of the Oak    4  Staves/Maces            Ko    + Vex   + Pul  + Thul             55  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Ko <img src='runes/ko.png'   /> + Vex <img src='runes/vex.png'  /> + Pul <img src='runes/pul.png'  /> + Thul <img src='runes/thul.png' />
+<tr id='rw40'><td class='tooltip g11'>* Heart of the Oak    4  Staves/Flails           Ko    + Vex   + Pul  + Thul             55  <button type='button' id='fav40' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Ko <img src='runes/ko.png'   /> + Vex <img src='runes/vex.png'  /> + Pul <img src='runes/pul.png'  /> + Thul <img src='runes/thul.png' />
 
  <span class='skill'>+3 To All Skills</span>
  +<span class='fcr'>40</span>% Faster Cast Rate
@@ -3651,8 +3718,9 @@ for chests to drop this rune<br>
 
  <b>4os Bases for Player</b>
  Flail
+ <span class='note'>NOT Maces!</span>
  </span></td></tr>
-<tr id='rw41'><td class='tooltip g22'>  Kingslayer          4  Swords/Axes             Mal   + Um    + Gul  + Fal              53  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Mal <img src='runes/mal.png'  /> + Um <img src='runes/um.png'   /> + Gul <img src='runes/gul.png'  /> + Fal <img src='runes/fal.png'  />
+<tr id='rw41'><td class='tooltip g22'>  Kingslayer          4  Swords/Axes             Mal   + Um    + Gul  + Fal              53  <button type='button' id='fav41' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Mal <img src='runes/mal.png'  /> + Um <img src='runes/um.png'   /> + Gul <img src='runes/gul.png'  /> + Fal <img src='runes/fal.png'  />
 
  +<span class='ias'>30</span>% Increased Attack Speed
  +230-270% Enhanced Damage (varies)
@@ -3665,7 +3733,7 @@ for chests to drop this rune<br>
  +10 To Strength
  <span class='gold'>40</span>% Extra Gold From Monsters
  </span></td></tr>
-<tr id='rw42'><td class='tooltip g11'>  Passion             4  Weapons                 Dol   + Ort   + Eld  + Lem              43  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Dol <img src='runes/dol.png'  /> + Ort <img src='runes/ort.png'  /> + Eld <img src='runes/eld.png'  /> + Lem <img src='runes/lem.png'  />
+<tr id='rw42'><td class='tooltip g11'>  Passion             4  Weapons                 Dol   + Ort   + Eld  + Lem              43  <button type='button' id='fav42' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Dol <img src='runes/dol.png'  /> + Ort <img src='runes/ort.png'  /> + Eld <img src='runes/eld.png'  /> + Lem <img src='runes/lem.png'  />
 
  +<span class='ias'>25</span>% Increased Attack Speed
  +160-210% Enhanced Damage (varies)
@@ -3680,7 +3748,7 @@ for chests to drop this rune<br>
  <span class='gold'>75</span>% Extra Gold From Monsters
  Level 3 Heart of Wolverine (12 Charges)
  </span></td></tr>
-<tr id='rw43'><td class='tooltip g22'>  Prudence            2  Body Armor              Mal   + Tir                             49  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Mal <img src='runes/mal.png'  /> + Tir <img src='runes/tir.png'  />
+<tr id='rw43'><td class='tooltip g22'>  Prudence            2  Body Armor              Mal   + Tir                             49  <button type='button' id='fav43' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Mal <img src='runes/mal.png'  /> + Tir <img src='runes/tir.png'  />
 
  +<span class='fhr'>25</span>% Faster Hit Recovery
  +140-170% Enhanced Defense (varies)
@@ -3691,7 +3759,7 @@ for chests to drop this rune<br>
  +1 To Light Radius
  Repairs Durability 1 In 4 Seconds
  </span></td></tr>
-<tr id='rw44'><td class='tooltip g11'>  Sanctuary           3  Shields                 Ko    + Ko    + Mal                     49  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Ko <img src='runes/ko.png'   /> + Ko <img src='runes/ko.png'   /> + Mal <img src='runes/mal.png'  />
+<tr id='rw44'><td class='tooltip g11'>  Sanctuary           3  Shields                 Ko    + Ko    + Mal                     49  <button type='button' id='fav44' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Ko <img src='runes/ko.png'   /> + Ko <img src='runes/ko.png'   /> + Mal <img src='runes/mal.png'  />
 
  +<span class='fhr'>20</span>% Faster Hit Recovery
  +<span class='fbr'>20</span>% Faster Block Rate
@@ -3703,7 +3771,7 @@ for chests to drop this rune<br>
  Magic Damage Reduced By 7
  Level 12 Slow Missiles (60 Charges)
  </span></td></tr>
-<tr id='rw45'><td class='tooltip g22'>  Splendor            2  Shields                 Eth   + Lum                             37  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Eth <img src='runes/eth.png'  /> + Lum <img src='runes/lum.png'  />
+<tr id='rw45'><td class='tooltip g22'>  Splendor            2  Shields                 Eth   + Lum                             37  <button type='button' id='fav45' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Eth <img src='runes/eth.png'  /> + Lum <img src='runes/lum.png'  />
 
  <span class='skill'>+1 To All Skills</span>
  +<span class='fcr'>10</span>% Faster Cast Rate
@@ -3715,7 +3783,7 @@ for chests to drop this rune<br>
  <span class='mf'>20</span>% Better Chance of Getting Magic Items
  +3 To Light Radius
  </span></td></tr>
-<tr id='rw46'><td class='tooltip g11'>  Stone               4  Body Armor              Shael + Um    + Pul  + Lum              47  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Shael <img src='runes/shael.png'/> + Um <img src='runes/um.png'   /> + Pul <img src='runes/pul.png'  /> + Lum <img src='runes/lum.png'  />
+<tr id='rw46'><td class='tooltip g11'>  Stone               4  Body Armor              Shael + Um    + Pul  + Lum              47  <button type='button' id='fav46' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Shael <img src='runes/shael.png'/> + Um <img src='runes/um.png'   /> + Pul <img src='runes/pul.png'  /> + Lum <img src='runes/lum.png'  />
 
  +<span class='fhr'>60</span>% Faster Hit Recovery
  +250-290% Enhanced Defense (varies)
@@ -3727,7 +3795,7 @@ for chests to drop this rune<br>
  Level 16 Molten Boulder (80 Charges)
  Level 16 Clay Golem (16 Charges)
  </span></td></tr>
-<tr id='rw47'><td class='tooltip g22'>  Wind                2  Melee Weapons           Sur   + El                              61  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Sur <img src='runes/sur.png'  /> + El <img src='runes/el.png'   />
+<tr id='rw47'><td class='tooltip g22'>  Wind                2  Melee Weapons           Sur   + El                              61  <button type='button' id='fav47' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10<span class='tool ttg'>Sur <img src='runes/sur.png'  /> + El <img src='runes/el.png'   />
 
  10% Chance To Cast Level 9 Tornado On Striking
  +20% Faster Run/Walk
@@ -3741,7 +3809,7 @@ for chests to drop this rune<br>
  Level 13 Twister (127 Charges)
  </span></td></tr>
 <!-- ========== ========== ========== ========== Runewords 1.10 Ladder ========== ========== ========== ==========-->
-<tr id='rw48'><td class='tooltip b11'>  Brand               4  Missile Weapons         Jah   + Lo    + Mal  + Gul              65  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Jah <img src='runes/jah.png'  /> + Lo <img src='runes/lo.png'   /> + Mal <img src='runes/mal.png'  /> + Gul <img src='runes/gul.png'  />
+<tr id='rw48'><td class='tooltip b11'>  Brand               4  Missile Weapons         Jah   + Lo    + Mal  + Gul              65  <button type='button' id='fav48' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Jah <img src='runes/jah.png'  /> + Lo <img src='runes/lo.png'   /> + Mal <img src='runes/mal.png'  /> + Gul <img src='runes/gul.png'  />
 
  35% Chance To Cast Level 14 Amplify Damage When Struck
  100% Chance To Cast Level 18 Bone Spear On Striking
@@ -3754,7 +3822,7 @@ for chests to drop this rune<br>
  Knockback
  Fires Explosive Arrows or Bolts (15)
  </span></td></tr>
-<tr id='rw49'><td class='tooltip b22'>  Death               5  Swords/Axes             Hel   + El    + Vex  + Ort + Gul        55  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Hel <img src='runes/hel.png'  /> + El <img src='runes/el.png'   /> + Vex <img src='runes/vex.png'  /> + Ort <img src='runes/ort.png'  /> + Gul <img src='runes/gul.png'  />
+<tr id='rw49'><td class='tooltip b22'>  Death               5  Swords/Axes             Hel   + El    + Vex  + Ort + Gul        55  <button type='button' id='fav49' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Hel <img src='runes/hel.png'  /> + El <img src='runes/el.png'   /> + Vex <img src='runes/vex.png'  /> + Ort <img src='runes/ort.png'  /> + Gul <img src='runes/gul.png'  />
 
  100% Chance To Cast Level 44 Chain Lightning When You Die
  25% Chance To Cast Level 18 Glacial Spike On Attack
@@ -3770,7 +3838,7 @@ for chests to drop this rune<br>
  Level 22 Blood Golem (15 Charges)
  Requirements -20%
  </span></td></tr>
-<tr id='rw50'><td class='tooltip b11'>  Destruction         5  Polearms/Swords         Vex   + Lo    + Ber  + Jah + Ko         65  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Vex <img src='runes/vex.png'  /> + Lo <img src='runes/lo.png'   /> + Ber <img src='runes/ber.png'  /> + Jah <img src='runes/jah.png'  /> + Ko <img src='runes/ko.png'   />
+<tr id='rw50'><td class='tooltip b11'>  Destruction         5  Polearms/Swords         Vex   + Lo    + Ber  + Jah + Ko         65  <button type='button' id='fav50' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Vex <img src='runes/vex.png'  /> + Lo <img src='runes/lo.png'   /> + Ber <img src='runes/ber.png'  /> + Jah <img src='runes/jah.png'  /> + Ko <img src='runes/ko.png'   />
 
  23% Chance To Cast Level 12 Volcano On Striking
  5% Chance To Cast Level 23 Molten Boulder On Striking
@@ -3785,7 +3853,7 @@ for chests to drop this rune<br>
  Prevent Monster Heal
  +10 To Dexterity
  </span></td></tr>
-<tr id='rw51'><td class='tooltip b22'>  Dragon              3  Body Armor/Shields      Sur   + Lo    + Sol                     61  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Sur <img src='runes/sur.png'  /> + Lo <img src='runes/lo.png'   /> + Sol <img src='runes/sol.png'  />
+<tr id='rw51'><td class='tooltip b22'>  Dragon              3  Body Armor/Shields      Sur   + Lo    + Sol                     61  <button type='button' id='fav51' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Sur <img src='runes/sur.png'  /> + Lo <img src='runes/lo.png'   /> + Sol <img src='runes/sol.png'  />
 
  20% Chance to Cast Level 18 Venom When Struck
  12% Chance To Cast Level 15 Hydra On Striking
@@ -3799,7 +3867,7 @@ for chests to drop this rune<br>
  +5% To Maximum Lightning Resist
  Damage Reduced by <span class='dr'>7</span>
  </span></td></tr>
-<tr id='rw52'><td class='tooltip b11'>  Dream               3  Helms/Shields           Io    + Jah   + Pul                     65  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Io <img src='runes/io.png'   /> + Jah <img src='runes/jah.png'  /> + Pul <img src='runes/pul.png'  />
+<tr id='rw52'><td class='tooltip b11'>  Dream               3  Helms/Shields           Io    + Jah   + Pul                     65  <button type='button' id='fav52' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Io <img src='runes/io.png'   /> + Jah <img src='runes/jah.png'  /> + Pul <img src='runes/pul.png'  />
 
  10% Chance To Cast Level 15 Confuse When Struck
  Level 15 Holy Shock Aura When Equipped
@@ -3813,7 +3881,7 @@ for chests to drop this rune<br>
  All Resistances +<span class='resa'>5-20</span> (varies)
  <span class='mf'>12</span>-<span class='mf'>25</span>% Better Chance of Getting Magic Items (varies)
  </span></td></tr>
-<tr id='rw53'><td class='tooltip b22'>  Edge                3  Missile Weapons         Tir   + Tal   + Amn                     25  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Tir <img src='runes/tir.png'  /> + Tal <img src='runes/tal.png'  /> + Amn <img src='runes/amn.png'  />
+<tr id='rw53'><td class='tooltip b22'>  Edge                3  Missile Weapons         Tir   + Tal   + Amn                     25  <button type='button' id='fav53' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Tir <img src='runes/tir.png'  /> + Tal <img src='runes/tal.png'  /> + Amn <img src='runes/amn.png'  />
 
  Level 15 Thorns Aura When Equipped
  +<span class='ias'>35</span>% Increased Attack Speed
@@ -3826,7 +3894,7 @@ for chests to drop this rune<br>
  +2 To Mana After Each Kill
  Reduces All Vendor Prices <span class='gold'>15</span>%
  </span></td></tr>
-<tr id='rw54'><td class='tooltip b11'>  Faith               4  Missile Weapons         Ohm   + Jah   + Lem  + Eld              65  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Ohm <img src='runes/ohm.png'  /> + Jah <img src='runes/jah.png'  /> + Lem <img src='runes/lem.png'  /> + Eld <img src='runes/eld.png'  />
+<tr id='rw54'><td class='tooltip b11'>  Faith               4  Missile Weapons         Ohm   + Jah   + Lem  + Eld              65  <button type='button' id='fav54' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Ohm <img src='runes/ohm.png'  /> + Jah <img src='runes/jah.png'  /> + Lem <img src='runes/lem.png'  /> + Eld <img src='runes/eld.png'  />
 
  Level 12-15 Fanaticism Aura When Equipped (varies)
  <span class='skill'>+1-2 To All Skills</span> (varies)
@@ -3846,7 +3914,7 @@ for chests to drop this rune<br>
  <b>4os Bases for Merc</b>
  Great Bow
  </span></td></tr>
-<tr id='rw55'><td class='tooltip b22'>* Fortitude           4  Weapons/Body Armor      El    + Sol   + Dol  + Lo               59  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>El <img src='runes/el.png'   /> + Sol <img src='runes/sol.png'  /> + Dol <img src='runes/dol.png'  /> + Lo <img src='runes/lo.png'   />
+<tr id='rw55'><td class='tooltip b22'>* Fortitude           4  Weapons/Body Armor      El    + Sol   + Dol  + Lo               59  <button type='button' id='fav55' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>El <img src='runes/el.png'   /> + Sol <img src='runes/sol.png'  /> + Dol <img src='runes/dol.png'  /> + Lo <img src='runes/lo.png'   />
 
  <b>Weapons</b>
  20% Chance To Cast Level 15 Chilling Armor when Struck
@@ -3886,7 +3954,7 @@ for chests to drop this rune<br>
  Eth Lacquered Plate (433-541 def)
  Eth Hellforge Plate (421-530 def)
  </span></td></tr>
-<tr id='rw56'><td class='tooltip b11'>* Grief               5  Swords/Axes             Eth   + Tir   + Lo   + Mal + Ral        59  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Eth <img src='runes/eth.png'  /> + Tir <img src='runes/tir.png'  /> + Lo <img src='runes/lo.png'   /> + Mal <img src='runes/mal.png'  /> + Ral <img src='runes/ral.png'  />
+<tr id='rw56'><td class='tooltip b11'>* Grief               5  Swords/Axes             Eth   + Tir   + Lo   + Mal + Ral        59  <button type='button' id='fav56' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Eth <img src='runes/eth.png'  /> + Tir <img src='runes/tir.png'  /> + Lo <img src='runes/lo.png'   /> + Mal <img src='runes/mal.png'  /> + Ral <img src='runes/ral.png'  />
 
  35% Chance To Cast Level 15 Venom On Striking
  +<span class='ias'>30</span>-<span class='ias'>40</span>% Increased Attack Speed (varies)
@@ -3901,7 +3969,7 @@ for chests to drop this rune<br>
  +2 To Mana After Each Kill
  +10-15 Life After Each Kill (varies)
  </span></td></tr>
-<tr id='rw57'><td class='tooltip b22'>  Harmony             4  Missile Weapons         Tir   + Ith   + Sol  + Ko               39  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Tir <img src='runes/tir.png'  /> + Ith <img src='runes/ith.png'  /> + Sol <img src='runes/sol.png'  /> + Ko <img src='runes/ko.png'   />
+<tr id='rw57'><td class='tooltip b22'>  Harmony             4  Missile Weapons         Tir   + Ith   + Sol  + Ko               39  <button type='button' id='fav57' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Tir <img src='runes/tir.png'  /> + Ith <img src='runes/ith.png'  /> + Sol <img src='runes/sol.png'  /> + Ko <img src='runes/ko.png'   />
 
  Level 10 Vigor Aura When Equipped
  +200-275% Enhanced Damage (varies)
@@ -3917,7 +3985,7 @@ for chests to drop this rune<br>
  +2 To Light Radius
  Level 20 Revive (25 Charges)
  </span></td></tr>
-<tr id='rw58'><td class='tooltip b11'>  Ice                 4  Missile Weapons         Amn   + Shael + Jah  + Lo               65  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Amn <img src='runes/amn.png'  /> + Shael <img src='runes/shael.png'/> + Jah <img src='runes/jah.png'  /> + Lo <img src='runes/lo.png'   />
+<tr id='rw58'><td class='tooltip b11'>  Ice                 4  Missile Weapons         Amn   + Shael + Jah  + Lo               65  <button type='button' id='fav58' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Amn <img src='runes/amn.png'  /> + Shael <img src='runes/shael.png'/> + Jah <img src='runes/jah.png'  /> + Lo <img src='runes/lo.png'   />
 
  100% Chance To Cast Level 40 Blizzard When You Level-up
  25% Chance To Cast Level 22 Frost Nova On Striking
@@ -3931,7 +3999,7 @@ for chests to drop this rune<br>
  <span class='ds'>20</span>% Deadly Strike
  <span class='gold'>3.125</span>-<span class='gold'>309.375</span> Extra Gold From Monsters<br> (Based on Character Level)
  </span></td></tr>
-<tr id='rw59'><td class='tooltip b22'>* Infinity            4  Polearms                Ber   + Mal   + Ber  + Ist              63  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Ber <img alt='Ber' src='runes/ber.png'  /> + Mal <img alt='Mal' src='runes/mal.png'  /> + Ber <img src='runes/ber.png'  /> + Ist <img src='runes/ist.png'  />
+<tr id='rw59'><td class='tooltip b22'>* Infinity            4  Polearms                Ber   + Mal   + Ber  + Ist              63  <button type='button' id='fav59' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Ber <img alt='Ber' src='runes/ber.png'  /> + Mal <img alt='Mal' src='runes/mal.png'  /> + Ber <img src='runes/ber.png'  /> + Ist <img src='runes/ist.png'  />
 
  50% Chance To Cast Level 20 Chain Lightning When You Kill An Enemy
  Level 12 Conviction Aura When Equipped
@@ -3944,7 +4012,7 @@ for chests to drop this rune<br>
  <span class='mf'>30</span>% Better Chance of Getting Magic Items
  Level 21 Cyclone Armor (30 Charges)
  </span></td></tr>
-<tr id='rw60'><td class='tooltip b11'>* Insight             4  Polearms/Staves         Ral   + Tir   + Tal  + Sol              27  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Ral <img alt='Ral' src='runes/ral.png'  /> + Tir <img alt='Tir' src='runes/tir.png'  /> + Tal <img src='runes/tal.png'  /> + Sol <img src='runes/sol.png'  />
+<tr id='rw60'><td class='tooltip b11'>* Insight             4  Polearms/Staves         Ral   + Tir   + Tal  + Sol              27  <button type='button' id='fav60' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Ral <img alt='Ral' src='runes/ral.png'  /> + Tir <img alt='Tir' src='runes/tir.png'  /> + Tal <img src='runes/tal.png'  /> + Sol <img src='runes/sol.png'  />
 
  Level 12-17 Meditation Aura When Equipped (varies)
  +<span class='fcr'>35</span>% Faster Cast Rate
@@ -3958,7 +4026,7 @@ for chests to drop this rune<br>
  +2 To Mana After Each Kill
  <span class='mf'>23</span>% Better Chance of Getting Magic Items
  </span></td></tr>
-<tr id='rw61'><td class='tooltip b22'>* Last Wish           6  Swords/Hammers/Axes     Jah   + Mal   + Jah  + Sur + Jah + Ber  65  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Jah <img alt='Jah' src='runes/jah.png'  /> + Mal <img alt='Mal' src='runes/mal.png'  /> + Jah <img src='runes/jah.png'  /> + Sur <img src='runes/sur.png'  /> + Jah <img src='runes/jah.png'  /> + Ber <img src='runes/ber.png'  />
+<tr id='rw61'><td class='tooltip b22'>* Last Wish           6  Swords/Hammers/Axes     Jah   + Mal   + Jah  + Sur + Jah + Ber  65  <button type='button' id='fav61' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Jah <img alt='Jah' src='runes/jah.png'  /> + Mal <img alt='Mal' src='runes/mal.png'  /> + Jah <img src='runes/jah.png'  /> + Sur <img src='runes/sur.png'  /> + Jah <img src='runes/jah.png'  /> + Ber <img src='runes/ber.png'  />
 
  6% Chance To Cast Level 11 Fade When Struck
  10% Chance To Cast Level 18 Life Tap On Striking
@@ -3971,7 +4039,7 @@ for chests to drop this rune<br>
  Hit Blinds Target
  +(<span class='mf'>0.5</span> per character level) <span class='mf'>0.5</span>-<span class='mf'>49.5</span>% Chance of Getting Magic Items<br> (Based on Character Level)
  </span></td></tr>
-<tr id='rw62'><td class='tooltip b11'>  Lawbringer          3  Swords/Hammers/Scepters Amn   + Lem   + Ko                      43  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Amn <img alt='Amn' src='runes/amn.png'  /> + Lem <img src='runes/lem.png'  /> + Ko <img src='runes/ko.png'   />
+<tr id='rw62'><td class='tooltip b11'>  Lawbringer          3  Swords/Hammers/Scepters Amn   + Lem   + Ko                      43  <button type='button' id='fav62' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Amn <img alt='Amn' src='runes/amn.png'  /> + Lem <img src='runes/lem.png'  /> + Ko <img src='runes/ko.png'   />
 
  20% Chance To Cast Level 15 Decrepify On Striking
  Level 16-18 Sanctuary Aura When Equipped (varies)
@@ -3984,7 +4052,7 @@ for chests to drop this rune<br>
  +10 To Dexterity
  <span class='gold'>75</span>% Extra Gold From Monsters
  </span></td></tr>
-<tr id='rw63'><td class='tooltip b22'>  Oath                4  Swords/Axes/Maces       Shael + Pul   + Mal  + Lum              49  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Shael <img alt='Shael' src='runes/shael.png'/> + Pul <img alt='Pul' src='runes/pul.png'  /> + Mal <img alt='Mal' src='runes/mal.png'  /> + Lum <img alt='Lum' src='runes/lum.png'  />
+<tr id='rw63'><td class='tooltip b22'>  Oath                4  Swords/Axes/Maces       Shael + Pul   + Mal  + Lum              49  <button type='button' id='fav63' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Shael <img alt='Shael' src='runes/shael.png'/> + Pul <img alt='Pul' src='runes/pul.png'  /> + Mal <img alt='Mal' src='runes/mal.png'  /> + Lum <img alt='Lum' src='runes/lum.png'  />
 
  30% Chance To Cast Level 20 Bone Spirit On Striking
  Indestructible
@@ -3998,7 +4066,7 @@ for chests to drop this rune<br>
  Level 16 Heart Of Wolverine (20 Charges)
  Level 17 Iron Golem (14 Charges)
  </span></td></tr>
-<tr id='rw64'><td class='tooltip b11'>* Obedience           5  Polearms                Hel   + Ko    + Thul + Eth + Fal        41  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Hel <img alt='Hel' src='runes/hel.png'  /> + Ko <img alt='Ko' src='runes/ko.png'   /> + Thul <img alt='Thul' src='runes/thul.png' /> + Eth <img alt='Eth' src='runes/eth.png'  /> + Fal <img alt='Fal' src='runes/fal.png'  />
+<tr id='rw64'><td class='tooltip b11'>* Obedience           5  Polearms                Hel   + Ko    + Thul + Eth + Fal        41  <button type='button' id='fav64' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Hel <img alt='Hel' src='runes/hel.png'  /> + Ko <img alt='Ko' src='runes/ko.png'   /> + Thul <img alt='Thul' src='runes/thul.png' /> + Eth <img alt='Eth' src='runes/eth.png'  /> + Fal <img alt='Fal' src='runes/fal.png'  />
 
  30% Chance To Cast Level 21 Enchant When You Kill An Enemy
  <span class='fhr'>40</span>% Faster Hit Recovery
@@ -4013,7 +4081,7 @@ for chests to drop this rune<br>
  All Resistances +<span class='resa'>20-30</span> (varies)
  Requirements -20%
  </span></td></tr>
-<tr id='rw65'><td class='tooltip b22'>  Phoenix             4  Weapons/Shields         Vex   + Vex   + Lo   + Jah              65  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Vex <img alt='Vex' src='runes/vex.png'  /> + Vex <img alt='Vex' src='runes/vex.png'  /> + Lo <img alt='Lo' src='runes/lo.png'   /> + Jah <img alt='Jah' src='runes/jah.png'  />
+<tr id='rw65'><td class='tooltip b22'>  Phoenix             4  Weapons/Shields         Vex   + Vex   + Lo   + Jah              65  <button type='button' id='fav65' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Vex <img alt='Vex' src='runes/vex.png'  /> + Vex <img alt='Vex' src='runes/vex.png'  /> + Lo <img alt='Lo' src='runes/lo.png'   /> + Jah <img alt='Jah' src='runes/jah.png'  />
  <b>Weapons</b>
  100% Chance To Cast level 40 Blaze When You Level-up
  40% Chance To Cast Level 22 Firestorm On Striking
@@ -4038,7 +4106,7 @@ for chests to drop this rune<br>
  +10% To Maximum Fire Resist
  +15-21 Fire Absorb (varies)
  </span></td></tr>
-<tr id='rw66'><td class='tooltip b11'>  Pride               4  Polearms                Cham  + Sur   + Io   + Lo               67  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Cham <img alt='Cham' src='runes/cham.png' /> + Sur <img alt='Sur' src='runes/sur.png'  /> + Io <img alt='Io' src='runes/io.png'   /> + Lo <img alt='Lo' src='runes/lo.png'   />
+<tr id='rw66'><td class='tooltip b11'>  Pride               4  Polearms                Cham  + Sur   + Io   + Lo               67  <button type='button' id='fav66' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Cham <img alt='Cham' src='runes/cham.png' /> + Sur <img alt='Sur' src='runes/sur.png'  /> + Io <img alt='Io' src='runes/io.png'   /> + Lo <img alt='Lo' src='runes/lo.png'   />
 
  25% Chance To Cast Level 17 Fire Wall When Struck
  Level 16-20 Concentration Aura When Equipped (varies)
@@ -4052,7 +4120,7 @@ for chests to drop this rune<br>
  Replenish Life +8
  <span class='gold'>1.875</span>-<span class='gold'>185.625</span>% Extra Gold From Monsters<br> (Based on Character Level)
  </span></td></tr>
-<tr id='rw67'><td class='tooltip b22'>  Rift                4  Polearms/Scepters       Hel   + Ko    + Lem  + Gul              53  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Hel <img alt='Hel' src='runes/hel.png'  /> + Ko <img alt='Ko' src='runes/ko.png'   /> + Lem <img alt='Lem' src='runes/lem.png'  /> + Gul <img alt='Gul' src='runes/gul.png'  />
+<tr id='rw67'><td class='tooltip b22'>  Rift                4  Polearms/Scepters       Hel   + Ko    + Lem  + Gul              53  <button type='button' id='fav67' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Hel <img alt='Hel' src='runes/hel.png'  /> + Ko <img alt='Ko' src='runes/ko.png'   /> + Lem <img alt='Lem' src='runes/lem.png'  /> + Gul <img alt='Gul' src='runes/gul.png'  />
 
  20% Chance To Cast Level 16 Tornado On Striking
  16% Chance To Cast Level 21 Frozen Orb On Attack
@@ -4066,7 +4134,7 @@ for chests to drop this rune<br>
  Level 15 Iron Maiden (40 Charges)
  Requirements -20%
  </span></td></tr>
-<tr id='rw68'><td class='tooltip b11'>* Spirit              4  Swords/Shields          Tal   + Thul  + Ort  + Amn              25  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Tal <img alt='Tal' src='runes/tal.png'  /> + Thul <img alt='Thul' src='runes/thul.png' /> + Ort <img alt='Ort' src='runes/ort.png'  /> + Amn <img alt='Amn' src='runes/amn.png'  />
+<tr id='rw68'><td class='tooltip b11'>* Spirit              4  Swords/Shields          Tal   + Thul  + Ort  + Amn              25  <button type='button' id='fav68' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Tal <img alt='Tal' src='runes/tal.png'  /> + Thul <img alt='Thul' src='runes/thul.png' /> + Ort <img alt='Ort' src='runes/ort.png'  /> + Amn <img alt='Amn' src='runes/amn.png'  />
 
  <b>Weapons</b>
  <span class='skill'>+2 To All Skills</span>
@@ -4097,7 +4165,7 @@ for chests to drop this rune<br>
  <b>4os Bases for Player</b>
  Crystal Sword
  </span></td></tr>
-<tr id='rw69'><td class='tooltip b22'>  Voice of Reason     4  Swords/Maces            Lem   + Ko    + El   + Eld              43  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Lem <img alt='Lem' src='runes/lem.png'  /> + Ko <img alt='Ko' src='runes/ko.png'   /> + El <img alt='El' src='runes/el.png'   /> + Eld <img alt='Eld' src='runes/eld.png'  />
+<tr id='rw69'><td class='tooltip b22'>  Voice of Reason     4  Swords/Maces            Lem   + Ko    + El   + Eld              43  <button type='button' id='fav69' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Lem <img alt='Lem' src='runes/lem.png'  /> + Ko <img alt='Ko' src='runes/ko.png'   /> + El <img alt='El' src='runes/el.png'   /> + Eld <img alt='Eld' src='runes/eld.png'  />
 
  15% Chance To Cast Level 13 Frozen Orb On Striking
  18% Chance To Cast Level 20 Ice Blast On Striking
@@ -4112,7 +4180,7 @@ for chests to drop this rune<br>
  <span class='gold'>75</span>% Extra Gold From Monsters
  +1 To Light Radius
  </span></td></tr>
-<tr id='rw70'><td class='tooltip b11'>  Wrath               4  Missile Weapons         Pul   + Lum   + Ber  + Mal              63  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Pul <img alt='Pul' src='runes/pul.png'  /> + Lum <img alt='Lum' src='runes/lum.png'  /> + Ber <img alt='Ber' src='runes/ber.png'  /> + Mal <img alt='Mal' src='runes/mal.png'  />
+<tr id='rw70'><td class='tooltip b11'>  Wrath               4  Missile Weapons         Pul   + Lum   + Ber  + Mal              63  <button type='button' id='fav70' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.10 lad<span class='tool ttb'>Pul <img alt='Pul' src='runes/pul.png'  /> + Lum <img alt='Lum' src='runes/lum.png'  /> + Ber <img alt='Ber' src='runes/ber.png'  /> + Mal <img alt='Mal' src='runes/mal.png'  />
 
  30% Chance To Cast Level 1 Decrepify On Striking
  5% Chance To Cast Level 10 Life Tap On Striking
@@ -4127,7 +4195,7 @@ for chests to drop this rune<br>
  <span class='cbf'>Cannot Be Frozen</span>
  </span></td></tr>
 <!-- ========== ========== ========== ========== Runewords 1.11 ========== ========== ========== ==========-->
-<tr id='rw71'><td class='tooltip k22'>  Bone                3  Body Armor              Sol   + Um    + Um                      47  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.11<span class='tool ttk'>Sol <img alt='Sol' src='runes/sol.png'  /> + Um <img alt='Um' src='runes/um.png'   /> + Um <img alt='Um' src='runes/um.png'   />
+<tr id='rw71'><td class='tooltip k22'>  Bone                3  Body Armor              Sol   + Um    + Um                      47  <button type='button' id='fav71' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.11<span class='tool ttk'>Sol <img alt='Sol' src='runes/sol.png'  /> + Um <img alt='Um' src='runes/um.png'   /> + Um <img alt='Um' src='runes/um.png'   />
 
  15% Chance To Cast level 10 Bone Armor When Struck
  15% Chance To Cast level 10 Bone Spear On Striking
@@ -4136,7 +4204,7 @@ for chests to drop this rune<br>
  All Resistances +<span class='resa'>30</span>
  Damage Reduced By <span class='dr'>7</span>
  </span></td></tr>
-<tr id='rw72'><td class='tooltip k11'>  Enlightenment       3  Body Armor              Pul   + Ral   + Sol                     45  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.11<span class='tool ttk'>Pul <img alt='Pul' src='runes/pul.png'  /> + Ral <img alt='Ral' src='runes/ral.png'  /> + Sol <img alt='Sol' src='runes/sol.png'  />
+<tr id='rw72'><td class='tooltip k11'>  Enlightenment       3  Body Armor              Pul   + Ral   + Sol                     45  <button type='button' id='fav72' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.11<span class='tool ttk'>Pul <img alt='Pul' src='runes/pul.png'  /> + Ral <img alt='Ral' src='runes/ral.png'  /> + Sol <img alt='Sol' src='runes/sol.png'  />
 
  5% Chance To Cast Level 15 Blaze When Struck
  5% Chance To Cast level 15 Fire Ball On Striking
@@ -4146,7 +4214,7 @@ for chests to drop this rune<br>
  Fire Resist +<span class='resf'>30</span>%
  Damage Reduced By <span class='dr'>7</span>
  </span></td></tr>
-<tr id='rw73'><td class='tooltip k22'>  Myth                3  Body Armor              Hel   + Amn   + Nef                     25  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.11<span class='tool ttk'>Hel <img alt='Hel' src='runes/hel.png'  /> + Amn <img alt='Amn' src='runes/amn.png'  /> + Nef <img alt='Nef' src='runes/nef.png'  />
+<tr id='rw73'><td class='tooltip k22'>  Myth                3  Body Armor              Hel   + Amn   + Nef                     25  <button type='button' id='fav73' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.11<span class='tool ttk'>Hel <img alt='Hel' src='runes/hel.png'  /> + Amn <img alt='Amn' src='runes/amn.png'  /> + Nef <img alt='Nef' src='runes/nef.png'  />
 
  3% Chance To Cast Level 1 Howl When Struck
  10% Chance To Cast Level 1 Taunt On Striking
@@ -4156,7 +4224,7 @@ for chests to drop this rune<br>
  Attacker Takes Damage of 14
  Requirements -15%
  </span></td></tr>
-<tr id='rw74'><td class='tooltip k11'>  Peace               3  Body Armor              Shael + Thul  + Amn                     29  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.11<span class='tool ttk'>Shael <img src='runes/shael.png'/> + Thul <img src='runes/thul.png' /> + Amn <img src='runes/amn.png'  />
+<tr id='rw74'><td class='tooltip k11'>  Peace               3  Body Armor              Shael + Thul  + Amn                     29  <button type='button' id='fav74' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.11<span class='tool ttk'>Shael <img src='runes/shael.png'/> + Thul <img src='runes/thul.png' /> + Amn <img src='runes/amn.png'  />
 
  4% Chance To Cast Level 5 Slow Missiles When Struck
  2% Chance To Cast level 15 Valkyrie On Striking
@@ -4166,7 +4234,7 @@ for chests to drop this rune<br>
  Cold Resist +<span class='resc'>30</span>%
  Attacker Takes Damage of 14
  </span></td></tr>
-<tr id='rw75'><td class='tooltip k22'>  Principle           3  Body Armor              Ral   + Gul   + Eld                     53  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.11<span class='tool ttk'>Ral <img src='runes/ral.png'  /> + Gul <img src='runes/gul.png'  /> + Eld <img src='runes/eld.png'  />
+<tr id='rw75'><td class='tooltip k22'>  Principle           3  Body Armor              Ral   + Gul   + Eld                     53  <button type='button' id='fav75' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.11<span class='tool ttk'>Ral <img src='runes/ral.png'  /> + Gul <img src='runes/gul.png'  /> + Eld <img src='runes/eld.png'  />
 
  100% Chance To Cast Level 5 Holy Bolt On Striking
  +2 To Paladin Skill Levels
@@ -4176,7 +4244,7 @@ for chests to drop this rune<br>
  +<span class='resp'>5</span>% To Maximum Poison Resist
  Fire Resist +<span class='resf'>30</span>%
  </span></td></tr>
-<tr id='rw76'><td class='tooltip k11'>  Rain                3  Body Armor              Ort   + Mal   + Ith                     49  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.11<span class='tool ttk'>Ort <img alt='Ort' src='runes/ort.png'  /> + Mal <img alt='Mal' src='runes/mal.png'  /> + Ith <img alt='Ith' src='runes/ith.png'  />
+<tr id='rw76'><td class='tooltip k11'>  Rain                3  Body Armor              Ort   + Mal   + Ith                     49  <button type='button' id='fav76' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.11<span class='tool ttk'>Ort <img alt='Ort' src='runes/ort.png'  /> + Mal <img alt='Mal' src='runes/mal.png'  /> + Ith <img alt='Ith' src='runes/ith.png'  />
 
  5% Chance To Cast Level 15 Cyclone Armor When Struck
  5% Chance To Cast Level 15 Twister On Striking
@@ -4186,7 +4254,7 @@ for chests to drop this rune<br>
  Magic Damage Reduced By 7
  15% Damage Taken Goes to Mana
  </span></td></tr>
-<tr id='rw77'><td class='tooltip k22'>* Treachery           3  Body Armor              Shael + Thul  + Lem                     43  <button type='button' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.11<span class='tool ttk'>Shael <img alt='Shael' src='runes/shael.png'/> + Thul <img alt='Thul' src='runes/thul.png' /> + Lem <img src='runes/lem.png'  />
+<tr id='rw77'><td class='tooltip k22'>* Treachery           3  Body Armor              Shael + Thul  + Lem                     43  <button type='button' id='fav77' onclick='onToggleFavRW(this);'>&#x2610;</button> 1.11<span class='tool ttk'>Shael <img alt='Shael' src='runes/shael.png'/> + Thul <img alt='Thul' src='runes/thul.png' /> + Lem <img src='runes/lem.png'  />
 
  5% Chance To Cast Level 15 Fade When Struck
  25% Chance To Cast level 15 Venom On Striking
@@ -4206,29 +4274,67 @@ for chests to drop this rune<br>
 <br>
 <table class='head' id='table.sockcube'>
     <tr class='gt gb'><th><span class='g'>Socketing (with Act 5 <a href='https://diablo2.diablowiki.net/Siege_on_Harrogath'>Larzuk</a>, <a href='http://classic.battle.net/diablo2exp/items/cube.shtml'>Cube</a>, or Ebug)</span><div class='collapse'><button value='table.sockcube' onclick='onCollapse(this);'>-</button></div></th></tr>
-    <tr><td class='tooltip k11'>Normal drops = max 3<span class='note'>*</span> sockets      (<span class='note'>* Cows</span> = 4 socket, <span class='note'>Lazarus</span> # sockets = ilvl &larr; mlvl &larr; alvl)</td></tr>
+    <tr><td class='tooltip k11'>Normal drops = max 3<span class='note'>*</span> sockets      (<span class='note'>*Cows</span> = 4 socket, <span class='note'>Larzuk</span> # sockets = ilvl &larr; mlvl &larr; alvl)</td></tr>
     <tr><td class='tooltip k22'> nm    drops = max 4 sockets       (<span class='mf'>0</span> MF is best for finding bases)                           </td></tr>
     <tr><td class='tooltip k11'>Hell   drops = max 6 sockets                                                                  </td></tr>
     <tr><td class='tooltip k22'>Larzuk = max 1 socket to uniques, 1-6 sockets to white bases depending on ilvl and type       </td></tr>
-    <tr><td class='tooltip k11'>Tal + Thul + Perfect Topaz    + Normal Body Armor &rarr; Socketed Body Armor of same type          <span class='tool ttk'>Tal <img src='runes/tal.png'  /> + Thul <img src='runes/thul.png' /> + <img src='gems/topaz_perfect.png'   ></span></td></tr>
-    <tr><td class='tooltip k22'>Ral + Amn  + Perfect Amethyst + Normal Weapon     &rarr; Socketed Weapon     of same type          <span class='tool ttk'>Ral <img src='runes/ral.png'  /> + Amn  <img src='runes/amn.png'  /> + <img src='gems/amethyst_perfect.png'></span></td></tr>
-    <tr><td class='tooltip k11'>Ral + Thul + Perfect Sapphire + Normal Helm       &rarr; Socketed Helm       of same type          <span class='tool ttk'>Ral <img src='runes/ral.png'  /> + Thul <img src='runes/thul.png' /> + <img src='gems/sapphire_perfect.png'></span></td></tr>
-    <tr><td class='tooltip k22'>Tal + Amn  + Perfect Ruby     + Normal Shield     &rarr; Socketed Shield     of same type          <span class='tool ttk'>Tal <img src='runes/tal.png'  /> + Amn  <img src='runes/amn.png'  /> + <img src='gems/ruby_perfect.png'    ></span></td></tr>
-    <tr><td class='tooltip k11'>Hel + Scroll of Town Portal   + Any Socketed Item &rarr; Remove gems, runes, or jewels from sockets<span class='tool ttk'>Hel <img src='runes/hel.png'  /> + <img src='pics/scroll_town_portal.png'/></span                                 ></td></tr>
+    <tr><td class='tooltip k11'>Tal + Thul + Perfect Topaz    + Normal Body Armor &rarr; Socketed Body Armor of same type          <span class='tool ttk'><span class='in'>Tal </span><img src='runes/tal.png'  /><span class='in'> + Thul </span><img src='runes/thul.png' /><span class='in'> + </span><img src='gems/topaz_perfect.png'   ></span></td></tr>
+    <tr><td class='tooltip k22'>Ral + Amn  + Perfect Amethyst + Normal Weapon     &rarr; Socketed Weapon     of same type          <span class='tool ttk'><span class='in'>Ral </span><img src='runes/ral.png'  /><span class='in'> + Amn  </span><img src='runes/amn.png'  /><span class='in'> + </span><img src='gems/amethyst_perfect.png'></span></td></tr>
+    <tr><td class='tooltip k11'>Ral + Thul + Perfect Sapphire + Normal Helm       &rarr; Socketed Helm       of same type          <span class='tool ttk'><span class='in'>Ral </span><img src='runes/ral.png'  /><span class='in'> + Thul </span><img src='runes/thul.png' /><span class='in'> + </span><img src='gems/sapphire_perfect.png'></span></td></tr>
+    <tr><td class='tooltip k22'>Tal + Amn  + Perfect Ruby     + Normal Shield     &rarr; Socketed Shield     of same type          <span class='tool ttk'><span class='in'>Tal </span><img src='runes/tal.png'  /><span class='in'> + Amn  </span><img src='runes/amn.png'  /><span class='in'> + </span><img src='gems/ruby_perfect.png'    ></span></td></tr>
+    <tr><td class='tooltip k11'>Hel + Scroll of Town Portal   + Any Socketed Item &rarr; Remove gems, runes, or jewels from sockets<span class='tool ttk'><span class='in'>Hel </span><img src='runes/hel.png'  /><span class='in'> + </span><img src='pics/scroll_town_portal.png'/></span                                 ></td></tr>
 </table>
 <br>
 <table class='head' id='table.repair'>
     <tr class='bt bb'      ><th><span class='b'>Repair</span> (<b>Note:</b> <span class='note'>You cannot repair Ethereal items</span>)<div class='collapse'><button value='table.repair' onclick='onCollapse(this);'>-</button></div></th></tr>
-    <tr><td class='tooltip k11'>Ort Rune + Weapon               &rarr; Fully Repaired Weapon                                       <span class='tool ttk'>Ort <img src='runes/ort.png'  /></span></td></tr>
-    <tr><td class='tooltip k11'>Ral Rune + Armor                &rarr; Fully Repaired Armor                                        <span class='tool ttk'>Ral <img src='runes/ral.png'  /></span></td></tr>
-    <tr><td class='tooltip y22'>Ort Rune + Chipped Gem + Weapon &rarr; Fully Repaired and Recharged Weapon                         <span class='tool ttk'>Ort <img src='runes/ort.png'  /> + Chipped gem (any type)<br><br>(Usefull for recharging <b>Teleport</b>) staff</span></td><tr>
-    <tr><td class='tooltip y11'>Ral Rune + Flawed Gem  + Armor  &rarr; Fully Repaired and Recharged Armor                          <span class='tool ttk'>Ral <img src='runes/ral.png'  /> + Flawed gem (any type)</td</tr>
+    <tr><td class='tooltip k11'>Ort Rune + Weapon               &rarr; Fully Repaired Weapon                                       <span class='tool ttk'><span class='in'>Ort </span><img src='runes/ort.png'  /></span></td></tr>
+    <tr><td class='tooltip k11'>Ral Rune + Armor                &rarr; Fully Repaired Armor                                        <span class='tool ttk'><span class='in'>Ral </span><img src='runes/ral.png'  /></span></td></tr>
+    <tr><td class='tooltip y22'>Ort Rune + Chipped Gem + Weapon &rarr; Fully Repaired and Recharged Weapon                         <span class='tool ttk'><span class='in'>Ort </span><img src='runes/ort.png'  /><span class='in'> + Chipped gem (any type)</span><br><br>(Usefull for recharging <b>Teleport</b>) staff</span></td><tr>
+    <tr><td class='tooltip y11'>Ral Rune + Flawed Gem  + Armor  &rarr; Fully Repaired and Recharged Armor                          <span class='tool ttk'><span class='in'>Ral </span><img src='runes/ral.png'  /><span class='in'> + Flawed gem (any type)</span></td</tr>
 </table>
 <br>
 <table class='head' id='table.misccube'>
     <tr class='rt rb'><th      >Misc. Cube<div class='collapse'><button value='table.misccube' onclick='onCollapse(this);'>-</button></div></th></tr>
-    <tr><td class='tooltip r11'>3x Rejuvenation Potions       &rarr; Full Rejuvenation Potion   <span class='tool ttk'><img src='pics/rejuv.png'/> + <img src='pics/rejuv.png'/> + <img src='pics/rejuv.png'/> &rarr; <img src='pics/full_rejuv.png'/></span></td></tr>
+    <tr><td class='tooltip r11'>3x Rejuvenation Potions       &rarr; Full Rejuvenation Potion   <span class='tool ttk'><img class='rejuvs'/><span class='in'> + </span><img class='rejuvs'/><span class='in'> + </span><img class='rejuvs'/><span class='in'> &rarr; </span><img class='rejuvf'/></span></td></tr>
     <tr><td class='tooltip r22'>Staff + Kris + Belt + Diamond &rarr; Savage Polearm Class Weapon<span class='tool ttk'><span class='note'>66-80% Enhanced Damage</span><br><br>Weapon Type one of:<br><br>Bardiche,<br>Battle Scythe,<br>Bill,<br>Halbred,<br>Lochaber Axe,<br>Partizan,<br>Poleaxe,<br>Scythe,<br>Voulge,<br>War Scythe<br></span></td></tr>
+</table>
+<br>
+<table class='head' id='table.gems1'>
+    <tr class='gt gb'><th      ><a href='http://classic.battle.net/diablo2exp/items/gems.shtml'>Gem</a> Tiers  </th><th>clvl </td><th>Loc      </th><th>Amethyst  </th           ><th>Diamond              </th           ><th>Emerald             </th            ><th>Ruby             </th><th><div class=''><button value='table.gems1' onclick='onCollapse(this);' id='btn_gems'>-</button></div></th><tr>
+    <tr class='  '><td class='tooltip b11'>        </td><td>   </td><td>Weapon</td                                                   ><td class='gemam'>+ 40 AR</td><td class='gemdi'>+28% Damage Undead</td><td class='gemem'> +10 Poison dmg/3s</td><td class='gemru'> 3-4  Fire dmg </td></tr>
+    <tr class='  '><td class='tooltip b11'>Chipped </td><td>&nbsp;1</td><td>Shield</td                                               ><td class='gemam'> +8 Def</td><td class='gemdi'>Resist All  +6%   </td><td class='gemem'>12% Resist Poison </td><td class='gemru'>12% Resist Fire</td></tr>
+    <tr class='gb'><td class='tooltip b11'>        </td><td>   </td><td>Armor </td                                                   ><td class='gemam'> +3 STR</td><td class='gemdi'>+ 20 AR           </td><td class='gemem'>  +3 Dexterity    </td><td class='gemru'>+10 Life       </td></tr>
+    <tr class='  '><td class='tooltip b11'>        </td><td>   </td><td>Weapon</td                                                   ><td class='gemam'>+ 60 AR</td><td class='gemdi'>+34% Damage Undead</td><td class='gemem'> +20 Poison dmg/4s</td><td class='gemru'> 5-8  Fire dmg </td></tr>
+    <tr class='  '><td class='tooltip b11'>Flawed  </td><td>&nbsp;5 </td><td>Shield</td                                              ><td class='gemam'>+12 Def</td><td class='gemdi'>Resist All  +8%   </td><td class='gemem'>16% Resist Poison </td><td class='gemru'>16% Resist Fire</td></tr>
+    <tr class='gb'><td class='tooltip b11'>        </td><td>   </td><td>Armor </td                                                   ><td class='gemam'> +4 STR</td><td class='gemdi'>+ 40 AR           </td><td class='gemem'> +4 Dexterity     </td><td class='gemru'>+17 Life       </td></tr>
+    <tr class='  '><td class='tooltip b11'>        </td><td>   </td><td>Weapon</td                                                   ><td class='gemam'>+ 80 AR</td><td class='gemdi'>+44% Damage Undead</td><td class='gemem'> +40 Poison dmg/5s</td><td class='gemru'> 8-12 Fire dmg </td></tr>
+    <tr class='  '><td class='tooltip b11'>(normal)</td><td>12 </td><td>Shield</td                                                   ><td class='gemam'>+18 Def</td><td class='gemdi'>Resist All +11%   </td><td class='gemem'>22% Resist Poison </td><td class='gemru'>22% Resist Fire</td></tr>
+    <tr class='gb'><td class='tooltip b11'>        </td><td>   </td><td>Armor </td                                                   ><td class='gemam'> +6 STR</td><td class='gemdi'>+ 60 AR           </td><td class='gemem'> +6 Dexterity     </td><td class='gemru'>+24 Life       </td></tr>
+    <tr class='  '><td class='tooltip b11'>        </td><td>   </td><td>Weapon</td                                                   ><td class='gemam'>+100 AR</td><td class='gemdi'>+54% Damage Undead</td><td class='gemem'> +60 Poison dmg/6s</td><td class='gemru'>10-16 Fire dmg </td></tr>
+    <tr class='  '><td class='tooltip b11'>Flawless</td><td>15 </td><td>Shield</td                                                   ><td class='gemam'>+24 Def</td><td class='gemdi'>Resist All +14%   </td><td class='gemem'>28% Resist Poison </td><td class='gemru'>28% Resist Fire</td></tr>
+    <tr class='gb'><td class='tooltip b11'>        </td><td>   </td><td>Armor </td                                                   ><td class='gemam'> +8 STR</td><td class='gemdi'>+ 80 AR           </td><td class='gemem'> +8 Dexterity     </td><td class='gemru'>+31 Life       </td></tr>
+    <tr class='  '><td class='tooltip b11'>        </td><td>   </td><td>Weapon</td                                                   ><td class='gemam'>+150 AR</td><td class='gemdi'>+68% Damage Undead</td><td class='gemem'>+100 Poison dmg/7s</td><td class='gemru'>15-20 Fire dmg </td></tr>
+    <tr class='  '><td class='tooltip b11'>Perfect </td><td>18 </td><td>Shield</td                                                   ><td class='gemam'>+30 Def</td><td class='gemdi'>Resist All +19%   </td><td class='gemem'>40% Resist Poison </td><td class='gemru'>40% Resist Fire</td></tr>
+    <tr class='gb'><td class='tooltip b11'>        </td><td>   </td><td>Armor </td                                                   ><td class='gemam'>+12 STR</td><td class='gemdi'>+100 AR           </td><td class='gemem'>+10 Dexterity     </td><td class='gemru'>+38 Life       </td></tr>
+</table>
+<br>
+<table class='head' id='table.gems2'>
+    <tr class='bt bb'><th      ><a href='http://classic.battle.net/diablo2exp/items/gems.shtml'>Gem</a> Tiers  </th><th>clvl </td><th>Loc      </th><th>Sapphire              </th><th            >Skull                                    </th><th            >Topaz                            </th><th><div class=''><button value='table.gems2' onclick='onCollapse(this);' id='btn_gems'>-</button></div></th><tr>
+    <tr class='  '><td class='tooltip b11'>        </td><td>   </td><td>Weapon</td                                                   ><td class='gemsa'> 1- 3 Cold dmg, 1.0s</td><td class='gemsk'>Steals 2% life, 1% Mana                </td><td class='gemto'>1- 8 Lightning dmg             </td></tr>
+    <tr class='  '><td class='tooltip b11'>Chipped </td><td>&nbsp;1 </td><td>Shield</td                                              ><td class='gemsa'>12% Resist Cold     </td><td class='gemsk'>Attackers takes  4 dmg                 </td><td class='gemto'>12% Resist Lightning           </td></tr>
+    <tr class='bb'><td class='tooltip b11'>        </td><td>   </td><td>Armor </td                                                   ><td class='gemsa'>+10 Max Mana        </td><td class='gemsk'>Replensish Life +2, Regenerate Mana  8%</td><td class='gemto'>+9% MF                         </td></tr>
+    <tr class='  '><td class='tooltip b11'>        </td><td>   </td><td>Weapon</td                                                   ><td class='gemsa'> 3- 5 Cold dmg, 1.4s</td><td class='gemsk'>Steals 2% life, 2% Mana                </td><td class='gemto'>1-14 Lightning dmg             </td></tr>
+    <tr class='  '><td class='tooltip b11'>Flawed  </td><td>&nbsp;5 </td><td>Shield</td                                              ><td class='gemsa'> 16% Resist Cold    </td><td class='gemsk'>Attackers takes  8 dmg                 </td><td class='gemto'>16% Resist Lightning           </td></tr>
+    <tr class='bb'><td class='tooltip b11'>        </td><td>   </td><td>Armor </td                                                   ><td class='gemsa'> +17 Max Mana       </td><td class='gemsk'>Replensish Life +3, Regenerate Mana  8%</td><td class='gemto'>+13% Chance to Find Magic Items</td></tr>
+    <tr class='  '><td class='tooltip b11'>        </td><td>   </td><td>Weapon</td                                                   ><td class='gemsa'> 4- 7 Cold dmg, 2.0s</td><td class='gemsk'>Steals 3% life, 2% Mana                </td><td class='gemto'>1-22 Lightning dmg             </td></tr>
+    <tr class='  '><td class='tooltip b11'>(normal)</td><td>12 </td><td>Shield</td                                                   ><td class='gemsa'>22% Resist Cold     </td><td class='gemsk'>Attackers takes 12 dmg                 </td><td class='gemto'>22% Resist Lightning           </td></tr>
+    <tr class='bb'><td class='tooltip b11'>        </td><td>   </td><td>Armor </td                                                   ><td class='gemsa'>+24 Max Mana        </td><td class='gemsk'>Replensish Life +3, Regenerate Mana 12%</td><td class='gemto'>+16% Chance to Find Magic Items</td></tr>
+    <tr class='  '><td class='tooltip b11'>        </td><td>   </td><td>Weapon</td                                                   ><td class='gemsa'> 6-20 Cold dmg, 2.4s</td><td class='gemsk'>Steals 3% life, 3% Mana                </td><td class='gemto'>1-30 Lightning dmg             </td></tr>
+    <tr class='  '><td class='tooltip b11'>Flawless</td><td>15 </td><td>Shield</td                                                   ><td class='gemsa'>28% Resist Cold     </td><td class='gemsk'>Attackers takes 16 dmg                 </td><td class='gemto'>28% Resist Lightning           </td></tr>
+    <tr class='bb'><td class='tooltip b11'>        </td><td>   </td><td>Armor </td                                                   ><td class='gemsa'>+31 Max Mana        </td><td class='gemsk'>Replensish Life +4, Regenerate Mana 12%</td><td class='gemto'>+20% Chance to Find Magic Items</td></tr>
+    <tr class='  '><td class='tooltip b11'>        </td><td>   </td><td>Weapon</td                                                   ><td class='gemsa'>10-14 Cold dmg, 3.0s</td><td class='gemsk'>Steals 4% life, 3% Mana                </td><td class='gemto'>1-40 Lightning dmg             </td></tr>
+    <tr class='  '><td class='tooltip b11'>Perfect </td><td>18 </td><td>Shield</td                                                   ><td class='gemsa'>40% Resist Cold     </td><td class='gemsk'>Attackers takes 20 dmg                 </td><td class='gemto'>28% Resist Lightning           </td></tr>
+    <tr class='bb'><td class='tooltip b11'>        </td><td>   </td><td>Armor </td                                                   ><td class='gemsa'>+38 Max Mana        </td><td class='gemsk'>Replensish Life +5, Regenerate Mana 19%</td><td class='gemto'>+24% Chance to Find Magic Items</td></tr>
 </table>
 <br>
 <table class='head' id='section.crafting'>
@@ -4330,7 +4436,7 @@ for chests to drop this rune<br>
                     <tr><td class='tooltip g11'><meta           />4os Full Plate, 100 life    <meta/>73   68   NM/Hell   </td></tr>
                     <tr><td class='tooltip g22'><meta           />4os Gothic Armor, 100 life  <meta/>71   66   Hell      </td></tr>
                     <tr><td class='tooltip g11'>4os <span class='fhr'>24</span> FHR armor            50+       NM/Hell   </td></tr>
-                    <tr><td class='tooltip g22'><meta           />Amulets                     <meta/>95        +2 skills </td></tr>
+                    <tr><td class='tooltip g22'><meta           />Amulets                     <meta/>90   93   +2 skills </td></tr>
                     <tr><td class='tooltip g11'><meta           />Circlets                    <meta/>92        +2 skills </td></tr>
                     <tr><td class='tooltip g22'><meta           />Coronets                    <meta/>87        +2 skills </td></tr>
                     <tr><td class='tooltip g11'><span class='fcr'>20</span> FCR wand                 23+       Act 3+    </td></tr>
@@ -4487,9 +4593,9 @@ for chests to drop this rune<br>
 </table><br></td><td class='vatop'><table class='head' id='table.alvl3'>
     <tr class='gt gb'><th><a href='http://classic.battle.net/diablo2exp/maps/act3.shtml'><div class='wp'></div></a></th><th>III Kurast Docs          N  nm   H Layout <span class='l'>L</span>/<span class='c'>C</span>/<span class='r'>R</span>  <button value='table.alvl3' onclick='onCollapse(this);'>-</button></th></tr>
     <tr><td><div class='wp'></div></td><td class='tooltip g11'>Spider Forest           21  49  <meta              />79<meta/> <span class='l'>    </span     ><span class='c'  >        </span   ><span class='r'>     </span></td></tr>
+    <tr><td                      ></td><td class='tooltip g22'>  Arachnid Lair         21  50  <meta              />79<meta/> <span class='l'>    </span     ><span class='c'  >        </span   ><span class='r'>     </span></td></tr>
+    <tr><td                      ></td><td class='tooltip g11'>  Spider Cavern         21  50  <meta              />79<meta/> <span class='l'>    </span     ><span class='c'  >        </span   ><span class='r'>     </span></td></tr>
     <tr><td><div class='wp'></div></td><td class='tooltip g22'>Great Marsh             21  50  <meta              />80<meta/> <span class='l'>    </span     ><span class='c'  >        </span   ><span class='r'>     </span></td></tr>
-    <tr><td                      ></td><td class='tooltip g11'>  Arachnid Lair         21  50  <meta              />79<meta/> <span class='l'>    </span     ><span class='c'  >        </span   ><span class='r'>     </span></td></tr>
-    <tr><td                      ></td><td class='tooltip g22'>  Spider Cavern         21  50  <meta              />79<meta/> <span class='l'>    </span     ><span class='c'  >        </span   ><span class='r'>     </span></td></tr>
     <tr><td><div class='wp'></div></td><td class='tooltip g11'>Flayer Jungle           22  50  <meta              />80<meta/> <span class='l'>    </span     ><span class='c'  >        </span   ><span class='r'>     </span></td></tr>
     <tr><td                      ></td><td class='tooltip g22'>  Swampy Pit Level 1    21  51  <meta              />80<meta/> <span class='l'>Left</span     ><span class='c'  >        </span   ><span class='r'>     </span></td></tr>
     <tr><td                      ></td><td class='tooltip g11'>  Swampy Pit Level 2    21  51  <meta              />81<meta/> <span class='l'>Left</span     ><span class='c'  >        </span   ><span class='r'>     </span></td></tr>
@@ -4679,37 +4785,46 @@ for chests to drop this rune<br>
     * <a href="http://classic.battle.net/diablo2exp/items/runewords-110.shtml">1.10 Runewords (Ladder)</a>
     * <a href="http://classic.battle.net/diablo2exp/items/runewords-111.shtml">1.11 Rune Words</a> (+2 to {class} Skill Levels)
     * <a href="https://i.imgur.com/2nTUs.png">Original inspiration</a> -- Diablo II Upgrading and Information
+  Trading
+    * <a href='https://diablo2.io/price-check'>https://diablo2.io/price-check </a> -- History of Item Price
+    * <a href='https://traderie.com/diablo2resurrected'>https://traderie.com/diablo2resurrected</a> -- Trade Site
+    * <a href='https://diablo2.io/trade/'>https://diablo2.io/trade/</a> -- Trade Site
+    * <a href='D2jsp.org'>D2jsp.org</a> -- Trade Site
 
 Thanks:
-  * /u/Obliivescence       for catching   TC84 header info
-  * /u/Fragrant_Draws      for catching   broken user name link
-  * /u/Drak_Gaming         for catching   Ama 1H and 2H FBR being swapped
-  * /u/Lysgaard_dk         for catching   Power Leveling 61+
-  * /u/Ultimate600         for catching   BoTD not S-Tier
-  * /u/MestreJonas_        for suggestion to clarify "lite/othr"
-  * /u/randomly-generated  for suggestion to sort runewords by owned
-  * /u/GuardianOfTriangles for suggestion of more S Tier items (Black, Exile, Obedience, or White)
-  * /u/Subearoo            for suggestion of 6 pskulls rerolling rares
-  * /u/Cromi38             for suggestion of waypoint icons
-  * /u/jamexxx             for suggestion of Essences
-  * /u/thrownawayzss       for suggestion of less bright yellow hover bar for night time
-  * /u/Saphirar            for reminder   of d2.maxroll.gg d2planner
-  * /u/Cormair             for suggestion of alt. links to d2.maxroll.gg drop calc, holy grail, stash tab organizer
-  * /u/Push4h              for suggestion of add monochrome support
-  * /u/josh06025           for suggestion of color code high level alvl
-  * /u/soupsticle          for suggestion of attack speed calc, FBR, and collapsible tables
-  * /u/tk4481              for suggestion of d2.maxroll.gg map reading
-  * /u/post_ex0dus         for suggestion of power leveling
-  * /u/pisseningly         for suggetsion of collapse all button
-  * /u/wariscrafty         for link to       drop calc
-  * /u/LivEisJeebus        for suggestion of gambling odds and items
-  * /u/HutchReddit         for suggestion of skillers for rerolling magic item
-  * /uGuardianOfTriangles  for suggestion of savage cube recipe
-  * /u/Kairukun90          for suggestion of runeword manifest
-  * pairofdocs             for suggestion of recharging items and example of Teleport staff
+  * /u/Obliivescence        for catching   TC84 header info
+  * /u/Fragrant_Draws       for catching   broken user name link
+  * /u/Drak_Gaming          for catching   Ama 1H and 2H FBR being swapped
+  * /u/Lysgaard_dk          for catching   Power Leveling 61+
+  * /u/Ultimate600          for catching   BoTD not S-Tier
+  * /u/wariscrafty          for catching   Lazarus
+  * /u/Separate-Tomatillo87 for suggestion of HOTO to use Flail instead of Mace*
+  * /u/MestreJonas_         for suggestion to clarify "lite/othr"
+  * /u/randomly-generated   for suggestion to sort runewords by owned
+  * /u/GuardianOfTriangles  for suggestion of more S Tier items (Black, Exile, Obedience, or White)
+  * /u/Subearoo             for suggestion of 6 pskulls rerolling rares
+  * /u/Cromi38              for suggestion of waypoint icons
+  * /u/jamexxx              for suggestion of Essences
+  * /u/thrownawayzss        for suggestion of less bright yellow hover bar for night time
+  * /u/Saphirar             for reminder   of d2.maxroll.gg d2planner
+  * /u/Cormair              for suggestion of alt. links to d2.maxroll.gg drop calc, holy grail, stash tab organizer
+  * /u/Push4h               for suggestion of add monochrome support
+  * /u/josh06025            for suggestion of color code high level alvl
+  * /u/soupsticle           for suggestion of attack speed calc, FBR, and collapsible tables
+  * /u/tk4481               for suggestion of d2.maxroll.gg map reading
+  * /u/post_ex0dus          for suggestion of power leveling
+  * /u/pisseningly          for suggetsion of collapse all button
+  * /u/wariscrafty          for link to       drop calc
+  * /u/LivEisJeebus         for suggestion of gambling odds and items
+  * /u/HutchReddit          for suggestion of skillers for rerolling magic item
+  * /uGuardianOfTriangles   for suggestion of savage cube recipe
+  * /u/Kairukun90           for suggestion of runeword manifest
+  * pairofdocs              for suggestion of recharging items and example of Teleport staff
+  * MarcusQuixabeira        for tweaking   of tooltip x position to not cover "Fav" button
+  * ZehelFenris             for catching   of Act 3 caves being listed in wrong zone
 </pre>
 <hr class='one'>
-<span style='font-size:12px;'>Version 1.43, Last Updated Mon, Sep 22 2021.</span>
+<span style='font-size:12px;'>Version 1.49, Last Updated Wed, Oct 6 2021.</span>
 <span style='font-size:10px;'>CSS Debug: Screen Size:</span> <span id='screen-size'>?</span>, <span class='ios-hidden' >iOS-hidden</span> <span class='ios-visible'>iOS-visible</span>
 <span style='font-size:6px;'>All bugs are due to Anthony slacking on QA.</span>
 </div></body>
