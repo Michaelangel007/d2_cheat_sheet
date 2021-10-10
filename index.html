@@ -962,7 +962,7 @@ pre
     z-index         : 1;
 }
         </style>
-        <link id="light_theme" rel="stylesheet" href="themes/light.css" media="none">
+        <link rel="stylesheet" href="themes/light.css">
         <script>
 "use strict"; // Stupid hack to turn on type safety
 
@@ -1594,12 +1594,16 @@ function onColor( button )
     
     if (button.light)
     {
-        document.getElementById('light_theme').setAttribute('media', 'none');
+        document.body.className = "light_theme";
     }
     else
     {
-        document.getElementById('light_theme').setAttribute('media', '');
+        document.body.className = "";
     }
+}
+            
+function insertAfter(newNode, existingNode) {
+    existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
 }
 
 function onLoad()
