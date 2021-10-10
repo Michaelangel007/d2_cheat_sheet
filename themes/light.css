@@ -7,16 +7,18 @@
     --blue-color: 26, 131, 221;
     --yellow-color: 255, 200, 0;
     --cyan-color: 52, 199, 199;
-    --purple-color: 182, 95, 227;
+    --purple-color: 132, 60, 185;
     --brown-color: 131, 88, 46;
     --header-color: 80, 80, 80;
     --headerbg-color: 240, 240, 240;
+    --note-color: 160, 128, 219;
+    --gold-color: 207, 154, 0;
 }
 /* ----- General ----- */
 
 b
 {
-    color: rgb(var(--yellow-color));
+    color: rgb(var(--note-color));
 }
 
 body
@@ -194,12 +196,12 @@ tr.kb
 
 tr.yt
 {
-    border-top   : 1px solid rgb(var(--yellow-color));
+    border-top   : 1px solid rgb(var(--note-color));
 }
 
 tr.yb
 {
-    border-bottom: 1px solid rgb(var(--yellow-color));
+    border-bottom: 1px solid rgb(var(--note-color));
 }
 
 /* ----- Spans ----- */
@@ -209,7 +211,7 @@ span.alvl85 { color: rgb(var(--red-color)); }
 
 span.note
 {
-    color     : rgb(var(--yellow-color));
+    color     : rgb(var(--note-color));
 }
 
 span.noterune
@@ -219,7 +221,7 @@ span.noterune
 
 span.gold
 {
-    color     : rgb(var(--yellow-color));
+    color     : rgb(var(--gold-color));
 }
 
 span.farm
@@ -260,8 +262,8 @@ span.unsel
 
 span.rws
 {
-    background-color: #666;
-    border          : 1px solid #F00;
+    background-color: rgb(var(--medium-color));
+    border          : 1px solid rgb(var(--red-color));
     color           : #FFF;
 }
 
@@ -284,7 +286,7 @@ span.x
 
 span.y
 {
-    color: rgb(var(--yellow-color));
+    color: rgb(var(--note-color));
 }
 
 /* Gems Color Coding */
@@ -349,6 +351,11 @@ span.cbf
     color: rgb(var(--blue-color));
 }
 
+span.mf
+{
+    color: rgb(var(--purple-color));
+}
+
 /* Customs */
 .visible
 {
@@ -369,6 +376,11 @@ span.cbf
 }
 
 .hidden img
+{
+    filter: brightness(150%);
+}
+
+.wp
 {
     filter: brightness(150%);
 }
