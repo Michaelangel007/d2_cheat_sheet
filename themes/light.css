@@ -110,8 +110,6 @@ span.b { color: rgb(var(--blue-color)); }
 .tooltip:hover
 {
     background-color: rgba(var(--yellow-color), 0.2);
-    /*background-color: rgb(var(--dark-color));
-    color           : rgb(var(--light-color));*/
 }
 
 .runetip .gemtext,
@@ -123,6 +121,7 @@ span.b { color: rgb(var(--blue-color)); }
 .tool.ttg,
 .tool.ttb
 {
+    will-change: transform;
     background-color: rgb(var(--light-color));
     color           : rgb(var(--dark-color));
     border-color    : rgb(var(--medium-color));
@@ -150,8 +149,6 @@ span.b { color: rgb(var(--blue-color)); }
 .runetip:hover
 {
     background-color: rgba(var(--yellow-color), 0.2);
-    /*background-color: rgb(var(--dark-color));
-    color           : rgb(var(--light-color));*/
 }
 
 /* Top and Bottom line colors */
