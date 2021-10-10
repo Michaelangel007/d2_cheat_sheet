@@ -962,7 +962,7 @@ pre
     z-index         : 1;
 }
         </style>
-        <link rel="stylesheet" href="themes/light.css">
+        <link id="light_theme" disabled rel="stylesheet" href="themes/light.css">
         <script>
 "use strict"; // Stupid hack to turn on type safety
 
@@ -1168,7 +1168,9 @@ var RECIPES = [
     //  &#x2611; \u2611  Ballot Box with Check
     const FACE     = [ '-', '+' ], // Button collapse faces
           FAVS     = [ '\u2610', '\u2611' ],
-          COLLAPSE = [ 'Collapse', 'Expand' ];
+          COLLAPSE = [ 'Collapse', 'Expand' ],
+          MONO = [ 'Mono', 'Color' ],
+          LIGHT = [ 'Light', 'Dark' ];
 
 // Globals
     var gaAvailableRunes    = [], // saved
@@ -1587,12 +1589,16 @@ function onCollapseSave()
 
 function onColor( button )
 {
-    document.getElementById('content').style = '';
-
-    if( !button.disabled )
+    button.light = (!!!button.light)|0;
+    button.textContent = LIGHT[ button.light ];
+    
+    if (button.light)
     {
-        button.disabled = true;
-        document.getElementById( 'mono' ).disabled = false;
+        document.getElementById('light_theme').disabled = false;
+    }
+    else
+    {
+        document.getElementById('light_theme').disabled = true;
     }
 }
 
@@ -1626,12 +1632,16 @@ function onLoad()
 
 function onMono( button )
 {
-    document.getElementById('content').style = 'filter:grayscale(100%);';
-
-    if( !button.disabled )
+    button.mono = (!!!button.mono)|0;
+    button.textContent = MONO[ button.mono ];
+    
+    if (button.mono)
     {
-        button.disabled = true;
-        document.getElementById( 'color' ).disabled = false;
+        document.getElementById('content').style = 'filter:grayscale(100%);';
+    }
+    else
+    {
+        document.getElementById('content').style = '';
     }
 }
 
@@ -1951,7 +1961,7 @@ function updateRuneWordsVisible()
             <span style='font-size:18px;'><i>Diablo 2</i> <a href='https://github.com/Michaelangel007/d2_cheat_sheet'>Cheat Sheet</a></span>
             <span style='font-size:14px;'> by <i>Michaelangel007</i></span> <img alt='m007' src='pics/m007.png'> <i><a href='https://www.reddit.com/user/MysticReddit'>/u/MysticReddit</a></i>
 <button type='button' id='mono'                  onclick='onMono(this)       ;'>Mono</button>
-<button type='button' id='color'        disabled onclick='onColor(this)      ;'>Color</button>
+<button type='button' id='color'                 onclick='onColor(this)      ;'>Light</button>
 <button type='button' id='collapse_all'          onclick='onCollapseAll(this);'>Collapse</button>
             <br>
             <br>
