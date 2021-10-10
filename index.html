@@ -962,8 +962,7 @@ pre
     z-index         : 1;
 }
         </style>
-        <link id="light_theme" disabled rel="stylesheet" type="text/css" href="themes/light.css">
-        <link id="light_theme_cors" disabled rel="stylesheet" type="text/css" href="themes/light.css" crossorigin="anonymous">
+        <link id="light_theme" rel="stylesheet" href="themes/light.css" media="none">
         <script>
 "use strict"; // Stupid hack to turn on type safety
 
@@ -1595,13 +1594,11 @@ function onColor( button )
     
     if (button.light)
     {
-        document.getElementById('light_theme').disabled = false;
-        document.getElementById('light_theme_cors').disabled = false;
+        document.getElementById('light_theme').setAttribute('media', 'none');
     }
     else
     {
-        document.getElementById('light_theme').disabled = true;
-        document.getElementById('light_theme_cors').disabled = true;
+        document.getElementById('light_theme').setAttribute('media', '');
     }
 }
 
