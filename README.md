@@ -1,11 +1,6 @@
 # Diablo 2 Cheat Sheet
 
-* [Cheat Sheet (original)](https://htmlpreview.github.io/?https://github.com/Michaelangel007/d2_cheat_sheet/blob/master/index.html)
-* [Cheat Sheet (light theme)](https://htmlpreview.github.io/?https://github.com/SeventySevian/d2_cheat_sheet/blob/master/index.html)
-
-# Work in Progress
-
-* Adding a light theme CSS
+* [Cheat Sheet](https://htmlpreview.github.io/?https://github.com/Michaelangel007/d2_cheat_sheet/blob/master/index.html)
 
 # QoL Features
 
