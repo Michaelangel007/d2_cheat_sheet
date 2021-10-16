@@ -1,0 +1,390 @@
+:root {
+    --light-color: 250, 250, 250;
+    --medium-color: 175, 175, 175;
+    --dark-color: 100, 100, 100;
+    --red-color: 221, 77, 77;
+    --green-color: 89, 159, 0; 
+    --blue-color: 26, 131, 221;
+    --yellow-color: 255, 200, 0;
+    --cyan-color: 52, 199, 199;
+    --purple-color: 132, 60, 185;
+    --brown-color: 131, 88, 46;
+    --header-color: 80, 80, 80;
+    --headerbg-color: 240, 240, 240;
+    --note-color: 160, 128, 219;
+    --gold-color: 207, 154, 0;
+}
+
+/* Need to use .light_theme as selector everywhere since can't disable the CSS element as it creates CORS issues when using https://htmlpreview.github.io/ */
+/* Might be able to use this eventually to simplify https://www.w3.org/TR/css-nesting-1/ */
+/* ----- General ----- */
+.light_theme b
+{
+    color: rgb(var(--note-color));
+}
+
+.light_theme
+{
+    color           : rgb(var(--dark-color));
+    background-color: rgb(var(--light-color));
+}
+
+.light_theme a:link
+{
+    color           : rgb(var(--dark-color));
+}
+
+/* ----- Background Colors ----- */
+.light_theme .r11
+{
+    background-color: rgba(var(--red-color), 0.1);
+}
+
+.light_theme .r22
+{
+    background-color: rgba(var(--red-color), 0.2);
+}
+
+.light_theme .g11
+{
+    background-color: rgba(var(--green-color), 0.1);
+}
+
+.light_theme .g22
+{
+    background-color: rgba(var(--green-color), 0.2);
+}
+
+.light_theme .b11
+{
+    background-color: rgba(var(--blue-color), 0.1);
+}
+
+.light_theme .b22
+{
+    background-color: rgba(var(--blue-color), 0.2);
+}
+
+.light_theme .k11
+{
+    background-color: rgba(var(--dark-color), 0.05);
+}
+
+.light_theme .k22
+{
+    background-color: rgba(var(--dark-color), 0.1);
+}
+
+.light_theme .y11
+{
+    background-color: rgba(var(--brown-color), 0.1);
+}
+
+.light_theme .y22
+{
+    background-color: rgba(var(--brown-color), 0.2);
+}
+
+/* ---------- Table ---------- */
+.light_theme th
+{
+    color      : rgb(var(--header-color));
+}
+
+.light_theme .bt > .runetip, 
+.light_theme th
+{
+    background-color: rgb(var(--headerbg-color));
+}
+
+.light_theme .bt
+{
+    background-color: rgb(var(--headerbg-color));
+}
+
+.light_theme .bt > .runetip > span:first-child, 
+.light_theme a
+{
+    color      : rgb(var(--header-color)) !important;
+}
+
+.light_theme span.r { color: rgb(var(--red-color)); }
+.light_theme span.g { color: rgb(var(--green-color)); }
+.light_theme span.b { color: rgb(var(--blue-color)); }
+
+/* ---------- Tool Tips ---------- */
+.light_theme .tooltip:hover
+{
+    background-color: rgba(var(--yellow-color), 0.2);
+}
+
+.light_theme .runetip .gemtext,
+.light_theme .runetip .runehelp1,
+.light_theme .runetip .runehelp2,
+.light_theme .runetip .runehelp3,
+.light_theme .tool.ttk,
+.light_theme .tool.ttr,
+.light_theme .tool.ttg,
+.light_theme .tool.ttb
+{
+    will-change: transform;
+    background-color: rgb(var(--light-color));
+    color           : rgb(var(--dark-color));
+    border-color    : rgb(var(--medium-color));
+    filter: drop-shadow(0 0 8px rgb(var(--medium-color)));
+    font-weight: normal;    /* Investigate why the user agent stylesheet is setting font to bold */
+}
+
+/* Upping formulas */
+.light_theme .tool.ttk img:nth-of-type(-n + 2) /* Only affect the runes and not the gem */
+{
+    filter: brightness(150%);
+}
+
+.light_theme .rejuvs,
+.light_theme .rejuvf
+{
+    filter: brightness(150%);
+}
+
+.light_theme .runetype
+{
+    color           : rgb(var(--header-color));
+}
+
+.light_theme .runetip:hover
+{
+    background-color: rgba(var(--yellow-color), 0.2);
+}
+
+/* Top and Bottom line colors */
+.light_theme tr.rt
+{
+    border-top   : 1px solid rgb(var(--red-color));
+}
+
+.light_theme tr.rb
+{
+    border-bottom: 1px solid rgb(var(--red-color));
+}
+
+.light_theme tr.gt
+{
+    border-top   : 1px solid rgb(var(--green-color));
+}
+
+.light_theme tr.gb
+{
+    border-bottom: 1px solid rgb(var(--green-color));
+}
+
+.light_theme tr.bt
+{
+    border-top   : 1px solid rgb(var(--blue-color));
+}
+
+.light_theme tr.bb
+{
+    border-bottom: 1px solid rgb(var(--blue-color));
+}
+
+.light_theme tr.kt
+{
+    border-top   : 1px solid rgb(var(--dark-color));
+}
+
+.light_theme tr.kb
+{
+    border-bottom: 1px solid rgb(var(--dark-color));
+}
+
+.light_theme tr.yt
+{
+    border-top   : 1px solid rgb(var(--note-color));
+}
+
+.light_theme tr.yb
+{
+    border-bottom: 1px solid rgb(var(--note-color));
+}
+
+/* ----- Spans ----- */
+.light_theme span.alvl83 { color: rgb(var(--green-color)); }
+.light_theme span.alvl84 { color: rgb(var(--blue-color)); }
+.light_theme span.alvl85 { color: rgb(var(--red-color)); }
+
+.light_theme span.note
+{
+    color     : rgb(var(--note-color));
+}
+
+.light_theme span.noterune
+{
+    color     : rgb(var(--dark-color));
+}
+
+.light_theme span.gold
+{
+    color     : rgb(var(--gold-color));
+}
+
+.light_theme span.farm
+{
+    color: rgb(var(--cyan-color));
+}
+
+.light_theme span.l
+{ 
+    color: rgb(var(--blue-color)); 
+}
+
+.light_theme span.c 
+{ 
+    color: rgb(var(--green-color)); 
+}
+
+.light_theme span.rev
+{
+    background-color: rgb(var(--dark-color));
+    color           : rgb(var(--light-color));
+}
+
+/* ----- Span Borders for Selected/Unselected ----- */
+.light_theme span.sel
+{
+    background-color: orange;
+    color:          : rgb(var(--light-color)) !important;
+    border          : none;
+}
+
+.light_theme span.unsel
+{
+    background-color: #00000000;
+    color:          : orange !important;
+    border          : none;
+}
+
+.light_theme span.rws
+{
+    background-color: rgb(var(--medium-color));
+    border          : 1px solid rgb(var(--red-color));
+    color           : #FFF;
+}
+
+.light_theme span.rwu
+{
+    background-color: #00000000;
+    color           : rgb(var(--header-color));
+}
+
+.light_theme span.n
+{
+    color: rgb(var(--blue-color));
+}
+
+/* Rune Upgrades */
+.light_theme span.x
+{
+    color: rgb(var(--cyan-color));
+}
+
+.light_theme span.y
+{
+    color: rgb(var(--note-color));
+}
+
+/* Gems Color Coding */
+.light_theme .gemam
+{
+    background-color: rgba(var(--purple-color), 0.2);
+}
+
+.light_theme .gemdi
+{
+    background-color: rgba(var(--dark-color), 0.2);
+}
+
+.light_theme .gemem
+{
+    background-color: rgba(var(--green-color), 0.2);
+}
+
+.light_theme .gemru
+{
+    background-color: rgba(var(--red-color), 0.2);
+}
+
+.light_theme .gemsa
+{
+    background-color: rgba(var(--blue-color), 0.2);
+}
+
+.light_theme .gemsk
+{
+    background-color: rgba(var(--dark-color), 0.2);
+}
+
+.light_theme .gemto
+{
+    background-color: rgba(var(--yellow-color), 0.2);
+}
+
+/* Stats Color Coding */
+.light_theme span.skill
+{
+    color: rgb(var(--light-color));
+}
+
+.light_theme span.ias
+{
+    color: rgb(var(--green-color));
+}
+
+.light_theme span.resa
+{
+    color: rgb(var(--light-color));
+}
+
+.light_theme span.idr
+{
+    color: rgb(var(--cyan-color));
+}
+
+.light_theme span.cbf
+{
+    color: rgb(var(--blue-color));
+}
+
+.light_theme span.mf
+{
+    color: rgb(var(--purple-color));
+}
+
+/* Customs */
+.light_theme .visible
+{
+    filter: brightness(100%);
+    opacity: 100%;
+}
+
+.light_theme .hidden
+{
+    filter: brightness(100%);
+    opacity: 35%;
+}
+
+/* Improve runes readability on light background */
+.light_theme .visible img
+{
+    filter: brightness(150%);
+}
+
+.light_theme .hidden img
+{
+    filter: brightness(150%);
+}
+
+.light_theme .wp
+{
+    filter: brightness(250%);
+}
