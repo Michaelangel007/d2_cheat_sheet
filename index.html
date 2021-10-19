@@ -1736,11 +1736,11 @@ function setCollapseTable( tableName, isCollapsed, button )
 {
     var table = document.getElementById( tableName ),
         rows  = table.getElementsByTagName( 'tr' ),
-        row   = 1;
+        row   = 1; // getButtonRow( tableName, button );
 
     button.textContent = FACE[ isCollapsed ];
 
-    for( row = 1; row < rows.length; row++ )
+    for( ; row < rows.length; row++ )
     {
         if( isCollapsed ) rows[row].classList.add   ( 'collapsed' );
         else              rows[row].classList.remove( 'collapsed' );
