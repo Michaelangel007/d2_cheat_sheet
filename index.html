@@ -1199,7 +1199,10 @@ var RECIPES = [
         gaSortBySockets  = [],
         gaSortBySuperior = [],
         gaSortByType     = [],
-        gaSortByVersion  = [];
+        gaSortByVersion  = [],
+
+        gaHolyGrailSets  = [],
+        gaHolyGrailUnqs  = [];
 
     var gaRuneOrder =
     [
@@ -1361,6 +1364,8 @@ function commaWrap( text, max )
 
 function dataLoad()
 {
+    var temp;
+
     var runes = localStorage.getItem( 'availableRunes' );
     if (runes)
     {
@@ -1388,12 +1393,40 @@ function dataLoad()
 
         updateManifest();
     }
+
+    var sets = localStorage.getItem( 'holygrailSets' );
+    if( sets )
+    {
+        temp = JSON.parse( sets );
+        if( temp.length != TC_SETS )
+        {
+            console.error( "WARNING: Couldn't load Holy Grail saved Sets" );
+        }
+        else
+            gaHolyGrailSets = temp;
+    }
+
+    var unqs = localStorage.getItem( 'holygrailUnqs' );
+    if( unqs )
+    {
+        temp = JSON.parse( unqs );
+        if( temp.length != TC_UNQS )
+        {
+            console.error( "WARNING: Couldn't load Holy Grail saved Uniques" );
+        }
+        else
+            gaHolyGrailUnqs = temp;
+    }
+
+    updateHolyGrail();
 }
 
 function dataSave()
 {
     localStorage.setItem( 'availableRunes'   , JSON.stringify( gaAvailableRunes    ) );
     localStorage.setItem( 'favoriteRuneWords', JSON.stringify( gaFavoriteRuneWords ) );
+    localStorage.setItem( 'holygrailSets'    , JSON.stringify( gaHolyGrailSets     ) );
+    localStorage.setItem( 'holygrailUnqs'    , JSON.stringify( gaHolyGrailUnqs     ) );
 }
 
 // Optional: width
@@ -1653,6 +1686,12 @@ function onLoad()
     gaFavoriteRuneWords = new Array( RECIPES.length );
     gaFavoriteRuneWords.fill(0);
 
+    gaHolyGrailSets  = new Array( NUM_SETS );
+    gaHolyGrailSets.fill(0);
+
+    gaHolyGrailUnqs  = new Array( NUM_UNQS );
+    gaHolyGrailUnqs.fill(0);
+
     dataLoad();
 
     var btn = document.getElementById( 'btn_collapse_sockitems' );
@@ -1839,6 +1878,30 @@ function selectRuneWordHeader( selected )
                 }
             );
     }
+
+function updateHolyGrail()
+{
+    var i, totalSets = 0, totalUnqs = 0, elemSetsNum, elemSetsPercent, elemUnqsNum, elemUnqsPercent, s, u;
+
+    for( i = 0; i < NUM_SETS; i++ )
+        totalSets += gaHolyGrailSets[i];
+
+    for( i = 0; i < NUM_UNQS; i++ )
+        totalUnqs += gaHolyGrailUnqs = 0;
+
+    // round 2 digit places
+    s = ((10000 * totalSets) / NUM_SETS) | 0; s /= 100;
+    u = ((10000 * totalUnqs) / NUM_UNQS) | 0; u /= 100;
+
+    elemSetsNum = document.getElementById( 'manifest.hgs'  );  elemSetsPercent = document.getElementById( 'manifest.hgsp' );
+    elemUnqsNum = document.getElementById( 'manifest.hgu'  );  elemUnqsPercent = document.getElementById( 'manifest.hgup' );
+
+    elemSetsNum.innerText = "" + totalSets;
+    elemUnqsNum.innerText = "" + totalUnqs;
+
+    elemSetsPercent.innerText = "" + s.toLocaleString(); // + '.' + sd;
+    elemUnqsPercent.innerText = "" + u.toLocaleString(); // + '.' + ud;
+}
 
 function updateManifest()
 {
@@ -4542,8 +4605,8 @@ for chests to drop this rune<br>
 </table>
 <br>
 Holy Grail;
- <span class='set'>Sets:</span> <span id='manifest.hgs'>0</span>/107 (<span class='manifest.hgsp'>0</span>%),
- <span class='unq'>Uniques:</span> <span id='manifest.hgu'>0</span>/324 (<span class='manifest.hgup'>0</span>%).
+ <span class='set'>Sets:</span   > <span id='manifest.hgs'>0</span>/107 (<span id='manifest.hgsp'>0</span>%),
+ <span class='unq'>Uniques:</span> <span id='manifest.hgu'>0</span>/324 (<span id='manifest.hgup'>0</span>%).
 <table class='head' id='table.treasureclass'>
     <tr class='yt yb b11'>
         <th style='width: 4%'>TC   </th>
