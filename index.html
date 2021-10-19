@@ -1167,7 +1167,9 @@ var RECIPES = [
     //  &#x2611; \u2611  Ballot Box with Check
     const FACE     = [ '-', '+' ], // Button collapse faces
           FAVS     = [ '\u2610', '\u2611' ],
-          COLLAPSE = [ 'Collapse', 'Expand' ];
+          COLLAPSE = [ 'Collapse', 'Expand' ],
+          TC_SETS  = [ 8, 2, 7, 6, 3, 10, 7, 6, 3, 1, 3, 6, 1, 5, 7, 3, 2, 0, 2, 2, 1, 0, 3, 3, 2, 6, 8 ],
+          TC_UNQS  = [15,10,15,10, 8, 14,11,10, 8,15,20,17,15,17,17,13, 7, 6,11, 6, 6,10,11, 9,11,11,21 ];
 
 // Globals
     var gaAvailableRunes    = [], // saved
@@ -1207,6 +1209,20 @@ var RECIPES = [
         gaSortByMats5,
         gaSortByMats6
     ];
+
+function DumpHolyGrail()
+{
+    var tc, totalSets = 0, totalUnqs = 0;
+
+    for( tc = 0; tc < TC_SETS.length; tc++ )
+        totalSets += TC_SETS[ tc ];
+
+    for( tc = 0; tc < TC_UNQS.length; tc++ )
+        totalUnqs += TC_UNQS[ tc ];
+
+console.log( "Total Sets: ", totalSets );
+console.log( "Total Unqs: ", totalUnqs );
+}
 
 function DumpRuneWordSorted( name, array )
 {
