@@ -1382,6 +1382,29 @@ function padLeft( text, width, c )
     return ("" + new Array( width ).join( c ) + text).slice( -width );
 }
 
+function initTableCollapseBestFit()
+{
+    var div, divs = document.getElementsByTagName( 'div' ), ndivs = divs.length,
+        dv, cs, parent, th, tr, tb, ta,
+        rows, row, width = 0, minWidth;
+
+    for( div = 0; div < ndivs; div++ )
+    {
+        dv = divs[div];
+        cs = dv.getAttribute( 'class' );
+        if (cs && cs.indexOf( 'bestfit' ) >= 0)
+        {
+            // For each row
+            //    For each column
+            //       Get max width
+            th = dv.parentElement; // header
+            tr = th.parentElement; // row
+            tb = tr.parentElement; // body
+            ta = tb.parentElement; // table
+        }
+    }
+}
+
 function initTableCollapseMinWidth()
 {
     var div, divs = document.getElementsByTagName( 'div' ), ndivs = divs.length,
@@ -1616,6 +1639,7 @@ function onLoad()
     onSortRuneWordsByOwned();
 
     initTableCollapseMinWidth();
+    initTableCollapseBestFit();
 }
 
 function onMono( button )
