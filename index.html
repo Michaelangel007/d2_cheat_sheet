@@ -1586,8 +1586,23 @@ var RECIPES = [
         gaSortByType     = [],
         gaSortByVersion  = [],
 
-        gaHolyGrailSets  = [],
-        gaHolyGrailUnqs  = [];
+        gaHolyGrailSets  = [], //saved
+        gaHolyGrailUnqs  = [], //saved
+
+        gaHolyGrailDataBaseName = [], // string, base name
+        gaHolyGrailDataSetsName = [], // string, set  name
+        gaHolyGrailDataUnqsName = [], // string, uniq name
+        gaHolyGrailDataTC       = [], // string, Treasure Class
+
+        gaHolyGrailSortByBaseName = [],
+        gaHolyGrailSortBySetsName = [],
+        gaHolyGrailSortBySetsOwn  = [],
+        gaHolyGrailSortByUnqsName = [],
+        gaHolyGrailSortByUnqsOwn  = [],
+        gaHolyGrailSortByTC       = [],
+
+        gaHolyGrailMapRowToSets = [],
+        gaHolyGrailMapRowToUnqs = [];
 
     var gaRuneOrder =
     [
@@ -1612,6 +1627,24 @@ function DumpHolyGrail()
 
 console.log( "Total Sets: ", totalSets );
 console.log( "Total Unqs: ", totalUnqs );
+}
+
+function DumpHolyGrailSorted( name, array )
+{
+    console.warn( '--- ' + name + ' ---\n' );
+
+    var iHG, item, items = ITEMS.length, text = '';
+    for( item = 0; item < items; item++ )
+    {
+        iHG = array[ item ];
+        text += '#' + padLeft( item, 3 )
+             + ' [' + padLeft( iHG, 3 )          + '] '
+             + gaHolyGrailDataTC      [ iHG ]         + ' '
+             + gaHolyGrailDataBaseName[ iHG ]         + ' '
+             + gaHolyGrailDataSetsName[ iHG ]         + ' '
+             + gaHolyGrailDataUnqsName[ iHG ]         +'\n';
+    }
+    console.log( text );
 }
 
 function DumpRuneWordSorted( name, array )
