@@ -2046,6 +2046,7 @@ function initRunewordTables()
         var version  = line.substr( COLUMNS[6]                        );
         var arunes   = FindRunes( mats );
 
+        // Build unordered raw table
         gaRuneWordLevel.push( level    );
         gaRuneWordMats .push( mats     );
         gaRuneWordNames.push( runeword );
@@ -2055,6 +2056,7 @@ function initRunewordTables()
         gaRuneWordType .push( type     );
         gaRuneWordVer  .push( version  );
 
+        // Build sorted table indices
         gaSortByLevel   .push( recipe );
 
         gaSortByMats1   .push( recipe );
