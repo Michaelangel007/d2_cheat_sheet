@@ -1861,6 +1861,117 @@ function padLeft( text, width, c )
     return ("" + new Array( width ).join( c ) + text).slice( -width );
 }
 
+function initHolyGrailTables()
+{
+    var item, items = ITEMS.length, grail, cmp,
+        nSets = 0, set_name,
+        nUnqs = 0, unq_name;
+
+    for( item = 0; item < items; item++ )
+    {
+        var line     = ITEMS[ item ],
+            tc       = line.substr( HG_COLS[0], HG_COLS[1]-HG_COLS[0] - 1 ),
+            name     = line.substr( HG_COLS[1], HG_COLS[2]-HG_COLS[1] - 1 ),
+            set      = line.substr( HG_COLS[2], HG_COLS[3]-HG_COLS[2] - 1 ),
+            unq      = line.substr( HG_COLS[3]                            );
+
+//console.log( "" + tc + ", " + name + ", " + set + ", " + unq + "." );
+
+        // Build unordered raw table
+        gaHolyGrailDataBaseName.push( name );
+        gaHolyGrailDataSetsName.push( set  );
+        gaHolyGrailDataUnqsName.push( unq  );
+        gaHolyGrailDataTC      .push( tc   );
+
+        gaHolyGrailSortByBaseName.push( item );
+        gaHolyGrailSortBySetsName.push( item );
+        gaHolyGrailSortBySetsOwn .push( item );
+        gaHolyGrailSortByUnqsName.push( item );
+        gaHolyGrailSortByUnqsOwn .push( item );
+        gaHolyGrailSortByTC      .push( item );
+
+        set_name = set.trim();
+        unq_name = unq.trim();
+
+        if (set_name !== HG_EMPTY)
+            gaHolyGrailMapRowToSets.push( nSets++ )
+        else
+            gaHolyGrailMapRowToSets.push( -1 );
+
+        if (unq_name !== HG_EMPTY)
+            gaHolyGrailMapRowToUnqs.push( nUnqs++ );
+        else
+            gaHolyGrailMapRowToUnqs.push( -1 );
+    }
+
+    // Build sorted table indices
+    gaHolyGrailSortByBaseName.sort( (prev,next) =>
+        {
+            return gaHolyGrailDataBaseName[ prev ].localeCompare( gaHolyGrailDataBaseName[ next ] );
+        }
+    );
+
+    gaHolyGrailSortBySetsName.sort( (prev,next) =>
+        {
+            var left  = gaHolyGrailDataSetsName[ prev ].trim();
+            var right = gaHolyGrailDataSetsName[ next ].trim();
+
+            if (left === HG_EMPTY)
+            {
+                if (right === HG_EMPTY)
+                    return gaHolyGrailDataBaseName[ prev ].localeCompare( gaHolyGrailDataBaseName[ next ] );
+                else
+                    return +1; // Force '---' to be last
+            }
+
+            if (right === HG_EMPTY)
+            {
+                return -1;
+            }
+
+            cmp =  gaHolyGrailDataSetsName[ prev ].localeCompare( gaHolyGrailDataSetsName[ next ] ); if ( cmp ) return cmp;
+            return gaHolyGrailDataBaseName[ prev ].localeCompare( gaHolyGrailDataBaseName[ next ] );
+        }
+    );
+
+    gaHolyGrailSortByUnqsName.sort( (prev,next) =>
+        {
+            var left  = gaHolyGrailDataUnqsName[ prev ].trim();
+            var right = gaHolyGrailDataUnqsName[ next ].trim();
+
+            if (left === HG_EMPTY)
+            {
+                if (right === HG_EMPTY)
+                    return gaHolyGrailDataBaseName[ prev ].localeCompare( gaHolyGrailDataBaseName[ next ] );
+                else
+                    return +1; // Force '---' to be last
+            }
+
+            if (right === HG_EMPTY)
+            {
+                    return -1;
+            }
+
+            cmp =  gaHolyGrailDataUnqsName[ prev ].localeCompare( gaHolyGrailDataUnqsName[ next ] ); if ( cmp ) return cmp;
+            return gaHolyGrailDataBaseName[ prev ].localeCompare( gaHolyGrailDataBaseName[ next ] );
+        }
+    );
+
+    gaHolyGrailSortByTC.sort( (prev,next) =>
+        {
+            cmp =  gaHolyGrailDataTC      [ prev ].localeCompare( gaHolyGrailDataTC      [ next ] ); if ( cmp ) return cmp;
+            return gaHolyGrailDataBaseName[ prev ].localeCompare( gaHolyGrailDataBaseName[ next ] );
+        }
+    );
+
+//    DumpHolyGrailSorted( "Name"   , gaHolyGrailSortByBaseName );
+//    DumpHolyGrailSorted( "Set"    , gaHolyGrailSortBySetsName );
+//    DumpHolyGrailSorted( "Set Own", gaHolyGrailSortBySetsOwn  );
+//    DumpHolyGrailSorted( "Unq"    , gaHolyGrailSortByUnqsName );
+//    DumpHolyGrailSorted( "Unq Own", gaHolyGrailSortByUnqsOwn  );
+//    DumpHolyGrailSorted( "TC"     , gaHolyGrailSortByTC       );
+}
+
 function initTableCollapseBestFit()
 {
     var div, divs = document.getElementsByTagName( 'div' ), ndivs = divs.length,
