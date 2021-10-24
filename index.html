@@ -2154,6 +2154,14 @@ function getScreenSize()
     return null;
 }
 
+function isTableSortColumnSelected( buttonName, className )
+{
+    var elem       = document.getElementById( buttonName );
+    var css        = elem.getAttribute( 'class' );
+    var isSelected = css.indexOf( className ) >= 0;
+    return isSelected;
+}
+
 function onCollapse( button, table )
 {
     button.collapsed = (!!!button.collapsed)|0;
