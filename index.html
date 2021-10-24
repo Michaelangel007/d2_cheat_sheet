@@ -1816,7 +1816,7 @@ function dataLoad()
     if (sets !== undefined && (typeof sets === 'string'))
     {
         temp = JSON.parse( sets );
-        if( temp.length != NUM_SETS )
+        if (temp.length !== NUM_SETS)
         {
             console.error( "WARNING: Couldn't load Holy Grail saved Sets" );
         }
@@ -1828,7 +1828,12 @@ function dataLoad()
     if (unqs !== undefined && (typeof unqs === 'string'))
     {
         temp = JSON.parse( unqs );
-        if( temp.length != NUM_UNQS )
+        if (temp.length === (NUM_UNQS+1) ) // BUGFIX: Double Azurewrath due to faulty Holy Grail data
+        {
+            temp.splice( 289, 1 );
+        }
+
+        if (temp.length !== NUM_UNQS)
         {
             console.error( "WARNING: Couldn't load Holy Grail saved Uniques" );
         }
