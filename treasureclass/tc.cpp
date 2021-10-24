@@ -19,23 +19,33 @@
     #endif
 
 // Consts
-   const size_t BUFFER = 65536;
+    const size_t BUFFER = 65536;
+    const char *EMPTY_NAME = "---";
 
 // Types
+    struct Longest_t
+    {
+        char *name;
+        int   length;
+        int   line;
+        int   total;
+    };
+
     struct Treasure_t
     {
         char  sTC[4];
+
         char *pBaseName;
+        int   nBaseLen;
         char *pBaseQlvl;
 
-        char *pSetName;
-        char *pSetQlvl;
+        char *pSetsName;
+        int   nSetsLen;
+        char *pSetsQlvl;
 
-        char *pUnqName;
-        char *pUnqQlvl;
-
-        size_t nLenSet;
-        size_t nLenUnq;
+        char *pUnqsName;
+        int   nUnqsLen;
+        char *pUnqsQlvl;
     };
 
 // Globals
@@ -53,12 +63,19 @@
     int  gnSet;
     int  gnUnq;
 
-    int longestBaseName = 0;
+    Longest_t gLongestBase,
+              gLongestSets,
+              gLongestUnqs;
 
 // Prototypes __________________________________________________________
+    char *skipText( char *pText );
+    int countTabs( char *pLine );
+
+    void dumpDataForSort( const Treasure_t *pTreasure, const int line );
     void dumpTreasure( const Treasure_t *pTreasure, const int line );
     void getColumns( int iLine, char *pLine, Treasure_t *pCols, char *pTC );
     void getLines();
+    void initStats();
     void makeTable();
     void readFile( const char *filename );
 
@@ -91,6 +108,36 @@
 
 // Implementation ______________________________________________________
 
+
+// =====================================================================
+void dumpDataForSort( const Treasure_t *pTreasure, const int line )
+{
+    fprintf( stderr, "\"TC%s %-20s %-29s %-26s\",\n"
+        , pTreasure->sTC
+        , pTreasure->pBaseName
+        , (pTreasure->nSetsLen > 0) ? pTreasure->pSetsName : "---"
+        , (pTreasure->nUnqsLen > 0) ? pTreasure->pUnqsName : "---"
+    );
+
+    if (gLongestBase.length < pTreasure->nBaseLen)
+    {
+        gLongestBase.length = pTreasure->nBaseLen;
+        gLongestBase.name   = pTreasure->pBaseName;
+    }
+
+    if (gLongestSets.length < pTreasure->nSetsLen)
+    {
+        gLongestSets.length = pTreasure->nSetsLen;
+        gLongestSets.name   = pTreasure->pSetsName;
+    }
+
+    if (gLongestUnqs.length < pTreasure->nUnqsLen)
+    {
+        gLongestUnqs.length = pTreasure->nUnqsLen;
+        gLongestUnqs.name   = pTreasure->pUnqsName;
+    }
+}
+
 // =====================================================================
 void dumpTreasure( const Treasure_t *pTreasure, const int line )
 {
@@ -108,10 +155,10 @@ void dumpTreasure( const Treasure_t *pTreasure, const int line )
         printf( "<td class='tc'>TC%s</td>", pTreasure->sTC );
         printf( "<td>%-20s</td><td>%-2s</td>", pTreasure->pBaseName, pTreasure->pBaseQlvl );
 
-        if( pTreasure->nLenSet > 0 )
+        if( pTreasure->nSetsLen > 0 )
         {
             printf( "<td><button class='hg' id='hgs.%03d' onclick='onToggleHG(this)'></button></td>", giSet++ );
-            printf( "<td><span class='set'>%-30s</span></td>", pTreasure->pSetName );
+            printf( "<td><span class='set'>%-30s</span></td>", pTreasure->pSetsName );
         }
         else
         {
@@ -119,12 +166,12 @@ void dumpTreasure( const Treasure_t *pTreasure, const int line )
             printf( "<td><span class='   '>%-30s</span></td>", "---" ); // pTreasure->pSetName
         }
 
-        printf( "<td>%2s</td>", pTreasure->pSetQlvl  );
+        printf( "<td>%2s</td>", pTreasure->pSetsQlvl  );
 
-        if( pTreasure->nLenUnq > 0 )
+        if( pTreasure->nUnqsLen > 0 )
         {
             printf( "<td><button class='hg' id='hgu.%03d' onclick='onToggleHG(this)'></button></td>", giUnq++ );
-            printf( "<td><span class='unq'>%-26s</span></td>", pTreasure->pUnqName );
+            printf( "<td><span class='unq'>%-26s</span></td>", pTreasure->pUnqsName );
         }
         else
         {
@@ -132,7 +179,7 @@ void dumpTreasure( const Treasure_t *pTreasure, const int line )
             printf( "<td><span class='   '>%-26s</span></td>", "---" ); // pTreasure->pUnqName
         }
 
-        printf( "<td>%2s</td>", pTreasure->pUnqQlvl  );
+        printf( "<td>%2s</td>", pTreasure->pUnqsQlvl  );
 
     printf( "</tr>\n" );
 }
@@ -159,14 +206,20 @@ void dumpTreasure( const Treasure_t *pTreasure, const int line )
         Arctic Mitts	3
         Hwanin's Seal	28
         Sander's Paragon	20
+
+    BUGS:
+        Azurewrath is listed twice; it used to be a crystal sword in 1.09, in 1.10 it is now a phase blade
+        Some sites list it twice.
+        https://diablo2.diablowiki.net/Treasure_Classes
 */
 // =====================================================================
 void getColumns( int iLine, char *pLine, Treasure_t *pCols, char *pTC )
 {
     #define NEXT_COL *pText = 0; pText++
 
-    char *pSet;
-    char *pUnq;
+    char *pBase;
+    char *pSets;
+    char *pUnqs;
 
     memset( pCols, 0, sizeof( Treasure_t ) );
     memcpy( pCols->sTC, pTC, 2 );
@@ -195,17 +248,12 @@ void getColumns( int iLine, char *pLine, Treasure_t *pCols, char *pTC )
     DEBUGF( "DEBUG LINE: '%s'\n", pLine );
 
     char *pText = pLine;
-    pCols->pBaseName = pText; pText = skipText( pText ); NEXT_COL;
-    pCols->pBaseQlvl = pText; pText = skipText( pText ); NEXT_COL;
+    pCols->pBaseName = pText; pBase = pText; pText = skipText( pText ); pCols->nBaseLen = (int)(pText - pBase); NEXT_COL; pCols->pBaseQlvl = pText; pText = skipText( pText ); NEXT_COL;
+    pCols->pSetsName = pText; pSets = pText; pText = skipText( pText ); pCols->nSetsLen = (int)(pText - pSets); NEXT_COL; pCols->pSetsQlvl = pText; pText = skipText( pText ); NEXT_COL;
+    pCols->pUnqsName = pText; pUnqs = pText; pText = skipText( pText ); pCols->nUnqsLen = (int)(pText - pUnqs); NEXT_COL; pCols->pUnqsQlvl = pText; pText = skipText( pText ); NEXT_COL;
 
-    pCols->pSetName = pText; pSet = pText; pText = skipText( pText ); pCols->nLenSet = pText - pSet; NEXT_COL;
-    pCols->pSetQlvl = pText;               pText = skipText( pText ); NEXT_COL;
-
-    pCols->pUnqName = pText; pUnq = pText; pText = skipText( pText ); pCols->nLenUnq = pText - pUnq; NEXT_COL;
-    pCols->pUnqQlvl = pText;               pText = skipText( pText ); NEXT_COL;
-
-    DEBUGF( "DEBUG Set Name: '%s', Len: %d\n", pSet, (int) pCols->nLenSet );
-    DEBUGF( "DEBUG Unq Name: '%s', Len: %d\n", pUnq, (int) pCols->nLenUnq );
+    DEBUGF( "DEBUG Set Name: '%s', Len: %d\n", pSets, pCols->nSetsLen );
+    DEBUGF( "DEBUG Unq Name: '%s', Len: %d\n", pUnqs, pCols->nUnqsLen );
 }
 
 
@@ -236,6 +284,15 @@ void getLines()
         }
         pText++;
     }
+}
+
+
+// =====================================================================
+void initStats()
+{
+    memset( &gLongestBase.length, 0, sizeof( gLongestBase ) );
+    memset( &gLongestSets.length, 0, sizeof( gLongestSets ) );
+    memset( &gLongestUnqs.length, 0, sizeof( gLongestUnqs ) );
 }
 
 
@@ -285,10 +342,15 @@ void makeTable()
             DEBUGF( "Dump: %s\n", treasure.pBaseName );
 
             // Holy Grail only tracks sets and uniques
-            if( treasure.nLenSet || treasure.nLenUnq )
-                dumpTreasure( &treasure, line++ );
+            if( treasure.nSetsLen || treasure.nUnqsLen )
+            {
+                dumpTreasure( &treasure, line );
+                dumpDataForSort( &treasure, iLine ); // For sorting by header
+                line++;
+            }
         }
     }
+    fprintf( stderr, "\n" );
     printf( "\n" );
 
     gnSet = giSet;
@@ -330,14 +392,19 @@ int main()
 {
     const char *filename = "all_set_unq_items.txt";
     readFile( filename );
+    initStats();
     getLines();
     makeTable();
 
-    fprintf( stderr, "Size: %u\n", (unsigned) gnSize );
-    fprintf( stderr, "Lines: %d\n", gnLines );
-
+    fprintf( stderr, "File Size: %u\n", (unsigned) gnSize );
+    fprintf( stderr, "File Lines: %d\n", gnLines );
+    fprintf( stderr, "\n" );
     fprintf( stderr, "Sets: %d\n", gnSet );
     fprintf( stderr, "Unqs: %d\n", gnUnq );
+    fprintf( stderr, "\n" );
+    fprintf( stderr, "Max chars in Base: %d, '%s'\n",  gLongestBase.length, gLongestBase.name );
+    fprintf( stderr, "Max chars in Sets: %d, '%s'\n",  gLongestSets.length, gLongestSets.name );
+    fprintf( stderr, "Max chars in Unqs: %d, '%s'\n",  gLongestUnqs.length, gLongestUnqs.name );
 
     if( gnLines > 1 )
     {
