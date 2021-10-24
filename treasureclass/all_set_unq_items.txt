@@ -451,7 +451,7 @@ Broad Axe	12			Goreshovel	19
 Chain Boots	12	Hsarus' Iron Heel	4	Treads of Cthon	20
 Chain Gloves	12	Cleglaw's Pincers	6	Chance Guards	20
 Composite Bow	12			Rogue's Bow	27
-Crystal Sword	11			Azurewrath	18
+Crystal Sword	11				
 Falchion	11			Gleamscythe	18
 Gnarled Staff	12			Spire of Lazarus	24
 Hatchet Hands	12				
