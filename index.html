@@ -2235,6 +2235,7 @@ function onLoad()
 
     gaHolyGrailUnqs  = new Array( NUM_UNQS );
     gaHolyGrailUnqs.fill(0);
+    initHolyGrailTables();
 
     dataLoad();
 
@@ -2246,6 +2247,8 @@ function onLoad()
 
     initTableCollapseMinWidth();
     initTableCollapseBestFit();
+
+    onSortHolyGrailBySetOwn();
 }
 
 function onMono( button )
@@ -2266,6 +2269,13 @@ function onResize()
     var debug = document.getElementById( 'screen-size' );
     debug.innerText = dim;
 }
+
+function onSortHolyGrailByName   () { selectHolyGrailHeader( 'btnHolyGrailBaseName'  ); updateHolyGrailOrder    ( gaHolyGrailSortByBaseName  ) };
+function onSortHolyGrailBySetName() { selectHolyGrailHeader( 'btnHolyGrailSetsName'  ); updateHolyGrailOrder    ( gaHolyGrailSortBySetsName  ) };
+function onSortHolyGrailBySetOwn () { selectHolyGrailHeader( 'btnHolyGrailSetsOwned' ); updateHolyGrailSetsOwned( /* one off */              ) };
+function onSortHolyGrailByUnqName() { selectHolyGrailHeader( 'btnHolyGrailUnqsName'  ); updateHolyGrailOrder    ( gaHolyGrailSortByUnqsName  ) };
+function onSortHolyGrailByUnqOwn () { selectHolyGrailHeader( 'btnHolyGrailUnqsOwned' ); updateHolyGrailUnqsOwned( /* one off */              ) };
+function onSortHolyGrailByTC     () { selectHolyGrailHeader( 'btnHolyGrailTC'        ); updateHolyGrailOrder    ( gaHolyGrailSortByTC        ) };
 
 function onSortRuneWordsByLevel   () { selectRuneWordHeader( 'btnRuneWordLevel'    ); updateRuneWordsOrder( gaSortByLevel    ); }
 function onSortRuneWordsByMats (mat) { selectRuneWordHeader( 'btnRuneWordMats'+mat ); updateRuneWordsOrder( gaRuneOrder[mat] ); }
@@ -2304,6 +2314,13 @@ function onToggleHG( button )
     updateHolyGrailButton( button, 1 );
     dataSave();
     updateHolyGrailTotals();
+
+    // Toggling ownership of set item needs to update the table order if user is sorted by Sets Owned
+    if( isTableSortColumnSelected( 'btnHolyGrailSetsOwned', 'hge' ) )
+        updateHolyGrailSetsOwned();
+
+    if( isTableSortColumnSelected( 'btnHolyGrailUnqsOwned','hge' ) )
+        updateHolyGrailUnqsOwned();
 }
 
 // Toggle owning a rune
@@ -2361,6 +2378,26 @@ function setFavoriteRuneWord( recipe, isFavorite, updateLocalStorage )
     if( updateLocalStorage )
         dataSave();
 }
+
+function selectHolyGrailHeader( selected )
+{
+    const c = 'class',
+          d = 'hgd'  , // Disable
+          e = 'hge'  ; // Enable
+    var   elem;
+
+    elem = document.getElementById( 'btnHolyGrailBaseName'  ); elem.removeAttribute( e ); elem.setAttribute( c, d );
+    elem = document.getElementById( 'btnHolyGrailSetsName'  ); elem.removeAttribute( e ); elem.setAttribute( c, d );
+    elem = document.getElementById( 'btnHolyGrailSetsOwned' ); elem.removeAttribute( e ); elem.setAttribute( c, d );
+    elem = document.getElementById( 'btnHolyGrailUnqsName'  ); elem.removeAttribute( e ); elem.setAttribute( c, d );
+    elem = document.getElementById( 'btnHolyGrailUnqsOwned' ); elem.removeAttribute( e ); elem.setAttribute( c, d );
+    elem = document.getElementById( 'btnHolyGrailTC'        ); elem.removeAttribute( e ); elem.setAttribute( c, d );
+
+    elem = document.getElementById( selected );
+    elem.removeAttribute( d );
+    elem.setAttribute( c, e );
+}
+
 
 function setRuneVisibility( rune, owned )
 {
@@ -2478,6 +2515,76 @@ function updateHolyGrailButton( button, isToggle )
     }
 }
 
+function updateHolyGrailOrder( array )
+{
+    var table = document.getElementById( 'table.treasureclass' ),
+        rows  = table.getElementsByTagName( 'tr' ),
+        row   = 0,
+        src;
+
+    // Reorder
+    for( row = 1; row < rows.length; row++ )
+    {
+        src = document.getElementById( 'hg' + array[ row-1] );
+        rows[row].parentNode.insertBefore( src, rows[row].nextSibling );
+    }
+
+    // Recolorize even/odd rows
+    for( row = 1; row < rows.length; row++ )
+    {
+        var tr    = rows[ row ];
+        _removeClasses( tr, 'r11 r22 g11 g22 b11 b22 k11 k22 y44' );
+
+        var isOdd = (row & 1); // don't include header row
+        _addClasses( tr, isOdd ? 'b11' : 'b22' );
+    }
+}
+
+function updateHolyGrailSetsOwned()
+{
+    gaHolyGrailSortBySetsOwn.sort( (prev,next) =>
+        {
+            var left  = gaHolyGrailDataSetsName[ prev ].trim();
+            var right = gaHolyGrailDataSetsName[ next ].trim();
+
+            var iSetL = gaHolyGrailMapRowToSets[ prev ]; // -1 row has no set; > 0 id of hgs.#
+            var iSetR = gaHolyGrailMapRowToSets[ next ]; // -1 row has no set; > 0 id of hgs.#
+
+            var ownedL = (iSetL >= 0) ? gaHolyGrailSets[ iSetL ] : 0;
+            var ownedR = (iSetR >= 0) ? gaHolyGrailSets[ iSetR ] : 0;
+
+            // 1. Force '---' to be very last
+            if (left === HG_EMPTY)
+            {
+                if (right === HG_EMPTY)
+                    return gaHolyGrailDataBaseName[ prev ].localeCompare( gaHolyGrailDataBaseName[ next ] );
+                else
+                    return +1;
+            }
+
+            if (right === HG_EMPTY)
+            {
+                    return -1;
+            }
+
+            // 2. Prioritize unowned items to be first over owned items
+            if (!ownedL && ownedR )
+                return -1;
+
+            if ( ownedL && !ownedR )
+                return + 1;
+
+            // 3. Sort by name
+            //         ownedL == ownedR == FALSE
+            //      OR ownedL == ownedR == TRUE
+            //    In either case sort by the set name
+            return gaHolyGrailDataSetsName[ prev ].localeCompare( gaHolyGrailDataSetsName[ next ] );
+        }
+    );
+
+    updateHolyGrailOrder( gaHolyGrailSortBySetsOwn );
+}
+
 function updateHolyGrailTotals()
 {
     var i,
@@ -2512,6 +2619,51 @@ function updateHolyGrailTotals()
     elemSetsPercent.innerText = "" + ownedSets.toLocaleString();
     elemUnqsPercent.innerText = "" + ownedUnqs.toLocaleString();
     elemHolyPercent.innerText = "" + ownedHoly.toLocaleString();
+}
+
+function updateHolyGrailUnqsOwned()
+{
+    gaHolyGrailSortByUnqsOwn.sort( (prev,next) =>
+        {
+            var left  = gaHolyGrailDataUnqsName[ prev ].trim();
+            var right = gaHolyGrailDataUnqsName[ next ].trim();
+
+            var iUnqL = gaHolyGrailMapRowToUnqs[ prev ]; // -1 row has no unique; > 0 id of hgu.#
+            var iUnqR = gaHolyGrailMapRowToUnqs[ next ]; // -1 row has no unique; > 0 id of hgu.#
+
+            var ownedL = (iUnqL >= 0) ? gaHolyGrailUnqs[ iUnqL ] : 0;
+            var ownedR = (iUnqR >= 0) ? gaHolyGrailUnqs[ iUnqR ] : 0;
+
+            // 1. Force '---' to be very last
+            if (left === HG_EMPTY)
+            {
+                if (right === HG_EMPTY)
+                    return gaHolyGrailDataBaseName[ prev ].localeCompare( gaHolyGrailDataBaseName[ next ] );
+                else
+                    return +1;
+            }
+
+            if (right === HG_EMPTY)
+            {
+                    return -1;
+            }
+
+            // 2. Prioritize unowned items to be first over owned items
+            if (!ownedL && ownedR )
+                return -1;
+
+            if ( ownedL && !ownedR )
+                return + 1;
+
+            // 3. Sort by name
+            //         ownedL == ownedR == FALSE
+            //      OR ownedL == ownedR == TRUE
+            //    In either case sort by the unique name
+            return gaHolyGrailDataUnqsName[ prev ].localeCompare( gaHolyGrailDataUnqsName[ next ] );
+        }
+    );
+
+    updateHolyGrailOrder( gaHolyGrailSortByUnqsOwn );
 }
 
 function updateManifest()
@@ -2576,13 +2728,14 @@ function updateRuneWordsOrder( array )
 {
     var table = document.getElementById( 'table.runeWords' ),
         rows  = table.getElementsByTagName( 'tr' ),
-        row   = 0;
+        row   = 0,
+        src;
 
     // Reorder
     for( row = 1; row < rows.length; row++ )
     {
-        var src = document.getElementById( 'rw' + array[ row-1] );
-            rows[row].parentNode.insertBefore( src, rows[row].nextSibling );
+        src = document.getElementById( 'rw' + array[ row-1] );
+        rows[row].parentNode.insertBefore( src, rows[row].nextSibling );
     }
 
     // Recolorize even/odd rows
@@ -2630,10 +2783,7 @@ function updateRuneWordsOwned()
         }
     );
 
-    var elem          = document.getElementById( 'btnRuneWordOwned' );
-    var css           = elem.getAttribute( 'class' );
-    var isSortByOwned = css.indexOf( 'rws' ) >= 0;
-    if( isSortByOwned)
+    if( isTableSortColumnSelected( 'btnRuneWordOwned', 'rws' ) );
         updateRuneWordsOrder( gaSortByOwned );
 }
 
@@ -5219,18 +5369,22 @@ for chests to drop this rune<br>
 <br>
 Holy Grail;
  <span class='set'>Sets:</span   > <span id='manifest.hgs'>0</span>/107 (<b><span id='manifest.hgsp'>0</span></b>%),
- <span class='unq'>Uniques:</span> <span id='manifest.hgu'>0</span>/324 (<b><span id='manifest.hgup'>0</span></b>%),
- <span class='   '>Total:</span  > <span id='manifest.hgt'>0</span>/431 (<b><span id='manifest.hgtp'>0</span></b>%).
+ <span class='unq'>Uniques:</span> <span id='manifest.hgu'>0</span>/323 (<b><span id='manifest.hgup'>0</span></b>%),
+ <span class='   '>Total:</span  > <span id='manifest.hgt'>0</span>/430 (<b><span id='manifest.hgtp'>0</span></b>%).<br>
+<table>
+<tr><td><b>Instructions:</b></td><td>&nbsp; Collect every <span class='set'>set</span> and <span class='unq'>unique</span> in the game and mark when you have collected them.</td></tr>
+<tr><td>                    </td><td>&nbsp; Click on <span class='rune'>TC</span>, <span class='rune'>Base</span>, <span class='rune'>Owned Set</span>, <span class='rune'>Set Name</span>, <span class='rune'>Owned Unique</span>, or <span class='rune'>Unique Name</span> to sort the Holy Grail table by that column.</td></tr>
+</table>
 <table class='head' id='table.treasureclass'>
     <tr class='yt yb b11'>
-        <th style='width: 4%'>TC   </th>
-        <th style='width:26%'>Base</th>
-        <th style='width: 4%'>qlvl</th>
-        <th style='width: 2%'>HG</th>
-        <th style='width:26%'><span class='set'>Set                </span></th>
-        <th style='width: 4%'>qlvl</th>
-        <th style='width: 2%'>HG</th>
-        <th style='widht:26%'><span class='unq'>Unique           </span></th>
+        <th style='width: 4%'><span class='hgd' id='btnHolyGrailTC'       ><span onclick='onSortHolyGrailByTC     ();'>TC</span></span>   </th>
+        <th style='width:26%'><span class='hgd' id='btnHolyGrailBaseName' ><span onclick='onSortHolyGrailByName   ();'>Base</span></span></th>
+        <th style='width: 4%'><span class='size14'>qlvl</span></th>
+        <th style='width: 2%'><span class='hgd' id='btnHolyGrailSetsOwned'><span onclick='onSortHolyGrailBySetOwn ();'>Own</span></span></th>
+        <th style='width:26%'><span class='hgd' id='btnHolyGrailSetsName' ><span onclick='onSortHolyGrailBySetName();'>Set Name</span></span></th>
+        <th style='width: 4%'><span class='size14'>qlvl</span></th>
+        <th style='width: 2%'><span class='hgd' id='btnHolyGrailUnqsOwned'><span onclick='onSortHolyGrailByUnqOwn ();'>Own</span></span></th>
+        <th style='widht:26%'><span class='hgd' id='btnHolyGrailUnqsName' ><span onclick='onSortHolyGrailByUnqName();'>Unique Name</span></span></th>
         <th style='width: 6%'>qlvl<div class='collapse'><button value='table.treasureclass' onclick='onCollapse(this);' id='btn_collapse_treasureclass'>-</button></div></th></tr>
 <tr class='b11' id='hg0'  ><td class='tc'>TC87</td><td>Archon Staff        </td><td>85</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.000' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Mang Song's Lesson        </span></td><td>86</td></tr>
 <tr class='b22' id='hg1'  ><td class='tc'>TC87</td><td>Berserker Axe       </td><td>85</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.001' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Death Cleaver             </span></td><td>78</td></tr>
@@ -5538,42 +5692,41 @@ Holy Grail;
 <tr class='b22' id='hg303'><td class='tc'>TC12</td><td>Chain Boots         </td><td>12</td><td><button class='hg' id='hgs.092' onclick='onToggleHG(this)'></button></td><td><span class='set'>Hsarus' Iron Heel             </span></td><td> 4</td><td><button class='hg' id='hgu.286' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Treads of Cthon           </span></td><td>20</td></tr>
 <tr class='b11' id='hg304'><td class='tc'>TC12</td><td>Chain Gloves        </td><td>12</td><td><button class='hg' id='hgs.093' onclick='onToggleHG(this)'></button></td><td><span class='set'>Cleglaw's Pincers             </span></td><td> 6</td><td><button class='hg' id='hgu.287' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Chance Guards             </span></td><td>20</td></tr>
 <tr class='b22' id='hg305'><td class='tc'>TC12</td><td>Composite Bow       </td><td>12</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.288' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Rogue's Bow               </span></td><td>27</td></tr>
-<tr class='b11' id='hg306'><td class='tc'>TC12</td><td>Crystal Sword       </td><td>11</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.289' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Azurewrath                </span></td><td>18</td></tr>
-<tr class='b22' id='hg307'><td class='tc'>TC12</td><td>Falchion            </td><td>11</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.290' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Gleamscythe               </span></td><td>18</td></tr>
-<tr class='b11' id='hg308'><td class='tc'>TC12</td><td>Gnarled Staff       </td><td>12</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.291' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Spire of Lazarus          </span></td><td>24</td></tr>
-<tr class='b22' id='hg309'><td class='tc'>TC12</td><td>Helm                </td><td>11</td><td><button class='hg' id='hgs.094' onclick='onToggleHG(this)'></button></td><td><span class='set'>Berserker's Headgear          </span></td><td> 5</td><td><button class='hg' id='hgu.292' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Coif of Glory             </span></td><td>19</td></tr>
-<tr class='b11' id='hg310'><td class='tc'>TC12</td><td>Large Shield        </td><td>11</td><td><button class='hg' id='hgs.095' onclick='onToggleHG(this)'></button></td><td><span class='set'>Civerb's Ward                 </span></td><td>13</td><td><button class='hg' id='hgu.293' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Stormguild                </span></td><td>18</td></tr>
-<tr class='b22' id='hg311'><td class='tc'>TC12</td><td>Ring Mail           </td><td>11</td><td><button class='hg' id='hgs.096' onclick='onToggleHG(this)'></button></td><td><span class='set'>Angelic Mantle                </span></td><td>17</td><td><button class='hg' id='hgu.294' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Darkglow                  </span></td><td>19</td></tr>
-<tr class='b11' id='hg312'><td class='tc'>TC12</td><td>Spiked Shield       </td><td>11</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.295' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Swordback Hold            </span></td><td>20</td></tr>
-<tr class='b22' id='hg313'><td class='tc'>TC12</td><td>Two-Handed Sword    </td><td>10</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.296' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Shadowfang                </span></td><td>16</td></tr>
-<tr class='b11' id='hg314'><td class='tc'>TC12</td><td>Voulge              </td><td>11</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.297' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Steelgoad                 </span></td><td>19</td></tr>
-<tr class='b22' id='hg315'><td class='tc'>TC12</td><td>Yew Wand            </td><td>12</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.298' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Maelstrom                 </span></td><td>19</td></tr>
-<tr class='b11' id='hg316'><td class='tc'>TC6 </td><td>Bardiche            </td><td>5 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.299' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Dimoak's Hew              </span></td><td>11</td></tr>
-<tr class='b22' id='hg317'><td class='tc'>TC6 </td><td>Hard Leather Armor  </td><td>5 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.300' onclick='onToggleHG(this)'></button></td><td><span class='unq'>The Centurion             </span></td><td>19</td></tr>
-<tr class='b11' id='hg318'><td class='tc'>TC6 </td><td>Hunter's Bow        </td><td>5 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.301' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Witherstring              </span></td><td>18</td></tr>
-<tr class='b22' id='hg319'><td class='tc'>TC6 </td><td>Large Axe           </td><td>6 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.302' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Axe of Fechmar            </span></td><td>11</td></tr>
-<tr class='b11' id='hg320'><td class='tc'>TC6 </td><td>Light Crossbow      </td><td>6 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.303' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Leadcrow                  </span></td><td>12</td></tr>
-<tr class='b22' id='hg321'><td class='tc'>TC6 </td><td>Scimitar            </td><td>5 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.304' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Blood Crescent            </span></td><td>10</td></tr>
-<tr class='b11' id='hg322'><td class='tc'>TC6 </td><td>Skull Cap           </td><td>5 </td><td><button class='hg' id='hgs.097' onclick='onToggleHG(this)'></button></td><td><span class='set'>Arcanna's Head                </span></td><td>20</td><td><button class='hg' id='hgu.305' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Tarnhelm                  </span></td><td>20</td></tr>
-<tr class='b22' id='hg323'><td class='tc'>TC6 </td><td>Small Shield        </td><td>5 </td><td><button class='hg' id='hgs.098' onclick='onToggleHG(this)'></button></td><td><span class='set'>Cleglaw's Claw                </span></td><td> 6</td><td><button class='hg' id='hgu.306' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Umbral Disk               </span></td><td>12</td></tr>
-<tr class='b11' id='hg324'><td class='tc'>TC6 </td><td>Spear               </td><td>5 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.307' onclick='onToggleHG(this)'></button></td><td><span class='unq'>The Dragon Chang          </span></td><td>11</td></tr>
-<tr class='b22' id='hg325'><td class='tc'>TC6 </td><td>Spiked Club         </td><td>4 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.308' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Stoutnail                 </span></td><td> 7</td></tr>
-<tr class='b11' id='hg326'><td class='tc'>TC3 </td><td>Buckler             </td><td>1 </td><td><button class='hg' id='hgs.099' onclick='onToggleHG(this)'></button></td><td><span class='set'>Hsarus' Iron Fist             </span></td><td> 4</td><td><button class='hg' id='hgu.309' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Pelta Lunata              </span></td><td> 3</td></tr>
-<tr class='b22' id='hg327'><td class='tc'>TC3 </td><td>Cap                 </td><td>1 </td><td><button class='hg' id='hgs.100' onclick='onToggleHG(this)'></button></td><td><span class='set'>Infernal Cranium              </span></td><td> 7</td><td><button class='hg' id='hgu.310' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Biggin's Bonnet           </span></td><td> 4</td></tr>
-<tr class='b11' id='hg328'><td class='tc'>TC3 </td><td>Cap                 </td><td>1 </td><td><button class='hg' id='hgs.101' onclick='onToggleHG(this)'></button></td><td><span class='set'>Sander's Paragon              </span></td><td>20</td><td><meta                                                             /></td><td><span class='   '>---                       </span></td><td>  </td></tr>
-<tr class='b22' id='hg329'><td class='tc'>TC3 </td><td>Club                </td><td>1 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.311' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Felloak                   </span></td><td> 4</td></tr>
-<tr class='b11' id='hg330'><td class='tc'>TC3 </td><td>Dagger              </td><td>3 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.312' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Gull                      </span></td><td> 6</td></tr>
-<tr class='b22' id='hg331'><td class='tc'>TC3 </td><td>Hand Axe            </td><td>3 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.313' onclick='onToggleHG(this)'></button></td><td><span class='unq'>The Gnasher               </span></td><td> 7</td></tr>
-<tr class='b11' id='hg332'><td class='tc'>TC3 </td><td>Leather Armor       </td><td>3 </td><td><button class='hg' id='hgs.102' onclick='onToggleHG(this)'></button></td><td><span class='set'>Vidala's Ambush               </span></td><td>19</td><td><button class='hg' id='hgu.314' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Blinkbat's Form           </span></td><td>16</td></tr>
-<tr class='b22' id='hg333'><td class='tc'>TC3 </td><td>Leather Boots       </td><td>3 </td><td><button class='hg' id='hgs.103' onclick='onToggleHG(this)'></button></td><td><span class='set'>Tancred's Hobnails            </span></td><td>27</td><td><button class='hg' id='hgu.315' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Hotspur                   </span></td><td> 7</td></tr>
-<tr class='b11' id='hg334'><td class='tc'>TC3 </td><td>Leather Gloves      </td><td>3 </td><td><button class='hg' id='hgs.104' onclick='onToggleHG(this)'></button></td><td><span class='set'>Death's Hand                  </span></td><td> 8</td><td><button class='hg' id='hgu.316' onclick='onToggleHG(this)'></button></td><td><span class='unq'>The Hand of Broc          </span></td><td> 7</td></tr>
-<tr class='b22' id='hg335'><td class='tc'>TC3 </td><td>Quilted Armor       </td><td>1 </td><td><button class='hg' id='hgs.105' onclick='onToggleHG(this)'></button></td><td><span class='set'>Arctic Furs                   </span></td><td> 3</td><td><button class='hg' id='hgu.317' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Greyform                  </span></td><td>10</td></tr>
-<tr class='b11' id='hg336'><td class='tc'>TC3 </td><td>Sash                </td><td>3 </td><td><button class='hg' id='hgs.106' onclick='onToggleHG(this)'></button></td><td><span class='set'>Death's Guard                 </span></td><td> 8</td><td><button class='hg' id='hgu.318' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Lenymo                    </span></td><td>10</td></tr>
-<tr class='b22' id='hg337'><td class='tc'>TC3 </td><td>Scepter             </td><td>3 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.319' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Knell Striker             </span></td><td> 7</td></tr>
-<tr class='b11' id='hg338'><td class='tc'>TC3 </td><td>Short Bow           </td><td>1 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.320' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Pluckeye                  </span></td><td>10</td></tr>
-<tr class='b22' id='hg339'><td class='tc'>TC3 </td><td>Short Staff         </td><td>1 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.321' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Bane Ash                  </span></td><td> 7</td></tr>
-<tr class='b11' id='hg340'><td class='tc'>TC3 </td><td>Short Sword         </td><td>1 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.322' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Rixot's Keen              </span></td><td> 3</td></tr>
-<tr class='b22' id='hg341'><td class='tc'>TC3 </td><td>Wand                </td><td>2 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.323' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Torch of Iro              </span></td><td> 7</td></tr>
+<tr class='b11' id='hg306'><td class='tc'>TC12</td><td>Falchion            </td><td>11</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.289' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Gleamscythe               </span></td><td>18</td></tr>
+<tr class='b22' id='hg307'><td class='tc'>TC12</td><td>Gnarled Staff       </td><td>12</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.290' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Spire of Lazarus          </span></td><td>24</td></tr>
+<tr class='b11' id='hg308'><td class='tc'>TC12</td><td>Helm                </td><td>11</td><td><button class='hg' id='hgs.094' onclick='onToggleHG(this)'></button></td><td><span class='set'>Berserker's Headgear          </span></td><td> 5</td><td><button class='hg' id='hgu.291' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Coif of Glory             </span></td><td>19</td></tr>
+<tr class='b22' id='hg309'><td class='tc'>TC12</td><td>Large Shield        </td><td>11</td><td><button class='hg' id='hgs.095' onclick='onToggleHG(this)'></button></td><td><span class='set'>Civerb's Ward                 </span></td><td>13</td><td><button class='hg' id='hgu.292' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Stormguild                </span></td><td>18</td></tr>
+<tr class='b11' id='hg310'><td class='tc'>TC12</td><td>Ring Mail           </td><td>11</td><td><button class='hg' id='hgs.096' onclick='onToggleHG(this)'></button></td><td><span class='set'>Angelic Mantle                </span></td><td>17</td><td><button class='hg' id='hgu.293' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Darkglow                  </span></td><td>19</td></tr>
+<tr class='b22' id='hg311'><td class='tc'>TC12</td><td>Spiked Shield       </td><td>11</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.294' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Swordback Hold            </span></td><td>20</td></tr>
+<tr class='b11' id='hg312'><td class='tc'>TC12</td><td>Two-Handed Sword    </td><td>10</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.295' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Shadowfang                </span></td><td>16</td></tr>
+<tr class='b22' id='hg313'><td class='tc'>TC12</td><td>Voulge              </td><td>11</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.296' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Steelgoad                 </span></td><td>19</td></tr>
+<tr class='b11' id='hg314'><td class='tc'>TC12</td><td>Yew Wand            </td><td>12</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.297' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Maelstrom                 </span></td><td>19</td></tr>
+<tr class='b22' id='hg315'><td class='tc'>TC6 </td><td>Bardiche            </td><td>5 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.298' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Dimoak's Hew              </span></td><td>11</td></tr>
+<tr class='b11' id='hg316'><td class='tc'>TC6 </td><td>Hard Leather Armor  </td><td>5 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.299' onclick='onToggleHG(this)'></button></td><td><span class='unq'>The Centurion             </span></td><td>19</td></tr>
+<tr class='b22' id='hg317'><td class='tc'>TC6 </td><td>Hunter's Bow        </td><td>5 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.300' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Witherstring              </span></td><td>18</td></tr>
+<tr class='b11' id='hg318'><td class='tc'>TC6 </td><td>Large Axe           </td><td>6 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.301' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Axe of Fechmar            </span></td><td>11</td></tr>
+<tr class='b22' id='hg319'><td class='tc'>TC6 </td><td>Light Crossbow      </td><td>6 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.302' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Leadcrow                  </span></td><td>12</td></tr>
+<tr class='b11' id='hg320'><td class='tc'>TC6 </td><td>Scimitar            </td><td>5 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.303' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Blood Crescent            </span></td><td>10</td></tr>
+<tr class='b22' id='hg321'><td class='tc'>TC6 </td><td>Skull Cap           </td><td>5 </td><td><button class='hg' id='hgs.097' onclick='onToggleHG(this)'></button></td><td><span class='set'>Arcanna's Head                </span></td><td>20</td><td><button class='hg' id='hgu.304' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Tarnhelm                  </span></td><td>20</td></tr>
+<tr class='b11' id='hg322'><td class='tc'>TC6 </td><td>Small Shield        </td><td>5 </td><td><button class='hg' id='hgs.098' onclick='onToggleHG(this)'></button></td><td><span class='set'>Cleglaw's Claw                </span></td><td> 6</td><td><button class='hg' id='hgu.305' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Umbral Disk               </span></td><td>12</td></tr>
+<tr class='b22' id='hg323'><td class='tc'>TC6 </td><td>Spear               </td><td>5 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.306' onclick='onToggleHG(this)'></button></td><td><span class='unq'>The Dragon Chang          </span></td><td>11</td></tr>
+<tr class='b11' id='hg324'><td class='tc'>TC6 </td><td>Spiked Club         </td><td>4 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.307' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Stoutnail                 </span></td><td> 7</td></tr>
+<tr class='b22' id='hg325'><td class='tc'>TC3 </td><td>Buckler             </td><td>1 </td><td><button class='hg' id='hgs.099' onclick='onToggleHG(this)'></button></td><td><span class='set'>Hsarus' Iron Fist             </span></td><td> 4</td><td><button class='hg' id='hgu.308' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Pelta Lunata              </span></td><td> 3</td></tr>
+<tr class='b11' id='hg326'><td class='tc'>TC3 </td><td>Cap                 </td><td>1 </td><td><button class='hg' id='hgs.100' onclick='onToggleHG(this)'></button></td><td><span class='set'>Infernal Cranium              </span></td><td> 7</td><td><button class='hg' id='hgu.309' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Biggin's Bonnet           </span></td><td> 4</td></tr>
+<tr class='b22' id='hg327'><td class='tc'>TC3 </td><td>Cap                 </td><td>1 </td><td><button class='hg' id='hgs.101' onclick='onToggleHG(this)'></button></td><td><span class='set'>Sander's Paragon              </span></td><td>20</td><td><meta                                                             /></td><td><span class='   '>---                       </span></td><td>  </td></tr>
+<tr class='b11' id='hg328'><td class='tc'>TC3 </td><td>Club                </td><td>1 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.310' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Felloak                   </span></td><td> 4</td></tr>
+<tr class='b22' id='hg329'><td class='tc'>TC3 </td><td>Dagger              </td><td>3 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.311' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Gull                      </span></td><td> 6</td></tr>
+<tr class='b11' id='hg330'><td class='tc'>TC3 </td><td>Hand Axe            </td><td>3 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.312' onclick='onToggleHG(this)'></button></td><td><span class='unq'>The Gnasher               </span></td><td> 7</td></tr>
+<tr class='b22' id='hg331'><td class='tc'>TC3 </td><td>Leather Armor       </td><td>3 </td><td><button class='hg' id='hgs.102' onclick='onToggleHG(this)'></button></td><td><span class='set'>Vidala's Ambush               </span></td><td>19</td><td><button class='hg' id='hgu.313' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Blinkbat's Form           </span></td><td>16</td></tr>
+<tr class='b11' id='hg332'><td class='tc'>TC3 </td><td>Leather Boots       </td><td>3 </td><td><button class='hg' id='hgs.103' onclick='onToggleHG(this)'></button></td><td><span class='set'>Tancred's Hobnails            </span></td><td>27</td><td><button class='hg' id='hgu.314' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Hotspur                   </span></td><td> 7</td></tr>
+<tr class='b22' id='hg333'><td class='tc'>TC3 </td><td>Leather Gloves      </td><td>3 </td><td><button class='hg' id='hgs.104' onclick='onToggleHG(this)'></button></td><td><span class='set'>Death's Hand                  </span></td><td> 8</td><td><button class='hg' id='hgu.315' onclick='onToggleHG(this)'></button></td><td><span class='unq'>The Hand of Broc          </span></td><td> 7</td></tr>
+<tr class='b11' id='hg334'><td class='tc'>TC3 </td><td>Quilted Armor       </td><td>1 </td><td><button class='hg' id='hgs.105' onclick='onToggleHG(this)'></button></td><td><span class='set'>Arctic Furs                   </span></td><td> 3</td><td><button class='hg' id='hgu.316' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Greyform                  </span></td><td>10</td></tr>
+<tr class='b22' id='hg335'><td class='tc'>TC3 </td><td>Sash                </td><td>3 </td><td><button class='hg' id='hgs.106' onclick='onToggleHG(this)'></button></td><td><span class='set'>Death's Guard                 </span></td><td> 8</td><td><button class='hg' id='hgu.317' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Lenymo                    </span></td><td>10</td></tr>
+<tr class='b11' id='hg336'><td class='tc'>TC3 </td><td>Scepter             </td><td>3 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.318' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Knell Striker             </span></td><td> 7</td></tr>
+<tr class='b22' id='hg337'><td class='tc'>TC3 </td><td>Short Bow           </td><td>1 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.319' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Pluckeye                  </span></td><td>10</td></tr>
+<tr class='b11' id='hg338'><td class='tc'>TC3 </td><td>Short Staff         </td><td>1 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.320' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Bane Ash                  </span></td><td> 7</td></tr>
+<tr class='b22' id='hg339'><td class='tc'>TC3 </td><td>Short Sword         </td><td>1 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.321' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Rixot's Keen              </span></td><td> 3</td></tr>
+<tr class='b11' id='hg340'><td class='tc'>TC3 </td><td>Wand                </td><td>2 </td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.322' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Torch of Iro              </span></td><td> 7</td></tr>
 </table>
 <br>
 <table class='head' id='table.sockitems'>
