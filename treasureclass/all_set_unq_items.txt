@@ -1,0 +1,503 @@
+Item Name	qlvl	Item Name	qlvl	Item Name	qlvl
+Treasure Class 87 (TC 87)
+Archon Staff	85			Mang Song's Lesson	86
+Berserker Axe	85			Death Cleaver	78
+Bloodlord Skull	85			Darkforce Spawn	72
+Caduceus	85	Griswold's Redemption	44	Astreon's Iron Ward	68
+Colossus Blade	85	Bul-Kathos' Sacred Charge	50	The Grandfather	85
+Colossus Girdle	85				
+Corona	85	Griswold's Valor	44	Crown of Ages	86
+Diadem	85	M'avina's True Sight	21	Griffon's Eye	84
+Dimensional Shard	85			Death's Fathom	81
+Dream Spirit	85				
+Giant Thresher	85			Stormspire	78
+Glorious Axe	85			Executioner's Justice	83
+Guardian Crown	85				
+Hydra Bow	85			Windforce	80
+Legend Spike	85			Ghostflame	70
+Myrmidon Greaves	85			Shadow Dancer	79
+Mythical Sword	85	Bul-Kathos' Tribal Guardian	50		
+Ogre Gauntlets	85			Steelrend	78
+Sacred Armor	85	Immortal King's Soul Cage	37	Tyrael's Might	87
+Sacred Armor	85			Templar's Might	82
+Scissors Suwayyah	85	Natalya's Mark	22		
+Thunder Maul	85			The Cranium Basher	85
+Thunder Maul	85			Earth Shifter	77
+Unearthed Wand	86			Death's Web	74
+Vortex Shield	85	Griswold's Honor	44		
+War Pike	85			Steel Pillar	77
+Winged Harpoon	85			Gargoyle's Bite	78
+Treasure Class 84 (TC 84)
+Archon Plate	84				
+Bone Visage	84	Trang-Oul's Guise	32	Giant Skull	73
+Champion Axe	82			Messerschmidt's Reaver	75
+Cryptic Sword	82	Sazabi's Cobalt Redeemer	34	Frostwind	78
+Demon Crossbow	84			Gut Siphon	79
+Fanged Knife	83			Fleshripper	76
+Ghost Spear	83				
+Great Poleaxe	84				
+Lacquered Plate	82	Tal Rasha's Guardianship	26		
+Legendary Mallet	82			Schaefer's Hammer	83
+Legendary Mallet	82			Stone Crusher	76
+Shadow Plate	83	Aldur's Deception	29	Steel Carapace	74
+Shillelagh	83				
+Sky Spirit	83			Ravenlore	82
+Troll Belt	82	Trang-Oul's Girth	32		
+Vortex Orb	84				
+Ward	84	Taebaek's Glory	55	Spirit Ward	76
+Zakarum Shield	82			Dragonscale	84
+Treasure Class 81 (TC 81)
+Aegis	79			Medusa's Gaze	84
+Colossal Sword	80				
+Conquerer Crown	80			Halaberd's Reign	85
+Cryptic Axe	79			Tomb Reaver	86
+Ghost Glaive	79			Wraith Flight	84
+Kraken Shell	81	M'avina's Embrace	21	Leviathan	73
+Matriarchal Pike	81				
+Mirrored Boots	81				
+Runic Talons	81				
+Spired Helm	79	Ondal's Almighty	55	Veil of Steel	77
+Spired Helm	79			Nightwing's Veil	75
+Succubus Skull	81			Boneflame	80
+Ward Bow	80			Widowmaker	73
+War Spike	79			Cranebeak	71
+Winged Axe	80			Lacerator	76
+Treasure Class 78 (TC 78)
+Balrog Skin	76	Sazabi's Ghost Liberator	34	Arkaine's Valor	85
+Champion Sword	77			Doombringer	75
+Conquest Sword	78				
+Crusader Bow	77			Eaglehorn	77
+Crusader Gauntlets	76				
+Earth Spirit	76			Spirit Keeper	75
+Feral Claws	78			Firelizard's Talons	75
+Grand Matron Bow	78	M'avina's Caster	21		
+Hellforge Plate	78	Naj's Light Plate	43		
+Scourge	76			Horizon's Tornado	72
+Scourge	76			Stormlash	86
+Seraph Rod	76				
+Troll Nest	76			Head Hunter's Glory	83
+Winged Knife	77			Warshrike	83
+Treasure Class 75 (TC 75)
+Ancient Shield	74				
+Battle Cestus	73			Shadow Killer	85
+Colossus Crossbow	75			Hellrack	84
+Decapitator	73			Hellslayer	71
+Demonhead	74			Andariel's Visage	85
+Demon Heart	75				
+Destroyer Helm	73			Demonhorn's Edge	69
+Elder Staff	74	Naj's Puzzler	43	Ondal's Wisdom	74
+Great Hauberk	75				
+Lich Wand	75			Boneshade	84
+Loricated Mail	73	Natalya's Shadow	22		
+Mancatcher	74			Viperfork	79
+Mithril Coil	75	Credendum	39	Verdungo's Hearty Cord	71
+Phase Blade	73			Lightsabre	66
+Phase Blade	73			Azurewrath	87
+Treasure Class 72 (TC 72)
+Balrog Blade	71			Flamebellow	79
+Balrog Spear	71			Demon's Arch	76
+Boneweave Boots	72			Marrowwalk	74
+Devil Star	70			Baranar's Star	70
+Diamond Bow	72				
+Diamond Mail	72				
+Ettin Axe	70			Rune Master	80
+Mithril Point	70				
+Monarch	72			Stormshield	77
+Sacred Rondache	70			Alma Negra	85
+Thresher	71			The Reaper's Toll	83
+Tiara	70			Kira's Guardian	85
+Wire Fleece	70			The Gladiator's Bane	85
+Treasure Class 69 (TC 69)
+Armet	68			Steelshade	70
+Blade Barrier	68			Spike Thorn	78
+Eldritch Orb	67			Eschuta's Temper	80
+Gorgon Crossbow	67				
+Great Bow	68				
+Hellspawn Skull	67				
+Hydra Edge	69				
+Ogre Maul	69	Immortal King's Stone Crusher	37	Windhammer	76
+Scarab Husk	68				
+Sun Spirit	69				
+Vambraces	69			Soul Drainer	82
+Vampirefang Belt	68			Nosferatu's Coil	68
+War Fist	68				
+Wyrmhide	67				
+Treasure Class 66 (TC 66)
+Colossus Voulge	64				
+Dusk Shroud	65	Dark Adherent	39	Ormus' Robes	83
+Flying Knife	64				
+Fury Visor	66			Wolfhowl	85
+Ghost Wand	65				
+Highland Blade	66				
+Hyperion	64				
+Matriarchal Javelin	65			Thunderstroke	77
+Ornate Armor	64	Griswold's Heart	44	Corpsemourn	63
+Overseer Skull	66				
+Scarabshell Boots	66			Sandstorm Trek	72
+Silver Edged Axe	65			Ethereal Edge	82
+Stalagmite	66				
+Stygian Pike	66				
+Treasure Class 63 (TC 63)
+Ataghan	61			Djinn Slayer	73
+Blood Spirt	62			Cerebus' Bite	71
+Boneweave	62				
+Chaos Armor	61	Trang-Oul's Scales	32	Black Hades	61
+Elegant Blade	63			Bloodmoon	69
+Hydraskull	63				
+Luna	61			Blackoak Shield	67
+Matriarchal Spear	61			Stoneraven	72
+Mighty Scepter	62			Heaven's Light	69
+Mighty Scepter	62			The Redeemer	80
+Reinforced Mace	63	Dangoon's Teaching	55		
+Sacred Targe	63				
+Shadow Bow	63				
+Small Crescent	61				
+Spiderweb Sash	61			Arachnid Mesh	87
+Stygian Pilum	62				
+Vampirebone Gloves	63			Dracul's Grasp	84
+Wrist Sword	62			Jade Talon	74
+Treasure Class 60 (TC 60)
+Blade Bow	60				
+Bone Knife	58			Wizardspike	69
+Carnage Helm	60				
+Embossed Plate	58			Atma's Wail	59
+Heater	58				
+Heavenly Stone	59				
+Hyperion Spear	58			Arioc's Needle	85
+Legend Sword	59				
+Mage Plate	60			Que-Hegan's Wisdom	59
+Minion Skull	59				
+Ogre Axe	60			Bonehew	72
+Shako	58			Harlequin Crest	69
+Suwayyah	59				
+Walking Stick	58				
+Wyrmhide Boots	60				
+Treasure Class 57 (TC 57)
+Ancient Shield	56			Radament's Sphere	58
+Bramble Mitts	57	Laying of Hands	39		
+Falcata	56				
+Feral Axe	57				
+Flying Axe	56			Gimmershred	78
+Grand Crown	55	Hwanin's Splendor	28	Crown of Thieves	57
+Grim Scythe	55			Grim's Burning Dead	52
+Pellet Bow	57				
+Polished Wand	55				
+Royal Shield	55				
+Sharktooth Armor	55			Toothrow	56
+Spider Bow	55				
+Totemic Mask	55			Jalal's Mane	50
+Tyrant Club	57			Demon Limb	71
+Treasure Class 54 (TC 54)
+Chu-Ko-Nu	54			Demon Machine	57
+Coronet	52				
+Executioner Sword	54			Swordguard	55
+Giant Conch	54				
+Gothic Bow	52			Goldstrike Arch	54
+Hierophant Trophy	54			Homunculus	50
+Hyperion Javelin	54				
+Martel de Fer	53			The Gavel of Pain	53
+Matriarchal Bow	53			Bloodraven's Charge	79
+Scissors Quhab	54				
+Slayer Guard	54			Arreat's Face	50
+Templar Coat	52			Guardian Angel	53
+Tomahawk	54			Razor's Edge	75
+Truncheon	52			Nord's Tenderizer	76
+War Belt	54	Immortal King's Detail	37	Thundergod's Vigor	55
+War Boots	54	Immortal King's Pillar	37	Gore Rider	55
+War Gauntlets	54	Immortal King's Forge	37	Hellmouth	55
+Treasure Class 51 (TC 51)
+Ancient Axe	51			The Minotaur	53
+Ancient Sword	49			The Atlantean	50
+Battle Belt	49	Wilhelm's Pride	41	Snowclash	49
+Battle Boots	49	Aldur's Advance	29	War Traveler	50
+Battle Gauntlets	49	M'avina's Icy Clutch	21	Lava Gout	50
+Bec-de-Corbin	51			Husoldal Evo	52
+Cantor Trophy	49	Trang-Oul's Wing	32		
+Ceremonial Pike	51			Lycander's Flank	50
+Grave Wand	49			Blackhand Key	49
+Greater Talons	50			Bartuc's Cut-Throat	50
+Grim Helm	50	Natalya's Totem	22	Vampire Gaze	49
+Gilded Shield	51			Herald of Zakarum	50
+Harpoon	51				
+Pavise	50			Gerke's Sanctuary	52
+Rune Bow	49			Magewrath	51
+Russet Armor	49			Skullder's Ire	50
+Sacred Feathers	50				
+Savage Helmet	49				
+Swirling Crystal	50	Tal Rasha's Lidless Eye	26	The Oculus	50
+Winged Helm	51	Guillaume's Face	41	Valkyrie Wing	52
+Zweihander	49			Todesfaelle Flamme	54
+Treasure Class 45 (TC 45)
+Basinet	45	Sazabi's Mental Sheath	34	Darksight Helm	46
+Ceremonial Spear	43				
+Crowbill	43			Pompeii's Wrath	53
+Cutlass	43			Coldsteel Eye	39
+Divine Scepter	45			Hand of Blessed Light	50
+Dragon Shield	45			Tiamat's Rebuke	46
+Greater Claws	45				
+Heavy Bracers	43	Trang-Oul's Claws	32	Ghoulhide	44
+Knout	43			Baezil's Vortex	53
+Mesh Armor	45			Shaftstop	46
+Mesh Belt	43	Tal Rasha's Fire-Spun Cloth	26	Gloom's Trap	45
+Mesh Boots	43	Natalya's Soul	22	Silkweave	44
+Rage Mask	44				
+Rune Sword	44			Plague Bearer	49
+Sexton Trophy	45				
+Short Siege Bow	43			Witchwild String	47
+Tigulated Mail	43	Hwanin's Refuge	28	Crow Caw	45
+Tomb Wand	43			Arm of King Leoric	44
+Tusk Sword	45			The Vile Husk	52
+War Club	45			Bloodtree Stump	56
+Yari	44			Hone Sundan	45
+Treasure Class 42 (TC 42)
+Akaran Rondache	40				
+Ancient Armor	40	Milabrega's Robe	23	Silks of the Victor	38
+Barbed Shield	42			Lance Guard	43
+Battle Scythe	40			Athena's Wrath	50
+Battle Sword	40			Headstriker	47
+Casque	42			Stealskull	43
+Cinquedeas	42			Blackbog's Sharp	46
+Cloudy Sphere	41				
+Dacian Falx	42			Bing Sz Wang	51
+Gothic Staff	42			Warpspear	47
+Griffon Headress	40				
+Hand Scythe	41				
+Holy Water Sprinkler	40			The Fetid Sprinkler	46
+Hurlbat	41				
+Linked Mail	42			Spirit Forge	43
+Scutum	42			Stormchaser	43
+Siege Crossbow	40			Pus Spitter	44
+Simbilan	40				
+Tabar	42			Stormrider	49
+Trellised Armor	40			Iron Pelt	41
+War Fork	41			Soulfeast Tine	43
+Treasure Class 39 (TC 39)
+Ashwood Bow	39				
+Bearded Axe	38			Spellsteel	47
+Bill	37	Hwanin's Justice	28	Blackleach Blade	50
+Cedar Staff	38			Chromatic Ire	43
+Crystalline Globe	37				
+Demonhide Armor	37			Skin of the Flayed One	39
+Dimensional Blade	37			Ginther's Rift	45
+Double Bow	39			Endlesshail	44
+Espadon	37			Crainte Vomir	50
+Fetish Trophy	39				
+Full Plate Mail	37	Tancred's Spine	27	Goldskin	38
+Great Pilum	37				
+Jagged Star	39	Aldur's Rythm	29	Moonfall	50
+Lion Helm	38				
+Petrified Wand	38			Carin Shard	43
+Round Shield	37	Whitstan's Guard	41	Moser's Blessed Circle	39
+Sallet	37			Rockstopper	39
+Sharkskin Belt	39	M'avina's Tenet	21	Razortail	39
+Sharkskin Boots	39			Waterwalk	40
+Sharkskin Gloves	39	Magnus' Skin	41	Gravepalm	39
+Tulwar	37			Blade of Ali Baba	43
+Twin Axe	39			Islestrike	51
+War Dart	39				
+Treasure Class 36 (TC 36)
+Akaran Targe	35				
+Alpha Helm	35				
+Arbalest	34			Langer Briser	40
+Cedar Bow	35			Kuko Shakaku	41
+Ceremonial Javelin	35			Titan's Revenge	50
+Cleaver	34			Butcher's Pupil	47
+Defender	34			Viscerataunt	36
+Demonhide Boots	36	Rite of Passage	39	Infernostride	37
+Demonhide Sash	36			String of Ears	37
+Fascia	36				
+Flanged Mace	35			Sureshrill Frost	47
+Francisca	34			The Scalper	65
+Fuscina	36			Kelpie Snare	41
+Ghost Armor	34			The Spirit Shroud	36
+Light Plate	35	Arcanna's Flesh	20	Heavenly Garb	39
+Military Axe	34			Warlord's Trust	43
+Partizan	35			Pierre Tombale Couant	51
+Quarterstaff	35			Ribcracker	39
+Rondel	36			Heart Carver	44
+Serpentskin Armor	36			Skin of the Vipermagi	37
+Shamshir	35			Hexfire	41
+War Hat	34	Cow King's Horns	20	Peasant Crown	36
+War Scythe	34			The Grim Reaper	39
+Treasure Class 33 (TC 33)
+Barbed Club	32			Fleshrender	46
+Battle Dart	31			Deathbit	52
+Burnt Wand	31			Suicide Branch	41
+Demonhide Gloves	33			Venom Grip	37
+Glowing Orb	32				
+Gothic Plate	32	Sigon's Shelter	9	Rattlecage	39
+Great Maul	32			Steeldriver	39
+Great Sword	33			The Patriarch	39
+Hatchet	31			Coldkill	44
+Jawbone Visor	33				
+Lochaber Axe	33			The Meat Scraper	49
+Long War Bow	31			Blastbark	38
+Mummified Trophy	33				
+Poignard	31			Spineripper	40
+Rancid Gas Potion	32				
+Razor Bow	33			Riphook	39
+Repeating Crossbow	33			Doomslinger	38
+Rune Scepter	31			Zakarum's Hand	45
+War Spear	33			The Impaler	39
+Wrist Spike	32				
+Treasure Class 30 (TC 30)
+Crown	29	Iratha's Coil	21	Undead Crown	39
+Crown	29	Milabrega's Diadem	23		
+Cudgel	30			Dark Clan Crusher	42
+Edge Bow	30			Skystrike	36
+Field Plate	28			Rockfleece	38
+Gladius	30			Bloodletter	38
+Gothic Shield	30	Isenhart's Parry	11	The Ward	35
+Halberd	29			Woestave	38
+Jo Staff	30			Razorswitch	36
+Oil Potion	28				
+Quhab	28				
+Throwing Spear	29				
+War Javelin	30				
+Treasure Class 27 (TC 27)
+Flamberge	27			Ripsaw	35
+Gauntlets	27	Sigon's Gage	9	Frostburn	39
+Giant Axe	27			Humongous	39
+Plated Belt	27	Sigon's Wrap	9	Bladebuckle	39
+Grim Wand	26	Infernal Torch	7	Ume's Lament	38
+Maiden Pike	27				
+Greaves	27	Sigon's Sabot	9	Tearhaunch	39
+Reflex Bow	27				
+Short War Bow	27	Arctic Horn	3	Hellclap	36
+War Axe	25			Rakescar	36
+War Hammer	25			Ironstone	36
+War Sword	27	Death's Touch	8	Culwen's Point	39
+Treasure Class 24 (TC 24)
+Avenger Guard	24	Immortal King's Will	37		
+Bastard Sword	24			Blacktongue	35
+Blade	23			Spectral Shard	34
+Bone Helm	22	Tancred's Skull	27	Wormskull	28
+Circlet	24	Naj's Circlet	43		
+Crown Shield	24				
+Demon Head	24				
+Dragon Stone	24				
+Glaive	23				
+Great Axe	23			Brainhew	34
+Great Helm	23	Sigon's Visor	9	Howltusk	34
+Heavy Crossbow	24			Hellcast	36
+Long Battle Bow	23	Vidala's Barb	19	Wizendraw	35
+Maiden Javelin	23				
+Pike	24			The Tannr Gorerod	36
+Plate Mail	24			Boneflesh	35
+Scissors Katar	24				
+Spirit Mask	24				
+Tower Shield	22	Sigon's Guard	9	Bverrit Keep	26
+War Staff	24	Arcanna's Deathwand	20	The Iron Jang Bong	38
+Treasure Class 21 (TC 21)
+Aerin Shield	20				
+Assault Helmet	20				
+Blade Talons	21				
+Bone Shield	19			Wall of the Eyeless	27
+Choking Gas Potion	20				
+Falcon Mask	20				
+Flail	19			The General's Tan Do Li Ga	28
+Gargoyle Head	20				
+Giant Sword	21			Kinemil's Awl	31
+Heavy Belt	20	Iratha's Cord	21	Goldwrap	36
+Heavy Belt	20	Infernal Sign	7		
+Light Gauntlets	20	Iratha's Cuff	21	Magefist	31
+Light Gauntlets	20	Arctic Mitts	3		
+Light Plated Boots	20	Vidala's Fetlock	19	Goblin Toe	30
+Long Sword	20	Cleglaw's Tooth	6	Hellplague	30
+Mask	19	Cathan's Visage	15	The Face of Horror	27
+Maul	21			Bonesnap	32
+Military Pick	19	Tancred's Crowbill	27	Skull Splitter	28
+Poleaxe	21			The Battlebranch	34
+Spetum	20			Lance of Yaggai	30
+Splint Mail	20	Berserker's Hauberk	5	Iceblink	30
+War Scepter	21	Milabrega's Rod	23	Stormeye	31
+Treasure Class 18 (TC 18)
+Antlers	16				
+Balanced Axe	16				
+Battle Axe	17			The Chieftain	26
+Battle Staff	17	Cathan's Rule	15	The Salamander	28
+Bone Wand	18	Sander's Superstition	20	Gravenspine	27
+Brandistock	16			Bloodthief	23
+Breast Plate	18	Isenhart's Case	11	Venom Ward	27
+Clasped Orb	17				
+Claws	18				
+Claymore	17			Soulflay	26
+Exploding Potion	16				
+Heraldic Shield	16				
+Horned Helm	16				
+Kris	17			The Jade Tan Do	26
+Maiden Spear	18				
+Short Battle Bow	18			Stormstrike	34
+Stag Bow	18				
+Unraveller Head	16				
+Treasure Class 15 (TC 15)
+Balanced Knife	13				
+Broad Sword	15	Isenhart's Lightbrand	11	Griswold's Edge	23
+Cestus	15				
+Chain Mail	15	Cathan's Mesh	15	Sparking Mail	23
+Crossbow	15			Ichorsting	24
+Double Axe	13	Berserker's Hatchet	5	Bladebone	20
+Full Helm	15	Isenhart's Horns	11	Duskdeep	23
+Grand Scepter	15	Civerb's Cudgel	13	Rusthandle	23
+Kite Shield	15	Milabrega's Orb	23	Steelclash	23
+Morning Star	13			Bloodrise	20
+Scale Mail	13			Hawkmail	20
+Scythe	15			Soul Harvest	26
+Short Spear	15				
+Treasure Class 12 (TC 12)
+Belt	12	Hsarus' Iron Stay	4	Nightsmoke	27
+Belt	12	Hwanin's Seal	28		
+Broad Axe	12			Goreshovel	19
+Chain Boots	12	Hsarus' Iron Heel	4	Treads of Cthon	20
+Chain Gloves	12	Cleglaw's Pincers	6	Chance Guards	20
+Composite Bow	12			Rogue's Bow	27
+Crystal Sword	11			Azurewrath	18
+Falchion	11			Gleamscythe	18
+Gnarled Staff	12			Spire of Lazarus	24
+Hatchet Hands	12				
+Helm	11	Berserker's Headgear	5	Coif of Glory	19
+Large Shield	11	Civerb's Ward	13	Stormguild	18
+Pilum	10				
+Ring Mail	11	Angelic Mantle	17	Darkglow	19
+Smoked Sphere	12				
+Spiked Shield	11			Swordback Hold	20
+Two-Handed Sword	10			Shadowfang	16
+Voulge	11			Steelgoad	19
+Yew Wand	12			Maelstrom	19
+Treasure Class 6 (TC 6)
+Bardiche	5			Dimoak's Hew	11
+Fulminating Potion	4				
+Hard Leather Armor	5			The Centurion	19
+Hunter's Bow	5			Witherstring	18
+Jawbone Cap	4				
+Large Axe	6			Axe of Fechmar	11
+Light Crossbow	6			Leadcrow	12
+Preserved Head	4				
+Scimitar	5			Blood Crescent	10
+Skull Cap	5	Arcanna's Head	20	Tarnhelm	20
+Small Shield	5	Cleglaw's Claw	6	Umbral Disk	12
+Spear	5			The Dragon Chang	11
+Spiked Club	4			Stoutnail	7
+Targe	4				
+Wolf Head	4				
+Treasure Class 3 (TC 3)
+Buckler	1	Hsarus' Iron Fist	4	Pelta Lunata	3
+Cap	1	Infernal Cranium	7	Biggin's Bonnet	4
+Cap	1	Sander's Paragon	20		
+Club	1			Felloak	4
+Dagger	3			Gull	6
+Eagle Orb	1				
+Hand Axe	3			The Gnasher	7
+Javelin	1				
+Katar	1				
+Leather Armor	3	Vidala's Ambush	19	Blinkbat's Form	16
+Leather Boots	3	Tancred's Hobnails	27	Hotspur	7
+Leather Gloves	3	Death's Hand	8	The Hand of Broc	7
+Quilted Armor	1	Arctic Furs	3	Greyform	10
+Sash	3	Death's Guard	8	Lenymo	10
+Scepter	3			Knell Striker	7
+Short Bow	1			Pluckeye	10
+Short Staff	1			Bane Ash	7
+Short Sword	1			Rixot's Keen	3
+Throwing Knife	2				
+Wand	2			Torch of Iro	7
