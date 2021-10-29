@@ -33,6 +33,8 @@
    * Color coded directions
  * Crafted Gear recipes
  * Gambling odds and few items (new in v1.33)
+ * Holy Grail tracking -- no need to login, continue where you left off time you (re)load the page
+   * Can sort by Owned Sets, Set Names, Owned Uniques, Unique Names, Base Name or TC
  * Essences farming
  * Pandemonium Event (key/organ farming)
  * Shopping tables
@@ -103,12 +105,19 @@
 
 ```
 
+ * clvl max xp table -- Furobins: https://diablo2.diablowiki.net/Guide:Diablo_2_Level_Up_Guide_v1.10
+```
+clvl max XP  Act1   Act2   Act3   Act4   Act5
+Normal       1-11  12-18  19-23  24-31  32-36
+Nightmare   37-43  44-48  49-52  53-62   skip
+Hell        63-73  74-80  81-83  83-94  95-99
+```
+
  * Table of base/set/unique -- see https://www.reddit.com/r/Diablo/comments/q1nzh7/kudos_for_the_cheat_sheet/hfixbpm/
  * Add map layout hints -- see https://docs.google.com/spreadsheets/d/1UQP7PjHgCJWN-s42bUtGsR18f9GNh7JJ15QE7D6CnHE/edit#gid=0
  * Customize yellow hover color
- * ebugging def table
+ * ebugging def table for classic D2
  * Full xp table?
- * url param to keep state of collapsed tables
  * Table header pop-up instructions --  -- pisseningly
  * Diminishing MF -- gekido2802 -- https://diablo2.diablowiki.net/Magic_find_diminishing_returns
  * Base weapon speed mods -- Lokhe -- http://classic.battle.net/diablo2exp/items/elite/swords.shtml
