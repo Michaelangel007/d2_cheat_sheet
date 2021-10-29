@@ -121,7 +121,8 @@ Hell        63-73  74-80  81-83  83-94  95-99
  * Table header pop-up instructions --  -- pisseningly
  * Diminishing MF -- gekido2802 -- https://diablo2.diablowiki.net/Magic_find_diminishing_returns
  * Base weapon speed mods -- Lokhe -- http://classic.battle.net/diablo2exp/items/elite/swords.shtml
-  * `Layout` edit mode -- Issue #22
+ * `Layout` edit mode -- Issue #22
+ * Gear Icon -- toggle scrollsbars via css -- BICEPSSSSSSSS Issue #21
 
 # Not Doing
 
