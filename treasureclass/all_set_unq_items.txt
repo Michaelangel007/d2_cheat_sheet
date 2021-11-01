@@ -21,8 +21,8 @@ Ogre Gauntlets	85			Steelrend	78
 Sacred Armor	85	Immortal King's Soul Cage	37	Tyrael's Might	87
 Sacred Armor	85			Templar's Might	82
 Scissors Suwayyah	85	Natalya's Mark	22		
-Thunder Maul	85			The Cranium Basher	85
 Thunder Maul	85			Earth Shifter	77
+Thunder Maul	85			The Cranium Basher	85
 Unearthed Wand	86			Death's Web	74
 Vortex Shield	85	Griswold's Honor	44		
 War Pike	85			Steel Pillar	77
@@ -91,8 +91,8 @@ Lich Wand	75			Boneshade	84
 Loricated Mail	73	Natalya's Shadow	22		
 Mancatcher	74			Viperfork	79
 Mithril Coil	75	Credendum	39	Verdungo's Hearty Cord	71
-Phase Blade	73			Lightsabre	66
 Phase Blade	73			Azurewrath	87
+Phase Blade	73			Lightsabre	66
 Treasure Class 72 (TC 72)
 Balrog Blade	71			Flamebellow	79
 Balrog Spear	71			Demon's Arch	76
@@ -227,6 +227,23 @@ Savage Helmet	49
 Swirling Crystal	50	Tal Rasha's Lidless Eye	26	The Oculus	50
 Winged Helm	51	Guillaume's Face	41	Valkyrie Wing	52
 Zweihander	49			Todesfaelle Flamme	54
+Treasure Class 48 (TC 48)
+Ballista	47			Buriza-Do Kyanon	59
+Battle Hammer	48			Earthshaker	51
+Ceremonial Bow	47			Lycander's Aim	50
+Cuirass	47	Haemosu's Adamant	55	Duriel's Shell	49
+Death Mask	48	Tal Rasha's Horadric Crest	26	Blackhorn's Face	49
+Gothic Axe	46			Boneslayer Blade	50
+Gothic Sword	48			Cloudcrack	53
+Grim Shield	48			Lidless Wall	49
+Hunter's Guise	46	Aldur's Stony Gaze	29		
+Lance	47			Spire of Honor	47
+Large Siege Bow	46			Cliffkiller	49
+Naga	48			Guardian Naga	56
+Protector Shield	46				
+Rune Staff	47			Skull Collector	49
+Sparkling Ball	46				
+Stiletto	46			Stormspike	49
 Treasure Class 45 (TC 45)
 Basinet	45	Sazabi's Mental Sheath	34	Darksight Helm	46
 Ceremonial Spear	43				
@@ -358,10 +375,10 @@ Treasure Class 27 (TC 27)
 Flamberge	27			Ripsaw	35
 Gauntlets	27	Sigon's Gage	9	Frostburn	39
 Giant Axe	27			Humongous	39
-Plated Belt	27	Sigon's Wrap	9	Bladebuckle	39
+Greaves	27	Sigon's Sabot	9	Tearhaunch	39
 Grim Wand	26	Infernal Torch	7	Ume's Lament	38
 Maiden Pike	27				
-Greaves	27	Sigon's Sabot	9	Tearhaunch	39
+Plated Belt	27	Sigon's Wrap	9	Bladebuckle	39
 Reflex Bow	27				
 Short War Bow	27	Arctic Horn	3	Hellclap	36
 War Axe	25			Rakescar	36
@@ -446,7 +463,7 @@ Scythe	15			Soul Harvest	26
 Short Spear	15				
 Treasure Class 12 (TC 12)
 Belt	12	Hsarus' Iron Stay	4	Nightsmoke	27
-Belt	12	Hwanin's Seal	28		
+Belt	12	Hwanin's Blessing	28		
 Broad Axe	12			Goreshovel	19
 Chain Boots	12	Hsarus' Iron Heel	4	Treads of Cthon	20
 Chain Gloves	12	Cleglaw's Pincers	6	Chance Guards	20
@@ -464,6 +481,19 @@ Spiked Shield	11			Swordback Hold	20
 Two-Handed Sword	10			Shadowfang	16
 Voulge	11			Steelgoad	19
 Yew Wand	12			Maelstrom	19
+Treasure Class 9 (TC 9)
+Axe	7			Deathspade	12
+Dirk	9			The Diggler	15
+Heavy Boots	7	Cow King's Hooves	20	Gorefoot	12
+Heavy Boots	7	Sander's Riprap	20		
+Heavy Gloves	7	Sander's Taboo	20	Bloodfist	12
+Light Belt	7	Artic Binding	3	Snakecord	16
+Long Bow	8			Raven Claw	20
+Long Staff	8			Serpent Lord	12
+Mace 	8			Crushflange 	12
+Sabre 	8	Angelic Sickle	17	Skewer of Krintiz	14
+Studded Leather	8	Cow King's Hide	20	Twitchthroe 	22
+Trident 	9			Razortine 	16
 Treasure Class 6 (TC 6)
 Bardiche	5			Dimoak's Hew	11
 Fulminating Potion	4				
@@ -481,6 +511,7 @@ Spiked Club	4			Stoutnail	7
 Targe	4				
 Wolf Head	4				
 Treasure Class 3 (TC 3)
+Boots	3	Tancred's Hobnails	27	Hotspur	7
 Buckler	1	Hsarus' Iron Fist	4	Pelta Lunata	3
 Cap	1	Infernal Cranium	7	Biggin's Bonnet	4
 Cap	1	Sander's Paragon	20		
@@ -491,7 +522,6 @@ Hand Axe	3			The Gnasher	7
 Javelin	1				
 Katar	1				
 Leather Armor	3	Vidala's Ambush	19	Blinkbat's Form	16
-Leather Boots	3	Tancred's Hobnails	27	Hotspur	7
 Leather Gloves	3	Death's Hand	8	The Hand of Broc	7
 Quilted Armor	1	Arctic Furs	3	Greyform	10
 Sash	3	Death's Guard	8	Lenymo	10
@@ -501,3 +531,25 @@ Short Staff	1			Bane Ash	7
 Short Sword	1			Rixot's Keen	3
 Throwing Knife	2				
 Wand	2			Torch of Iro	7
+Treasure Class 0 (TC 0)
+Amulet	1	Angelic Wings	17	Atma's Scarab	60
+Amulet	1	Arcanna's Sign	20	Crescent Moon	58
+Amulet	1	Cathan's Sigil	15	Highlord's Wrath	73
+Amulet	1	Civerb's Icon	13	Mara's Kaleidoscope	80
+Amulet	1	Iratha's Collar	21	Metalgrid	85
+Amulet	1	Tal Rasha's Adjudication	26	Nokozan Relic	14
+Amulet	1	Tancred's Weird	27	Saracen's Chance	55
+Amulet	1	Telling of Beads	39	Seraph's Hymn	73
+Amulet	1	Vidala's Snare	19	The Cat's Eye	58
+Amulet	1			The Eye of Etlich	20
+Amulet	1			The Mahim-Oak Curio	34
+Amulet	1			The Rising Sun	73
+Ring	1	Angelic Halo	17	Bul-Kathos' Wedding Band	66
+Ring	1	Cathan's Seal	15	Carrion Wind	68
+Ring	1			Dwarf Star	53
+Ring	1			Manald Heal	20
+Ring	1			Nagelring	10
+Ring	1			Nature's Peace	77
+Ring	1			Raven Frost	53
+Ring	1			Stone of Jordan	39
+Ring	1			Wisp Projector	84
