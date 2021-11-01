@@ -112,8 +112,19 @@
 // =====================================================================
 void dumpDataForSort( const Treasure_t *pTreasure, const int line )
 {
+    char tc[4];
+    strcpy( tc, pTreasure->sTC );
+    int len = strlen( tc );
+
+    if (len == 2 && (tc[1] == ' ')) // "# " -> "0#"
+    {
+        tc[2] = 0;
+        tc[1] = tc[0];
+        tc[0] = '0';
+    }
+
     fprintf( stderr, "\"TC%s %-20s %-29s %-26s\",\n"
-        , pTreasure->sTC
+        , tc
         , pTreasure->pBaseName
         , (pTreasure->nSetsLen > 0) ? pTreasure->pSetsName : "---"
         , (pTreasure->nUnqsLen > 0) ? pTreasure->pUnqsName : "---"
@@ -186,7 +197,8 @@ void dumpTreasure( const Treasure_t *pTreasure, const int line )
 
 
 /*
-    Tab Separated Value
+    Tab-separated values (TSV) format:
+
         Base, qlvl
         Set , qlvl
         Unq , qlvl
@@ -210,7 +222,21 @@ void dumpTreasure( const Treasure_t *pTreasure, const int line )
     BUGS:
         Azurewrath is listed twice; it used to be a crystal sword in 1.09, in 1.10 it is now a phase blade
         Some sites list it twice.
-        https://diablo2.diablowiki.net/Treasure_Classes
+
+        Leather Boots -> Boots
+
+        "Hwanin's Blessing" is listed incorrectly as "Hwanin's Seal"
+
+        TC9 is entirely missing
+        TC48 is entirely missing
+
+        All set amulets are missing
+        All unq amulets are missing
+        All set rings are missing
+        All unq rings are missing
+
+    BUGGY: https://diablo2.diablowiki.net/Treasure_Classes
+    CORRECT: https://forums.d2jsp.org/topic.php?t=24046916&f=87
 */
 // =====================================================================
 void getColumns( int iLine, char *pLine, Treasure_t *pCols, char *pTC )
