@@ -1113,7 +1113,18 @@ SORTED =
     32  // "Zod  "
 ];
 
-var COLUMNS = [ 0, 2, 22, 25, 49, 89, 93 ];
+//              S Tier
+//                 Name
+//                    Sockets
+var COLUMNS = [ 0, 2, 22, 25, 57, 97, 101 ]; // Runeword Recipe Columns
+//                        Type
+//                            Rune#1
+//                                CLevel
+//                                    Version
+/*
+ Insight             4  Polearms/Staves/Missile Weapons Ral   + Tir   + Tal  + Sol              27  1.10 lad",
+                     ^  ^                               ^                                       ^   ^
+*/
 var RECIPES = [
 //   S Name             Sock  Type                            Runes   #2      #3     #4     #5    #6  Lev  Version
     "  Ancient's Pledge    3  Shields                         Ral   + Ort   + Tal                     21  1.09",
@@ -2808,7 +2819,7 @@ function updateRuneWordsOrder( array )
         var elem  = tr.firstChild;      // <td>
         //  elem.getAttributeNames();   // class
         //  elem.getAttribute('class'); // 'tooltip g11'
-            _removeClasses( elem, 'r11 r22 g11 g22 b11 b22 k11 k22 y44' );
+            _removeClasses( elem, 'r11 r22 g11 g22 b11 b22 k11 k22 y11 y22 y44' );
 
 
         var isOdd = (row & 1); // don't include header row
@@ -2817,11 +2828,13 @@ function updateRuneWordsOrder( array )
         var is110 = ver.indexOf( '1.10'     ) === 0; // g
         var isLad = ver.indexOf( '1.10 lad' ) === 0; // b
         var is111 = ver.indexOf( '1.11'     ) === 0; // k
+        var is24  = ver.indexOf( '2.4  lad' ) === 0; // y
 
 
              if( is111 ) _addClasses( elem, isOdd ? 'k11' : 'k22' );
         else if( isLad ) _addClasses( elem, isOdd ? 'b11' : 'b22' );
         else if( is110 ) _addClasses( elem, isOdd ? 'g11' : 'g22' );
+        else if( is24  ) _addClasses( elem, isOdd ? 'y11' : 'y22' );
         else             _addClasses( elem, isOdd ? 'r11' : 'r22' );
     }
 }
