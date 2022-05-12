@@ -487,7 +487,7 @@ Dirk	9			The Diggler	15
 Heavy Boots	7	Cow King's Hooves	20	Gorefoot	12
 Heavy Boots	7	Sander's Riprap	20		
 Heavy Gloves	7	Sander's Taboo	20	Bloodfist	12
-Light Belt	7	Artic Binding	3	Snakecord	16
+Light Belt	7	Arctic Binding	3	Snakecord	16
 Long Bow	8			Raven Claw	20
 Long Staff	8			Serpent Lord	12
 Mace 	8			Crushflange 	12
