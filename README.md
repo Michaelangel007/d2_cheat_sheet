@@ -44,7 +44,7 @@
     * Power Leveling
     * Level for each difficulty & area
  * 4os sword farming
- * 85 alvl (TC 84/87) farming info
+ * 85 alvl (TC 84/87) farming info  (Updated for Patch 2.4)
  * Monochrome/Color buttons
  * Lots of handy links to utils, calculators, etc.!
  * Thanks to everyone that caught bugs and offered suggestions that were implemented.
@@ -129,4 +129,4 @@ Hell        63-73  74-80  81-83  83-94  95-99
  * url param to keep state of collapsed tables.  Not needed since table collapse state is persistent.
 
 
-Last Updated: Sun, Oct 31, 2021
+Last Updated: Thu, May 12, 2022
