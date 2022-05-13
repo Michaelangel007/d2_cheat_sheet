@@ -2742,7 +2742,7 @@ function updateHolyGrailUnqsOwned()
 
 function updateManifest()
 {
-    var i, r, rune, runes, txt = '', work, manifest = document.getElementById( 'manifest' );
+    var i, r, rune, runes, txt = '', work, manifest = document.getElementById( 'manifest' ), sol = 0, wrap = 0;
 
     // Update manifest
     for( i = 0; i < gaRuneWordManifest.length; i++ )
@@ -2750,12 +2750,19 @@ function updateManifest()
         rune = SORTED[ i ]; // Sort manifest alphabetically by runes
         r = gaRuneWordManifest[ rune ];
         if( r )
-            txt += '' + gaRuneWordManifest[ rune ] + 'x ' + RUNES[ rune ].trim() + ', ';
+            txt += '' + gaRuneWordManifest[ rune ] + 'x <span class="rune">' + RUNES[ rune ].trim() + '</span>, ';
+        wrap = txt.length;
+        if ((wrap - sol) > 440)
+        {
+            txt += '<br>';
+            sol = wrap + 1;
+            wrap = 0;
+        }
     }
 
     // if manifest > 100 chars word wrap
-    txt   = txt.substr( 0, txt.length - 2 ); // Trim last comma
-    manifest.innerText = commaWrap( txt, 100 );
+    txt = txt.substr( 0, txt.length - 2 ); // Trim last comma
+    manifest.innerHTML = txt + '<br><br>';
 }
 
 function updateRunesRunewords()
@@ -6365,7 +6372,7 @@ Thanks:
   * walkawayy               for Patch 2.4 Runewords!
 </pre>
 <hr class='one'>
-<span style='font-size:12px;'>Version <a href="https://github.com/Michaelangel007/d2_cheat_sheet/commits">1.67</a>, Last Updated Thu, May 12, 2022.</span>
+<span style='font-size:12px;'>Version <a href="https://github.com/Michaelangel007/d2_cheat_sheet/commits">1.68</a>, Last Updated Fri, May 13, 2022.</span>
 <span style='font-size:10px;'>CSS Debug: Screen Size:</span> <span id='screen-size'>?</span>, <span class='ios-hidden' >iOS-hidden</span> <span class='ios-visible'>iOS-visible</span>
 <span style='font-size:6px;'>All bugs are due to Anthony slacking on QA.</span>
 </div></body>
