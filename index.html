@@ -2922,20 +2922,33 @@ function updateRuneWordsOwned()
 
 function updateRuneWordsVisible()
 {
-    var rw, rune, runes, tr, seen;
+    var haveRune, next, plus = 0, rw, rune, runeLen, runes, td, text, tr, seen, sor, eor;
 
     for( rw = 0; rw < gaRuneWordRunes.length; rw++ )
     {
         tr    = document.getElementById( 'rw' + rw );
+        td    = tr.childNodes[0];
+        text  = td.innerHTML;
         runes = gaRuneWordRunes[rw];
-        seen  = 1;
+        seen  = 1; // missing at least one rune
+
+        sor  = COLUMNS[4];
+        eor  = text.indexOf( "<button" );
+        next = text.substr(sor,eor-sor); // "Ral + Ort + Tal"
 
         for( rune = 0; rune < runes.length; rune++ )
         {
-            if( !gaAvailableRunes[ runes[ rune ] ] )
+            haveRune = gaAvailableRunes[ runes[ rune ] ];
+            runeLen  = getRuneLength( next );
+
+            // markup rune with <span class=''> or <span class='rune'>
+            // text = colorizeRune( text, next, haveRune, runeLength );
+            plus = next.indexOf('+',plus);
+            next = next.substr(plus+2);
+
+            if( !haveRune )
             {
                 seen = 0;
-                break;
             }
         }
 
