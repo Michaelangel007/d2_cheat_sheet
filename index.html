@@ -1746,18 +1746,15 @@ function DumpRuneWordSorted( name, array )
 // Convert string containing runes to array of rune numbers
 function FindRunes( recipe )
 {
-    var runes = [], head = 0, end, len  = recipe.length, src, dst;
+    var rune, runes = [], head = 0, end, len  = recipe.length, src;
 
     while (head < len)
     {
-        end = recipe.indexOf(' ',head); if (end < 0) end = len;
-        src = recipe.substr( head, end-head );
-        for( var rune = 0; rune < RUNES.length; rune++ )
-        {
-            dst = RUNES[rune].trim();
-            if (src === dst)
-                runes.push( rune );
-        }
+        end  = recipe.indexOf(' ',head); if (end < 0) end = len;
+        src  = recipe.substr( head, end-head );
+        rune = getRuneIndex( src );
+        if( rune >= 0 )
+            runes.push( rune );
         head = recipe.indexOf('+',end); if (head < 0) break;
         head += 2;
     }
