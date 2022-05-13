@@ -1625,7 +1625,8 @@ var RECIPES = [
 ];
 
 // Globals
-    var gaAvailableRunes    = [], // saved
+    var gaRunes             = [], // init from RUNES
+        gaAvailableRunes    = [], // saved
         gaFavoriteRuneWords = [], // saved
         gaRuneWordManifest  = [],
 
@@ -1935,6 +1936,45 @@ function padLeft( text, width, c )
     return ("" + new Array( width ).join( c ) + text).slice( -width );
 }
 
+function getFirstWord( text )
+{
+    var spc = text.trim().indexOf(' ');
+    if (spc >= 0)
+        return text.substr( 0, spc );
+    return text;
+}
+
+// @returns Index into  gaRunes[] or RUNES[], or -1 if no rune
+// @example
+//    getRuneIndex('Vex   + Hel   + El   + Eld  + Zod + Eth 69  ');
+//    25
+function getRuneIndex( text )
+{
+    var rune, runes = RUNES.length, word = getFirstWord( text );
+
+    for( rune = 0; rune < runes; rune++ )
+        if( word == gaRunes[rune] )
+            return rune;
+
+    return -1;
+}
+
+// @returns 0 if not a valid rune, else the rune length in characters
+// @example
+//    getRuneLength('Vex   + Hel   + El   + Eld  + Zod + Eth 69  ');
+//    3
+function getRuneLength( text )
+{
+    var result = 0, rune, word = getFirstWord( text );
+
+    rune = getRuneIndex( word );
+    if( rune <= 0 )
+       return 0;
+
+    result = gaRunes[rune].length;
+    return result;
+}
+
 function initHolyGrailTables()
 {
     var item, items = ITEMS.length, grail, cmp,
@@ -2101,6 +2141,12 @@ function initTableCollapseMinWidth()
             ta.style.minWidth = px;
         }
     }
+}
+
+function initRuneTable()
+{
+    for( var rune = 0; rune < RUNES.length; rune++ )
+        gaRunes[ rune ] = RUNES[rune].trim();
 }
 
 function initRunewordTables()
@@ -2296,6 +2342,7 @@ function onLoad()
 
     gaAvailableRunes = new Array( RUNES.length );
     gaAvailableRunes.fill(1);
+    initRuneTable();
     initRunewordTables();
 
     gaRuneWordManifest = new Array( RUNES.length );
