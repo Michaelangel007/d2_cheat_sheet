@@ -2250,6 +2250,12 @@ function initRunewordTables()
 */
 }
 
+// https://stackoverflow.com/questions/4313841/insert-a-string-at-a-specific-index
+function insertString( text, string, index )
+{
+    return text.substring(0, index) + string + text.substr(index);
+}
+
 /*
     https://stackoverflow.com/questions/6850164/get-the-device-width-in-javascript
 */
