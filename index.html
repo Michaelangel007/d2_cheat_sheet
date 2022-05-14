@@ -2487,6 +2487,38 @@ function setCollapseTable( tableName, isCollapsed, button )
         if( isCollapsed ) rows[row].classList.add   ( 'collapsed' );
         else              rows[row].classList.remove( 'collapsed' );
     }
+
+    // When a table is minimized hide the bottom border to minimize clutter
+    var header = rows[0],
+        style  = header.classList,
+        hasR = isElementWithStyle( style, 'rt'    ),
+        hasG = isElementWithStyle( style, 'gt'    ),
+        hasB = isElementWithStyle( style, 'bt'    ),
+        hasK = isElementWithStyle( style, 'kt'    ), // Item Sockets
+        hasY = isElementWithStyle( style, 'yb'    ), // Holy Grail
+        rare = isElementWithStyle( style, 'raret' ), // Up Rare
+        unq  = isElementWithStyle( style, 'unqt'  ); // Up Unq
+
+    if( isCollapsed )
+    {
+        if( hasR ) header.classList.remove( 'rb'    );
+        if( hasG ) header.classList.remove( 'gb'    );
+        if( hasB ) header.classList.remove( 'bb'    );
+        if( hasK ) header.classList.remove( 'kb'    );
+        if( hasY ) header.classList.remove( 'yb'    );
+        if( rare ) header.classList.remove( 'rareb' );
+        if( unq  ) header.classList.remove( 'unqb'  );
+    }
+    else
+    {
+        if( hasR ) header.classList.add( 'rb'    );
+        if( hasG ) header.classList.add( 'gb'    );
+        if( hasB ) header.classList.add( 'bb'    );
+        if( hasK ) header.classList.add( 'kb'    );
+        if( hasY ) header.classList.add( 'yb'    );
+        if( rare ) header.classList.add( 'rareb' );
+        if( unq  ) header.classList.add( 'unqb'  );
+    }
 }
 
 // Update button state
