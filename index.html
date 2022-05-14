@@ -2277,6 +2277,14 @@ function getScreenSize()
     return null;
 }
 
+function isElementWithStyle( tokenlist, stylename )
+{
+    for( var i = 0; i < tokenlist.length; i++ )
+        if( tokenlist[i] == stylename )
+            return true;
+    return false;
+}
+
 function isTableSortColumnSelected( buttonName, className )
 {
     var elem       = document.getElementById( buttonName );
