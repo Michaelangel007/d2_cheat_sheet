@@ -1,0 +1,8 @@
+<-- sample code for adding a table showing cube recepie for upping crude to normal quality items !-->
+
+<table class='head' id='table.lowquality'>
+    <tr class='bt bb'      ><th><span class='b'>Upping Low Quality Cracked or Crude White Items</span> (<b>Note:</b> <span class='note'>Resets Item lvl to 1 and Rerolls superior and Pali Shield Stats. Can be useful to guarantee less sockets</span>)<div class='collapse'><button value='table.repair' onclick='onCollapse(this);'>-</button></div></th></tr>
+    <tr><td class='tooltip xx'>1 Eld Rune + 1 Chipped Gem + Low Quality Cracked/Crude Weapon             &rarr; Normal Quality Weapon of same type     (ilvl = 1. That is, regardless of what the ilvl was beforehand, it will be set to 1.)                              <span class='tool ttk'><span class='in'></span></td></tr>
+    <tr><td class='tooltip xx'>1 El Rune + 1 Chipped Gem + Low Quality Cracked/Crude Armor             &rarr; Normal Quality Armor of same type     (ilvl = 1. That is, regardless of what the ilvl was beforehand, it will be set to 1.)                              <span class='tool ttk'><span class='in'></span></td></tr>
+
+</table>
