@@ -369,6 +369,20 @@
         color: orange;
     }
 
+    /* Make it easier to see which runes belong to normal, nightmare, hell Countess */
+    span.rune_norm
+    {
+        color: #08F;
+    }
+    span.rune_nm
+    {
+        color: #44F;
+    }
+    span.rune_hell
+    {
+        color: #4EF;
+    }
+
     /* +# to skills */
     span.skill
     {
@@ -3352,7 +3366,7 @@ for chests to drop this rune<br>
  Level Requirement: <span class='n'>19</span>
  <span class='farm'>Countess</span>: Normal
  </span></td></tr>
-<tr><td class='runetip'><div class='c'                  >A4  <meta/>   <span class='x'>3</span> <span class='rune'       >Ort  </span> </div><div class='c' id='r9' ><img alt='Ort'   src='runes/ort.png'   onclick='onToggleRune( 9);'/></div><div class='c'><span class='n'>r09</span></div><div class='c'>                     </div><div class='c'><img class='blank30x30'                                      /></div><div class='c'> &rarr; Thul  </div><div class='c' id='u10'><img onclick='onToggleRune(10);' alt='Thul'  src='runes/thul.png' /></div><span class='gemtext'>
+<tr><td class='runetip'><div class='c'                  >A4  <meta/>   <span class='x'>3</span> <span class='rune'       >Ort  </span> </div><div class='c' id='r9' ><img alt='Ort'   src='runes/ort.png'   onclick='onToggleRune( 9);'/></div><div class='c'><span class='rune_nm'>r09</span></div><div class='c'>                     </div><div class='c'><img class='blank30x30'                                      /></div><div class='c'> &rarr; Thul  </div><div class='c' id='u10'><img onclick='onToggleRune(10);' alt='Thul'  src='runes/thul.png' /></div><span class='gemtext'>
  <span class='runetype'>Weapons</span>
  Adds 1-50 Lightning Damage
 
@@ -3365,7 +3379,7 @@ for chests to drop this rune<br>
  Level Requirement: <span class='n'>21</span>
  <span class='farm'>Countess</span>: Nightmare
  </span></td></tr>
-<tr><td class='runetip'><div class='c'                  >A4  <meta/>   <span class='x'>3</span> <span class='rune'       >Thul </span> </div><div class='c' id='r10'><img alt='Thul'  src='runes/thul.png'  onclick='onToggleRune(10);'/></div><div class='c'><span class='n'>r10</span></div><div class='c'> + Chipped  Topaz    </div><div class='c'><img alt='chipped topaz'     src='gems/topaz_chipped.png'    /></div><div class='c'> &rarr; Amn   </div><div class='c' id='u11'><img onclick='onToggleRune(11);' alt='Amn'   src='runes/amn.png'  /></div><span class='gemtext'>
+<tr><td class='runetip'><div class='c'                  >A4  <meta/>   <span class='x'>3</span> <span class='rune'       >Thul </span> </div><div class='c' id='r10'><img alt='Thul'  src='runes/thul.png'  onclick='onToggleRune(10);'/></div><div class='c'><span class='rune_nm'>r10</span></div><div class='c'> + Chipped  Topaz    </div><div class='c'><img alt='chipped topaz'     src='gems/topaz_chipped.png'    /></div><div class='c'> &rarr; Amn   </div><div class='c' id='u11'><img onclick='onToggleRune(11);' alt='Amn'   src='runes/amn.png'  /></div><span class='gemtext'>
  <span class='runetype'>Weapons</span>
  Adds 3-14 Cold Damage
  (3 Second Duration)
@@ -3379,7 +3393,7 @@ for chests to drop this rune<br>
  Level Requirement: <span class='n'>23</span>
  <span class='farm'>Countess</span>: Nightmare
  </span></td></tr>
-<tr><td class='runetip'><div class='c'                  >A4  <meta/>   <span class='x'>3</span> <span class='rune'       >Amn  </span> </div><div class='c' id='r11'><img alt='Amn'   src='runes/amn.png'   onclick='onToggleRune(11);'/></div><div class='c'><span class='n'>r11</span></div><div class='c'> + Chipped  Amethyst </div><div class='c'><img alt='chipped amethyst'  src='gems/amethyst_chipped.png' /></div><div class='c'> &rarr; Sol   </div><div class='c' id='u12'><img onclick='onToggleRune(12);' alt='Sol'   src='runes/sol.png'  /></div><span class='gemtext'>
+<tr><td class='runetip'><div class='c'                  >A4  <meta/>   <span class='x'>3</span> <span class='rune'       >Amn  </span> </div><div class='c' id='r11'><img alt='Amn'   src='runes/amn.png'   onclick='onToggleRune(11);'/></div><div class='c'><span class='rune_nm'>r11</span></div><div class='c'> + Chipped  Amethyst </div><div class='c'><img alt='chipped amethyst'  src='gems/amethyst_chipped.png' /></div><div class='c'> &rarr; Sol   </div><div class='c' id='u12'><img onclick='onToggleRune(12);' alt='Sol'   src='runes/sol.png'  /></div><span class='gemtext'>
  <span class='runetype'>Weapons</span>
  7% Life Stolen Per Hit
 
@@ -3392,7 +3406,7 @@ for chests to drop this rune<br>
  Level Requirement: <span class='n'>25</span>
  <span class='farm'>Countess</span>: Nightmare
  </span></td></tr>
-<tr><td class='runetip'><div class='c'                  >A4  <meta/>   <span class='x'>3</span> <span class='rune'       >Sol  </span> </div><div class='c' id='r12'><img alt='Sol'   src='runes/sol.png'   onclick='onToggleRune(12);'/></div><div class='c'><span class='n'>r12</span></div><div class='c'> + Chipped  Sapphire </div><div class='c'><img alt='chipped sapphire'  src='gems/sapphire_chipped.png' /></div><div class='c'> &rarr; Shael </div><div class='c' id='u13'><img onclick='onToggleRune(13);' alt='Shael' src='runes/shael.png'/></div><span class='gemtext'>
+<tr><td class='runetip'><div class='c'                  >A4  <meta/>   <span class='x'>3</span> <span class='rune'       >Sol  </span> </div><div class='c' id='r12'><img alt='Sol'   src='runes/sol.png'   onclick='onToggleRune(12);'/></div><div class='c'><span class='rune_nm'>r12</span></div><div class='c'> + Chipped  Sapphire </div><div class='c'><img alt='chipped sapphire'  src='gems/sapphire_chipped.png' /></div><div class='c'> &rarr; Shael </div><div class='c' id='u13'><img onclick='onToggleRune(13);' alt='Shael' src='runes/shael.png'/></div><span class='gemtext'>
  <span class='runetype'>Weapons</span>
  +9 To Minimum Damage
 
@@ -3405,7 +3419,7 @@ for chests to drop this rune<br>
  Level Requirement: <span class='n'>27</span>
  <span class='farm'>Countess</span>: Nightmare
  </span></td></tr>
-<tr><td class='runetip'><div class='c'                  >A5  <meta/>   <span class='x'>3</span> <span class='rune'       >Shael</span> </div><div class='c' id='r13'><img alt='Shael' src='runes/shael.png' onclick='onToggleRune(13);'/></div><div class='c'><span class='n'>r13</span></div><div class='c'> + Chipped  Ruby     </div><div class='c'><img alt='chipped ruby'      src='gems/ruby_chipped.png'     /></div><div class='c'> &rarr; Dol   </div><div class='c' id='u14'><img onclick='onToggleRune(14);' alt='Dol'   src='runes/dol.png'  /></div><span class='gemtext'>
+<tr><td class='runetip'><div class='c'                  >A5  <meta/>   <span class='x'>3</span> <span class='rune'       >Shael</span> </div><div class='c' id='r13'><img alt='Shael' src='runes/shael.png' onclick='onToggleRune(13);'/></div><div class='c'><span class='rune_nm'>r13</span></div><div class='c'> + Chipped  Ruby     </div><div class='c'><img alt='chipped ruby'      src='gems/ruby_chipped.png'     /></div><div class='c'> &rarr; Dol   </div><div class='c' id='u14'><img onclick='onToggleRune(14);' alt='Dol'   src='runes/dol.png'  /></div><span class='gemtext'>
  <span class='runetype'>Weapons</span>
  20% Increased Attack Speed
 
@@ -3418,7 +3432,7 @@ for chests to drop this rune<br>
  Level Requirement: <span class='n'>29</span>
  <span class='farm'>Countess</span>: Nightmare
  </span></td></tr>
-<tr><td class='runetip'><div class='c'                  >A5  <meta/>   <span class='x'>3</span> <span class='rune'       >Dol  </span> </div><div class='c' id='r14'><img alt='Dol'   src='runes/dol.png'   onclick='onToggleRune(14);'/></div><div class='c'><span class='n'>r14</span></div><div class='c'> + Chipped  Emerald  </div><div class='c'><img alt='chipped emerald'   src='gems/emerald_chipped.png'  /></div><div class='c'> &rarr; Hel   </div><div class='c' id='u15'><img onclick='onToggleRune(15);' alt='He'    src='runes/hel.png'  /></div><span class='gemtext'>
+<tr><td class='runetip'><div class='c'                  >A5  <meta/>   <span class='x'>3</span> <span class='rune'       >Dol  </span> </div><div class='c' id='r14'><img alt='Dol'   src='runes/dol.png'   onclick='onToggleRune(14);'/></div><div class='c'><span class='rune_nm'>r14</span></div><div class='c'> + Chipped  Emerald  </div><div class='c'><img alt='chipped emerald'   src='gems/emerald_chipped.png'  /></div><div class='c'> &rarr; Hel   </div><div class='c' id='u15'><img onclick='onToggleRune(15);' alt='He'    src='runes/hel.png'  /></div><span class='gemtext'>
  <span class='runetype'>Weapons</span>
  Hit Causes Monster To Flee 25%
 
@@ -3431,7 +3445,7 @@ for chests to drop this rune<br>
  Level Requirement: <span class='n'>31</span>
  <span class='farm'>Countess</span>: Nightmare
  </span></td></tr>
-<tr><td class='runetip'><div class='c'><span class='rev'> NM </span>   <span class='x'>3</span> <span class='rune'>Hel  </span> </div><div class='c' id='r15'><img alt='Hel'   src='runes/hel.png'   onclick='onToggleRune(15);'/></div><div class='c'><span class='n'>r15</span></div><div class='c'> + Chipped  Diamond  </div><div class='c'><img alt='chipped diamond'   src='gems/diamond_chipped.png'  /></div><div class='c'> &rarr; Io    </div><div class='c' id='u16'><img onclick='onToggleRune(16);' alt='Io'    src='runes/io.png'   /></div><span class='gemtext'>
+<tr><td class='runetip'><div class='c'><span class='rev'> NM </span>   <span class='x'>3</span> <span class='rune'>Hel  </span> </div><div class='c' id='r15'><img alt='Hel'   src='runes/hel.png'   onclick='onToggleRune(15);'/></div><div class='c'><span class='rune_nm'>r15</span></div><div class='c'> + Chipped  Diamond  </div><div class='c'><img alt='chipped diamond'   src='gems/diamond_chipped.png'  /></div><div class='c'> &rarr; Io    </div><div class='c' id='u16'><img onclick='onToggleRune(16);' alt='Io'    src='runes/io.png'   /></div><span class='gemtext'>
  <span class='runetype'>Weapons</span>
  Requirements -20%
 
@@ -3444,7 +3458,7 @@ for chests to drop this rune<br>
  Level Requirement: <span class='n'>n/a</span>
  <span class='farm'>Countess</span>: Nightmare
  </span></td></tr>
-<tr><td class='runetip'><div class='c'                  >A1nm<meta/>   <span class='x'>3</span> <span class='rune'       >Io   </span> </div><div class='c' id='r16'><img alt='Io'    src='runes/io.png'    onclick='onToggleRune(16);'/></div><div class='c'><span class='n'>r16</span></div><div class='c'> + Flawed   Topaz    </div><div class='c'><img alt='flawed topaz'      src='gems/topaz_flawed.png'     /></div><div class='c'> &rarr; Lum   </div><div class='c' id='u17'><img onclick='onToggleRune(17);' alt='Lum'   src='runes/lum.png'  /></div><span class='gemtext'>
+<tr><td class='runetip'><div class='c'                  >A1nm<meta/>   <span class='x'>3</span> <span class='rune'       >Io   </span> </div><div class='c' id='r16'><img alt='Io'    src='runes/io.png'    onclick='onToggleRune(16);'/></div><div class='c'><span class='rune_nm'>r16</span></div><div class='c'> + Flawed   Topaz    </div><div class='c'><img alt='flawed topaz'      src='gems/topaz_flawed.png'     /></div><div class='c'> &rarr; Lum   </div><div class='c' id='u17'><img onclick='onToggleRune(17);' alt='Lum'   src='runes/lum.png'  /></div><span class='gemtext'>
  <span class='runetype'>Weapons</span>
  +10 To Vitality
 
@@ -3457,7 +3471,7 @@ for chests to drop this rune<br>
  Level Requirement: <span class='n'>35</span>
  <span class='farm'>Countess</span>: Nightmare
  </span></td></tr>
-<tr><td class='runetip'><div class='c'                  >A2nm<meta/>   <span class='x'>3</span> <span class='rune'       >Lum  </span> </div><div class='c' id='r17'><img alt='Lum'   src='runes/lum.png'   onclick='onToggleRune(17);'/></div><div class='c'><span class='n'>r17</span></div><div class='c'> + Flawed   Amethyst </div><div class='c'><img alt='flawed amethyst'   src='gems/amethyst_flawed.png'  /></div><div class='c'> &rarr; Ko    </div><div class='c' id='u18'><img onclick='onToggleRune(18);' alt='Ko'    src='runes/ko.png'   /></div><span class='gemtext'>
+<tr><td class='runetip'><div class='c'                  >A2nm<meta/>   <span class='x'>3</span> <span class='rune'       >Lum  </span> </div><div class='c' id='r17'><img alt='Lum'   src='runes/lum.png'   onclick='onToggleRune(17);'/></div><div class='c'><span class='rune_hell'>r17</span></div><div class='c'> + Flawed   Amethyst </div><div class='c'><img alt='flawed amethyst'   src='gems/amethyst_flawed.png'  /></div><div class='c'> &rarr; Ko    </div><div class='c' id='u18'><img onclick='onToggleRune(18);' alt='Ko'    src='runes/ko.png'   /></div><span class='gemtext'>
  <span class='runetype'>Weapons</span>
  +10 To Energy
 
@@ -3470,7 +3484,7 @@ for chests to drop this rune<br>
  Level Requirement: <span class='n'>37</span>
  <span class='farm'>Countess</span>: Hell
  </span></td></tr>
-<tr><td class='runetip'><div class='c'                  >A2nm<meta/>   <span class='x'>3</span> <span class='rune'       >Ko   </span> </div><div class='c' id='r18'><img alt='Ko'    src='runes/ko.png'    onclick='onToggleRune(18);'/></div><div class='c'><span class='n'>r18</span></div><div class='c'> + Flawed   Sapphire </div><div class='c'><img alt='flawed sapphire'   src='gems/sapphire_flawed.png'  /></div><div class='c'> &rarr; Fal   </div><div class='c' id='u19'><img onclick='onToggleRune(19);' alt='Fal'   src='runes/fal.png'  /></div><span class='gemtext'>
+<tr><td class='runetip'><div class='c'                  >A2nm<meta/>   <span class='x'>3</span> <span class='rune'       >Ko   </span> </div><div class='c' id='r18'><img alt='Ko'    src='runes/ko.png'    onclick='onToggleRune(18);'/></div><div class='c'><span class='rune_hell'>r18</span></div><div class='c'> + Flawed   Sapphire </div><div class='c'><img alt='flawed sapphire'   src='gems/sapphire_flawed.png'  /></div><div class='c'> &rarr; Fal   </div><div class='c' id='u19'><img onclick='onToggleRune(19);' alt='Fal'   src='runes/fal.png'  /></div><span class='gemtext'>
  <span class='runetype'>Weapons</span>
  +10 To Dexterity
 
@@ -3483,7 +3497,7 @@ for chests to drop this rune<br>
  Level Requirement: <span class='n'>39</span>
  <span class='farm'>Countess</span>: Hell
  </span></td></tr>
-<tr><td class='runetip'><div class='c'                  >A3nm<meta/>   <span class='x'>3</span> <span class='rune'       >Fal  </span> </div><div class='c' id='r19'><img alt='Fal'   src='runes/fal.png'   onclick='onToggleRune(19);'/></div><div class='c'><span class='n'>r19</span></div><div class='c'> + Flawed   Ruby     </div><div class='c'><img alt='flawed ruby'       src='gems/ruby_flawed.png'      /></div><div class='c'> &rarr; Lem   </div><div class='c' id='u20'><img onclick='onToggleRune(20);' alt='Lem'   src='runes/lem.png'  /></div><span class='gemtext'>
+<tr><td class='runetip'><div class='c'                  >A3nm<meta/>   <span class='x'>3</span> <span class='rune'       >Fal  </span> </div><div class='c' id='r19'><img alt='Fal'   src='runes/fal.png'   onclick='onToggleRune(19);'/></div><div class='c'><span class='rune_hell'>r19</span></div><div class='c'> + Flawed   Ruby     </div><div class='c'><img alt='flawed ruby'       src='gems/ruby_flawed.png'      /></div><div class='c'> &rarr; Lem   </div><div class='c' id='u20'><img onclick='onToggleRune(20);' alt='Lem'   src='runes/lem.png'  /></div><span class='gemtext'>
  <span class='runetype'>Weapons</span>
  +10 To Strength
 
@@ -3496,7 +3510,7 @@ for chests to drop this rune<br>
  Level Requirement: <span class='n'>41</span>
  <span class='farm'>Countess</span>: Hell
  </span></td></tr>
-<tr><td class='runetip'><div class='c'                  >A3nm<meta/>   <span class='x'>3</span> <span class='rune'       >Lem  </span> </div><div class='c' id='r20'><img alt='Lem'   src='runes/lem.png'   onclick='onToggleRune(20);'/></div><div class='c'><span class='n'>r20</span></div><div class='c'> + Flawed   Emerald  </div><div class='c'><img alt='flawed emerald'    src='gems/emerald_flawed.png'   /></div><div class='c'> &rarr; Pul   </div><div class='c' id='u21'><img onclick='onToggleRune(21);' alt='Pul'   src='runes/pul.png'  /></div><span class='gemtext'>
+<tr><td class='runetip'><div class='c'                  >A3nm<meta/>   <span class='x'>3</span> <span class='rune'       >Lem  </span> </div><div class='c' id='r20'><img alt='Lem'   src='runes/lem.png'   onclick='onToggleRune(20);'/></div><div class='c'><span class='rune_hell'>r20</span></div><div class='c'> + Flawed   Emerald  </div><div class='c'><img alt='flawed emerald'    src='gems/emerald_flawed.png'   /></div><div class='c'> &rarr; Pul   </div><div class='c' id='u21'><img onclick='onToggleRune(21);' alt='Pul'   src='runes/pul.png'  /></div><span class='gemtext'>
  <span class='runetype'>Weapons</span>
  75% Extra Gold From Monsters
 
@@ -3509,7 +3523,7 @@ for chests to drop this rune<br>
  Level Requirement: <span class='n'>43</span>
  <span class='farm'>Countess</span>: Hell
  </span></td></tr>
-<tr><td class='runetip'><div class='c'                  >A4nm<meta/>   <span class='y'>2</span> <span class='rune'       >Pul  </span> </div><div class='c' id='r21'><img alt='Pul'   src='runes/pul.png'   onclick='onToggleRune(21);'/></div><div class='c'><span class='n'>r21</span></div><div class='c'> + Flawed   Diamond  </div><div class='c'><img alt='flawed diamond'    src='gems/diamond_flawed.png'   /></div><div class='c'> &rarr; Um    </div><div class='c' id='u22'><img onclick='onToggleRune(22);' alt='Um'    src='runes/um.png'   /></div><span class='gemtext'>
+<tr><td class='runetip'><div class='c'                  >A4nm<meta/>   <span class='y'>2</span> <span class='rune'       >Pul  </span> </div><div class='c' id='r21'><img alt='Pul'   src='runes/pul.png'   onclick='onToggleRune(21);'/></div><div class='c'><span class='rune_hell'>r21</span></div><div class='c'> + Flawed   Diamond  </div><div class='c'><img alt='flawed diamond'    src='gems/diamond_flawed.png'   /></div><div class='c'> &rarr; Um    </div><div class='c' id='u22'><img onclick='onToggleRune(22);' alt='Um'    src='runes/um.png'   /></div><span class='gemtext'>
  <span class='runetype'>Weapons</span>
  +75% Damage To Demons
  +100 Attack Rating Against Demons
@@ -3523,7 +3537,7 @@ for chests to drop this rune<br>
  Level Requirement: <span class='n'>45</span>
  <span class='rune'>LK</span>, <span class='farm'>Countess</span>: Hell
  </span></td></tr>
-<tr><td class='runetip'><div class='c'                  >A4nm<meta/>   <span class='y'>2</span> <span class='rune'       >Um   </span> </div><div class='c' id='r22'><img alt='Um'    src='runes/um.png'    onclick='onToggleRune(22);'/></div><div class='c'><span class='n'>r22</span></div><div class='c'> +          Topaz    </div><div class='c'><img alt='normal topaz'      src='gems/topaz_normal.png'     /></div><div class='c'> &rarr; Mal   </div><div class='c' id='u23'><img onclick='onToggleRune(23);' alt='Mal'   src='runes/mal.png'  /></div><span class='gemtext'>
+<tr><td class='runetip'><div class='c'                  >A4nm<meta/>   <span class='y'>2</span> <span class='rune'       >Um   </span> </div><div class='c' id='r22'><img alt='Um'    src='runes/um.png'    onclick='onToggleRune(22);'/></div><div class='c'><span class='rune_hell'>r22</span></div><div class='c'> +          Topaz    </div><div class='c'><img alt='normal topaz'      src='gems/topaz_normal.png'     /></div><div class='c'> &rarr; Mal   </div><div class='c' id='u23'><img onclick='onToggleRune(23);' alt='Mal'   src='runes/mal.png'  /></div><span class='gemtext'>
  <span class='runetype'>Weapons</span>
  25% Chance of Open Wounds
 
@@ -3536,7 +3550,7 @@ for chests to drop this rune<br>
  Level Requirement: <span class='n'>47</span>
  <span class='rune'>LK</span>, <span class='farm'>Countess</span>: Hell
  </span></td></tr>
-<tr><td class='runetip'><div class='c'                  >A5nm<meta/>   <span class='y'>2</span> <span class='rune'       >Mal  </span> </div><div class='c' id='r23'><img alt='Mal'   src='runes/mal.png'   onclick='onToggleRune(23);'/></div><div class='c'><span class='n'>r23</span></div><div class='c'> +          Amethyst </div><div class='c'><img alt='amethyst'          src='gems/amethyst_normal.png'  /></div><div class='c'> &rarr; Ist   </div><div class='c' id='u24'><img onclick='onToggleRune(24);' alt='Ist'   src='runes/ist.png'  /></div><span class='gemtext'>
+<tr><td class='runetip'><div class='c'                  >A5nm<meta/>   <span class='y'>2</span> <span class='rune'       >Mal  </span> </div><div class='c' id='r23'><img alt='Mal'   src='runes/mal.png'   onclick='onToggleRune(23);'/></div><div class='c'><span class='rune_hell'>r23</span></div><div class='c'> +          Amethyst </div><div class='c'><img alt='amethyst'          src='gems/amethyst_normal.png'  /></div><div class='c'> &rarr; Ist   </div><div class='c' id='u24'><img onclick='onToggleRune(24);' alt='Ist'   src='runes/ist.png'  /></div><span class='gemtext'>
  <span class='runetype'>Weapons</span>
  Prevent Monster Heal
 
@@ -3549,7 +3563,7 @@ for chests to drop this rune<br>
  Level Requirement: <span class='n'>49</span>
  <span class='rune'>LK</span>, <span class='farm'>Countess</span>: Hell
  </span></td></tr>
-<tr><td class='runetip'><div class='c'                  >A5nm<meta/>   <span class='y'>2</span> <span class='rune'       >Ist  </span> </div><div class='c' id='r24'><img alt='Ist'   src='runes/ist.png'   onclick='onToggleRune(24);'/></div><div class='c'><span class='n'>r24</span></div><div class='c'> +          Sapphire </div><div class='c'><img alt='sapphire'          src='gems/sapphire_normal.png'  /></div><div class='c'> &rarr; Gul   </div><div class='c' id='u25'><img onclick='onToggleRune(25);' alt='Gul'   src='runes/gul.png'  /></div><span class='gemtext'>
+<tr><td class='runetip'><div class='c'                  >A5nm<meta/>   <span class='y'>2</span> <span class='rune'       >Ist  </span> </div><div class='c' id='r24'><img alt='Ist'   src='runes/ist.png'   onclick='onToggleRune(24);'/></div><div class='c'><span class='rune_hell'>r24</span></div><div class='c'> +          Sapphire </div><div class='c'><img alt='sapphire'          src='gems/sapphire_normal.png'  /></div><div class='c'> &rarr; Gul   </div><div class='c' id='u25'><img onclick='onToggleRune(25);' alt='Gul'   src='runes/gul.png'  /></div><span class='gemtext'>
  <span class='runetype'>Weapons</span>
  30% Better Chance of Getting Magic Items
 
@@ -3562,7 +3576,7 @@ for chests to drop this rune<br>
  Level Requirement: <span class='n'>51</span>
  <span class='rune'>LK</span>, <span class='farm'>Countess</span>: Hell
  </span></td></tr>
-<tr><td class='runetip'><div class='c'><span class='rev'>Hell</span>   <span class='y'>2</span> <span class='rune'>Gul  </span> </div><div class='c' id='r25'><img alt='Gul'   src='runes/gul.png'   onclick='onToggleRune(25);'/></div><div class='c'><span class='n'>r25</span></div><div class='c'> +          Ruby     </div><div class='c'><img alt='ruby'              src='gems/ruby_normal.png'      /></div><div class='c'> &rarr; Vex   </div><div class='c' id='u26'><img onclick='onToggleRune(26);' alt='Vex'   src='runes/vex.png'  /></div><span class='gemtext'>
+<tr><td class='runetip'><div class='c'><span class='rev'>Hell</span>   <span class='y'>2</span> <span class='rune'>Gul  </span> </div><div class='c' id='r25'><img alt='Gul'   src='runes/gul.png'   onclick='onToggleRune(25);'/></div><div class='c'><span class='rune_hell'>r25</span></div><div class='c'> +          Ruby     </div><div class='c'><img alt='ruby'              src='gems/ruby_normal.png'      /></div><div class='c'> &rarr; Vex   </div><div class='c' id='u26'><img onclick='onToggleRune(26);' alt='Vex'   src='runes/vex.png'  /></div><span class='gemtext'>
  <span class='runetype'>Weapons</span>
  20% Bonus To Attack Rating
 
@@ -6531,6 +6545,7 @@ Thanks:
   * /u/Kairukun90           for suggestion of runeword manifest
   * /u/Hezkezl              for suggestion of L/C/R cleanup
   * /u/-Rhialto-            for suggestion of linking version number to git commit history
+  * /u/capturedthroughglass for suggestion of making it easier to see which runes Countess drops without tooltips
   * pairofdocs              for suggestion of recharging items and example of Teleport staff
   * MarcusQuixabeira        for tweaking   of tooltip x position to not cover "Fav" button
   * ZehelFenris             for catching   of Act 3 caves being listed in wrong zone
