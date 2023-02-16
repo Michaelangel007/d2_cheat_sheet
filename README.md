@@ -5,7 +5,7 @@
 # QoL Features
 
  * Readable on desktop and mobile
- * Interactive -- tooltips for runes and runewords (now includes Patch 2.4)
+ * Interactive -- tooltips for runes and runewords (now includes Patch 2.6)
    * Yellow highlight hover row pointer for all tables
  * click on runes to toggle "rune ownership"
    * Clean visual rune upgrades
@@ -131,4 +131,4 @@ Hell        63-73  74-80  81-83  83-94  95-99
  * url param to keep state of collapsed tables.  Not needed since table collapse state is persistent.
 
 
-Last Updated: Mon, Oct 10, 2022.
+Last Updated: Thu, Feb 16, 2023.
