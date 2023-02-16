@@ -1234,7 +1234,16 @@ var RECIPES = [
     "  Pattern             3  Claws                           Tal   + Ort   + Thul                    23  2.4 lad",
     "  Plague              3  Swords/Claws/Daggers            Cham  + Shael + Um                      67  2.4 lad",
     "  Unbending Will      6  Swords                          Fal   + Io    + Ith  + Eld  + El  + Hel 41  2.4 lad",
-    "  Wisdom              3  Helms                           Pul   + Ith   + Eld                     45  2.4 lad"
+    "  Wisdom              3  Helms                           Pul   + Ith   + Eld                     45  2.4 lad",
+
+    "  Bulwark             3  Helms                           Shael + Io    + Sol                     35  2.6",
+    "  Cure                3  Helms                           Shael + Io    + Tal                     35  2.6",
+    "  Ground              3  Helms                           Shael + Io    + Ort                     35  2.6",
+    "  Hearth              3  Helms                           Shael + Io    + Thul                    35  2.6",
+    "  Temper              3  Helms                           Shael + Io    + Ral                     35  2.6",
+    "  Hustle              3  Body Armor/Weapons              Shael + Ko    + Eld                     39  2.6",
+    "* Mosaic              3  Claw                            Mal   + Gul   + Amn                     53  2.6",
+    "  Metamorphosis       3  Helm                            Io    + Cham  + Fal                     67  2.6"
 ];
 
     //  &check;  \u2713  Check Mark
@@ -2945,12 +2954,14 @@ function updateRuneWordsOrder( array )
         var isLad = ver.indexOf( '1.10 lad' ) === 0; // b
         var is111 = ver.indexOf( '1.11'     ) === 0; // k
         var is24  = ver.indexOf( '2.4 lad'  ) === 0; // y
+        var is26  = ver.indexOf( '2.6'      ) === 0; // g
 
 
              if( is111 ) _addClasses( elem, isOdd ? 'k11' : 'k22' );
         else if( isLad ) _addClasses( elem, isOdd ? 'b11' : 'b22' );
         else if( is110 ) _addClasses( elem, isOdd ? 'g11' : 'g22' );
         else if( is24  ) _addClasses( elem, isOdd ? 'y11' : 'y22' );
+        else if( is26  ) _addClasses( elem, isOdd ? 'g11' : 'g22' );
         else             _addClasses( elem, isOdd ? 'r11' : 'r22' );
     }
 }
@@ -5521,6 +5532,106 @@ for chests to drop this rune<br>
  +5 Mana After Each Kill
  15% Damage Taken Goes to Mana
  </span></td></tr>
+<tr id='rw85'><td class='tooltip g22'>  Bulwark             3  Helms                           Shael + Io    + Sol                     35  <button type='button' id='fav85' onclick='onToggleFavRW(this);'>&#x2610;</button> 2.6<span class='tool ttk'>Shael<img src='runes/shael.png'/> + Io <img src='runes/io.png' /> + Sol<img src='runes/sol.png'  />
+
+ +<span class='fhr'>20</span>% Faster Hit Recovery
+ +4-6% Life stolen per hit
+ +75-100% Enhanced Defense
+ +10 to Vitality
+ Increase Maximum Life 5%
+ Replenish Life +30
+ Damage Reduced by 7
+ Physical Damage Received Reduced by 10-15%
+</span></td></tr>
+<tr id='rw86'><td class='tooltip g22'>  Cure                3  Helms                           Shael + Io    + Tal                     35  <button type='button' id='fav86' onclick='onToggleFavRW(this);'>&#x2610;</button> 2.6<span class='tool ttk'>Shael<img src='runes/shael.png'/> + Io <img src='runes/io.png' /> + Tal<img src='runes/tal.png'  />
+
+ Level 1 Cleansing Aura when Equipped
+ +<span class='fhr'>20</span>% Faster Hit Recovery
+ +75-100% Enhanced Defense
+ +10 to Vitality
+ Increase Maximum Life 5%
+ Poison Resist +40-60%
+ Poison Length Reduced by 50%
+</span></td></tr>
+<tr id='rw87'><td class='tooltip g22'>  Ground              3  Helms                           Shael + Io    + Ort                     35  <button type='button' id='fav87' onclick='onToggleFavRW(this);'>&#x2610;</button> 2.6<span class='tool ttk'>Shael<img src='runes/shael.png'/> + Io <img src='runes/io.png' /> + Ort<img src='runes/ort.png'  />
+
+ +<span class='fhr'>20</span>% Faster Hit Recovery
+ +75-100% Enhanced Defense
+ +10 to Vitality
+ Increase Maximum Life 5%
+ Lightning Resist +40-60%
+ Lightning Absorb +10-15%
+</span></td></tr>
+<tr id='rw88'><td class='tooltip g22'>  Hearth              3  Helms                           Shael + Io    + Thul                    35  <button type='button' id='fav88' onclick='onToggleFavRW(this);'>&#x2610;</button> 2.6<span class='tool ttk'>Shael<img src='runes/shael.png'/> + Io <img src='runes/io.png' /> + Thul<img src='runes/thul.png'  />
+
+ +<span class='fhr'>20</span>% Faster Hit Recovery
+ +75-100% Enhanced Defense
+ +10 to Vitality
+ Increase Maximum Life 5%
+ Cold Resist +40-60%
+ Cold Absorb +10-15%
+ <span class='cbf'>Cannot Be Frozen</span>
+</span></td></tr>
+<tr id='rw89'><td class='tooltip g22'>  Temper              3  Helms                           Shael + Io    + Ral                     35  <button type='button' id='fav89' onclick='onToggleFavRW(this);'>&#x2610;</button> 2.6<span class='tool ttk'>Shael<img src='runes/shael.png'/> + Io <img src='runes/io.png' /> + Ral<img src='runes/ral.png'  />
+
+ +<span class='fhr'>20</span>% Faster Hit Recovery
+ +75-100% Enhanced Defense
+ +10 to Vitality
+ Increase Maximum Life 5%
+ Fire Resist +40-60%
+ Fire Absorb +10-15%
+</span></td></tr>
+<tr id='rw90'><td class='tooltip g22'>  Hustle              3  Body Armor/Weapons              Shael + Ko    + Eld                     39  <button type='button' id='fav90' onclick='onToggleFavRW(this);'>&#x2610;</button> 2.6<span class='tool ttk'>Shael<img src='runes/shael.png'/> + Ko <img src='runes/ko.png' /> + Eld<img src='runes/eld.png'  />
+
+<b>Armor</b>
+ +65% Faster Run/Walk
+ +<span class='ias'>40</span>% Increased Attack Speed
+ +20% Faster Hit Recovery
+ +6 to Evade
+ +10 to Dexterity
+ 50% Slower Stamina Drain
+ +All Resistances +10
+
+<b>Weapon:</b>
+5% Chance to cast level 1 Burst of Speed on striking
+Level 1 Fanaticism Aura
++30% Increased Attack Speed
++180-200% Enhanced Damage
++75% Damage to Undead
++50 to Attack Rating against Undead
++10 to Dexterity
+</span></td></tr>
+<tr id='rw91'><td class='tooltip g22'>* Mosaic              3  Claw                            Mal   + Gul   + Amn                     53  <button type='button' id='fav91' onclick='onToggleFavRW(this);'>&#x2610;</button> 2.6<span class='tool ttk'>Mal<img src='runes/mal.png'/> + Gul <img src='runes/gul.png' /> + Amn<img src='runes/amn.png'  />
+
+ +50% +25% chance for finishing moves to not consume charges
+ When a finisher is executed this way, it now refreshes the expiration timer of the stack
+ +2 to Martial Arts (Assassin only)
+ +<span class='ias'>20</span>% Increased Attack Speed
+ +200-250% Enhanced Damage
+ +20% Bonus to Attack Rating
+ 7% Life Steal
+ +8-15% to Cold Skill Damage
+ +8-15% to Lightning Skill Damage
+ +8-15% to Fire Skill Damage
+ Prevent Monster Heal
+</span></td></tr>
+<tr id='rw92'><td class='tooltip g22'>  Metamorphosis       3  Helm                            Io    + Cham  + Fal                     67  <button type='button' id='fav92' onclick='onToggleFavRW(this);'>&#x2610;</button> 2.6<span class='tool ttk'>Io<img src='runes/io.png'/> + Cham <img src='runes/cham.png' /> + Fal<img src='runes/amn.png'  />
+
+ Werewolf strikes grant Mark for 180 seconds
+ Mark of the Wolf:
+ +30% Bonus to Attack Rating
+ Increase Maximum Life 40%
+ Werebear strikes grant Mark for 180 seconds
+ Mark of the Bear:  +25% Attack Speed
+ Mark of the Bear: Physical Damage Received Reduced by 20%
+ +5 to Shape Shifting Skills (Druid only)
+ +<span class='cb'>25</span>% Chance of Crushing Blow (No longer attached to Mark of the Bear)
+ +50-80% Enhanced Defense
+ +10 to Strength
+ +10 to Vitality
+ All Resistances +10
+ Cannot be Frozen
+</span></td></tr>
 </table>
 <br>
 <table class='head' id='table.reroll'>
@@ -6560,7 +6671,7 @@ Thanks:
   * tomasz1986              for catching   Druid Werebear FHR typo
 </pre>
 <hr class='one'>
-<span style='font-size:12px;'>Version <a href="https://github.com/Michaelangel007/d2_cheat_sheet/commits">1.79</a>, Last Updated Mon, Oct 10, 2022.</span>
+<span style='font-size:12px;'>Version <a href="https://github.com/Michaelangel007/d2_cheat_sheet/commits">1.80</a>, Last Updated Thu, Feb 16, 2023.</span>
 <span style='font-size:10px;'>CSS Debug: Screen Size:</span> <span id='screen-size'>?</span>, <span class='ios-hidden' >iOS-hidden</span> <span class='ios-visible'>iOS-visible</span>
 <span style='font-size:6px;'>All bugs are due to Anthony slacking on QA.</span>
 </div></body>
