@@ -2032,6 +2032,17 @@ function initHolyGrailTables()
         nSets = 0, set_name,
         nUnqs = 0, unq_name;
 
+/*
+   var table = document.getElementById( 'table.treasureclass' ),
+        rows  = table.getElementsByTagName( 'tr' );
+    console.log( "Parsing Holy Grail Items: %o", items );
+    console.log( "Table.TreasureItems: %o", rows.length );
+    if ((rows.length-1) !== items) // rows includes header row
+    {
+        console.error( "Number of items in Text (%o) != Table (%o)", items, rows.length );
+    }
+// */
+
     for( item = 0; item < items; item++ )
     {
         var line     = ITEMS[ item ],
@@ -6338,7 +6349,7 @@ Holy Grail;
 <tr class='b11' id='hg389'><td class='tc'>TC15</td><td>Large Charm         </td><td>&nbsp;1</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.369' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Hellfire Torch            </span></td><td>03</td></tr>
 <tr class='b22' id='hg390'><td class='tc'>TC30</td><td>Small Charm         </td><td>&nbsp;1</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.370' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Annihilus                 </span></td><td>03</td></tr>
 <tr class='b11' id='hg391'><td class='tc'>TC? </td><td>Grand Charm         </td><td>&nbsp;1</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.371' onclick='onToggleHG(this)'></button></td><td><span class='unq'>The Black Cleft           </span></td><td>??</td></tr>
-<tr class='b22' id='hg392'><td class='tc'>TC? </td><td>Grand Charm         </td><td>&nbsp;1</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.372' onclick='onToggleHG(this)'></button></td><td><span class='unq'>THE Bone Break            </span></td><td>??</td></tr>
+<tr class='b22' id='hg392'><td class='tc'>TC? </td><td>Grand Charm         </td><td>&nbsp;1</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.372' onclick='onToggleHG(this)'></button></td><td><span class='unq'>The Bone Break            </span></td><td>??</td></tr>
 <tr class='b11' id='hg393'><td class='tc'>TC? </td><td>Grand Charm         </td><td>&nbsp;1</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.373' onclick='onToggleHG(this)'></button></td><td><span class='unq'>The Cold Rupture          </span></td><td>??</td></tr>
 <tr class='b22' id='hg394'><td class='tc'>TC? </td><td>Grand Charm         </td><td>&nbsp;1</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.374' onclick='onToggleHG(this)'></button></td><td><span class='unq'>The Crack of the Heavens  </span></td><td>??</td></tr>
 <tr class='b11' id='hg395'><td class='tc'>TC? </td><td>Grand Charm         </td><td>&nbsp;1</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.375' onclick='onToggleHG(this)'></button></td><td><span class='unq'>The Flame Rift            </span></td><td>??</td></tr>
