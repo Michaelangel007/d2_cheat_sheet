@@ -1255,8 +1255,8 @@ var RECIPES = [
                    //TC 0, 3, 6, 9,12,15,18,21,24,27,30,33,36,39,42,45,48,51,54,57, 60,63,66,69,72,75,78,81,84,87
           TC_SETS  = [ 11, 8, 2, 6, 7, 6, 3,10, 7, 6, 3, 1, 3, 6, 1, 5, 3, 7, 3, 2, 0, 2, 2, 1, 0, 3, 3, 2, 6, 8 ],
           TC_UNQS  = [ 21,15,10,11,14,10, 8,14,11,10, 8,15,20,17,15,17,13,17,13, 7, 6,11, 6, 6,10,11, 9,11,11,21 ],
-          NUM_SETS = 127,
-          NUM_UNQS = 368,
+          NUM_SETS = 127, // starts at zero, hgs.000 ... hgs.###
+          NUM_UNQS = 377, // starts at zero, hgu.000 ... hgu.###
           NUM_HOLY = NUM_SETS + NUM_UNQS,
           HG_COLS  = [ 0, 5, 26, 56 ], // Holy Grail Columns
           HG_EMPTY = '---',
@@ -1649,7 +1649,17 @@ var RECIPES = [
 "TC00 Ring                 ---                           Nature's Peace            ",
 "TC00 Ring                 ---                           Raven Frost               ",
 "TC00 Ring                 ---                           Stone of Jordan           ",
-"TC00 Ring                 ---                           Wisp Projector            "
+"TC00 Ring                 ---                           Wisp Projector            ",
+// Manual
+"TC03 Grand Charm          ---                           Gheed’s Fortune           ",
+"TC15 Large Charm          ---                           Hellfire Torch            ",
+"TC30 Small Charm          ---                           Annihilus                 ",
+"TC00 Grand Charm          ---                           The Black Cleft           ", // 2.5 Magic Sunder
+"TC00 Grand Charm          ---                           The Bone Break            ", // 2.5 Physical Sunder
+"TC00 Grand Charm          ---                           The Cold Rupture          ", // 2.5 Cold Sunder
+"TC00 Grand Charm          ---                           The Crack of the Heavens  ", // 2.5 Lightning Sunder
+"TC00 Grand Charm          ---                           The Flame Rift            ", // 2.5 Fire Sunder
+"TC00 Grand Charm          ---                           The Rotting Fissure       "  // 2.5 Poison Sunder
 ];
 
 // Globals
@@ -1882,7 +1892,7 @@ function commaWrap( text, max )
 
 function dataLoad()
 {
-    var temp;
+    var temp, slack, empty, joined;
 
     var runes = localStorage.getItem( 'availableRunes' );
     if (runes !== undefined && (typeof runes === 'string'))
@@ -1916,9 +1926,17 @@ function dataLoad()
     if (sets !== undefined && (typeof sets === 'string'))
     {
         temp = JSON.parse( sets );
-        if (temp.length !== NUM_SETS)
+        if (temp.length != NUM_SETS)
         {
-            console.error( "WARNING: Couldn't load Holy Grail saved Sets" );
+            console.warn( "WARNING: Old Holy Grail sets are missing items!  Saved: %o, Database: %o", temp.length, NUM_SETS );
+            slack = NUM_SETS - temp.length;
+            if (slack > 0)
+            {
+                empty = new Array( slack ).fill(0);
+                joined = temp.concat( empty );
+                gaHolyGrailSets = joined;
+                localStorage.setItem( 'holygrailSets'    , JSON.stringify( gaHolyGrailSets     ) );
+            }
         }
         else
             gaHolyGrailSets = temp;
@@ -1928,14 +1946,22 @@ function dataLoad()
     if (unqs !== undefined && (typeof unqs === 'string'))
     {
         temp = JSON.parse( unqs );
-        if (temp.length === (NUM_UNQS+1) ) // BUGFIX: Double Azurewrath due to faulty Holy Grail data
+        if (temp.length === 369) // BUGFIX: Double Azurewrath due to faulty Holy Grail data
         {
             temp.splice( 289, 1 );
         }
 
-        if (temp.length !== NUM_UNQS)
+        if (temp.length != NUM_UNQS)
         {
-            console.error( "WARNING: Couldn't load Holy Grail saved Uniques" );
+            console.warn( "WARNING: Old Holy Grail uniques are missing items!  Saved: %o, Database: %o", temp.length, NUM_UNQS );
+            slack = NUM_UNQS - temp.length;
+            if (slack > 0)
+            {
+                empty = new Array( slack ).fill(0);
+                joined = temp.concat( empty );
+                gaHolyGrailUnqs = joined;
+                localStorage.setItem( 'holygrailUnqs'    , JSON.stringify( gaHolyGrailUnqs     ) );
+            }
         }
         else
             gaHolyGrailUnqs = temp;
@@ -6307,6 +6333,17 @@ Holy Grail;
 <tr class='b22' id='hg385'><td class='tc'>TC0 </td><td>Ring                </td><td>&nbsp;1</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.365' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Raven Frost               </span></td><td>53</td></tr>
 <tr class='b11' id='hg386'><td class='tc'>TC0 </td><td>Ring                </td><td>&nbsp;1</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.366' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Stone of Jordan           </span></td><td>39</td></tr>
 <tr class='b22' id='hg387'><td class='tc'>TC0 </td><td>Ring                </td><td>&nbsp;1</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.367' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Wisp Projector            </span></td><td>84</td></tr>
+
+<tr class='b22' id='hg388'><td class='tc'>TC0 </td><td>Grand Charm         </td><td>&nbsp;1</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.368' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Gheed’s Fortune           </span></td><td>03</td></tr>
+<tr class='b11' id='hg389'><td class='tc'>TC15</td><td>Large Charm         </td><td>&nbsp;1</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.369' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Hellfire Torch            </span></td><td>03</td></tr>
+<tr class='b22' id='hg390'><td class='tc'>TC30</td><td>Small Charm         </td><td>&nbsp;1</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.370' onclick='onToggleHG(this)'></button></td><td><span class='unq'>Annihilus                 </span></td><td>03</td></tr>
+<tr class='b11' id='hg391'><td class='tc'>TC? </td><td>Grand Charm         </td><td>&nbsp;1</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.371' onclick='onToggleHG(this)'></button></td><td><span class='unq'>The Black Cleft           </span></td><td>??</td></tr>
+<tr class='b22' id='hg392'><td class='tc'>TC? </td><td>Grand Charm         </td><td>&nbsp;1</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.372' onclick='onToggleHG(this)'></button></td><td><span class='unq'>THE Bone Break            </span></td><td>??</td></tr>
+<tr class='b11' id='hg393'><td class='tc'>TC? </td><td>Grand Charm         </td><td>&nbsp;1</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.373' onclick='onToggleHG(this)'></button></td><td><span class='unq'>The Cold Rupture          </span></td><td>??</td></tr>
+<tr class='b22' id='hg394'><td class='tc'>TC? </td><td>Grand Charm         </td><td>&nbsp;1</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.374' onclick='onToggleHG(this)'></button></td><td><span class='unq'>The Crack of the Heavens  </span></td><td>??</td></tr>
+<tr class='b11' id='hg395'><td class='tc'>TC? </td><td>Grand Charm         </td><td>&nbsp;1</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.375' onclick='onToggleHG(this)'></button></td><td><span class='unq'>The Flame Rift            </span></td><td>??</td></tr>
+<tr class='b22' id='hg396'><td class='tc'>TC? </td><td>Grand Charm         </td><td>&nbsp;1</td><td><meta                                                             /></td><td><span class='   '>---                           </span></td><td>  </td><td><button class='hg' id='hgu.376' onclick='onToggleHG(this)'></button></td><td><span class='unq'>The Rotting Fissure       </span></td><td>??</td></tr>
+<!-- NOTE: TODO: still missing Rainbow Facet -->
 </table>
 <br>
 <table class='head' id='table.sockitems'>
@@ -6672,7 +6709,7 @@ Thanks:
   * tomasz1986              for catching   Druid Werebear FHR typo
 </pre>
 <hr class='one'>
-<span style='font-size:12px;'>Version <a href="https://github.com/Michaelangel007/d2_cheat_sheet/commits">1.81</a>, Last Updated Wed, Feb 22, 2023.</span>
+<span style='font-size:12px;'>Version <a href="https://github.com/Michaelangel007/d2_cheat_sheet/commits">1.82</a>, Last Updated Wed, Feb 22, 2023.</span>
 <span style='font-size:10px;'>CSS Debug: Screen Size:</span> <span id='screen-size'>?</span>, <span class='ios-hidden' >iOS-hidden</span> <span class='ios-visible'>iOS-visible</span>
 <span style='font-size:6px;'>All bugs are due to Anthony slacking on QA.</span>
 </div></body>
