@@ -1246,6 +1246,15 @@ var RECIPES = [
     "  Metamorphosis       3  Helm                            Io    + Cham  + Fal                     67  2.6"
 ];
 
+    const HolyGrailColumn =
+          {
+              TC   : 0
+            , BASE : 1
+            , SET  : 2
+            , UNQ  : 3
+            , NORM : 4
+          };
+
     //  &check;  \u2713  Check Mark
     //  &#x2610; \u2610  Ballot Box
     //  &#x2611; \u2611  Ballot Box with Check
@@ -2029,6 +2038,7 @@ function getRuneLength( text )
 function initHolyGrailTables()
 {
     var item, items = ITEMS.length, grail, cmp,
+        nNorm = 0, normname,
         nSets = 0, set_name,
         nUnqs = 0, unq_name;
 
@@ -2560,7 +2570,7 @@ function setCollapseTable( tableName, isCollapsed, button )
         hasG = isElementWithStyle( style, 'gt'    ),
         hasB = isElementWithStyle( style, 'bt'    ),
         hasK = isElementWithStyle( style, 'kt'    ), // Item Sockets
-        hasY = isElementWithStyle( style, 'yb'    ), // Holy Grail
+        hasY = isElementWithStyle( style, 'yt'    ), // Holy Grail
         rare = isElementWithStyle( style, 'raret' ), // Up Rare
         unq  = isElementWithStyle( style, 'unqt'  ); // Up Unq
 
