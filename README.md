@@ -118,7 +118,7 @@ Special thanks to walkawayy for 2.4 Runewords, Wyrda65 for updated alvl 85 info.
 
 # Not Doing
 
- * url param to keep state of collapsed tables.  Not needed since table collapse state is persistent.
+ * url param to keep state of collapsed tables.  Not needed since table collapse state is persistent. (Unforunately this is currently bugged.)
 
 
-Last Updated: Thu, Feb 16, 2023.
+Last Updated: Sat, Feb 25, 2023.
