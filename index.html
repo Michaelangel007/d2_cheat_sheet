@@ -1136,7 +1136,7 @@ SORTED =
 //              S Tier
 //                 Name
 //                    Sockets
-var COLUMNS = [ 0, 2, 22, 25, 57, 97, 101 ]; // Runeword Recipe Columns
+var RW_COLS = [ 0, 2, 22, 25, 57, 97, 101 ]; // Runeword Recipe Columns
 //                        Type
 //                            Rune#1
 //                                CLevel
@@ -1869,13 +1869,13 @@ function verify()
     {
         var line     = RECIPES[recipe];
 
-        var superior = line.substr( COLUMNS[0], COLUMNS[1]-COLUMNS[0] ).trim().length ? 1 : 0;
-        var runeword = line.substr( COLUMNS[1], COLUMNS[2]-COLUMNS[1] ).trim();
-        var sockets  = line.substr( COLUMNS[2], COLUMNS[3]-COLUMNS[2] ) | 0;
-        var type     = line.substr( COLUMNS[3], COLUMNS[4]-COLUMNS[3] );
-        var mats     = line.substr( COLUMNS[4], COLUMNS[5]-COLUMNS[4] );
-        var level    = line.substr( COLUMNS[5], COLUMNS[6]-COLUMNS[5] ) | 0;
-        var version  = line.substr( COLUMNS[6]                        );
+        var superior = line.substr( RW_COLS[0], RW_COLS[1]-RW_COLS[0] ).trim().length ? 1 : 0;
+        var runeword = line.substr( RW_COLS[1], RW_COLS[2]-RW_COLS[1] ).trim();
+        var sockets  = line.substr( RW_COLS[2], RW_COLS[3]-RW_COLS[2] ) | 0;
+        var type     = line.substr( RW_COLS[3], RW_COLS[4]-RW_COLS[3] );
+        var mats     = line.substr( RW_COLS[4], RW_COLS[5]-RW_COLS[4] );
+        var level    = line.substr( RW_COLS[5], RW_COLS[6]-RW_COLS[5] ) | 0;
+        var version  = line.substr( RW_COLS[6]                        );
         var arunes   = FindRunes( mats );
 
         if (sockets != arunes.length )
@@ -2324,13 +2324,13 @@ function initRunewordTables()
     {
         var line     = RECIPES[recipe];
 
-        var superior = line.substr( COLUMNS[0], 1                     ).trim().length ? 1 : 0;
-        var runeword = line.substr( COLUMNS[1], COLUMNS[2]-COLUMNS[1] );
-        var sockets  = line.substr( COLUMNS[2], 1                     ) | 0;
-        var type     = line.substr( COLUMNS[3], COLUMNS[4]-COLUMNS[3] );
-        var mats     = line.substr( COLUMNS[4], COLUMNS[5]-COLUMNS[4] );
-        var level    = line.substr( COLUMNS[5], 2                     ) | 0;
-        var version  = line.substr( COLUMNS[6]                        );
+        var superior = line.substr( RW_COLS[0], 1                     ).trim().length ? 1 : 0;
+        var runeword = line.substr( RW_COLS[1], RW_COLS[2]-RW_COLS[1] );
+        var sockets  = line.substr( RW_COLS[2], 1                     ) | 0;
+        var type     = line.substr( RW_COLS[3], RW_COLS[4]-RW_COLS[3] );
+        var mats     = line.substr( RW_COLS[4], RW_COLS[5]-RW_COLS[4] );
+        var level    = line.substr( RW_COLS[5], 2                     ) | 0;
+        var version  = line.substr( RW_COLS[6]                        );
         var arunes   = FindRunes( mats );
 
         // Build unordered raw table
@@ -3206,7 +3206,7 @@ function updateRuneWordsVisible()
         runes = gaRuneWordRunes[rw];
         seen  = 1; // missing at least one rune
 
-        sor  = COLUMNS[4];
+        sor  = RW_COLS[4];
         eor  = text.indexOf( "<button" );
         next = text.substr(sor,eor-sor); // "Ral + Ort + Tal"
 
