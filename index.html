@@ -2613,13 +2613,14 @@ function onLoad()
 
     dataLoad();
 
+    // We need the expanded table width before collapsing the tables
+    initTableCollapseMinWidth();
+    initTableCollapseBestFit();
+
     initTableCollapseState();
 
     // Sorting by Ladder really isn't useful any more
     onSortRuneWordsByOwned();
-
-    initTableCollapseMinWidth();
-    initTableCollapseBestFit();
 
     onSortHolyGrailBySetOwn();
 }
