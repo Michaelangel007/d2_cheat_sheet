@@ -1805,12 +1805,12 @@ function DumpHolyGrailSorted( name, array )
     {
         iHG = array[ item ];
         text += '#' + padLeft( item, 3 )
-             + ' [' + padLeft( iHG, 3 )          + '] '
-             + gaHolyGrailDataTC      [ iHG ]         + ' '
-             + gaHolyGrailDataBaseName[ iHG ]         + ' '
-             + gaHolyGrailDataBaseNorm[ iHG ]         + ' '
-             + gaHolyGrailDataSetsName[ iHG ]         + ' '
-             + gaHolyGrailDataUnqsName[ iHG ]         +'\n';
+             + ' [' + padLeft( iHG, 3 )       + '] '
+             + gaHolyGrailDataTC      [ iHG ] + ' '
+             + gaHolyGrailDataBaseName[ iHG ] + ' '
+             + gaHolyGrailDataBaseNorm[ iHG ] + ' '
+             + gaHolyGrailDataSetsName[ iHG ] + ' '
+             + gaHolyGrailDataUnqsName[ iHG ] +'\n';
     }
     console.log( text );
 }
@@ -1825,7 +1825,7 @@ function DumpRuneWordSorted( name, array )
         iRW = array[ recipe ];
         // ## [] S Name  Sock Type Lev Vers
         text += '#' + padLeft( recipe, 2 )
-             + ' [' + padLeft( iRW, 2 )           + '] '
+             + ' [' + padLeft( iRW, 2 )            + '] '
              +(gaRuneWordSuper[ iRW ] ? '*' : ' ') + ' '
              + gaRuneWordNames[ iRW ]              + ' '
              + gaRuneWordSocks[ iRW ]              + ' '
