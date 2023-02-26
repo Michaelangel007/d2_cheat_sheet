@@ -1950,22 +1950,30 @@ function commaWrap( text, max )
 function findTableButton( tablename )
 {
     var table = document.getElementById( tablename ),
-        head = table && table.getElementsByTagName( 'th' ),
-        btn  = null;
+        aButton, nButton, tButton = null,
+        aCol = table && table.getElementsByTagName( 'th' ), iCol, nCol, tCol;
 
-    if (!head) return btn;
+    if (!aCol) return null;
+    nCol = aCol.length;
 
     // Some tables have two table headers
-    if (head.length > 0)
-        head = head[0];
+    for( iCol = 0; iCol < nCol; iCol++ )
+    {
+        tCol    = aCol[ iCol ];
+        aButton = tCol.getElementsByTagName( 'button' );
 
-    btn = head.getElementsByTagName( 'button' );
-    if (!btn || btn.length == 0) return null;
+        if (!aButton )
+            continue;
 
-    if (btn.length > 0)
-        btn = btn[0];
+        nButton = aButton.length;
+        if (nButton > 0)
+        {
+            tButton = aButton[0];
+            return tButton;
+        }
+    }
 
-    return btn;
+    return null;
 }
 
 // Serialization ______________________________________________________
