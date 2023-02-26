@@ -1701,6 +1701,7 @@ var RECIPES = [
 ];
 
 // Globals
+        // Runes & Runewords
     var gaRunes             = [], // init from RUNES
         gaAvailableRunes    = [], // saved
         gaFavoriteRuneWords = [], // saved
@@ -1729,6 +1730,10 @@ var RECIPES = [
         gaSortByType     = [],
         gaSortByVersion  = [],
 
+        // Table Collapse State
+        gaTableCollapse  = [], // saved
+
+        // Holy Grail
         gaHolyGrailNorm  = [], // saved
         gaHolyGrailSets  = [], // saved
         gaHolyGrailUnqs  = [], // saved
@@ -1762,6 +1767,8 @@ var RECIPES = [
         gaSortByMats5,
         gaSortByMats6
     ];
+
+// Debugging __________________________________________________________
 
 function DumpHolyGrail()
 {
@@ -1886,6 +1893,8 @@ function verify()
             console.error( "[" + recipe + "]: " + runeword + ", mats: " + mats + ", %o", arunes, "Expect Lev: " + expect + ", Actual Levl: " + level );
     }
 }
+
+// Utility ____________________________________________________________
 
 function commaWrap( text, max )
 {
@@ -2029,6 +2038,8 @@ function dataSave()
     localStorage.setItem( 'holygrailSets'    , JSON.stringify( gaHolyGrailSets     ) );
     localStorage.setItem( 'holygrailUnqs'    , JSON.stringify( gaHolyGrailUnqs     ) );
 }
+
+// Runes ______________________________________________________________
 
 // Optional: width
 // Optional: character to pad left with, such as '0'; will default to space
