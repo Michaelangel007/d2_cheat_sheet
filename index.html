@@ -2598,8 +2598,7 @@ function onLoad()
     // iOS touch / hover
     document.addEventListener("touchstart", function() {},false);
 
-    gaAvailableRunes = new Array( RUNES.length );
-    gaAvailableRunes.fill(1);
+    gaAvailableRunes = new Array( RUNES.length ).fill(1);
     initRuneTable();
     initRunewordTables();
 
