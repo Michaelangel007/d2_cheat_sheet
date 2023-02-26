@@ -1974,6 +1974,7 @@ function collapseLoad()
 {
     var collapsed = localStorage.getItem( 'collapsedTables' );
 
+    // Iterate through tables that should start as collapsed
     var iTable, aTable = JSON.parse( collapsed ), nTable = (aTable && aTable.length) | 0, tTable,
         tButton;
 
@@ -2372,6 +2373,12 @@ name = ta.getAttribute('id');
     }
 }
 
+function initTableCollapseState()
+{
+    collapseLoad();
+}
+
+
 function initRuneTable()
 {
     for( var rune = 0; rune < RUNES.length; rune++ )
@@ -2533,6 +2540,22 @@ function onCollapse( button, table )
     if (table === undefined)
         table = button.value;
 
+    // Buttons have no id, only a reference to a table: value='table.craftblood'
+    var found = gaTableCollapse.findIndex( (element) => (element == table) );
+    if (found >= 0)
+    {
+        gaTableCollapse.splice( found, 1 );
+        collapseSave();
+    }
+    else // not found
+    {
+        if (button.collapsed && table)
+        {
+            gaTableCollapse.push( table );
+            collapseSave();
+        }
+    }
+
     setCollapseTable( table, button.collapsed, button );
 }
 
@@ -2590,8 +2613,7 @@ function onLoad()
 
     dataLoad();
 
-    var btn = document.getElementById( 'btn_collapse_sockitems' );
-        btn.collapsed = true;
+    initTableCollapseState();
 
     // Sorting by Ladder really isn't useful any more
     onSortRuneWordsByOwned();
@@ -6607,14 +6629,14 @@ Level 1 Fanaticism Aura
 </table>
 <br>
 <table class='head' id='table.sockitems'>
-    <tr class='kt kb'><th      >Item Sockets<br>Name          ilvl 1-25  26-40  41+ Quality      Type      Equip clvl<div class='collapse'><button value='table.sockitems' onclick='onCollapse(this);' id='btn_collapse_sockitems'>+</button></div></th></tr>
-    <tr class='collapsed'><td class='tooltip k11'>Buckler               1    1    1   Normal       Shield     1</td></tr>
-    <tr class='collapsed'><td class='tooltip k11'>Dagger                1    1    1   Normal       Dagger     1</td></tr>
-    <tr class='collapsed'><td class='tooltip k11'>Hard Leather Armor    2    2    2   Normal       Armor      1</td></tr>
-    <tr class='collapsed'><td class='tooltip k11'>Burnt Wand            1    1    1   Exceptional  Wand      19</td></tr>
-    <tr class='collapsed'><td class='tooltip k11'>Holy Water Sprinkler  3    3    3   Exceptional  Scepter   25</td></tr>
-    <tr class='collapsed'><td class='tooltip k11'>Bone Knife            1    1    1   Elite        Dagger    43</td></tr>
-    <tr class='collapsed'><th                    >Name          ilvl 1-25  26-40  41+ Quality      Type      Equip clvl</th></tr>
+    <tr class='kt kb'><th      >Item Sockets                                                            <br>Name          ilvl 1-25  26-40  41+ Quality      Type      Equip clvl<div class='collapse'><button value='table.sockitems' onclick='onCollapse(this);' id='btn_collapse_sockitems'>-</button></div></th></tr>
+    <tr class=''><td class='tooltip k11'>Buckler               1    1    1   Normal       Shield     1</td></tr>
+    <tr class=''><td class='tooltip k11'>Dagger                1    1    1   Normal       Dagger     1</td></tr>
+    <tr class=''><td class='tooltip k11'>Hard Leather Armor    2    2    2   Normal       Armor      1</td></tr>
+    <tr class=''><td class='tooltip k11'>Burnt Wand            1    1    1   Exceptional  Wand      19</td></tr>
+    <tr class=''><td class='tooltip k11'>Holy Water Sprinkler  3    3    3   Exceptional  Scepter   25</td></tr>
+    <tr class=''><td class='tooltip k11'>Bone Knife            1    1    1   Elite        Dagger    43</td></tr>
+    <tr class=''><th                    >Name          ilvl 1-25  26-40  41+ Quality      Type      Equip clvl</th></tr>
 </table>
 <br>
 <table class='head ios-visible'>
