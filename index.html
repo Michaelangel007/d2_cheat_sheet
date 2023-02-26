@@ -1976,6 +1976,15 @@ function findTableButton( tablename )
     return null;
 }
 
+// Optional: width
+// Optional: character to pad left with, such as '0'; will default to space
+function padLeft( text, width, c )
+{
+    if( !width ) return "";
+    if( !c ) c = ' ';
+    return ("" + new Array( width ).join( c ) + text).slice( -width );
+}
+
 // Serialization ______________________________________________________
 
 function collapseLoad()
@@ -2100,15 +2109,6 @@ function dataSave()
 }
 
 // Runes ______________________________________________________________
-
-// Optional: width
-// Optional: character to pad left with, such as '0'; will default to space
-function padLeft( text, width, c )
-{
-    if( !width ) return "";
-    if( !c ) c = ' ';
-    return ("" + new Array( width ).join( c ) + text).slice( -width );
-}
 
 function getFirstWord( text )
 {
