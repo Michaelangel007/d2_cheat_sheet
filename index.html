@@ -2564,12 +2564,12 @@ function onCollapseAll( button )
     button.collapsed = (!!!button.collapsed)|0;
     button.textContent = COLLAPSE[ button.collapsed ];
 
-    var ibutton, buttons = document.getElementsByTagName( 'button' ), nbuttons = buttons.length, buttonTableCollapse, buttonTableReference;
+    var iButton, aButtons = document.getElementsByTagName( 'button' ), nButtons = aButtons.length, buttonTableCollapse, buttonTableReference;
 
-    for( ibutton = 0; ibutton < nbuttons; ibutton++ )
+    for( iButton = 0; iButton < nButtons; iButton++ )
     {
         // Does this button refer to a table that can be collapsed?
-        buttonTableCollapse  = buttons[ ibutton ];
+        buttonTableCollapse  = aButtons[ iButton ];
         buttonTableReference = buttonTableCollapse.value;
 
         if ((buttonTableReference !== undefined) && buttonTableReference.length)
