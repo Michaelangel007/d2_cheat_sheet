@@ -24,17 +24,19 @@
  * Collapsible tables
     * Can collapse most of the tables, click on the `-` or `+` button in the top right of the tables (new in v1.18)
     * Click on "Collapse" / "Expand" to collapse/expand all tables (new in 1.31)
+    * Collapse state is persistent (new in 1.84)
  * Act II Mercs
  * Area Levels
    * Shows alvl for every difficulty & zone
    * Shows WP icon for areas that have a waypoint
+   * Shows Terror Zone icon if that area is eligible
    * Work-in-Progress map layout summary
    * Color coded area levels for 83, 84, 85
    * Color coded directions
  * Crafted Gear recipes
  * Gambling odds and few items (new in v1.33)
  * Holy Grail tracking -- no need to login, continue where you left off time you (re)load the page
-   * Can sort by Owned Sets, Set Names, Owned Uniques, Unique Names, Base Name or TC
+   * Can sort by Owned Misc., Owned Sets, Set Names, Owned Uniques, Unique Names, Base Name or TC
  * Essences farming
  * Pandemonium Event (key/organ farming)
  * Shopping tables
@@ -118,7 +120,7 @@ Special thanks to walkawayy for 2.4 Runewords, Wyrda65 for updated alvl 85 info.
 
 # Not Doing
 
- * url param to keep state of collapsed tables.  Not needed since table collapse state is persistent. (Unforunately this is currently bugged.)
+ * url param to keep state of collapsed tables.  Not needed since table collapse state is persistent. (Fixed in version 1.84)
 
 
-Last Updated: Sat, Feb 25, 2023.
+Last Updated: Sun, Feb 26, 2023.
