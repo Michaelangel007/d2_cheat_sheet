@@ -2952,13 +2952,13 @@ function updateHolyGrailButton( button, isToggle )
     if (isSet && (index < NUM_SETS))
         state = gaHolyGrailSets[ index ] = (gaHolyGrailSets[ index ] ^ isToggle);
     else
-        if (index < NUM_UNQS)
-            state = gaHolyGrailUnqs[ index ] = (gaHolyGrailUnqs[ index ] ^ isToggle);
+    if (index < NUM_UNQS)
+        state = gaHolyGrailUnqs[ index ] = (gaHolyGrailUnqs[ index ] ^ isToggle);
 
     var colorize =
     [
-        "mis", // Missing = red
-        "own", // OWned   = green
+        "mis", // MISsing = red
+        "own", // OWNed   = green
     ];
 
     if (state >= 0)
