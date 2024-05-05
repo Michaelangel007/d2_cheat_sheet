@@ -1803,6 +1803,8 @@ var RECIPES = [
 
 // Debugging __________________________________________________________
 
+	var gsDebugTableWidth = "table.belts";
+
 function DumpHolyGrail()
 {
     var tc, totalNorm = 0, totalSets = 0, totalUnqs = 0;
@@ -2380,8 +2382,10 @@ function initTableCollapseBestFit()
 function initTableCollapseMinWidth()
 {
     var div, divs = document.getElementsByTagName( 'div' ), ndivs = divs.length,
-        dv, cs, parent, th, tr, tb, ta, name,
+        dv, cs, parent, th, tr, tb, ta, tn,
         rows, row, width = 0, minWidth;
+
+    var cols, minColWidths, name, iCol, child, tableName; // DEBUG
 
     for( div = 0; div < ndivs; div++ )
     {
@@ -2393,9 +2397,12 @@ function initTableCollapseMinWidth()
             tr = th.parentElement; // row
             tb = tr.parentElement; // body
             ta = tb.parentElement; // table
+            tn = ta.getAttribute('id'); // name
 
-name = ta.getAttribute('id');
-//console.log( "Table Min Width: %o, %o", ta, name );
+            name = (gsDebugTableWidth === tn)
+                 ? tn
+                 : null; // DEBUG
+//name = tn;
 
             // Can't used minWidth since it may not be set
             //     ta.style.width = ta.style.minWidth;
@@ -2407,6 +2414,24 @@ name = ta.getAttribute('id');
                 if (width && (minWidth < width))
                     minWidth = width;
             }
+
+            if (name !== null) // DEBUG
+            {
+                console.log( "Auto-calculating '" + name + "' min width...\n  Width = " + width + "\n  MinWidth = " + minWidth );
+
+                cols = tr.childElementCount;
+                minColWidths = new Array( cols ).fill( 0 );
+                for ( iCol = 0; iCol < cols; iCol++ )
+                {
+                    child = rows[0].children[ iCol ];
+                    minColWidths[ iCol ] = getComputedStyle( child ).width;
+                    console.log( "Col #" + iCol + " width = " +  minColWidths[ iCol ] );
+                }
+            }
+
+// if a table is hidden then width may be NaN
+// if (isNaN(width)) console.warn( "Width NAN for '" + tn + "'" );
+
             var px = (minWidth) + 'px';
             ta.style.width    = px;
             ta.style.minWidth = px;
