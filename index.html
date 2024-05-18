@@ -3010,12 +3010,20 @@ function selectRuneWordHeader( selected )
         if( userClasses.length )
             userClasses.forEach( classname =>
                 {
-                    var classes = elem.getAttribute( 'class' ).split( ' ' );
-                    var offset  = classes.indexOf( classname );
-                    if (offset < 0)
+                    var classes = elem.getAttribute( 'class' );
+                    if (classes === null)
                     {
-                        classes.push( classname );
-                        elem.setAttribute( 'class', classes.join( ' ' ) );
+                        elem.setAttribute( 'class', classname );
+                    }
+                    else
+                    {
+                        var list    = classes.split( ' ' );
+                        var offset  = list.indexOf( classname );
+                        if (offset < 0)
+                        {
+                            list.push( classname );
+                            elem.setAttribute( 'class', list.join( ' ' ) );
+                        }
                     }
                 }
             );
@@ -3028,11 +3036,19 @@ function selectRuneWordHeader( selected )
         if( userClasses.length )
             userClasses.forEach( classname =>
                 {
-                    var classes = elem.getAttribute( 'class' ).split( ' ' );
-                    var offset  = classes.indexOf( classname );
-                    if (offset >= 0)
-                        classes.splice( offset, 1 );
-                    elem.setAttribute( 'class', classes.join( ' ' ) );
+                    var classes = elem.getAttribute( 'class' );
+                    if (classes === null)
+                    {
+                        list = [];
+                    }
+                    else
+                    {
+                        var list    = classes.split( ' ' );
+                        var offset  = list.indexOf( classname );
+                        if (offset >= 0)
+                            list.splice( offset, 1 );
+                    }
+                    elem.setAttribute( 'class', list.join( ' ' ) );
                 }
             );
     }
