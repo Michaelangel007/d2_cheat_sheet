@@ -1862,7 +1862,9 @@ var RECIPES = [
 
         gaHolyGrailMapRowToNorm = [],
         gaHolyGrailMapRowToSets = [],
-        gaHolyGrailMapRowToUnqs = [];
+        gaHolyGrailMapRowToUnqs = [],
+
+        gbScrollBarsVisible = true; // saved
 
     var gaRuneOrder =
     [
@@ -2206,6 +2208,14 @@ function dataLoad()
     }
 
     updateHolyGrail();
+
+    var sb = localStorage.getItem( 'scrollbarsVisible' );
+    if ((sb !== undefined) && (sb !== null))
+    {
+        temp = JSON.parse( sb );
+        gbScrollBarsVisible = !!temp;
+        UpdateScrollBarsVisible();
+    }
 }
 
 function dataSave()
@@ -2781,6 +2791,13 @@ function onResize()
     console.log( 'Dimension: ' + dim );
     var debug = document.getElementById( 'screen-size' );
     debug.innerText = dim;
+}
+
+function onScrollBars( button )
+{
+    gbScrollBarsVisible = !gbScrollBarsVisible;
+    UpdateScrollBarsVisible();
+    localStorage.setItem( 'scrollbarsVisible', JSON.stringify( gbScrollBarsVisible ) );
 }
 
 function onSortHolyGrailByBaseName() { selectHolyGrailHeader( 'btnHolyGrailBaseName'  ); updateHolyGrailOrder    ( gaHolyGrailSortByBaseName  ) };
@@ -3450,6 +3467,17 @@ function updateRuneWordsVisible()
         setElementVisible(elementToSetVisible, seen);
     }
 }
+
+function UpdateScrollBarsVisible()
+{
+    if (gbScrollBarsVisible)
+        document.body.style.overflow = 'visible';
+    else
+        document.body.style.overflow = 'hidden';
+
+    var button = document.getElementById('scroll_bars');
+    setElementVisible( button, gbScrollBarsVisible );
+}
         </script>
     </head>
 <body onload='onLoad();' onresize='onResize();'><div id='content'>
@@ -3462,6 +3490,7 @@ function updateRuneWordsVisible()
 <button type='button' id='mono'                  onclick='onMono(this)       ;'>Mono</button>
 <button type='button' id='color'        disabled onclick='onColor(this)      ;'>Color</button>
 <button type='button' id='collapse_all'          onclick='onCollapseAll(this);'>Collapse</button>
+<button type='button' id='scroll_bars'           onclick='onScrollBars(this) ;'>&#x2195;</button>
             <br>
             <br>
             <table class='head' style='min-width:730px' id='table.fcr'>
