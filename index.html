@@ -200,6 +200,9 @@
     .sorc { background-color: hsl(240 100% 15%); }
     .sord { background-color: hsl(240 100% 10%); } /* #003 */
 
+     .mono  { filter:grayscale(100%); }
+     .color { filter: none;           }
+
 /* ----- padding ----- */
 
     /* Resist spacer */
@@ -2732,7 +2735,8 @@ function onCollapseAll( button )
 
 function onColor( button )
 {
-    document.getElementById('content').style = '';
+    var content = document.getElementById('content');
+    _removeClasses( content, 'mono' );
 
     if( !button.disabled )
     {
@@ -2776,7 +2780,8 @@ function onLoad()
 
 function onMono( button )
 {
-    document.getElementById('content').style = 'filter:grayscale(100%);';
+    var content = document.getElementById('content');
+    _addClasses( content, 'mono' );
 
     if( !button.disabled )
     {
