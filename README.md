@@ -45,6 +45,7 @@
  * XP Tables
     * Power Leveling
     * Level for each difficulty & area
+    * Full XP from Level 1 to 99
  * 4os sword farming
  * 85 alvl (TC 84/87) farming info  (Updated for Patch 2.4)
  * Monochrome/Color buttons
@@ -111,7 +112,6 @@ Special thanks to walkawayy for 2.4 Runewords, Wyrda65 for updated alvl 85 info.
  * Add map layout hints -- see https://docs.google.com/spreadsheets/d/1UQP7PjHgCJWN-s42bUtGsR18f9GNh7JJ15QE7D6CnHE/edit#gid=0
  * Customize yellow hover color
  * Eth bugging def table for classic D2
- * Full xp table?
  * Table header pop-up instructions --  -- pisseningly
  * Diminishing MF -- gekido2802 -- https://diablo2.diablowiki.net/Magic_find_diminishing_returns
  * Base weapon speed mods -- Lokhe -- http://classic.battle.net/diablo2exp/items/elite/swords.shtml
@@ -123,4 +123,4 @@ Special thanks to walkawayy for 2.4 Runewords, Wyrda65 for updated alvl 85 info.
  * url param to keep state of collapsed tables.  Not needed since table collapse state is persistent. (Fixed in version 1.84)
 
 
-Last Updated: Sun, Feb 26, 2023.
+Last Updated: Fri, Sept. 27, 2024.
