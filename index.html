@@ -1067,9 +1067,7 @@ td
         font-size       : 16px;
         width           : 1300px;
         max-width       : 1300px;
-    /*
         overflow-x      : hidden;
-    */
         overflow-y      : scroll;
     }
 
@@ -2766,11 +2764,10 @@ function onLoad()
     document.addEventListener("touchstart", function() {},false);
 
     var content = document.getElementById('content');
-    document.body.style.overflow = 'hidden';
-    document.body.style.width = window.outerWidth + 'px';
-          content.style.width = window.outerWidth + 'px';
-          content.style.height = "9999px";
-          content.style.overflow = 'auto';
+    document.body.style.overflowY = 'scroll'; // Hide horizontal scroll bar
+    document.body.style.width = window.innerWidth + 'px';
+          content.style.width = window.innerWidth + 'px';
+          content.style.overflow = 'hidden'; // See: UpdateScrollBarsVisible, onLoad // // TODO: Track down why can't scroll the full height when scrollbars are hidden
 
     gaAvailableRunes = new Array( RUNES.length ).fill(1);
     initRuneTable();
@@ -3515,6 +3512,8 @@ function updateRuneWordsVisible()
 // ScrollBars
 function UpdateScrollBarsVisible()
 {
+    return; // See: UpdateScrollBarsVisible, onLoad // // TODO: Track down why can't scroll the full height when scrollbars are hidden
+
     if (gbScrollBarsVisible)
         document.body.style.overflow = 'scroll';
     else
@@ -3535,7 +3534,9 @@ function UpdateScrollBarsVisible()
 <button type='button' id='mono'                  onclick='onMono(this)       ;'>Mono</button>
 <button type='button' id='color'        disabled onclick='onColor(this)      ;'>Color</button>
 <button type='button' id='collapse_all'          onclick='onCollapseAll(this);'>Collapse</button>
+<!--
 <button type='button' id='scroll_bars'           onclick='onScrollBars(this) ;'>&#x2195;</button>
+-->
             <br>
             <br>
             <table class='head' style='min-width:730px' id='table.fcr'>
