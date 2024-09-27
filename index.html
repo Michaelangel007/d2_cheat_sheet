@@ -2765,9 +2765,14 @@ function onLoad()
 
     var content = document.getElementById('content');
     document.body.style.overflowY = 'scroll'; // Hide horizontal scroll bar
-    document.body.style.width = window.innerWidth + 'px';
-          content.style.width = window.innerWidth + 'px';
-          content.style.overflow = 'hidden'; // See: UpdateScrollBarsVisible, onLoad // // TODO: Track down why can't scroll the full height when scrollbars are hidden
+
+    // if not on mobile set width
+    //var isMobile = navigator.userAgentData.mobile;
+    //if( !isMobile )
+        document.body.style.width = window.innerWidth + 'px';
+
+    content.style.width = window.innerWidth + 'px';
+    content.style.overflow = 'hidden'; // See: UpdateScrollBarsVisible, onLoad // // TODO: Track down why can't scroll the full height when scrollbars are hidden
 
     gaAvailableRunes = new Array( RUNES.length ).fill(1);
     initRuneTable();
@@ -2809,13 +2814,19 @@ function onMono( button )
 
 function onResize()
 {
-    var dim = getScreenSize();
-    console.log( 'Dimension: ' + dim );
+    var dim = getScreenSize()
+            + ' (' + window.outerWidth
+            + ' x ' + window.outerHeight
+            + ')';
     var debug = document.getElementById( 'screen-size' );
-    debug.innerText = dim;
+    debug.innerText = dim
+    console.log( 'Dimension: ' + dim );
 
-    document.body.style.width = window.outerWidth + 'px';
-          content.style.width = window.outerWidth + 'px';
+    //var isMobile = navigator.userAgentData.mobile;
+    //if( !isMobile )
+        document.body.style.width = window.outerWidth + 'px';
+
+    content.style.width = window.outerWidth + 'px';
 }
 
 function onScrollBars( button )
@@ -7620,7 +7631,7 @@ Yes, goblins exist in D4:
 </pre>
 
 <hr class='one'>
-<span style='font-size:12px;'>Version <a href="https://github.com/Michaelangel007/d2_cheat_sheet/commits">1.101</a>, Last Updated Fri, Sept. 27, 2024.</span>
+<span style='font-size:12px;'>Version <a href="https://github.com/Michaelangel007/d2_cheat_sheet/commits">1.102</a>, Last Updated Fri, Sept. 27, 2024.</span>
 <span style='font-size:10px;'>CSS Debug: Screen Size:</span> <span id='screen-size'>?</span>, <span class='ios-hidden' >iOS-hidden</span> <span class='ios-visible'>iOS-visible</span>
 <span style='font-size:6px;'>All bugs are due to Anthony slacking on QA.</span>
 </div></body>
