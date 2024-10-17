@@ -42,6 +42,7 @@
  * Shopping tables
  * Tomb locations
  * Upped uniques
+ * Version Switcher (See Cactus under Misc. Links)
  * XP Tables
     * Power Leveling
     * Level for each difficulty & area
@@ -123,4 +124,4 @@ Special thanks to walkawayy for 2.4 Runewords, Wyrda65 for updated alvl 85 info.
  * url param to keep state of collapsed tables.  Not needed since table collapse state is persistent. (Fixed in version 1.84)
 
 
-Last Updated: Fri, Sept. 27, 2024.
+Last Updated: Friday, Oct. 17, 2024.
