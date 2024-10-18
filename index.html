@@ -2773,8 +2773,8 @@ function onLoad()
     document.body.style.overflowY = 'scroll'; // Hide horizontal scroll bar
 
     // if not on mobile set width
-    //var isMobile = navigator.userAgentData.mobile;
-    //if( !isMobile )
+    var isMobile = navigator.userAgentData.mobile;
+    if( !isMobile )
         document.body.style.width = window.innerWidth + 'px';
 
     content.style.width = window.innerWidth + 'px';
@@ -2828,8 +2828,8 @@ function onResize()
     debug.innerText = dim
     console.log( 'Dimension: ' + dim );
 
-    //var isMobile = navigator.userAgentData.mobile;
-    //if( !isMobile )
+    var isMobile = navigator.userAgentData.mobile;
+    if( !isMobile )
         document.body.style.width = window.outerWidth + 'px';
 
     content.style.width = window.outerWidth + 'px';
