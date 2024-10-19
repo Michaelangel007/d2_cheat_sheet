@@ -490,6 +490,11 @@
 
 
 /* Item Types */
+    span.low
+    {
+        color: #777;
+    }
+
     span.norm
     {
         color: #fff;
@@ -2770,9 +2775,10 @@ function onLoad()
     // if not on mobile set width
     var isMobile = navigator.userAgentData.mobile;
     if( !isMobile )
+    {
         document.body.style.width = window.innerWidth + 'px';
-
-    content.style.width = window.innerWidth + 'px';
+        content.style.width = window.innerWidth + 'px';
+    }
     content.style.overflow = 'hidden'; // See: UpdateScrollBarsVisible, onLoad // // TODO: Track down why can't scroll the full height when scrollbars are hidden
 
     gaAvailableRunes = new Array( RUNES.length ).fill(1);
@@ -2825,9 +2831,10 @@ function onResize()
 
     var isMobile = navigator.userAgentData.mobile;
     if( !isMobile )
+    {
         document.body.style.width = window.outerWidth + 'px';
-
-    content.style.width = window.outerWidth + 'px';
+        content.style.width = window.outerWidth + 'px';
+    }
 }
 
 function onScrollBars( button )
@@ -6182,6 +6189,8 @@ it now refreshes the expiration timer of the stack
  <span class='cbf'>Cannot be Frozen</span>
 </span></td></tr>
 </table>
+<b>Note:</b> Rune Words do NOT work in <span class='low'>Wirt's Leg</span>.</i>
+<br>
 <br>
 <table class='head' id='table.reroll'>
     <tr class='rt rb'><th><a href='http://classic.battle.net/diablo2exp/items/cube.shtml'><span class='r'>Rerolling Magic/Rare Items</span></a><div class='collapse'><button value='table.reroll' onclick='onCollapse(this);'>-</button></div></th></tr>
@@ -7304,9 +7313,11 @@ it now refreshes the expiration timer of the stack
     <i>#os</i> Number of open sockets in armor  <i>base</i>     Item type used for making runewords
         (Body, Helm, Shield, Weapon)     <i>affix</i>    An effect applied to weapon/armor. i.e. <span class='cb'>Crushing Blow</span>
         e.g. 1os, 2os, ..., 6os          <i>skillers</i> Grand Charm with +1 to skills
+    <i>SSF</i> Solf Self Found                  <i>P3</i>       <span class='command'>/players 3</span>
+                                         <i>P8</i>       <span class='command'>/players 8</span>
 
 <table><tr><td><pre>
-  Offense:
+  <b>Offense:</b>
     <span class='skill'>+# To All Skills</span>
     <span class='cb'   >##</span> Crushing Blow
     <span class='ds'   >##</span> Deadly Strike
@@ -7315,11 +7326,11 @@ it now refreshes the expiration timer of the stack
     <span class='ias'  >##</span> Increased Attack Speed
     <span class='ow'   >##</span> Open Wounds
 
-  Misc:
+  <b>Misc:</b>
     <span class='gold'>##</span> Extra Gold From Monsters
     <span class='mf'  >##</span> Better Chance of Getting Magic Items
 </pre></td><td><pre>
-  Defense:
+  <b>Defense:</b>
     <span class='dr'   >##</span> Damage Reduced
     <span class='fbr'  >##</span> Faster Block Rate
     <span class='fhr'  >##</span> Faster Hit Recovery
@@ -7383,8 +7394,10 @@ it now refreshes the expiration timer of the stack
     * <a href='https://traderie.com/diablo2resurrected'>https://traderie.com/diablo2resurrected</a> -- Trade Site
     * <a href='https://diablo2.io/trade/'>https://diablo2.io/trade/</a> -- Trade Site
     * <a href='D2jsp.org'>D2jsp.org</a> -- Trade Site
+  Version Switcher
+    * <a href='https://codeberg.org/fearedbliss/Cactus'>Cactus</a> -- Version Switcher (<b>Original,</b> Not Resurrected), Character Isolator, and Mod Manager for Diablo II
 
-Thanks:
+<b id='thanks'>Thanks:</b>
   * /u/Obliivescence        for catching   TC84 header info
   * /u/Fragrant_Draws       for catching   broken user name link
   * /u/Drak_Gaming          for catching   Ama 1H and 2H FBR being swapped
@@ -7418,6 +7431,7 @@ Thanks:
   * /u/Hezkezl              for suggestion of L/C/R cleanup
   * /u/-Rhialto-            for suggestion of linking version number to git commit history
   * /u/capturedthroughglass for suggestion of making it easier to see which runes Countess drops without tooltips
+  * /u/aurelgheata7         for link to       Cactus; D2 Version Switcher
   * pairofdocs              for suggestion of recharging items and example of Teleport staff
   * MarcusQuixabeira        for tweaking   of tooltip x position to not cover "Fav" button
   * ZehelFenris             for catching   of Act 3 caves being listed in wrong zone
@@ -7435,6 +7449,7 @@ Thanks:
   * Korndaweizen            for fixing     Runewords z-order with missing runes on mobile
   * sir-wilhelm             for catching   bad HTML tags, alternating row colors for 2.6 ladder runewords
   * CafeRacer400            for suggestion of crude cube recipes
+  * crbentle                for fixing     width on mobile
 </pre>
 <h2 id='thoughts'>My Thoughts on Diablo 2, Diablo 3, Diablo 4, and other ARPGs.</h2>
 Quick summary of popular ARPGs:
@@ -7504,7 +7519,7 @@ Good:
 * Gamepad support
 * Cross-platform online characters
 * Extended Character Details panel
-* Terror Zones (random zone every 30 mins is at max level of that difficulty)
+* Terror Zones (random zone every hour is at max level of that difficulty)
 
 Bad:
 
@@ -7632,7 +7647,7 @@ Yes, goblins exist in D4:
 </pre>
 
 <hr class='one'>
-<span style='font-size:12px;'>Version <a href="https://github.com/Michaelangel007/d2_cheat_sheet/commits">1.102</a>, Last Updated Fri, Sept. 27, 2024.</span>
+<span style='font-size:12px;'>Version <a href="https://github.com/Michaelangel007/d2_cheat_sheet/commits">1.107</a>, Last Updated Sat., Oct. 19, 2024.</span><br>
 <span style='font-size:10px;'>CSS Debug: Screen Size:</span> <span id='screen-size'>?</span>, <span class='ios-hidden' >iOS-hidden</span> <span class='ios-visible'>iOS-visible</span>
 <span style='font-size:6px;'>All bugs are due to Anthony slacking on QA.</span>
 </div></body>
