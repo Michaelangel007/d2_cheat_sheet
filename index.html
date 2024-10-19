@@ -2775,9 +2775,10 @@ function onLoad()
     // if not on mobile set width
     var isMobile = navigator.userAgentData.mobile;
     if( !isMobile )
+    {
         document.body.style.width = window.innerWidth + 'px';
-
-    content.style.width = window.innerWidth + 'px';
+        content.style.width = window.innerWidth + 'px';
+    }
     content.style.overflow = 'hidden'; // See: UpdateScrollBarsVisible, onLoad // // TODO: Track down why can't scroll the full height when scrollbars are hidden
 
     gaAvailableRunes = new Array( RUNES.length ).fill(1);
@@ -2830,9 +2831,10 @@ function onResize()
 
     var isMobile = navigator.userAgentData.mobile;
     if( !isMobile )
+    {
         document.body.style.width = window.outerWidth + 'px';
-
-    content.style.width = window.outerWidth + 'px';
+        content.style.width = window.outerWidth + 'px';
+    }
 }
 
 function onScrollBars( button )
