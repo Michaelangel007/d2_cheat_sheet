@@ -1884,7 +1884,8 @@ var RECIPES = [
         gaHolyGrailMapRowToSets = [],
         gaHolyGrailMapRowToUnqs = [],
 
-        gbScrollBarsVisible = true; // saved
+        gbScrollBarsVisible = true, // saved
+        gbIsMobile = false;
 
     var gaRuneOrder =
     [
@@ -2764,6 +2765,26 @@ function onColor( button )
 
 function onLoad()
 {
+    gbIsMobile = navigator.userAgentData.mobile;
+
+    // We can't use matchMedia with ChromeMobileDevice
+    //    var mobile = matchMedia( 'max-device-width: 1000px' );
+    //    console.log( "Mobile: ", mobile.matches );
+    var bNarrowWidth = (window.outerWidth <= 1000);
+    if (!gbIsMobile && bNarrowWidth)
+        gbIsMobile = bNarrowWidth;
+
+    var   sQuery =  window.location.search;
+    const sParam = new URLSearchParams(sQuery);
+    //    console.log( "Args: ", sQuery );
+    //    console.log( "Parm: ", sParam );
+    if (sParam.has('mobile'))
+    {
+        var val = sParam.get('mobile').toLowerCase();
+        gbIsMobile = val === 'true';
+        console.info( 'Overriding mobile! ' + gbIsMobile );
+    }
+
     onResize();
 
     // iOS touch / hover
@@ -2773,8 +2794,7 @@ function onLoad()
     document.body.style.overflowY = 'scroll'; // Hide horizontal scroll bar
 
     // if not on mobile set width
-    var isMobile = navigator.userAgentData.mobile;
-    if( !isMobile )
+    if( !gbIsMobile )
     {
         document.body.style.width = window.innerWidth + 'px';
         content.style.width = window.innerWidth + 'px';
@@ -2824,13 +2844,13 @@ function onResize()
     var dim = getScreenSize()
             + ' (' + window.outerWidth
             + ' x ' + window.outerHeight
-            + ')';
+            + ') '
+            + (gbIsMobile ? 'mobile' : 'desktop' );
     var debug = document.getElementById( 'screen-size' );
     debug.innerText = dim
     console.log( 'Dimension: ' + dim );
 
-    var isMobile = navigator.userAgentData.mobile;
-    if( !isMobile )
+    if( !gbIsMobile )
     {
         document.body.style.width = window.outerWidth + 'px';
         content.style.width = window.outerWidth + 'px';
