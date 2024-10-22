@@ -1073,8 +1073,6 @@ td
         font-size       : 16px;
         width           : 1300px;
         max-width       : 1300px;
-        overflow-x      : hidden;
-        overflow-y      : scroll;
     }
 
     .center
@@ -2791,6 +2789,7 @@ function onLoad()
     document.addEventListener("touchstart", function() {},false);
 
     var content = document.getElementById('content');
+    document.body.style.overflowX = 'hidden';
     document.body.style.overflowY = 'scroll'; // Hide horizontal scroll bar
 
     // if not on mobile set width
@@ -2799,7 +2798,7 @@ function onLoad()
         document.body.style.width = window.innerWidth + 'px';
         content.style.width = window.innerWidth + 'px';
     }
-    content.style.overflow = 'hidden'; // See: UpdateScrollBarsVisible, onLoad // // TODO: Track down why can't scroll the full height when scrollbars are hidden
+    //content.style.overflow = 'hidden'; // See: UpdateScrollBarsVisible, onLoad // // TODO: Track down why can't scroll the full height when scrollbars are hidden
 
     gaAvailableRunes = new Array( RUNES.length ).fill(1);
     initRuneTable();
@@ -2862,6 +2861,41 @@ function onScrollBars( button )
     gbScrollBarsVisible = !gbScrollBarsVisible;
     UpdateScrollBarsVisible();
     localStorage.setItem( 'scrollbarsVisible', JSON.stringify( gbScrollBarsVisible ) );
+}
+
+// body
+    //    overflow-x      : hidden;
+    //    overflow-y      : scroll;
+function onToggleX( button )
+{
+    // _removeClasses( document.body, 'overx' );
+    // _addClasses   ( document.body, 'hidex' );
+    if (button.state === undefined) button.state = false;
+    button.state = !button.state;
+    if (button.state)
+    {
+        document.body.style.overflowX = 'scroll';
+    }
+    else
+    {
+        document.body.style.overflowX = 'hidden'; // Hide horizontal scroll bar
+    }
+console.info( document.body.style.overflowX );
+}
+
+function onToggleY( button )
+{
+    if (button.state === undefined) button.state = false;
+    button.state = !button.state;
+    if (button.state)
+    {
+        document.body.style.overflowY = 'hidden';
+    }
+    else
+    {
+        document.body.style.overflowY = 'scroll'; // Hide horizontal scroll bar
+    }
+console.info( document.body.style.overflowY );
 }
 
 function onSortHolyGrailByBaseName() { selectHolyGrailHeader( 'btnHolyGrailBaseName'  ); updateHolyGrailOrder    ( gaHolyGrailSortByBaseName  ) };
@@ -3564,6 +3598,9 @@ function UpdateScrollBarsVisible()
         </script>
     </head>
 <body onload='onLoad();' onresize='onResize();'><div id='content'>
+<button type='button' id='toggle_x'              onclick='onToggleX(this)    ;'>X</button>
+<button type='button' id='toggle_y'              onclick='onToggleY(this)    ;'>Y</button>
+<br>
 <span style='font-size:14px;'>My <a href="#thoughts">thoughts</a> on D2, D3, D4, and other ARPGs.</span><br>
 <table class='head'>
     <tr>
@@ -7667,7 +7704,7 @@ Yes, goblins exist in D4:
 </pre>
 
 <hr class='one'>
-<span style='font-size:12px;'>Version <a href="https://github.com/Michaelangel007/d2_cheat_sheet/commits">1.108 test</a>, Last Updated Sat., Oct. 19, 2024.</span><br>
+<span style='font-size:12px;'>Version <a href="https://github.com/Michaelangel007/d2_cheat_sheet/commits">1.108a test</a>, Last Updated Tues., Oct. 22, 2024.</span><br>
 <span style='font-size:10px;'>CSS Debug: Screen Size:</span> <span id='screen-size'>?</span>, <span class='ios-hidden' >iOS-hidden</span> <span class='ios-visible'>iOS-visible</span>
 <span style='font-size:6px;'>All bugs are due to Anthony slacking on QA.</span>
 </div></body>
