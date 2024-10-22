@@ -2875,10 +2875,12 @@ function onToggleX( button )
     if (button.state)
     {
         document.body.style.overflowX = 'scroll';
+        button.innerHTML = 'X -> hide';
     }
     else
     {
         document.body.style.overflowX = 'hidden'; // Hide horizontal scroll bar
+        button.innerHTML = 'X -> scroll';
     }
 console.info( document.body.style.overflowX );
 }
@@ -2890,10 +2892,12 @@ function onToggleY( button )
     if (button.state)
     {
         document.body.style.overflowY = 'hidden';
+        button.innerHTML = 'Y -> hide';
     }
     else
     {
         document.body.style.overflowY = 'scroll'; // Hide horizontal scroll bar
+        button.innerHTML = 'Y -> scroll';
     }
 console.info( document.body.style.overflowY );
 }
