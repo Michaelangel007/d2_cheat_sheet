@@ -5,6 +5,8 @@
 # QoL Features
 
  * Readable on desktop and mobile
+ * "Smart" anchors in the URL.  One can omit the `table.` in the URL:
+   * e.g. `#totals` is the same as: `#table.totals`
  * Interactive -- tooltips for runes and runewords (now includes Patch 2.6)
    * Yellow highlight hover row pointer for all tables
  * click on runes to toggle "rune ownership"
@@ -124,4 +126,4 @@ Special thanks to walkawayy for 2.4 Runewords, Wyrda65 for updated alvl 85 info.
  * url param to keep state of collapsed tables.  Not needed since table collapse state is persistent. (Fixed in version 1.84)
 
 
-Last Updated: Friday, Oct. 17, 2024.
+Last Updated: Sunday, Nov. 3, 2024.
