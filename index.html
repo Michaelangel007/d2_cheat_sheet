@@ -2109,6 +2109,11 @@ function findTableButton( tablename )
     return null;
 }
 
+// https://programming.bogdanbucur.eu/how-to-get-the-url-anchor-with-javascript/
+function getAnchor() {
+    return (document.URL.split('#').length > 1) ? document.URL.split('#')[1] : null;
+}
+
 // Optional: width
 // Optional: character to pad left with, such as '0'; will default to space
 function padLeft( text, width, c )
@@ -2826,6 +2831,32 @@ function onLoad()
     onSortRuneWordsByOwned();
 
     onSortHolyGrailBySetOwn();
+
+    var sAnchorName = getAnchor();
+    if (sAnchorName)
+    {
+        var anchorName = sAnchorName;
+        var anchor = document.getElementById( sAnchorName );
+        if (!anchor)
+        {
+            // check if the user omitted the `table.` prefix
+            anchorName = 'table.' + sAnchorName;
+            anchor = document.getElementById( anchorName );
+        }
+
+        if (anchor)
+        {
+            // We need to delay scrolling until the next repaint
+            // https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
+            //  anchor.scrollTo();
+            //  anchor.scrollIntoView(false);
+            requestAnimationFrame( () =>
+            {
+                anchor.scrollIntoView( true ); // true = put anchor at top of page
+console.info( "Scrolling to ... ", anchorName );
+            });
+        }
+    }
 }
 
 function onMono( button )
