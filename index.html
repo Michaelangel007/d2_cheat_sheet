@@ -1884,6 +1884,7 @@ var RECIPES = [
         gaHolyGrailMapRowToSets = [],
         gaHolyGrailMapRowToUnqs = [],
 
+        gContent = null,
         gbScrollBarsVisible = true, // saved
         gbIsMobile = false;
 
@@ -2753,8 +2754,7 @@ function onCollapseAll( button )
 
 function onColor( button )
 {
-    var content = document.getElementById('content');
-    _removeClasses( content, 'mono' );
+    _removeClasses( gContent, 'mono' );
 
     if( !button.disabled )
     {
@@ -2765,6 +2765,7 @@ function onColor( button )
 
 function onLoad()
 {
+    gContent = document.getElementById('content');
     gbIsMobile = navigator.userAgentData.mobile;
 
     // We can't use matchMedia with ChromeMobileDevice
@@ -2785,21 +2786,21 @@ function onLoad()
         console.info( 'Overriding mobile! ' + gbIsMobile );
     }
 
+    // This resets the scrolled content!
     onResize();
 
     // iOS touch / hover
     document.addEventListener("touchstart", function() {},false);
 
-    var content = document.getElementById('content');
     document.body.style.overflowY = 'scroll'; // Hide horizontal scroll bar
 
     // if not on mobile set width
     if( !gbIsMobile )
     {
         document.body.style.width = window.innerWidth + 'px';
-        content.style.width = window.innerWidth + 'px';
+        gContent.style.width = window.innerWidth + 'px';
     }
-    content.style.overflow = 'hidden'; // See: UpdateScrollBarsVisible, onLoad // // TODO: Track down why can't scroll the full height when scrollbars are hidden
+    gContent.style.overflow = 'hidden'; // See: UpdateScrollBarsVisible, onLoad // // TODO: Track down why can't scroll the full height when scrollbars are hidden
 
     gaAvailableRunes = new Array( RUNES.length ).fill(1);
     initRuneTable();
@@ -2829,8 +2830,7 @@ function onLoad()
 
 function onMono( button )
 {
-    var content = document.getElementById('content');
-    _addClasses( content, 'mono' );
+    _addClasses( gContent, 'mono' );
 
     if( !button.disabled )
     {
@@ -2853,7 +2853,7 @@ function onResize()
     if( !gbIsMobile )
     {
         document.body.style.width = window.outerWidth + 'px';
-        content.style.width = window.outerWidth + 'px';
+        gContent.style.width = window.outerWidth + 'px';
     }
 }
 
