@@ -115,7 +115,7 @@ Special thanks to walkawayy for 2.4 Runewords, Wyrda65 for updated alvl 85 info.
  * Add map layout hints -- see https://docs.google.com/spreadsheets/d/1UQP7PjHgCJWN-s42bUtGsR18f9GNh7JJ15QE7D6CnHE/edit#gid=0
  * Customize yellow hover color
  * Eth bugging def table for classic D2
- * Table header pop-up instructions --  -- pisseningly
+ * Table header pop-up instructions -- pisseningly
  * Diminishing MF -- gekido2802 -- https://diablo2.diablowiki.net/Magic_find_diminishing_returns
  * Base weapon speed mods -- Lokhe -- http://classic.battle.net/diablo2exp/items/elite/swords.shtml
  * `Layout` edit mode -- Issue #22
