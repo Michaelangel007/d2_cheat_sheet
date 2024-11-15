@@ -2771,7 +2771,14 @@ function onColor( button )
 function onLoad()
 {
     gContent = document.getElementById('content');
-    gbIsMobile = navigator.userAgentData.mobile;
+
+    // navigator.userAgentData.mobile isn't available on Chrome/Safari
+    // due to it being an experimental feature.
+    // gbIsMobile = navigator.userAgentData.mobile;
+    gbIsMobile = false;
+    if ("maxTouchPoints" in navigator)
+        gbIsMobile = (navigator.maxTouchPoints > 0);
+console.info( "Touch: " +  (navigator.maxTouchPoints > 0) );
 
     // We can't use matchMedia with ChromeMobileDevice
     //    var mobile = matchMedia( 'max-device-width: 1000px' );
