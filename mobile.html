@@ -3558,6 +3558,18 @@ function UpdateScrollBarsVisible()
         </script>
     </head>
 <body onload='onLoad();' onresize='onResize();'><div id='content'>
+<table>
+    <tr><td class='vatop'>
+<div class='c'>D2R <a href='https://news.blizzard.com/en-us/article/24179243/diablo-ii-resurrected-ladder-season-10-now-live'>Season 10</a> <b>Ladder Currency</b>:
+ 12x <div class='c'><img class='gem20' src='gems/amethyst_perfect.png' /></div>pameth &rarr; <span class='rune'>Mal</span>,
+ 50x <div class='c'><img class='gem20' src='gems/ruby_perfect.png' /><img class='gem20' src='gems/topaz_perfect.png' /><img class='gem20' src='gems/emerald_perfect.png' /><img class='gem20' src='gems/sapphire_perfect.png' /><img class='gem20' src='gems/diamond_perfect.png' /><img class='gem20' src='gems/skull_perfect.png' />
+ </div>pgems &rarr; <span class='rune'>Ist</span></div>
+    </td></tr>
+</table>
+<table class='head' style='min-width:730px; width: 1300px;'>
+    <tr><td>Before the Ladder ends...</td></tr>
+    <tr><td style='text-align: center;'><img class='scale50' src='pics/what_do_to_do_before_new_ladder_season_cheat_sheat.png' /></td></tr>
+</table><br>
 <span style='font-size:14px;'>My <a href="#thoughts">thoughts</a> on D2, D3, D4, and other ARPGs.</span><br>
 <table class='head'>
     <tr>
@@ -7203,6 +7215,15 @@ it now refreshes the expiration timer of the stack
     <tr class='bt bb'        ><th><meta                                                                   />Class<meta /> Abbr.  Str Dex Vit Eng   Life  Stam  Mana   Life/Vit  Stam/Vit  Mana/Eng    </th></tr>
 </table>
 <br>
+<table class='head' id='table.totals'>
+    <tr class='gt gb'><th             ><b>Skill Points                            Stat Points</b>                 <div class='collapse'><button value='table.totals' onclick='onCollapse(this);'>-</button></div></th></tr>
+    <tr class='g22'  ><td class='tooltip'>  +98 = (Level 99 - Level 1) * 1/Level                <a href="https://maxroll.gg/d2/d2planner/">D2/D2R Character Planner</a></td></tr>
+    <tr class='g20'  ><td class='tooltip'>  + 3 = 3 Difficulties * 1/Den of Evil                                        </td></tr>
+    <tr class='g22'  ><td class='tooltip'>  + 3 = 3 Difficulties * 1/Radament      +490 = (Level 99 - Level 1) * 5/Level</td></tr>
+    <tr class='g00'  ><td class='tooltip'>  + 6 = 3 Difficulties * 2/Izual         + 15 = 3 Difficulties * 5/Lam Esen   </td></tr>
+    <tr class='gt gb'><td class='tooltip'>= <b>110</b> Total Skill Points                = <b>505</b> Total Stat Points               </td></tr>
+</table>
+<br>
 <table class='head' id='table.xp'>
     <tr class='bt bb'><th><a href='https://classic.battle.net/diablo2exp/basics/levels.shtml'>Lev</a>   XP to Level    Total XP          % of total XP<div class='collapse'><button value='table.xp' onclick='onCollapse(this);' id='btn_collapse_xp'>-</button></div></th></tr>
     <tr class='b22   '><td class='tooltip'>  1   +         500  =           500   (  0.0000142%)   </td></tr>
@@ -7305,6 +7326,17 @@ it now refreshes the expiration timer of the stack
     <tr class='b00   '><td class='tooltip'> 98   + 291,058,498  = 3,520,485,254   (100.0000000%)</td></tr>
     <tr class='b22   '><td class='tooltip'> 99   + n/a          = 3,520,485,254                 </td></tr>
 </table>
+<br id='block'>
+Understanding <a href="https://old.reddit.com/r/diablo2/comments/1jb0v9o/there_is_clearly_something_wrong/mhsc21b/">Block Rate</a>.
+Dex needed fox max Block with <b>Holy Shield:</b> <span class='n'>0</span> <i>Holy Shield</i> (<span class='cob'>+0% Block</span>) vs <span class='n'>19+</span> <i>Holy Shield</i> (<span class='cob'>+35% Block</span>)<br>
+<table class='head' id='table.BlockHolyShield'>
+    <tr class='bt bb'><th><a href='https://classic.battle.net/diablo2exp/items/elite/paladinshields.shtml'>Pali Elite Shield</a>  Str  Block  0 HS dex&rarr; 19 HS<div class='collapse'><button value='table.BlockHolyShield' onclick='onCollapse(this);' id='btn_collapse_BlockHolyShield'>-</button></div></th></tr>
+    <tr class='b22'><td class='tooltip'>Sacred Targe        86    60%   198  <b>-63</b> = 135   </td></tr>
+    <tr class='b20'><td class='tooltip'>Sacred Rondache    109    58%   204  <b>-66</b> = 138   </td></tr>
+    <tr class='b22'><td class='tooltip'>Kurast Shield      124    55%   213  <b>-71</b> = 142   </td></tr>
+    <tr class='b20'><td class='tooltip'>Zakarum Shield     142    52%   222  <b>-76</b> = 146   </td></tr>
+    <tr class='b22'><td class='tooltip'>Vortex Shield      148    49%   233  <b>-83</b> = 150   </td></tr>
+</table>
 <hr>
 <pre>
 <b>Feedback:</b>
@@ -7348,7 +7380,7 @@ it now refreshes the expiration timer of the stack
     <span class='dr'   >##</span> Damage Reduced
     <span class='fbr'  >##</span> Faster Block Rate
     <span class='fhr'  >##</span> Faster Hit Recovery
-
+    <span class='cob'  >##</span> Chance of Blocking
     <span class='resf' >##</span> Fire Resist
     <span class='resc' >##</span> Cold Resist
     <span class='resl' >##</span> Lightning Resist
@@ -7378,6 +7410,8 @@ it now refreshes the expiration timer of the stack
 <b>Misc. Links:</b>
   Abbreviations
     * <a href='https://diablo2.diablowiki.net/Abbreviations_and_Acronyms'>https://diablo2.diablowiki.net/Abbreviations_and_Acronyms</a>
+  Builds
+    * <a href='https://maxroll.gg/d2/category/guides'>D2R Maxroll.gg Build Guides</a> -- Don't know what to build with your class? Start here.
   Calcs
     * <a href='https://d2.maxroll.gg/d2planner/'>https://d2.maxroll.gg/d2planner/</a> -- Awesome offline character + gear planner
     * <a href='https://d2.maxroll.gg/d2-drop-calculator'>https://d2.maxroll.gg/d2-drop-calculator</a> -- Drop Calculator
@@ -7403,6 +7437,8 @@ it now refreshes the expiration timer of the stack
     * <a href="http://classic.battle.net/diablo2exp/items/runewords-110.shtml">1.10 Runewords (Ladder)</a>
     * <a href="http://classic.battle.net/diablo2exp/items/runewords-111.shtml">1.11 Rune Words</a> (+2 to {class} Skill Levels)
     * <a href="https://i.imgur.com/2nTUs.png">Original inspiration</a> -- Diablo II Upgrading and Information
+  Single-Player
+    * <a href='https://d2runewizard.com/hero-editor'>Hero Editor</a> -- Awesome editor to streamline offline testing.
   Trading
     * <a href='https://diablo2.io/price-check'>https://diablo2.io/price-check </a> -- History of Item Price
     * <a href='https://traderie.com/diablo2resurrected'>https://traderie.com/diablo2resurrected</a> -- Trade Site
@@ -7474,6 +7510,7 @@ Quick summary of popular ARPGs:
 <li><b>Diablo 4:</b> One person's <i>backtracking</i> game,</li>
 <li><b>Diablo Immortal:</b> Blizzard's <i>banking</i> game,</li>
 <li><b>Path of Exile:</b> One person's <i>linking</i> game,</li>
+<li><b>Path of Exile 2:</b> GGG's <i>bushwhacking</i> game.</li>
 <li><b>Grim Dawn:</b> One person's <i>thinking</i> game.</li>
 <li><b>Last Epoch:</b> One person's <i>swinking</i> game.</li>
 </ul>
@@ -7503,7 +7540,7 @@ EASILY one of the top ten greatest games of all time (GOAT). Why have I been pla
 * Holy Grail (collect every unique item)
 * PvP (Player vs Player) include LLD (Low Level Dueling)
 * 7 Different classes each with 3+ builds
-* End-game content such as Uber Tristram and Terrorized Zones
+* End-game content such as Uber Tristram
 * Speed running
 * Outfitting my mules
 * Gambling / Gold Farming
@@ -7533,7 +7570,8 @@ Good:
 * Gamepad support
 * Cross-platform online characters
 * Extended Character Details panel
-* Terror Zones (random zone every hour is at max level of that difficulty)
+* End game <b>Terror Zones</b> (random zone every hour is at max level of that difficulty)
+* Sunder charms to break monster immunity
 
 Bad:
 
@@ -7587,8 +7625,7 @@ Why are my characters slots so limited? I want a FULL roster of both Softcore an
 <b>Verdict:</b> 5/10. Wait for sale; go play D2R, Grim Dawn, or even D3 (Season 28) in the meantime.
 
 Good:
-
-* No MTX (yet) from what I've seen.  (Horse Armor DLC?)
+* <strike>No MTX (yet) from what I've seen.  (Horse Armor DLC?)</strike>
 * Veteran difficulty is good.
 * Pinned Location shows the path on both the map and mini-map.
 * Optional side quests.
@@ -7610,6 +7647,7 @@ Good:
 
 Bad:
 
+* Over-priced MTX
 * Movement speed is WAY too slow.
 * Too much backtracking in dungeons.
 * Dungeons are too repetitive.
@@ -7661,7 +7699,7 @@ Yes, goblins exist in D4:
 </pre>
 
 <hr class='one'>
-<span style='font-size:12px;'>Version <a href="https://github.com/Michaelangel007/d2_cheat_sheet/commits">1.107</a>, Last Updated Sat., Oct. 19, 2024.</span><br>
+<span style='font-size:12px;'>Version <a href="https://github.com/Michaelangel007/d2_cheat_sheet/commits">1.113 mobile</a>, Last Updated Sun., Mar. 17, 2024.</span><br>
 <span style='font-size:10px;'>CSS Debug: Screen Size:</span> <span id='screen-size'>?</span>, <span class='ios-hidden' >iOS-hidden</span> <span class='ios-visible'>iOS-visible</span>
 <span style='font-size:6px;'>All bugs are due to Anthony slacking on QA.</span>
 </div></body>
