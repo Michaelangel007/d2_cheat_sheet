@@ -1,0 +1,1140 @@
+/* ----- Buttons ----- */
+    button
+    {
+        height   : 16px;
+        font-size: 12px;
+        line-height: 0;  /* hack to center text vertical */
+    }
+
+    .collapsed
+    {
+        height    : 0px;
+        max-height: 0px;
+        display   : none;
+    }
+
+    .collapse
+    {
+        align  : right;
+/*
+        display: inline-block;
+*/
+        float  : right;
+    }
+
+    .in
+    {
+        display       : inline-block;
+        vertical-align: 8px;
+    }
+
+    .out
+    {
+        height     : 30px;
+        line-height: 30px;
+    }
+
+    .rejuvs
+    {
+        content: url("pics/rejuv.png");
+    }
+
+    .rejuvf
+    {
+        content: url("pics/full_rejuv.png");
+    }
+
+/* ----- Checkboxes ----- */
+    .hg
+    {
+    }
+
+    .mis
+    {
+        color      : #F00;
+        font-weight: bold;
+    }
+
+    .own
+    {
+        color: #080;
+    }
+
+/* ----- Breaks ----- */
+
+    hr
+    {
+    }
+
+    .one
+    {
+        height       : 1px;
+        margin       :  0;
+        padding      :  0;
+    }
+
+/* ----- Background Colors ----- */
+
+    .r11
+    {
+        background-color: #100;
+    }
+
+    .r22
+    {
+        background-color: #200;
+    }
+
+    .g11
+    {
+        background-color: #010;
+    }
+
+    .g22
+    {
+        background-color: #020;
+    }
+
+    .b11
+    {
+        background-color: #112;
+    }
+
+    .b22
+    {
+        background-color: #114;
+    }
+
+    .k00
+    {
+        background-color: #000;
+    }
+
+    .k11
+    {
+        background-color: #111;
+    }
+
+    .k22
+    {
+        background-color: #222;
+    }
+
+    /* Act II alvl */
+    .y11
+    {
+        background-color: #320; /* CFB997 542; */
+    }
+
+    .y22
+    {
+        background-color: #431; /* F4E4B7 653; */
+    }
+
+    .p11
+    {
+        background-color: #303;
+    }
+
+    .p22
+    {
+        background-color: #202;
+    }
+
+    /* Tiers */
+    .stier { color: #000; background-color: hsl(  0 100% 75%); } /* rgb(255, 127, 127); */
+    .atier { color: #000; background-color: hsl( 30 100% 75%); } /* rgb(255, 191, 127); */
+    .btier { color: #000; background-color: hsl( 60 100% 75%); } /* rgb(255, 223, 127); */
+    .ctier { color: #000; background-color: hsl( 90 100% 75%); } /* rgb(255, 255, 127); */
+    .dtier { color: #000; background-color: hsl(120 100% 75%); } /* rgb(191, 255, 127); */
+    .ftier { color: #000; background-color: hsl(240 100% 75%); } /* rgb(127, 191, 255); */
+
+    .s66 { background-color: hsl(  0 100% 66%); } .s50 { background-color: hsl(  0 100% 60%); }
+    .a66 { background-color: hsl( 30 100% 50%); } .a50 { background-color: hsl( 30 100% 45%); }
+    .b66 { background-color: hsl( 60 100% 33%); } .b50 { background-color: hsl( 60 100% 25%); }
+    .c66 { background-color: hsl( 90 100% 66%); } .c50 { background-color: hsl( 90 100% 60%); }
+    .d66 { background-color: hsl(180 100% 66%); } .d50 { background-color: hsl(180 100% 60%); }
+
+    /* Class colors */
+    .zon { background-color: #023; }
+    .sin { background-color: #300; }
+    .bar { background-color: #220; }
+    .dru { background-color: #030; }
+    .nec { background-color: #303; }
+    .pal { background-color: #023; }
+    .sor { background-color: #003; } /* #114 */
+
+    .zons { background-color: hsl(200 100% 30%); }
+    .zona { background-color: hsl(200 100% 25%); }
+    .zonb { background-color: hsl(200 100% 20%); }
+    .zonc { background-color: hsl(200 100% 15%); }
+    .zond { background-color: hsl(200 100% 10%); } /* #023 */
+
+    .sins { background-color: hsl(  0 100% 30%); }
+    .sina { background-color: hsl(  0 100% 25%); }
+    .sinb { background-color: hsl(  0 100% 20%); }
+    .sinc { background-color: hsl(  0 100% 15%); }
+    .sind { background-color: hsl(  0 100% 10%); } /* #300 */
+
+    .bars { background-color: hsl( 60 100% 30%); }
+    .bara { background-color: hsl( 60 100% 25%); }
+    .barb { background-color: hsl( 60 100% 20%); }
+    .barc { background-color: hsl( 60 100% 15%); }
+    .bard { background-color: hsl( 60 100% 10%); } /* #220 */
+
+    .drus { background-color: hsl(120 100% 30%); }
+    .drua { background-color: hsl(120 100% 25%); }
+    .drub { background-color: hsl(120 100% 20%); }
+    .druc { background-color: hsl(120 100% 15%); }
+    .drud { background-color: hsl(120 100% 10%); } /* #030 */
+
+    .necs { background-color: hsl(300 100% 30%); }
+    .neca { background-color: hsl(300 100% 25%); }
+    .necb { background-color: hsl(300 100% 20%); }
+    .necc { background-color: hsl(300 100% 15%); }
+    .necd { background-color: hsl(300 100% 10%); } /* #303 */
+
+    .pals { background-color: hsl(200 100% 30%); }
+    .pala { background-color: hsl(200 100% 25%); }
+    .palb { background-color: hsl(200 100% 20%); }
+    .palc { background-color: hsl(200 100% 15%); }
+    .pald { background-color: hsl(200 100% 10%); } /* #023 */
+
+    .sors { background-color: hsl(240 100% 30%); }
+    .sora { background-color: hsl(240 100% 25%); }
+    .sorb { background-color: hsl(240 100% 20%); }
+    .sorc { background-color: hsl(240 100% 15%); }
+    .sord { background-color: hsl(240 100% 10%); } /* #003 */
+
+     .mono  { filter:grayscale(100%); }
+     .color { filter: none;           }
+
+/* ----- padding ----- */
+
+    /* Resist spacer */
+    .padd
+    {
+        color           : #FFF;
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
+    /* Spacer before Essences */
+    .padd5
+    {
+        padding-left: 5px;
+    }
+
+    /* Section indent */
+    .padd15
+    {
+        padding-left: 15px;
+    }
+
+/* ----- Spans ----- */
+
+    /* Area Levels */
+    span.alvl83 { color: #0F0; }
+    span.alvl84 { color: #08F; } /* 08F or F80 */
+    span.alvl85 { color: #F00; }
+
+    /* Layout -- Left / Center / Right */
+    /* span.r is reserved for red which is fine for right */
+    span.l { color: #4CF; } /* FF8 08F */
+    span.c { color: #0F0; }
+
+
+    /* Crushing Blow */
+    span.cb
+    {
+        color: #F84;
+    }
+
+    /* Can't Be Frozen */
+    span.cbf
+    {
+        color      : #46F;
+        font-weight: bold;
+    }
+
+    /* Deadly Strike */
+    span.ds
+    {
+        color: #FAF;
+    }
+
+    /* Damage Reduction */
+    span.dr
+    {
+        background-color: #088;
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
+    /* Essences */
+    span.twisted   { color: #485fb7; }
+    span.charged   { color: #c8a054; }
+    span.burning   { color: #b74a35; }
+    span.festering { color: #00a054; }
+
+    /* Farm Boss */
+    span.farm
+    {
+        color: #4EF;
+    }
+
+    /* Faster Block Rate */
+    span.fbr
+    {
+        background-color: #F00;
+        color           : #FFF;
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
+    /* Faster Cast Rate */
+    span.fcr
+    {
+        color: #4CF; /* 08F */
+    }
+
+    /* Faster Hit Recovery */
+    span.fhr
+    {
+        background-color: #08F; /* 23A */
+        color           : #FFF;
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
+    /* Gems */
+    .gemam { background-color: #303; } /* Amethyst */
+    .gemdi { background-color: #222; } /* Diamond  */
+    .gemem { background-color: #020; } /* Emerald  */
+    .gemru { background-color: #200; } /* Ruby     */
+    .gemsa { background-color: #003; } /* Sapphire */
+    .gemsk { background-color: #000; } /* Skull    */
+    .gemto { background-color: #220; } /* Topaz    */
+
+    /* Gold Find */
+    span.gold
+    {
+        color: yellow;
+    }
+
+    /* Increased Attack Speed */
+    span.ias
+    {
+        color: #4F8;
+    }
+
+    /* Ignores Target's Defense */
+    span.idr
+    {
+        color: #4EF;
+    }
+
+    /* Getting Magic Items */
+    span.mf
+    {
+        color: #A2F;
+        font-weight: bold;
+    }
+
+    /* Level Requirement */
+    span.n
+    {
+        color: #08F;
+    }
+
+    span.note
+    {
+        color     : #FF8; /* FF8 FFB Softer yellow */
+        font-style: italic;
+    }
+
+    span.noterune
+    {
+        color: #FFF;
+    }
+
+    /* Open Wounds */
+    span.ow
+    {
+        color: #F44;
+    }
+
+    /* Resist All */
+    span.resa
+    {
+        /* 800 080 00C */
+        /* #b55d59, #6e79b9, #f2e8a0, #57cf49 */
+        background-image: linear-gradient(to right, #80423f, #4c5380, #807a54, #36802d);
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
+    /* Cold Resist % */
+    span.resc
+    {
+        background-color: #6e79b9;
+        color           : #FFF;
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
+    /* Fire Resist % */
+    span.resf
+    {
+        background-color: #b55d59;
+        color           : #FFF;
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
+    /* Physical Resist % */
+    span.resh
+    {
+        background-color: #b8a886;
+        color           : #FFF;
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
+    /* Lightning Resist % */
+    span.resl
+    {
+        background-color: #f2e8a0;
+        color           : #000;
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
+    /* Magic Resist % */
+    span.resm
+    {
+        background-color: #c1893f;
+        color           : #FFF;
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
+    /* Poison Resist % */
+    span.resp
+    {
+        background-color: #57cf49;
+        color           : #FFF;
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
+    /* Inverse */
+    span.rev
+    {
+        background-color: #FFF;
+        color           : #000;
+    }
+
+    span.rot90
+    {
+        display  : inline-block;
+        vertical-align:text-bottom;
+        transform: rotate(90deg);
+    }
+
+    span.rune
+    {
+        color: orange;
+    }
+
+    /* Make it easier to see which runes belong to normal, nightmare, hell Countess */
+    span.rune_norm
+    {
+        color: #08F;
+    }
+    span.rune_nm
+    {
+        color: #44F;
+    }
+    span.rune_hell
+    {
+        color: #4EF;
+    }
+
+    /* +# to skills */
+    span.skill
+    {
+        background-image: linear-gradient(to right, #08F, #008);
+    }
+
+/* Rune Upgrades */
+    /* The 'x' in number of runes needed for upgraded: 3x */
+    span.x
+    {
+        color: #0FF;
+    }
+
+    /* The '#' of runes needed for upgraded: #x */
+    span.y
+    {
+        color: #FF8;
+    }
+
+
+/* Item Types */
+    span.low
+    {
+        color: #777;
+    }
+
+    span.norm
+    {
+        color: #fff;
+    }
+
+    span.magic
+    {
+        color: #46F;
+    }
+
+    span.rare
+    {
+        color: #d8b864;
+    }
+
+    span.set
+    {
+        color: #00FF00;
+    }
+
+    span.unq
+    {
+        color: #AA8866; /* #948064 */
+    }
+
+    /* Norm/Set/Unq Exceptional/Set/Unq Elite/Set/Uniq has really wide item names */
+    span.half
+    {
+        font-size       : 10px;
+    }
+    /* Tal Rasha's Fire-Spun Cloth */
+    span.tiny
+    {
+        font-size       : 9px;
+    }
+
+/* ----- Span Borders for Selected/Unselected ----- */
+
+    /* Holy Grail Enable */
+    .hge
+    {
+        background-color: #666;
+        border          : 1px solid #0AF;
+        color           : #F80;
+    }
+
+    /* Holy Grail Disable */
+    .hgd
+    {
+        background-color: #000;
+        color           : #FF8; /* FF8 FFB Softer yellow */
+        font-weight     : normal; /* Don't show columns headers in bold for readability */
+    }
+
+    /* Header Runes */
+    span.sel
+    {
+        background-color: #666;
+        border          : 1px solid #08F;
+        color           : orange;
+    }
+
+    /* Header Runeword Selected */
+    span.rws
+    {
+        background-color: #666;
+        border          : 1px solid #F00;
+        color           : #FFF;
+    }
+
+    /* Header Runeword Unselected */
+    span.rwu
+    {
+        background-color: #000;
+        color           : #FF8; /* FF8 FFB Softer yellow */
+    }
+
+    span.unsel
+    {
+        background-color: #000;
+        border          : 1px solid #000;
+        color           : orange;
+    }
+
+/* ---------- Table ---------- */
+
+    tr.gem, td.gem
+    {
+        font-family: sans-serif;
+    }
+
+    .debug
+    {
+        border: 1px dotted cyan;
+    }
+
+    .column1
+    {
+        min-width: 730px; /* for mobile */
+    }
+
+    .column2
+    {
+        margin-left: 24px;
+    }
+
+    /* Extracted from runetip */
+    .desk-runes2
+    {
+        width: 505px;
+    }
+
+    .pre
+    {
+        white-space: pre;
+    }
+
+    .size14
+    {
+        font-size  : 14px;
+    }
+
+    .size15
+    {
+        font-size  : 15px;
+    }
+
+    /* Treasure Class */
+    .tc
+    {
+        color: #0AF;
+    }
+
+table.head
+{
+    border-collapse: collapse;
+    margin         : 0;
+    padding        : 0;
+    text-align     : left;
+    table-layout   : fixed; /* iOS */
+}
+
+th
+{
+    color      : #FF8; /* FF8 FFB Softer yellow */
+    white-space: pre;
+}
+
+table, tr
+{
+    margin         : 0;
+    padding        : 0;
+    margin-block   : 0;
+    border-spacing : 0;
+    border-collapse: collapse;
+}
+
+td
+{
+    margin : 0;
+    padding: 0;
+}
+
+/* Top and Bottom line colors */
+    tr.rt
+    {
+        border-top   : 1px solid #F88;
+        margin-top   : 1px;
+    }
+
+    tr.rb
+    {
+        border-bottom: 1px solid #F88;
+        margin-bottom: 1px;
+    }
+
+    tr.gt
+    {
+        border-top   : 1px solid #8F8;
+        margin-top   : 1px;
+    }
+
+    tr.gb
+    {
+        border-bottom: 1px solid #8F8;
+        margin-bottom: 1px;
+    }
+
+    tr.bt
+    {
+        border-top   : 1px solid #08F;
+        margin-top   : 1px;
+    }
+
+    tr.bb
+    {
+        border-bottom: 1px solid #08F;
+        margin-bottom: 1px;
+    }
+
+    tr.kt
+    {
+        border-top   : 1px solid #FFF;
+        margin-top   : 1px;
+    }
+
+    tr.kb
+    {
+        border-bottom: 1px solid #FFF;
+        margin-bottom: 1px;
+    }
+
+    tr.yt
+    {
+        border-top   : 1px solid #FF8; /* softer yellow */
+        margin-top   : 1px;
+    }
+
+    tr.yb
+    {
+        border-bottom: 1px solid #FF8; /* softer yellow */
+        margin-bottom: 1px;
+    }
+
+    tr.raret
+    {
+        border-top   : 1px solid #d8b864;
+        margin-top   : 1px;
+    }
+
+    tr.rareb
+    {
+        border-bottom: 1px solid #d8b864;
+        margin-bottom: 1px;
+    }
+
+    tr.unqt
+    {
+        border-top   : 1px solid #948064; /* A59263; */
+        margin-top   : 1px;
+    }
+
+    tr.unqb
+    {
+        border-bottom: 1px solid #948064;
+        margin-bottom: 1px;
+    }
+
+/* Table Header */
+    span.r { color: #F88; }
+    span.g { color: #8F8; }
+    span.b { color: #4CF; }
+
+    .vatop
+    {
+        vertical-align: top;
+    }
+
+/* ---------- Tool Tips ---------- */
+.runetip
+{
+    display       : inline-block;
+    position      : relative;
+    height        : 30px;
+    white-space   : pre;
+}
+
+.runetip:hover
+{
+    background-color: #888;
+    color           : #000;
+    cursor          : pointer;
+}
+
+    .runetip .runehelp1
+    {
+        background-color: #123;
+        border          : 1px solid #08F;
+        border-radius   : 4px;
+        color           : #ddd;
+        font-family     : sans-serif;
+        font-size       : 14px;
+        padding         : 5px 0;
+        position        : absolute;
+        text-align      : center;
+        visibility      : hidden;
+        width           : 280px; /* Ist */
+        white-space     : normal; /* runetip has pre */
+        z-index         : 1;
+    }
+
+    .runetip .runehelp2
+    {
+        background-color: #123;
+        border          : 1px solid #08F;
+        border-radius   : 4px;
+        color           : #ddd;
+        font-family     : sans-serif;
+        font-size       : 14px;
+        padding         : 5px 0;
+        position        : absolute;
+        text-align      : center;
+        visibility      : hidden;
+        width           : 280px; /* Ist */
+        white-space     : normal; /* runetip has pre */
+        z-index         : 1;
+    }
+
+    .runetip .runehelp3
+    {
+        background-color: #123;
+        border          : 1px solid #08F;
+        border-radius   : 4px;
+        color           : #ddd;
+        font-family     : sans-serif;
+        font-size       : 14px;
+        padding         : 5px 0;
+        position        : absolute;
+        text-align      : center;
+        visibility      : hidden;
+        width           : 400px; /* 85 alvl header instructions */
+        white-space     : normal; /* runetip has pre */
+        z-index         : 1;
+    }
+
+.runetip .gemtext
+{
+    background-color: #123;
+    border          : 1px solid #08F;
+    border-radius   : 4px;
+    color           : #ddd;
+    font-family     : sans-serif;
+    font-size       : 14px;
+    padding         : 5px 0;
+    position        : absolute;
+    text-align      : center;
+    visibility      : hidden;
+    width           : 280px; /* Ist */
+    white-space     : pre; /* see .gemhelp and gemtext */
+    z-index         : 1;
+}
+
+    /* Column 1 */
+    .runetip:hover .runehelp1
+    {
+        cursor    : pointer;
+        left      : 185px; /* Single Column:  32,  185 */
+        top       : 32px;  /* Multi  column: -32, -285 */
+        visibility: visible;
+    }
+
+    /* Column 2 */
+    .runetip:hover .runehelp2
+    {
+        cursor    : pointer;
+        left      : -285px; /* Single Column: 32,  185 */
+        top       :    0px; /* Multi  column:  0, -285 */
+        visibility: visible;
+    }
+
+    .runetip:hover .runehelp3
+    {
+        cursor    : pointer;
+        left      : 185px; /* Single Column:  32,  185 */
+        top       : 32px;  /* Multi  column: -32, -285 */
+        visibility: visible;
+    }
+
+.runetip:hover .gemtext
+{
+    cursor    : pointer;
+    left      : -285px; /* Single Column: 32,  185 */
+    top       :    0px; /* Multi  column:  0, -285 */
+    visibility: visible;
+}
+
+.runetype
+{
+    color      : #fff;
+    font-weight: bold;
+}
+
+.tool
+{
+    border          : 1px solid skyblue;
+    border-radius   : 4px;
+    color           : #fff;
+    font-family     : sans-serif;
+    font-size       : 14px;
+    margin          : 0px;
+    padding         : 32px 0px 32px 0px;
+    position        : absolute;
+    text-align      : center;
+    visibility      : hidden;
+    width           : 410px;  /* 1300 - 800, Obediance, Silence, Mosaic */
+    z-index         : 1;
+}
+
+.ttr
+{
+    background-color: #312;
+}
+
+.ttg
+{
+    background-color: #132;
+}
+
+.ttb
+{
+    background-color: #123;
+}
+
+.ttk
+{
+    background-color: #222;
+}
+
+.rw-text:hover
+{
+    background-color: #880; /* FF0 pure yellow; toned down for night time CC0, tweaked for highlighting runes */
+    color           : #000;
+    cursor          : pointer;
+}
+
+.tooltip
+{
+    cursor        : pointer;
+    display       : inline-block;
+    height        : 16px;
+    position      : relative;
+    vertical-align: middle;
+    white-space   : pre;
+}
+
+.tooltip:hover
+{
+    background-color: #880; /* FF0 pure yellow; toned down for night time CC0, tweaked for highlighting runes */
+    color           : #000;
+    cursor          : pointer;
+}
+
+    /* Desktop column3 */
+    .tooltip:hover .ttr
+    {
+        cursor    : pointer;
+        visibility: visible;
+        top       : 0px;
+        left      : 1025px;
+    }
+
+    .tooltip:hover .ttg
+    {
+        cursor    : pointer;
+        visibility: visible;
+        top       : 0px;
+        left      : 1025px;
+    }
+
+    .tooltip:hover .ttb
+    {
+        cursor    : pointer;
+        visibility: visible;
+        top       : 0px;
+        left      : 1025px;
+    }
+
+    .tooltip:hover .ttk
+    {
+        cursor    : pointer;
+        visibility: visible;
+        top       : 0px;
+        left      : 1025px;
+    }
+
+/* ----- Device ----- */
+
+    .ios-hidden
+    {
+        display: block;
+    }
+
+    .ios-visible
+    {
+        display: none;
+    }
+
+/* iPhone Plus -- is screen width <= 767px */
+@media screen and (max-width: 991.98px)
+{
+    .ios-hidden
+    {
+        display: none;
+    }
+
+    .ios-runes1
+    {
+        width: 550px; /* 600 Too wide */
+    }
+
+    .ios-visible
+    {
+        display: block;
+    }
+
+    /* Spacer between FCR/FHR/FBR and Runes */
+    .column2
+    {
+        margin-left: 55px;
+    }
+
+    /* Single Column */
+    .runetip
+    {
+        width         : 740px; /* auto, 615, also see: ios-runes  */
+    }
+
+    .runetip:hover .gemtext
+    {
+        left      : 185px; /* Single Column:  32,  185 */
+        top       : 32px;  /* Multi  column: -32, -285 */
+    }
+
+    .tooltip:hover .ttr
+    {
+        left      : 250px;
+        top       : 28px;
+    }
+
+    .tooltip:hover .ttg
+    {
+        left      : 250px;
+        top       : 28px;
+    }
+
+    .tooltip:hover .ttb
+    {
+        left      : 250px;
+        top       : 28px;
+    }
+
+    .tooltip:hover .ttk
+    {
+        left      : 250px;
+        top       : 28px;
+    }
+}
+
+/* ----- General ----- */
+
+    a:visited
+    {
+        color          : #0F0;
+/*      text-decoration: none; */
+    }
+
+    a:link
+    {
+        color          : #FFF; /* 8F8 */
+/*      text-decoration: none; */
+        font-weight    : bold
+    }
+
+    /* Runeword description: type (Shields, etc) */
+    b
+    {
+        color: #FF8; /* Softer yellow */
+    }
+
+    body
+    {
+        -webkit-text-size-adjust: none; /* stop iOS from resizing even though font size is specified */
+        text-size-adjust: none;
+        color           : #fff;
+        background-color: #000;
+        font-family     : Consolas, Menlo, Monaco, Lucida Console, monospace;
+        font-size       : 16px;
+        width           : 1300px;
+        max-width       : 1300px;
+        overflow-x      : hidden;
+        overflow-y      : scroll;
+    }
+
+    .center
+    {
+        text-align: center;
+    }
+
+    div.c
+    {
+        display       : inline-block;
+        vertical-align: middle;
+    }
+
+/* ----- Images ----- */
+    img
+    {
+        margin:  0px;
+        padding: 0px;
+    }
+
+    img.blank30x30
+    {
+        content   : url('data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==');
+        width     : 30px;
+        height    : 30px;
+        margin    :  0px;
+        padding   :  0px;
+        visibility: hidden; /* FF needs this other it will render an outline box */
+    }
+
+    div.tz
+    {
+        content: url('pics/terror_mob.png');
+        display: inline-block;
+        width  : 16px;
+        height : 16px;
+        alt    : 'Terror Zone';
+    }
+
+    /* Stupid FF bug img content in css doesn't work with img */
+    div.wp
+    {
+        content: url('pics/wp.png');
+        display: inline-block;
+        width  : 16px;
+        height : 16px;
+        alt    : 'Waypoint';
+    }
+
+pre
+{
+    font-family: Consolas, Menlo, Monaco, Lucida Console, monospace;
+    font-size  : 16px;
+    margin     : 0px;
+}
+
+.ruler
+{
+    background-color: #222;
+    border          : 0.5px dotted skyblue;
+    border-radius   : 0px;
+    color           : #F00;
+    margin          : 0px;
+    padding         : 0px 0px;
+    position        : absolute;
+    top             : 0px;
+    height          : 3700px;
+    width           : 0px;
+    z-index         : 1;
+}
