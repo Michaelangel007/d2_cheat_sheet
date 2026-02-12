@@ -141,6 +141,16 @@
         background-color: #202;
     }
 
+    .w11
+    {
+        background-color: #4A2038;
+    }
+
+    .w22
+    {
+        background-color: #3D1A2E;
+    }
+
     /* Tiers */
     .stier { color: #000; background-color: hsl(  0 100% 75%); } /* rgb(255, 127, 127); */
     .atier { color: #000; background-color: hsl( 30 100% 75%); } /* rgb(255, 191, 127); */
