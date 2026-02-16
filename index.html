@@ -231,7 +231,15 @@ var RECIPES = [
     "  Temper              3  Helms                           Shael + Io    + Ral                     35  2.6",
     "  Hustle              3  Body Armor/Weapons              Shael + Ko    + Eld                     39  2.6",
     "* Mosaic              3  Claw                            Mal   + Gul   + Amn                     53  2.6",
-    "  Metamorphosis       3  Helm                            Io    + Cham  + Fal                     67  2.6"
+    "  Metamorphosis       3  Helm                            Io    + Cham  + Fal                     67  2.6",
+
+    "* Authority           3  Body Armor                      Hel   + Shael + Ral                     29  3.0", // 'rw93'
+    "  Coven               3  Helm                            Ist   + Ral   + Io                      51  3.0", // 'rw94'
+    "  Hysteria            3  Body Armor                      Shael + Ko    + Eld                     39  3.0", // 'rw95'  ladder only?
+    "  Mania               3  Weapons                         Shael + Ko    + Eld                     39  3.0", // 'rw96'  ladder only?
+    "  Ritual              3  Daggers                         Amn   + Shael + Ohm                     57  3.0", // 'rw97'
+    "  Viligance           2  Grimoires/Shields/Heads/Targe   Dol   + Gul                             53  3.0", // 'rw98'
+    "* Void                3  Daggers                         Thul  + Zod   + Ist                     69  3.0"  // 'rw99'
 ];
 
     const HolyGrailColumn =
@@ -2345,6 +2353,9 @@ function updateRuneWordsOrder( array )
         row   = 0,
         src;
 
+    if (array.length != (rows.length - 1)) // rows includes table header row
+        console.error( "runewords[ " + array.length + " ] != table.runeWords[ " + rows.length + " ]" );
+
     // Reorder
     for( row = 1; row < rows.length; row++ )
     {
@@ -2370,13 +2381,14 @@ function updateRuneWordsOrder( array )
         var is111 = ver.indexOf( '1.11'     ) === 0; // k
         var is24  = ver.indexOf( '2.4 lad'  ) === 0; // y
         var is26  = ver.indexOf( '2.6'      ) === 0; // g
-
+        var is30  = ver.indexOf( '3.0'      ) === 0; // m
 
              if( is111 ) _addClasses( elem, isOdd ? 'k11' : 'k22' );
         else if( isLad ) _addClasses( elem, isOdd ? 'b11' : 'b22' );
         else if( is110 ) _addClasses( elem, isOdd ? 'g11' : 'g22' );
         else if( is24  ) _addClasses( elem, isOdd ? 'y11' : 'y22' );
         else if( is26  ) _addClasses( elem, isOdd ? 'g11' : 'g22' );
+        else if( is30  ) _addClasses( elem, isOdd ? 'm11' : 'm22' );
         else             _addClasses( elem, isOdd ? 'r11' : 'r22' );
     }
 }
@@ -2464,13 +2476,13 @@ function UpdateScrollBarsVisible()
 <body onload='onLoad();' onresize='onResize();'><div id='content'>
 <table>
     <tr><td class='vatop'>
-<div class='c'>D2R <a href='https://news.blizzard.com/en-us/article/24208340/diablo-ii-resurrected-ladder-season-11-now-live'>Season 11</a> <b>Ladder Currency</b>:
+<div class='c'>D2R <a href='https://news.blizzard.com/en-us/article/24208340/diablo-ii-resurrected-ladder-season-11-now-live'>Season 11</a> (13?) <b>Ladder Currency</b>:
  12x <div class='c'><img class='gem20' src='gems/amethyst_perfect.png' /></div>pameth &rarr; <span class='rune'>Mal</span>,
  50x <div class='c'><img class='gem20' src='gems/ruby_perfect.png' /><img class='gem20' src='gems/topaz_perfect.png' /><img class='gem20' src='gems/emerald_perfect.png' /><img class='gem20' src='gems/sapphire_perfect.png' /><img class='gem20' src='gems/diamond_perfect.png' /><img class='gem20' src='gems/skull_perfect.png' />
  </div>pgems &rarr; <span class='rune'>Ist</span></div>
     </td></tr>
 </table>
-<span style='font-size:14px;'>Diablo 2 <a href="">Season 12</a> starts Friday, Oct. 3, 2025, 5pm PDT.</span>
+<span style='font-size:14px;'>Diablo 2 <a href="https://news.blizzard.com/en-us/article/24246296/diablo-ii-resurrected-ladder-season-13-coming-soon">Season 13</a> starts Friday, Feb. 20, 2026, 5pm PDT.</span>
 <span style='font-size:14px;'>Diablo 3 <a href="https://news.blizzard.com/en-us/article/24231417/season-36-the-lords-of-hell-now-live">Season 36</a> started Friday, Sept. 12, 5pm PDT.</span>
 <span style='font-size:14px;'>My <a href="thoughts.html">thoughts</a> on D2, D3, D4, and other ARPGs.</span><br>
 <table class='head'>
@@ -2500,7 +2512,8 @@ function UpdateScrollBarsVisible()
 <tr><td class='tooltip pal'  >Pal                                      0    9   18   30   48   75  125          </td></tr>
 <tr><td class='tooltip sor'  >Src Lightning            0   7  15  23  35   52   78  117  194                    </td></tr>
 <tr><td class='tooltip k11'  >    Other skills                                   0    9   20   37   63<span class='note'>*</span> 105  200</td></tr>
-<tr><td class='tooltip k22'  >Mrc Act3                         0   8  15   26   39   58   86  138               </td></tr>
+<tr><td class='tooltip war'  >War                                      0    9   18   30   48   75  125          </td></tr>
+<tr><td class='tooltip k11'  >Mrc Act3                         0   8  15   26   39   58   86  138               </td></tr>
 <tr class='bt'           ><th>Frames  23  22  21  20  19  18  17  16  15   14   13   12   11   10    9    8    7</th></tr>
             </table>
             <br>
@@ -2519,10 +2532,11 @@ function UpdateScrollBarsVisible()
 <tr><td class='tooltip pal'  >Pal Spear/Stave           0   3   7  13  20  32   48   75  129  280               </td></tr>
 <tr><td class='tooltip k11'  >    rest                                  0   7   15   27   48   86  200          </td></tr>
 <tr><td class='tooltip sor'  >Src               0   5   9  14  20  30  42  60   86  142  280                    </td></tr>
+<tr><td class='tooltip war'  >War                       0   5  10  16  26  39   56   86  152  377               </td></tr>
 <tr><td class='tooltip k11'  >Mrc Act1                          0   6  13  20   32   52   86  174  600          </td></tr>
 <tr><td class='tooltip k22'  >    Act2          0   5   9  14  20  30  42  60   86  142  280                    </td></tr>
 <tr><td class='tooltip k11'  >    Act3  0   5   8  13  18  24  32  46  63  86  133  232  600                    </td></tr>
-<tr><td class='tooltip k22'  >    Act5 is n/a as it has <a href="https://forums.d2jsp.org/topic.php?t=83866670&f=87">no FHR animation</a></td></tr>
+<tr><td class='tooltip k22'  >    Act5 is n/a as it has <a href="https://forums.d2jsp.org/topic.php?t=83866670&f=87">no FHR animation</a>                                        </td></tr>
 <tr class='gt'           ><th>Frames   17  16  15  14  13  12  11  10   9   8    7    6    5    4    3    2    1</th></tr>
             </table>
             <br>
@@ -2541,6 +2555,7 @@ function UpdateScrollBarsVisible()
 <tr><td class='tooltip pal'  >Pal                                                          0   13   32   86  600</td></tr>
 <tr><td class='tooltip k22'  >    Holy Shield                                                             0   86</td></tr>
 <tr><td class='tooltip sor'  >Src                                       0   7   15   27   48   86  200          </td></tr>
+<tr><td class='tooltip war'  >War                               0   6  13  20   32   52   86                    </td></tr>
 <tr class='rt'           ><th>Frames   17  16  15  14  13  12  11  10   9   8    7    6    5    4    3    2    1</th></tr>
             </table>
 <br>
