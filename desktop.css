@@ -120,6 +120,17 @@
         background-color: #222;
     }
 
+    /* Magenta for WotR */
+    .m11
+    {
+        background-color: #102
+    }
+
+    .m22
+    {
+        background-color: #204
+    }
+
     /* Act II alvl */
     .y11
     {
@@ -160,9 +171,10 @@
     .sin { background-color: #300; }
     .bar { background-color: #220; }
     .dru { background-color: #030; }
-    .nec { background-color: #303; }
+    .nec { background-color: #333; } /* #303 */
     .pal { background-color: #023; }
     .sor { background-color: #003; } /* #114 */
+    .war { background-color: #303; }
 
     .zons { background-color: hsl(200 100% 30%); }
     .zona { background-color: hsl(200 100% 25%); }
@@ -205,6 +217,12 @@
     .sorb { background-color: hsl(240 100% 20%); }
     .sorc { background-color: hsl(240 100% 15%); }
     .sord { background-color: hsl(240 100% 10%); } /* #003 */
+
+    .wars { background-color: hsl(330 100% 30%); }
+    .wara { background-color: hsl(330 100% 25%); }
+    .warb { background-color: hsl(330 100% 20%); }
+    .warc { background-color: hsl(330 100% 15%); }
+    .ward { background-color: hsl(330 100% 10%); } /* */
 
      .mono  { filter:grayscale(100%); }
      .color { filter: none;           }
@@ -937,6 +955,31 @@ td
     cursor          : pointer;
 }
 
+    .tooltip:hover .toolname
+    {
+        color      : #D4C490; /* runeword */
+        font-size  : large;
+        font-weight: bold;
+    }
+
+    /* Tooltip runes in runeword 1.10 */
+    .tooltip:hover .toolrunes11
+    {
+        border-color  : #07f;
+        border-style  : dotted;
+        border-width  : 1px;
+        vertical-align: middle;
+    }
+
+    /* Tooltip runes in runeword 3.0 */
+    .tooltip:hover .toolrunes30
+    {
+        border-color  : #70f;
+        border-style  : dotted;
+        border-width  : 1px;
+        vertical-align: middle;
+    }
+
     /* Desktop column3 */
     .tooltip:hover .ttr
     {
@@ -1058,7 +1101,7 @@ td
         font-weight    : bold
     }
 
-    /* Runeword description: type (Shields, etc) */
+    /* bold = Runeword description: type (Shields, etc) */
     b
     {
         color: #FF8; /* Softer yellow */
@@ -1085,6 +1128,8 @@ td
         text-align: center;
     }
 
+
+    /* center */
     div.c
     {
         display       : inline-block;
