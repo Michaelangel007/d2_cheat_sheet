@@ -22,6 +22,36 @@
         float  : right;
     }
 
+    /* Rune tool tip Container: one line for runeword */
+    .oneline
+    {
+        display       : inline-block;
+        vertical-align: middle;
+    }
+
+    /* Rune tool tip "column" ' + ' -- Vertical Center */
+    .runeadd_vcent
+    {
+        display    : inline-block;
+        align-items: center;
+        position   : relative;
+        top        : 50%;
+        transform  : translateY(-50%);
+    }
+    /* Rune tool tip "column" ' + ' -- Bottom Aligned */
+    .runeadd
+    {
+        display       : inline-block;
+        vertical-align: 8px;
+    }
+
+    /* Rune tool tip "column" rune stacked above rune name */
+    .runestack
+    {
+        display       : inline-block;
+        vertical-align: 8px;
+    }
+
     .in
     {
         display       : inline-block;
