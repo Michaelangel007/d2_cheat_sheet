@@ -985,9 +985,15 @@ td
 
     .tooltip:hover .toolname
     {
+        border             : 1px solid #FFF;
+        border-top-width   : 0px;
+        border-bottom-width: 1px;
+        border-right-width : 0px;
+        border-left-width  : 0px;
         color      : #D4C490; /* runeword */
         font-size  : large;
         font-weight: bold;
+        transform  : translateY(-100%); /* Cancel extra line in 'rw1' due to physical line break which was added for easy updating of runeword name and mets */
     }
 
     /* Tooltip runes in runeword 1.10 */
