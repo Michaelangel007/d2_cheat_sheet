@@ -305,6 +305,12 @@
         font-weight: bold;
     }
 
+    /* Character Level Requirement */
+    span.clev
+    {
+        color: #08F;
+    }
+
     /* Def: Increase Chance of Blocking */
     span.cob
     {
@@ -397,10 +403,14 @@
         font-weight: bold;
     }
 
-    /* Level Requirement */
+/*
+background-color: #F0F;
+text-color: #0F0;
+*/
+    /* Generic Number */
     span.n
     {
-        color: #08F;
+        color: #AAA;
     }
 
     span.note
@@ -503,19 +513,11 @@
         color: orange;
     }
 
-    /* Make it easier to see which runes belong to normal, nightmare, hell Countess */
-    span.rune_norm
-    {
-        color: #08F;
-    }
-    span.rune_nm
-    {
-        color: #44F;
-    }
-    span.rune_hell
-    {
-        color: #4EF;
-    }
+    /* Countess rune drops; Make it easier to see which runes belong to normal, nightmare, hell Countess drops */
+    span.rune_norm { color: #08F; }
+    span.rune_nm   { color: #44F; }
+    span.rune_hell { color: #4EF; }
+    span.rune_tz   { color: #08F; }
 
     /* +# to skills */
     span.skill
