@@ -769,6 +769,8 @@ var RECIPES = [
 
 // Debugging __________________________________________________________
 
+    var gDebugCopyToClipboardEnable = 0; // See: DumpRuneWordPrettyPrint() and onToggleFavRW()
+    var gDebugCopyToClipboardText = "";
     var gsDebugTableWidth = "table.belts";
 
 function DumpHolyGrail()
@@ -814,6 +816,49 @@ function DumpHolyGrailSorted( name, array )
              + gaHolyGrailDataUnqsName[ iHG ] +'\n';
     }
     console.log( text );
+}
+
+function DumpRuneWordPrettyPrint( iRuneWord ) {
+    if (iRuneWord > RECIPES.length) return console.error( "Out-of-bounds Runeword" );
+
+    var txt = '';
+    var nSockets  = gaRuneWordSocks[ iRuneWord ];
+    var sRuneWord = gaRuneWordNames[ iRuneWord ].trim();
+    var aRunes    = gaRuneWordRunes[ iRuneWord ];
+
+    txt += "<div class='toolname'>" + sRuneWord + "</div>";
+    txt += "<div class='oneline'>";
+
+//console.log( "Sockets:  " + nSockets );
+//console.log( "RuneWord: " + sRuneWord );
+//console.log( "Runes: %o", aRunes );
+
+    for( var iSocket = 0; iSocket < nSockets; iSocket++ )
+    {
+        var iRune = aRunes[ iSocket ];     // 7
+        var sRune = RUNES[ iRune ].trim(); // "Ral"
+        var sIcon = sRune.toLowerCase();   // "ral"
+
+//console.log( "  Socket #" + iSocket );
+//console.log( "  iRune: #" + iRune   );
+//console.log( "  sIcon:  " + sIcon   );
+
+        txt += "<div class='runestack'>"
+            +  "<img src='runes/" + sIcon + ".png'/><br>"
+            +  "<span class='rune'>" + sRune + "</span>"
+            +  "</div>"
+
+        if (iSocket < (nSockets - 1))
+            txt += "<div class='runeadd'><br> +&nbsp;<br></div>";
+    }
+    txt += "</div>";
+
+    console.info( '\n' + txt + '\n\n' );
+
+    // Can't "copy" into the clipboard due to security
+    // so make favoriting a runeword do this
+    // navigator.clipboard.writeText( txt );
+    gDebugCopyToClipboardText = txt;
 }
 
 function DumpRuneWordSorted( name, array )
@@ -1666,6 +1711,12 @@ console.info( "Touch: " +  (navigator.maxTouchPoints > 0) );
         console.info( 'Overriding mobile! ' + gbIsMobile );
     }
 
+    // .html?debug=1#manifest
+    if (sParam.has('debug'))
+    {
+        gDebugCopyToClipboardEnable = parseInt(sParam.get('debug'));
+    }
+
     // This resets the scrolled content!
     onResize();
 
@@ -1808,6 +1859,14 @@ function onToggleFavRW( btn )
 
     setFavoriteRuneWord( recipe, 1-isFavorite, true );
     updateManifest();
+
+    // DEBUG FEATURE: Unselecting a favorite runeword will copy the HTML runeword formating to the clipboard
+    if (gDebugCopyToClipboardEnable && isFavorite)
+    {
+        console.log( "Getting HTML for runeword #" + recipe + "..." );
+        DumpRuneWordPrettyPrint( recipe );
+        navigator.clipboard.writeText( gDebugCopyToClipboardText );
+    }
 }
 
 // On Toggle Holy Grail (Normal/Set/Unique)
