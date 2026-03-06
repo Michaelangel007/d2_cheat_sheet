@@ -1690,8 +1690,8 @@ function onLoad()
     // gbIsMobile = navigator.userAgentData.mobile;
     gbIsMobile = false;
     if ("maxTouchPoints" in navigator)
-        gbIsMobile = (navigator.maxTouchPoints > 0);
-console.info( "Touch: " +  (navigator.maxTouchPoints > 0) );
+        gbIsMobile = (navigator.maxTouchPoints > 1); // Firefox sets touch to one
+console.info( "Touch: " +  (navigator.maxTouchPoints > 1) );
 
     // We can't use matchMedia with ChromeMobileDevice
     //    var mobile = matchMedia( 'max-device-width: 1000px' );
