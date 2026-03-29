@@ -769,9 +769,11 @@ var RECIPES = [
 
 // Debugging __________________________________________________________
 
-    var gDebugCopyToClipboardEnable = 0; // See: DumpRuneWordPrettyPrint() and onToggleFavRW()
-    var gDebugCopyToClipboardText = "";
-    var gsDebugTableWidth = "table.belts";
+    var gDebug = 0,
+        gbDebugTableWidths    = 0, // See: initTableCollapseMinWidth()
+        gsDebugTableWidthName = 'table.belts', // 'table.belts' or 'table.sockcube'
+        gDebugCopyToClipboardEnable = 0, // See: DumpRuneWordPrettyPrint() and onToggleFavRW()
+        gDebugCopyToClipboardText = "";
 
 function DumpHolyGrail()
 {
@@ -1423,7 +1425,10 @@ function initTableCollapseMinWidth()
             ta = tb.parentElement; // table
             tn = ta.getAttribute('id'); // name
 
-            name = (gsDebugTableWidth === tn)
+if (gbDebugTableWidths) // PARAM: debug // sParam.has('debug')
+    console.log( 'Table Min Width: #' + div + ', Table: ', tn );
+
+            name = (gsDebugTableWidthName === tn)
                  ? tn
                  : null; // DEBUG
 //name = tn;
@@ -1714,7 +1719,9 @@ console.info( "Touch: " +  (navigator.maxTouchPoints > 1) );
     // .html?debug=1#manifest
     if (sParam.has('debug'))
     {
-        gDebugCopyToClipboardEnable = parseInt(sParam.get('debug'));
+        gDebug = parseInt(sParam.get('debug'));
+        gDebugCopyToClipboardEnable = gDebug;
+        gbDebugTableWidths          = gDebug;
     }
 
     // This resets the scrolled content!
